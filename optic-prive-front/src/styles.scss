@@ -1,6 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
-body {
-  background-color: red !important;
-}
-
 @import '~bootstrap/scss/bootstrap';
+
+$footer-link: #F4FFFA!important;
+$green-footer:#87A397;
+
+footer {
+  background-color: $green-footer;
+  color: $footer-link;
+
+  a.text-muted {
+    color: $footer-link;
+    font-family: 'Open Sans', sans-serif;
+    font-family: 'Raleway', sans-serif;
+    font-size: 18px;
+  }
+}
