@@ -48,6 +48,9 @@ class Product
     #[ORM\Column(type: 'datetime_immutable')]
     private $updated_at;
 
+    #[ORM\Column(type: 'enumState')]
+    private $state;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -181,6 +184,18 @@ class Product
     public function setUpdatedAt(\DateTimeImmutable $updated_at): self
     {
         $this->updated_at = $updated_at;
+
+        return $this;
+    }
+
+    public function getState()
+    {
+        return $this->state;
+    }
+
+    public function setState($state): self
+    {
+        $this->state = $state;
 
         return $this;
     }
