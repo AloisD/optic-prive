@@ -51,6 +51,9 @@ class Product
     #[ORM\Column(type: 'enumState')]
     private $state;
 
+    #[ORM\Column(type: 'enumCategory')]
+    private $category;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -196,6 +199,18 @@ class Product
     public function setState($state): self
     {
         $this->state = $state;
+
+        return $this;
+    }
+
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    public function setCategory($category): self
+    {
+        $this->category = $category;
 
         return $this;
     }

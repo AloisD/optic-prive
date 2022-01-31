@@ -27,6 +27,9 @@ class ProductFixtures extends Fixture
       $state = $this->getStatusRandom();
       $product->setState($state);
 
+      $category = $this->getCategoryRandom();
+      $product->setCategory($category);
+
       $manager->persist($product);
     }
 
@@ -37,6 +40,13 @@ class ProductFixtures extends Fixture
   private function getStatusRandom(): string
   {
     $items = ['damagedCondition', 'newCondition', 'refurbishedCondition', 'usedCondition'];
+    return $items[random_int(0, 3)];
+  }
+
+  // get random category
+  private function getCategoryRandom(): string
+  {
+    $items = ['male', 'female', 'child', 'unisex'];
     return $items[random_int(0, 3)];
   }
 }
