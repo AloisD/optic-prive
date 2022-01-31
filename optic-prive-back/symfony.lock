@@ -301,10 +301,16 @@
     "symfony/mime": {
         "version": "v6.0.3"
     },
+    "symfony/options-resolver": {
+        "version": "v6.0.3"
+    },
     "symfony/password-hasher": {
         "version": "v6.0.2"
     },
     "symfony/polyfill-intl-grapheme": {
+        "version": "v1.24.0"
+    },
+    "symfony/polyfill-intl-icu": {
         "version": "v1.24.0"
     },
     "symfony/polyfill-intl-icu": {
