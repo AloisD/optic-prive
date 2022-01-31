@@ -14,7 +14,7 @@ final class Version20220131162206 extends AbstractMigration
 {
     public function getDescription(): string
     {
-        return '';
+        return 'Added uv_protection field into product table';
     }
 
     public function up(Schema $schema): void
