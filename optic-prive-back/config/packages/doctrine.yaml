@@ -4,6 +4,7 @@ doctrine:
         types:
             enumState:  App\Classe\EnumState
             enumCategory: App\Classe\EnumCategory
+            enumUvProtection: App\Classe\EnumUvProtection
         mapping_types:
             enum: string
 

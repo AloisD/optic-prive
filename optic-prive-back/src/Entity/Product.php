@@ -54,6 +54,9 @@ class Product
     #[ORM\Column(type: 'enumCategory')]
     private $category;
 
+    #[ORM\Column(type: 'enumUvProtection', nullable: true)]
+    private $uv_protection;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -211,6 +214,18 @@ class Product
     public function setCategory($category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    public function getUvProtection()
+    {
+        return $this->uv_protection;
+    }
+
+    public function setUvProtection($uv_protection): self
+    {
+        $this->uv_protection = $uv_protection;
 
         return $this;
     }
