@@ -57,6 +57,9 @@ class Product
     #[ORM\Column(type: 'enumUvProtection', nullable: true)]
     private $uv_protection;
 
+    #[ORM\Column(type: 'enumOfferStatus')]
+    private $offer_status;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -226,6 +229,18 @@ class Product
     public function setUvProtection($uv_protection): self
     {
         $this->uv_protection = $uv_protection;
+
+        return $this;
+    }
+
+    public function getOfferStatus()
+    {
+        return $this->offer_status;
+    }
+
+    public function setOfferStatus($offer_status): self
+    {
+        $this->offer_status = $offer_status;
 
         return $this;
     }
