@@ -30,6 +30,9 @@ class ProductFixtures extends Fixture
       $category = $this->getCategoryRandom();
       $product->setCategory($category);
 
+      $uvProtection = $this->getUvProtectionRandom();
+      $product->setUvProtection($uvProtection);
+
       $manager->persist($product);
     }
 
@@ -48,5 +51,12 @@ class ProductFixtures extends Fixture
   {
     $items = ['male', 'female', 'child', 'unisex'];
     return $items[random_int(0, 3)];
+  }
+
+  // get random category
+  private function getUvProtectionRandom(): string
+  {
+    $items = ['category0', 'category1', 'category2', 'category3', 'category4'];
+    return $items[random_int(0, 4)];
   }
 }
