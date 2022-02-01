@@ -17,8 +17,8 @@ class ProductCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id'),
-            Field::new('name'),
+/*             IdField::new('id'),
+ */            Field::new('name'),
         ];
     }
 }
