@@ -57,8 +57,8 @@ class Product
     #[ORM\Column(type: 'enumUvProtection', nullable: true)]
     private $uv_protection;
 
-    #[ORM\Column(type: 'enumOfferStatus')]
-    private $offer_status;
+    #[ORM\Column(type: 'enumItemAvailability')]
+    private $item_availability;
 
     public function getId(): ?int
     {
@@ -233,14 +233,14 @@ class Product
         return $this;
     }
 
-    public function getOfferStatus()
+    public function getItemAvailability()
     {
-        return $this->offer_status;
+        return $this->item_availability;
     }
 
-    public function setOfferStatus($offer_status): self
+    public function setItemAvailability($item_availability): self
     {
-        $this->offer_status = $offer_status;
+        $this->item_availability = $item_availability;
 
         return $this;
     }
