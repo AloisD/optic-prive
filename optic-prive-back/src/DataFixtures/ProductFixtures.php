@@ -33,6 +33,9 @@ class ProductFixtures extends Fixture
       $uvProtection = $this->getUvProtectionRandom();
       $product->setUvProtection($uvProtection);
 
+      $offerStatus = $this->getOfferStatusRandom();
+      $product->setOfferStatus($offerStatus);
+
       $manager->persist($product);
     }
 
@@ -58,5 +61,11 @@ class ProductFixtures extends Fixture
   {
     $items = ['category0', 'category1', 'category2', 'category3', 'category4'];
     return $items[random_int(0, 4)];
+  }
+
+  private function getOfferStatusRandom(): string
+  {
+    $items = ['active', 'out of stock'];
+    return $items[random_int(0, 1)];
   }
 }
