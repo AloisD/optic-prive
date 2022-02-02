@@ -16,7 +16,7 @@ class ShippingOptionFixtures extends Fixture
             $shippingOption = new ShippingOption();
             $shippingOption
                 ->setName($faker->word())
-                ->setPrice($faker->randomFloat(2, 0, 100));
+                ->setPrice($faker->randomFloat(2, 0, 999.99));
 
                 $manager->persist($shippingOption);
         }

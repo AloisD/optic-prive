@@ -18,7 +18,7 @@ class ShippingOption
     #[ORM\Column(type: 'string', length: 255)]
     private $name;
 
-    #[ORM\Column(type: 'float')]
+    #[ORM\Column(type: 'decimal', precision: 5, scale: '2')]
     private $price;
 
     public function getId(): ?int
@@ -38,12 +38,12 @@ class ShippingOption
         return $this;
     }
 
-    public function getPrice(): ?float
+    public function getPrice(): ?string
     {
         return $this->price;
     }
 
-    public function setPrice(float $price): self
+    public function setPrice(string $price): self
     {
         $this->price = $price;
 
