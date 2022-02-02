@@ -24,10 +24,10 @@ class Product
     #[ORM\Column(type: 'string', length: 255)]
     private $color_code;
 
-    #[ORM\Column(type: 'integer')]
+    #[ORM\Column(type: 'decimal', precision: 5, scale: '2')]
     private $retail_price;
 
-    #[ORM\Column(type: 'integer')]
+    #[ORM\Column(type: 'decimal', precision: 5, scale: '2')]
     private $selling_price;
 
     #[ORM\Column(type: 'integer')]
@@ -101,24 +101,24 @@ class Product
         return $this;
     }
 
-    public function getRetailPrice(): ?int
+    public function getRetailPrice(): ?string
     {
         return $this->retail_price;
     }
 
-    public function setRetailPrice(int $retail_price): self
+    public function setRetailPrice(string $retail_price): self
     {
         $this->retail_price = $retail_price;
 
         return $this;
     }
 
-    public function getSellingPrice(): ?int
+    public function getSellingPrice(): ?string
     {
         return $this->selling_price;
     }
 
-    public function setSellingPrice(int $selling_price): self
+    public function setSellingPrice(string $selling_price): self
     {
         $this->selling_price = $selling_price;
 

@@ -18,8 +18,8 @@ class ProductFixtures extends Fixture
         ->setName($faker->word())
         ->setReference('réference' . $p)
         ->setColorCode($faker->word())
-        ->setRetailPrice($faker->randomFloat(2))
-        ->setSellingPrice($faker->randomFloat(2))
+        ->setRetailPrice($faker->randomFloat(2, 0, 999.99))
+        ->setSellingPrice($faker->randomFloat(2, 0, 999.99))
         ->setQuantity($faker->randomNumber(2, false))
         ->setCreatedAt(new \DateTimeImmutable())
         ->setUpdatedAt(new \DateTimeImmutable());
