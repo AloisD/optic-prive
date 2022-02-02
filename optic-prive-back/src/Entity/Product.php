@@ -60,6 +60,10 @@ class Product
     #[ORM\Column(type: 'enumItemAvailability')]
     private $item_availability;
 
+    #[ORM\ManyToOne(targetEntity: Brand::class, inversedBy: 'products')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $brand;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -241,6 +245,18 @@ class Product
     public function setItemAvailability($item_availability): self
     {
         $this->item_availability = $item_availability;
+
+        return $this;
+    }
+
+    public function getBrand(): ?Brand
+    {
+        return $this->brand;
+    }
+
+    public function setBrand(?Brand $brand): self
+    {
+        $this->brand = $brand;
 
         return $this;
     }
