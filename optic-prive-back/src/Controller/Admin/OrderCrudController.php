@@ -40,9 +40,9 @@ class OrderCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id'),
-            TextField::new('title'),
-            TextEditorField::new('description'),
+            DateField::new('created_at'),
+            DateField::new('updated_at'),
+            TextField::new('order_status'),
         ];
     }
-    */
 }
