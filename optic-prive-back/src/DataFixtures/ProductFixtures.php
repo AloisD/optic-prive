@@ -21,9 +21,7 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
       ->setColorCode('poli or:vert') // monture color : glasses color
       ->setRetailPrice($faker->randomFloat(1, 10, 30))
       ->setSellingPrice($faker->randomFloat(1, 10, 30))
-      ->setQuantity($faker->randomNumber(1, true))
-      ->setCreatedAt(new \DateTimeImmutable())
-      ->setUpdatedAt(new \DateTimeImmutable());
+      ->setQuantity($faker->randomNumber(1, true));
 
     $this->getDataProduct($product, $faker);
 
