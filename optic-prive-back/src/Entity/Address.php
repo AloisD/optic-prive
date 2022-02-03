@@ -43,12 +43,6 @@ class Address implements TimestampableInterface
   #[ORM\Column(type: 'text', nullable: true)]
   private $additionnal_details;
 
-  #[ORM\Column(type: 'datetime_immutable')]
-  private $createdAt;
-
-  #[ORM\Column(type: 'datetime_immutable')]
-  private $updatedAt;
-
   public function getId(): ?int
   {
     return $this->id;
