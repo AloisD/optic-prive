@@ -72,6 +72,10 @@ class Product
     #[ORM\JoinColumn(nullable: false)]
     private $segment;
 
+    #[ORM\ManyToOne(targetEntity: LensType::class, inversedBy: 'products')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $lens_type;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -289,6 +293,18 @@ class Product
     public function setSegment(?Segment $segment): self
     {
         $this->segment = $segment;
+
+        return $this;
+    }
+
+    public function getLensType(): ?LensType
+    {
+        return $this->lens_type;
+    }
+
+    public function setLensType(?LensType $lens_type): self
+    {
+        $this->lens_type = $lens_type;
 
         return $this;
     }
