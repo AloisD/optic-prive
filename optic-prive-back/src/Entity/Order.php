@@ -38,6 +38,10 @@ class Order
     #[ORM\JoinColumn(nullable: false)]
     private $delivery_address;
 
+    #[ORM\ManyToOne(targetEntity: ShippingOption::class, inversedBy: 'orders')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $shipping;
+
     public function __construct()
     {
         $this->orderHasProducts = new ArrayCollection();
@@ -134,6 +138,18 @@ class Order
     public function setDeliveryAddress(?Address $delivery_address): self
     {
         $this->delivery_address = $delivery_address;
+
+        return $this;
+    }
+
+    public function getShipping(): ?ShippingOption
+    {
+        return $this->shipping;
+    }
+
+    public function setShipping(?ShippingOption $shipping): self
+    {
+        $this->shipping = $shipping;
 
         return $this;
     }
