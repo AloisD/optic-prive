@@ -68,6 +68,10 @@ class Product
     #[ORM\JoinColumn(nullable: false)]
     private $shape;
 
+    #[ORM\ManyToOne(targetEntity: Segment::class, inversedBy: 'products')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $segment;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -273,6 +277,18 @@ class Product
     public function setShape(?Shape $shape): self
     {
         $this->shape = $shape;
+
+        return $this;
+    }
+
+    public function getSegment(): ?Segment
+    {
+        return $this->segment;
+    }
+
+    public function setSegment(?Segment $segment): self
+    {
+        $this->segment = $segment;
 
         return $this;
     }
