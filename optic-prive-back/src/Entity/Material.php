@@ -5,48 +5,52 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\MaterialRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Knp\DoctrineBehaviors\Contract\Entity\TimestampableInterface;
+use Knp\DoctrineBehaviors\Model\Timestampable\TimestampableTrait;
 
 #[ORM\Entity(repositoryClass: MaterialRepository::class)]
 #[ApiResource]
-class Material
+class Material implements TimestampableInterface
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column(type: 'integer')]
-    private $id;
+  use TimestampableTrait;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $name;
+  #[ORM\Id]
+  #[ORM\GeneratedValue]
+  #[ORM\Column(type: 'integer')]
+  private $id;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $logo;
+  #[ORM\Column(type: 'string', length: 255)]
+  private $name;
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
+  #[ORM\Column(type: 'string', length: 255, nullable: true)]
+  private $logo;
 
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
+  public function getId(): ?int
+  {
+    return $this->id;
+  }
 
-    public function setName(string $name): self
-    {
-        $this->name = $name;
+  public function getName(): ?string
+  {
+    return $this->name;
+  }
 
-        return $this;
-    }
+  public function setName(string $name): self
+  {
+    $this->name = $name;
 
-    public function getLogo(): ?string
-    {
-        return $this->logo;
-    }
+    return $this;
+  }
 
-    public function setLogo(?string $logo): self
-    {
-        $this->logo = $logo;
+  public function getLogo(): ?string
+  {
+    return $this->logo;
+  }
 
-        return $this;
-    }
+  public function setLogo(?string $logo): self
+  {
+    $this->logo = $logo;
+
+    return $this;
+  }
 }
