@@ -5,168 +5,142 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\AddressRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Knp\DoctrineBehaviors\Contract\Entity\TimestampableInterface;
+use Knp\DoctrineBehaviors\Model\Timestampable\TimestampableTrait;
 
 #[ORM\Entity(repositoryClass: AddressRepository::class)]
 #[ApiResource]
-class Address
+class Address implements TimestampableInterface
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column(type: 'integer')]
-    private $id;
+  use TimestampableTrait;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $name;
+  #[ORM\Id]
+  #[ORM\GeneratedValue]
+  #[ORM\Column(type: 'integer')]
+  private $id;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $recipient;
+  #[ORM\Column(type: 'string', length: 255)]
+  private $name;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $country;
+  #[ORM\Column(type: 'string', length: 255)]
+  private $recipient;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $city;
+  #[ORM\Column(type: 'string', length: 255)]
+  private $country;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $street;
+  #[ORM\Column(type: 'string', length: 255)]
+  private $city;
 
-    #[ORM\Column(type: 'integer', nullable: true)]
-    private $number;
+  #[ORM\Column(type: 'string', length: 255, nullable: true)]
+  private $street;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $company;
+  #[ORM\Column(type: 'integer', nullable: true)]
+  private $number;
 
-    #[ORM\Column(type: 'text', nullable: true)]
-    private $additionnal_details;
+  #[ORM\Column(type: 'string', length: 255, nullable: true)]
+  private $company;
 
-    #[ORM\Column(type: 'datetime_immutable')]
-    private $createdAt;
+  #[ORM\Column(type: 'text', nullable: true)]
+  private $additionnal_details;
 
-    #[ORM\Column(type: 'datetime_immutable')]
-    private $updatedAt;
+  public function getId(): ?int
+  {
+    return $this->id;
+  }
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
+  public function getName(): ?string
+  {
+    return $this->name;
+  }
 
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
+  public function setName(string $name): self
+  {
+    $this->name = $name;
 
-    public function setName(string $name): self
-    {
-        $this->name = $name;
+    return $this;
+  }
 
-        return $this;
-    }
+  public function getRecipient(): ?string
+  {
+    return $this->recipient;
+  }
 
-    public function getRecipient(): ?string
-    {
-        return $this->recipient;
-    }
+  public function setRecipient(string $recipient): self
+  {
+    $this->recipient = $recipient;
 
-    public function setRecipient(string $recipient): self
-    {
-        $this->recipient = $recipient;
+    return $this;
+  }
 
-        return $this;
-    }
+  public function getCountry(): ?string
+  {
+    return $this->country;
+  }
 
-    public function getCountry(): ?string
-    {
-        return $this->country;
-    }
+  public function setCountry(string $country): self
+  {
+    $this->country = $country;
 
-    public function setCountry(string $country): self
-    {
-        $this->country = $country;
+    return $this;
+  }
 
-        return $this;
-    }
+  public function getCity(): ?string
+  {
+    return $this->city;
+  }
 
-    public function getCity(): ?string
-    {
-        return $this->city;
-    }
+  public function setCity(string $city): self
+  {
+    $this->city = $city;
 
-    public function setCity(string $city): self
-    {
-        $this->city = $city;
+    return $this;
+  }
 
-        return $this;
-    }
+  public function getStreet(): ?string
+  {
+    return $this->street;
+  }
 
-    public function getStreet(): ?string
-    {
-        return $this->street;
-    }
+  public function setStreet(?string $street): self
+  {
+    $this->street = $street;
 
-    public function setStreet(?string $street): self
-    {
-        $this->street = $street;
+    return $this;
+  }
 
-        return $this;
-    }
+  public function getNumber(): ?int
+  {
+    return $this->number;
+  }
 
-    public function getNumber(): ?int
-    {
-        return $this->number;
-    }
+  public function setNumber(?int $number): self
+  {
+    $this->number = $number;
 
-    public function setNumber(?int $number): self
-    {
-        $this->number = $number;
+    return $this;
+  }
 
-        return $this;
-    }
+  public function getCompany(): ?string
+  {
+    return $this->company;
+  }
 
-    public function getCompany(): ?string
-    {
-        return $this->company;
-    }
+  public function setCompany(?string $company): self
+  {
+    $this->company = $company;
 
-    public function setCompany(?string $company): self
-    {
-        $this->company = $company;
+    return $this;
+  }
 
-        return $this;
-    }
+  public function getAdditionnalDetails(): ?string
+  {
+    return $this->additionnal_details;
+  }
 
-    public function getAdditionnalDetails(): ?string
-    {
-        return $this->additionnal_details;
-    }
+  public function setAdditionnalDetails(?string $additionnal_details): self
+  {
+    $this->additionnal_details = $additionnal_details;
 
-    public function setAdditionnalDetails(?string $additionnal_details): self
-    {
-        $this->additionnal_details = $additionnal_details;
-
-        return $this;
-    }
-
-    public function getCreatedAt(): ?\DateTimeImmutable
-    {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt(\DateTimeImmutable $createdAt): self
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    public function getUpdatedAt(): ?\DateTimeImmutable
-    {
-        return $this->updatedAt;
-    }
-
-    public function setUpdatedAt(\DateTimeImmutable $updatedAt): self
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
+    return $this;
+  }
 }

@@ -5,33 +5,37 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\StyleRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Knp\DoctrineBehaviors\Contract\Entity\TimestampableInterface;
+use Knp\DoctrineBehaviors\Model\Timestampable\TimestampableTrait;
 
 #[ORM\Entity(repositoryClass: StyleRepository::class)]
 #[ApiResource]
-class Style
+class Style implements TimestampableInterface
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column(type: 'integer')]
-    private $id;
+  use TimestampableTrait;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $name;
+  #[ORM\Id]
+  #[ORM\GeneratedValue]
+  #[ORM\Column(type: 'integer')]
+  private $id;
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
+  #[ORM\Column(type: 'string', length: 255)]
+  private $name;
 
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
+  public function getId(): ?int
+  {
+    return $this->id;
+  }
 
-    public function setName(string $name): self
-    {
-        $this->name = $name;
+  public function getName(): ?string
+  {
+    return $this->name;
+  }
 
-        return $this;
-    }
+  public function setName(string $name): self
+  {
+    $this->name = $name;
+
+    return $this;
+  }
 }
