@@ -24,10 +24,6 @@ class ProductImage
     #[ORM\Column(type: 'datetime_immutable')]
     private $updatedAt;
 
-    #[ORM\ManyToOne(targetEntity: Product::class, inversedBy: 'productImages')]
-    #[ORM\JoinColumn(nullable: false)]
-    private $product;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -65,18 +61,6 @@ class ProductImage
     public function setUpdatedAt(\DateTimeImmutable $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
-    public function getProduct(): ?Product
-    {
-        return $this->product;
-    }
-
-    public function setProduct(?Product $product): self
-    {
-        $this->product = $product;
 
         return $this;
     }
