@@ -30,6 +30,14 @@ class Order
     #[ORM\OneToMany(mappedBy: '`order`', targetEntity: OrderHasProduct::class)]
     private $orderHasProducts;
 
+    #[ORM\ManyToOne(targetEntity: Address::class, inversedBy: 'orders')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $invoicing_adress;
+
+    #[ORM\ManyToOne(targetEntity: Address::class, inversedBy: 'orders')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $delivery_address;
+
     public function __construct()
     {
         $this->orderHasProducts = new ArrayCollection();
@@ -102,6 +110,30 @@ class Order
                 $orderHasProduct->setOrder(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getInvoicingAdress(): ?Address
+    {
+        return $this->invoicing_adress;
+    }
+
+    public function setInvoicingAdress(?Address $invoicing_adress): self
+    {
+        $this->invoicing_adress = $invoicing_adress;
+
+        return $this;
+    }
+
+    public function getDeliveryAddress(): ?Address
+    {
+        return $this->delivery_address;
+    }
+
+    public function setDeliveryAddress(?Address $delivery_address): self
+    {
+        $this->delivery_address = $delivery_address;
 
         return $this;
     }
