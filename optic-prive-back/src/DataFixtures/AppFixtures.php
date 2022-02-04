@@ -2,12 +2,15 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Brand;
 use App\Entity\Product;
+use App\Entity\Segment;
+use App\Entity\Shape;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class ProductFixtures extends Fixture implements DependentFixtureInterface
+class AppFixtures extends Fixture
 {
 
   public function load(ObjectManager $manager): void
@@ -25,10 +28,32 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
 
     $this->getDataProduct($product, $faker);
 
-    //foreigns keys
+    //brand
+    $brand = new Brand();
+    $brand
+      ->setName("Hugo Boss")
+      ->setLogo("https://fr.wikipedia.org/wiki/Hugo_Boss#/media/Fichier:HUGO-BOSS_POS.png");
+    $manager->persist($brand);
+
+    //shape
+    $shape = new Shape();
+    $shape
+      ->setName($faker->word())
+      ->setLogo($faker->imageUrl(640, 480, 'animals', true));
+    $manager->persist($shape);
+
+    //segment
+    $segment = new Segment();
+    $segment
+      ->setName($faker->word())
+      ->setLogo($faker->imageUrl(640, 480, 'animals', true));
+    $manager->persist($segment);
+
+
     $product
-      ->setBrand(($this->getReference(BrandFixtures::BRAND_RAY_BAN)))
-      ->setShape(($this->getReference(ShapeFixtures::SHAPE_PILOT)));
+      ->setBrand($brand)
+      ->setShape($shape)
+      ->setSegment($segment);
 
     $manager->persist($product);
     $manager->flush();
@@ -58,13 +83,6 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
     $product->setTempleLength($templeLength);
   }
 
-  public function getDependencies()
-  {
-    return [
-      BrandFixtures::class,
-      ShapeFixtures::class
-    ];
-  }
 
   /** Product *****************************************************************************/
 
