@@ -94,9 +94,13 @@ class Product implements SluggableInterface, TimestampableInterface
   #[ORM\OneToMany(mappedBy: 'product', targetEntity: ProductImage::class)]
   private $productImages;
 
+  #[ORM\OneToMany(mappedBy: 'product', targetEntity: OrderHasProduct::class)]
+  private $orderHasProducts;
+
   public function __construct()
   {
       $this->productImages = new ArrayCollection();
+      $this->orderHasProducts = new ArrayCollection();
   }
 
   public function getId(): ?int
@@ -376,6 +380,36 @@ class Product implements SluggableInterface, TimestampableInterface
           // set the owning side to null (unless already changed)
           if ($productImage->getProduct() === $this) {
               $productImage->setProduct(null);
+          }
+      }
+
+      return $this;
+  }
+
+  /**
+   * @return Collection|OrderHasProduct[]
+   */
+  public function getOrderHasProducts(): Collection
+  {
+      return $this->orderHasProducts;
+  }
+
+  public function addOrderHasProduct(OrderHasProduct $orderHasProduct): self
+  {
+      if (!$this->orderHasProducts->contains($orderHasProduct)) {
+          $this->orderHasProducts[] = $orderHasProduct;
+          $orderHasProduct->setProduct($this);
+      }
+
+      return $this;
+  }
+
+  public function removeOrderHasProduct(OrderHasProduct $orderHasProduct): self
+  {
+      if ($this->orderHasProducts->removeElement($orderHasProduct)) {
+          // set the owning side to null (unless already changed)
+          if ($orderHasProduct->getProduct() === $this) {
+              $orderHasProduct->setProduct(null);
           }
       }
 
