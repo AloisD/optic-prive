@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ProductRepository;
 use Knp\DoctrineBehaviors\Contract\Entity\SluggableInterface;
@@ -88,6 +90,14 @@ class Product implements SluggableInterface, TimestampableInterface
   #[ORM\ManyToOne(targetEntity: Material::class, inversedBy: 'products')]
   #[ORM\JoinColumn(nullable: false)]
   private $material;
+
+  #[ORM\OneToMany(mappedBy: 'product', targetEntity: ProductImage::class)]
+  private $productImages;
+
+  public function __construct()
+  {
+      $this->productImages = new ArrayCollection();
+  }
 
   public function getId(): ?int
   {
@@ -338,6 +348,36 @@ class Product implements SluggableInterface, TimestampableInterface
   public function setMaterial(?Material $material): self
   {
       $this->material = $material;
+
+      return $this;
+  }
+
+  /**
+   * @return Collection|ProductImage[]
+   */
+  public function getProductImages(): Collection
+  {
+      return $this->productImages;
+  }
+
+  public function addProductImage(ProductImage $productImage): self
+  {
+      if (!$this->productImages->contains($productImage)) {
+          $this->productImages[] = $productImage;
+          $productImage->setProduct($this);
+      }
+
+      return $this;
+  }
+
+  public function removeProductImage(ProductImage $productImage): self
+  {
+      if ($this->productImages->removeElement($productImage)) {
+          // set the owning side to null (unless already changed)
+          if ($productImage->getProduct() === $this) {
+              $productImage->setProduct(null);
+          }
+      }
 
       return $this;
   }
