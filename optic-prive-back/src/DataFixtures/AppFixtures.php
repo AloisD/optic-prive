@@ -7,6 +7,7 @@ use App\Entity\LensType;
 use App\Entity\Product;
 use App\Entity\Segment;
 use App\Entity\Shape;
+use App\Entity\Style;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
@@ -56,12 +57,18 @@ class AppFixtures extends Fixture
       ->setName($faker->word());
     $manager->persist($lensType);
 
+    //style
+    $style = new Style();
+    $style
+      ->setName("sport");
+    $manager->persist($style);
 
     $product
       ->setBrand($brand)
       ->setShape($shape)
       ->setSegment($segment)
-      ->setLensType($lensType);
+      ->setLensType($lensType)
+      ->setStyle($style);
 
     $manager->persist($product);
     $manager->flush();

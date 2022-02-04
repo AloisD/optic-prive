@@ -77,6 +77,10 @@ class Product implements SluggableInterface, TimestampableInterface
   #[ORM\JoinColumn(nullable: false)]
   private $lens_type;
 
+  #[ORM\ManyToOne(targetEntity: Style::class, inversedBy: 'products')]
+  #[ORM\JoinColumn(nullable: false)]
+  private $style;
+
   public function getId(): ?int
   {
     return $this->id;
@@ -290,6 +294,18 @@ class Product implements SluggableInterface, TimestampableInterface
   public function setLensType(?LensType $lens_type): self
   {
       $this->lens_type = $lens_type;
+
+      return $this;
+  }
+
+  public function getStyle(): ?Style
+  {
+      return $this->style;
+  }
+
+  public function setStyle(?Style $style): self
+  {
+      $this->style = $style;
 
       return $this;
   }
