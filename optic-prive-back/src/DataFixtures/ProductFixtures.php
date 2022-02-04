@@ -27,7 +27,8 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
 
     //foreigns keys
     $product
-      ->setBrand(($this->getReference(BrandFixtures::BRAND_RAY_BAN)));
+      ->setBrand(($this->getReference(BrandFixtures::BRAND_RAY_BAN)))
+      ->setShape(($this->getReference(ShapeFixtures::SHAPE_PILOT)));
 
     $manager->persist($product);
     $manager->flush();
