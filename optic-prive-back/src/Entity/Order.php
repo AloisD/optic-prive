@@ -28,6 +28,10 @@ class Order implements TimestampableInterface
   #[ORM\OneToMany(mappedBy: 'order', targetEntity: OrderHasProduct::class)]
   private $orderHasProducts;
 
+  #[ORM\ManyToOne(targetEntity: Address::class, inversedBy: 'orders')]
+  #[ORM\JoinColumn(nullable: false)]
+  private $invoicing_address;
+
   public function __construct()
   {
       $this->orderHasProducts = new ArrayCollection();
@@ -76,6 +80,18 @@ class Order implements TimestampableInterface
               $orderHasProduct->setOrder(null);
           }
       }
+
+      return $this;
+  }
+
+  public function getInvoicingAddress(): ?Address
+  {
+      return $this->invoicing_address;
+  }
+
+  public function setInvoicingAddress(?Address $invoicing_address): self
+  {
+      $this->invoicing_address = $invoicing_address;
 
       return $this;
   }

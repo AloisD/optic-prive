@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\AddressRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Knp\DoctrineBehaviors\Contract\Entity\TimestampableInterface;
 use Knp\DoctrineBehaviors\Model\Timestampable\TimestampableTrait;
@@ -42,6 +44,14 @@ class Address implements TimestampableInterface
 
   #[ORM\Column(type: 'text', nullable: true)]
   private $additionnal_details;
+
+  #[ORM\OneToMany(mappedBy: 'invoicing_address', targetEntity: Order::class)]
+  private $orders;
+
+  public function __construct()
+  {
+      $this->orders = new ArrayCollection();
+  }
 
   public function getId(): ?int
   {
@@ -142,5 +152,35 @@ class Address implements TimestampableInterface
     $this->additionnal_details = $additionnal_details;
 
     return $this;
+  }
+
+  /**
+   * @return Collection|Order[]
+   */
+  public function getOrders(): Collection
+  {
+      return $this->orders;
+  }
+
+  public function addOrder(Order $order): self
+  {
+      if (!$this->orders->contains($order)) {
+          $this->orders[] = $order;
+          $order->setInvoicingAddress($this);
+      }
+
+      return $this;
+  }
+
+  public function removeOrder(Order $order): self
+  {
+      if ($this->orders->removeElement($order)) {
+          // set the owning side to null (unless already changed)
+          if ($order->getInvoicingAddress() === $this) {
+              $order->setInvoicingAddress(null);
+          }
+      }
+
+      return $this;
   }
 }
