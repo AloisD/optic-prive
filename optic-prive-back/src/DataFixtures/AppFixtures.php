@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Brand;
+use App\Entity\LensType;
 use App\Entity\Product;
 use App\Entity\Segment;
 use App\Entity\Shape;
@@ -38,7 +39,7 @@ class AppFixtures extends Fixture
     //shape
     $shape = new Shape();
     $shape
-      ->setName($faker->word())
+      ->setName("square")
       ->setLogo($faker->imageUrl(640, 480, 'animals', true));
     $manager->persist($shape);
 
@@ -49,11 +50,18 @@ class AppFixtures extends Fixture
       ->setLogo($faker->imageUrl(640, 480, 'animals', true));
     $manager->persist($segment);
 
+    //lens_type
+    $lensType = new LensType();
+    $lensType
+      ->setName($faker->word());
+    $manager->persist($lensType);
+
 
     $product
       ->setBrand($brand)
       ->setShape($shape)
-      ->setSegment($segment);
+      ->setSegment($segment)
+      ->setLensType($lensType);
 
     $manager->persist($product);
     $manager->flush();
