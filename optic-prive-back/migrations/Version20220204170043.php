@@ -14,7 +14,7 @@ final class Version20220204170043 extends AbstractMigration
 {
     public function getDescription(): string
     {
-        return '';
+        return 'add foreign key product_id in table product_image';
     }
 
     public function up(Schema $schema): void
