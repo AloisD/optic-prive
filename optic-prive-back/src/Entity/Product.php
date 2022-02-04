@@ -81,6 +81,10 @@ class Product implements SluggableInterface, TimestampableInterface
   #[ORM\JoinColumn(nullable: false)]
   private $style;
 
+  #[ORM\ManyToOne(targetEntity: Color::class, inversedBy: 'products')]
+  #[ORM\JoinColumn(nullable: false)]
+  private $color;
+
   public function getId(): ?int
   {
     return $this->id;
@@ -306,6 +310,18 @@ class Product implements SluggableInterface, TimestampableInterface
   public function setStyle(?Style $style): self
   {
       $this->style = $style;
+
+      return $this;
+  }
+
+  public function getColor(): ?Color
+  {
+      return $this->color;
+  }
+
+  public function setColor(?Color $color): self
+  {
+      $this->color = $color;
 
       return $this;
   }

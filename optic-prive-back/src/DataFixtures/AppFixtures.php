@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Brand;
+use App\Entity\Color;
 use App\Entity\LensType;
 use App\Entity\Product;
 use App\Entity\Segment;
@@ -63,12 +64,21 @@ class AppFixtures extends Fixture
       ->setName("sport");
     $manager->persist($style);
 
+    //color
+    $color = new Color();
+    $color
+      ->setName("black")
+      ->setLogo($faker->hexColor());
+    $manager->persist($color);
+
+
     $product
       ->setBrand($brand)
       ->setShape($shape)
       ->setSegment($segment)
       ->setLensType($lensType)
-      ->setStyle($style);
+      ->setStyle($style)
+      ->setColor($color);
 
     $manager->persist($product);
     $manager->flush();
