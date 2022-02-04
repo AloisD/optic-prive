@@ -48,9 +48,13 @@ class Address implements TimestampableInterface
   #[ORM\OneToMany(mappedBy: 'invoicing_address', targetEntity: Order::class)]
   private $orders;
 
+  #[ORM\OneToMany(mappedBy: 'delivery_address', targetEntity: Order::class)]
+  private $ordres;
+
   public function __construct()
   {
       $this->orders = new ArrayCollection();
+      $this->ordres = new ArrayCollection();
   }
 
   public function getId(): ?int
@@ -178,6 +182,36 @@ class Address implements TimestampableInterface
           // set the owning side to null (unless already changed)
           if ($order->getInvoicingAddress() === $this) {
               $order->setInvoicingAddress(null);
+          }
+      }
+
+      return $this;
+  }
+
+  /**
+   * @return Collection|Order[]
+   */
+  public function getOrdres(): Collection
+  {
+      return $this->ordres;
+  }
+
+  public function addOrdre(Order $ordre): self
+  {
+      if (!$this->ordres->contains($ordre)) {
+          $this->ordres[] = $ordre;
+          $ordre->setDeliveryAddress($this);
+      }
+
+      return $this;
+  }
+
+  public function removeOrdre(Order $ordre): self
+  {
+      if ($this->ordres->removeElement($ordre)) {
+          // set the owning side to null (unless already changed)
+          if ($ordre->getDeliveryAddress() === $this) {
+              $ordre->setDeliveryAddress(null);
           }
       }
 
