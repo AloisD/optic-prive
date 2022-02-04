@@ -65,6 +65,10 @@ class Product implements SluggableInterface, TimestampableInterface
   #[ORM\JoinColumn(nullable: false)]
   private $brand;
 
+  #[ORM\ManyToOne(targetEntity: Shape::class, inversedBy: 'products')]
+  #[ORM\JoinColumn(nullable: false)]
+  private $shape;
+
   public function getId(): ?int
   {
     return $this->id;
@@ -244,5 +248,17 @@ class Product implements SluggableInterface, TimestampableInterface
   public function getSluggableFields(): array
   {
     return ['name'];
+  }
+
+  public function getShape(): ?Shape
+  {
+      return $this->shape;
+  }
+
+  public function setShape(?Shape $shape): self
+  {
+      $this->shape = $shape;
+
+      return $this;
   }
 }
