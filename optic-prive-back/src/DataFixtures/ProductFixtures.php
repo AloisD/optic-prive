@@ -61,7 +61,8 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
   public function getDependencies()
   {
     return [
-      BrandFixtures::class
+      BrandFixtures::class,
+      ShapeFixtures::class
     ];
   }
 
