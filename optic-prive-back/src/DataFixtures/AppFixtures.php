@@ -5,6 +5,7 @@ namespace App\DataFixtures;
 use App\Entity\Brand;
 use App\Entity\Color;
 use App\Entity\LensType;
+use App\Entity\Material;
 use App\Entity\Product;
 use App\Entity\Segment;
 use App\Entity\Shape;
@@ -55,7 +56,7 @@ class AppFixtures extends Fixture
     //lens_type
     $lensType = new LensType();
     $lensType
-      ->setName($faker->word());
+      ->setName("soft");
     $manager->persist($lensType);
 
     //style
@@ -71,6 +72,13 @@ class AppFixtures extends Fixture
       ->setLogo($faker->hexColor());
     $manager->persist($color);
 
+    //material
+    $material = new Material();
+    $material
+      ->setName("titanium")
+      ->setLogo($faker->imageUrl(640, 480, 'animals', true));
+    $manager->persist($material);
+
 
     $product
       ->setBrand($brand)
@@ -78,7 +86,8 @@ class AppFixtures extends Fixture
       ->setSegment($segment)
       ->setLensType($lensType)
       ->setStyle($style)
-      ->setColor($color);
+      ->setColor($color)
+      ->setMaterial($material);
 
     $manager->persist($product);
     $manager->flush();
