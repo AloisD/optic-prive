@@ -2,16 +2,27 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiResource;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Entity\Brand;
+use App\Entity\Shape;
+use App\Entity\Style;
+use App\Entity\Segment;
+use App\Entity\LensType;
+use App\Entity\ProductImage;
+use App\Entity\OrderHasProduct;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ProductRepository;
+use App\Controller\Api\ProductImageAction;
+use Doctrine\Common\Collections\Collection;
+use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\HttpFoundation\File\File;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Knp\DoctrineBehaviors\Model\Sluggable\SluggableTrait;
 use Knp\DoctrineBehaviors\Contract\Entity\SluggableInterface;
 use Knp\DoctrineBehaviors\Contract\Entity\TimestampableInterface;
-use Knp\DoctrineBehaviors\Model\Sluggable\SluggableTrait;
 use Knp\DoctrineBehaviors\Model\Timestampable\TimestampableTrait;
-use Symfony\Component\Serializer\Annotation\Groups;
+use App\Controller\Api;
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
 #[ApiResource(
@@ -26,10 +37,35 @@ use Symfony\Component\Serializer\Annotation\Groups;
       'normalization_context' => ['groups' => ['product_details_read']],
     ],
     'put',
-    'patch',
     'delete',
+    'post_image' => [
+      'method' => 'POST',
+      'path' => '/products/{id}/image',
+      'controller' => ProductImageAction::class,
+      'deserialize' => false,
+      'openapi_context' => [
+        'requestBody' => [
+          'content' => [
+            'multipart/form-data' => [
+              'schema' => [
+                'type' => 'object',
+                'properties' => [
+                  'image' => [
+                    'type' => 'string',
+                    'format' => 'binary',
+                  ],
+                ],
+              ],
+            ],
+          ],
+        ],
+      ],
+    ],
   ],
 )]
+/**
+ * @Vich\Uploadable
+ */
 class Product implements SluggableInterface, TimestampableInterface
 {
   use SluggableTrait;
@@ -116,6 +152,16 @@ class Product implements SluggableInterface, TimestampableInterface
 
   #[ORM\OneToMany(mappedBy: 'product', targetEntity: OrderHasProduct::class)]
   private $orderHasProducts;
+
+  /**
+   * @Vich\UploadableField(mapping="product_image", fileNameProperty="imageName")
+   * @var File
+   */
+  private $imageFile;
+
+
+  #[ORM\Column(type: 'string', length: 255, nullable: true)]
+  private $imageName;
 
   public function __construct()
   {
@@ -434,5 +480,42 @@ class Product implements SluggableInterface, TimestampableInterface
     }
 
     return $this;
+  }
+
+  public function getImageName(): ?string
+  {
+    return $this->imageName;
+  }
+
+  public function setImageName(?string $imageName): self
+  {
+    $this->imageName = $imageName;
+
+    return $this;
+  }
+
+  /**
+   * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
+   * of 'UploadedFile' is injected into this setter to trigger the update. If this
+   * bundle's configuration parameter 'inject_on_load' is set to 'true' this setter
+   * must be able to accept an instance of 'File' as the bundle will inject one here
+   * during Doctrine hydration.
+   *
+   * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile|null $imageFile
+   */
+  public function setImageFile(?File $imageFile = null): void
+  {
+    $this->imageFile = $imageFile;
+
+    if (null !== $imageFile) {
+      // It is required that at least one field changes if you are using doctrine
+      // otherwise the event listeners won't be called and the file is lost
+      $this->updatedAt = new \DateTimeImmutable();
+    }
+  }
+
+  public function getImageFile(): ?File
+  {
+    return $this->imageFile;
   }
 }
