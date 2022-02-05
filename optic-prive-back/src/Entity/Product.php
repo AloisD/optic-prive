@@ -2,18 +2,70 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiResource;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Entity\Brand;
+use App\Entity\Shape;
+use App\Entity\Style;
+use App\Entity\Segment;
+use App\Entity\LensType;
+use App\Entity\ProductImage;
+use App\Entity\OrderHasProduct;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ProductRepository;
+use App\Controller\Api\ProductImageAction;
+use Doctrine\Common\Collections\Collection;
+use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\HttpFoundation\File\File;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Knp\DoctrineBehaviors\Model\Sluggable\SluggableTrait;
 use Knp\DoctrineBehaviors\Contract\Entity\SluggableInterface;
 use Knp\DoctrineBehaviors\Contract\Entity\TimestampableInterface;
-use Knp\DoctrineBehaviors\Model\Sluggable\SluggableTrait;
 use Knp\DoctrineBehaviors\Model\Timestampable\TimestampableTrait;
+use App\Controller\Api;
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
-#[ApiResource()]
+#[ApiResource(
+  collectionOperations: [
+    'get' => [
+      'normalization_context' => ['groups' => ['product_read']],
+    ],
+    "post"
+  ],
+  itemOperations: [
+    'get' => [
+      'normalization_context' => ['groups' => ['product_details_read']],
+    ],
+    'put',
+    'delete',
+    'post_image' => [
+      'method' => 'POST',
+      'path' => '/products/{id}/image',
+      'controller' => ProductImageAction::class,
+      'deserialize' => false,
+      'openapi_context' => [
+        'requestBody' => [
+          'content' => [
+            'multipart/form-data' => [
+              'schema' => [
+                'type' => 'object',
+                'properties' => [
+                  'image' => [
+                    'type' => 'string',
+                    'format' => 'binary',
+                  ],
+                ],
+              ],
+            ],
+          ],
+        ],
+      ],
+    ],
+  ],
+)]
+/**
+ * @Vich\Uploadable
+ */
 class Product implements SluggableInterface, TimestampableInterface
 {
   use SluggableTrait;
@@ -24,6 +76,7 @@ class Product implements SluggableInterface, TimestampableInterface
   #[ORM\Column(type: 'integer')]
   private $id;
 
+  #[Groups(["product_read", "product_details_read"])]
   #[ORM\Column(type: 'string', length: 255)]
   private $name;
 
@@ -31,15 +84,18 @@ class Product implements SluggableInterface, TimestampableInterface
   private $reference;
 
   #[ORM\Column(type: 'string', length: 255)]
+  #[Groups(["product_details_read"])]
   private $color_code;
 
   #[ORM\Column(type: 'decimal', precision: 5, scale: '2')]
+  #[Groups(["product_read", "product_details_read"])]
   private $retail_price;
 
   #[ORM\Column(type: 'decimal', precision: 5, scale: '2')]
   private $selling_price;
 
   #[ORM\Column(type: 'integer')]
+  #[Groups(["product_details_read"])]
   private $quantity;
 
   #[ORM\Column(type: 'integer', nullable: true)]
@@ -97,10 +153,20 @@ class Product implements SluggableInterface, TimestampableInterface
   #[ORM\OneToMany(mappedBy: 'product', targetEntity: OrderHasProduct::class)]
   private $orderHasProducts;
 
+  /**
+   * @Vich\UploadableField(mapping="product_image", fileNameProperty="imageName")
+   * @var File
+   */
+  private $imageFile;
+
+
+  #[ORM\Column(type: 'string', length: 255, nullable: true)]
+  private $imageName;
+
   public function __construct()
   {
-      $this->productImages = new ArrayCollection();
-      $this->orderHasProducts = new ArrayCollection();
+    $this->productImages = new ArrayCollection();
+    $this->orderHasProducts = new ArrayCollection();
   }
 
   public function getId(): ?int
@@ -286,74 +352,74 @@ class Product implements SluggableInterface, TimestampableInterface
 
   public function getShape(): ?Shape
   {
-      return $this->shape;
+    return $this->shape;
   }
 
   public function setShape(?Shape $shape): self
   {
-      $this->shape = $shape;
+    $this->shape = $shape;
 
-      return $this;
+    return $this;
   }
 
   public function getSegment(): ?Segment
   {
-      return $this->segment;
+    return $this->segment;
   }
 
   public function setSegment(?Segment $segment): self
   {
-      $this->segment = $segment;
+    $this->segment = $segment;
 
-      return $this;
+    return $this;
   }
 
   public function getLensType(): ?LensType
   {
-      return $this->lens_type;
+    return $this->lens_type;
   }
 
   public function setLensType(?LensType $lens_type): self
   {
-      $this->lens_type = $lens_type;
+    $this->lens_type = $lens_type;
 
-      return $this;
+    return $this;
   }
 
   public function getStyle(): ?Style
   {
-      return $this->style;
+    return $this->style;
   }
 
   public function setStyle(?Style $style): self
   {
-      $this->style = $style;
+    $this->style = $style;
 
-      return $this;
+    return $this;
   }
 
   public function getColor(): ?Color
   {
-      return $this->color;
+    return $this->color;
   }
 
   public function setColor(?Color $color): self
   {
-      $this->color = $color;
+    $this->color = $color;
 
-      return $this;
+    return $this;
   }
 
   public function getMaterial(): ?Material
   {
-      return $this->material;
+    return $this->material;
   }
 
   public function setMaterial(?Material $material): self
   {
-      $this->material = $material;
+    $this->material = $material;
 
-      return $this;
+    return $this;
   }
 
   /**
@@ -361,29 +427,29 @@ class Product implements SluggableInterface, TimestampableInterface
    */
   public function getProductImages(): Collection
   {
-      return $this->productImages;
+    return $this->productImages;
   }
 
   public function addProductImage(ProductImage $productImage): self
   {
-      if (!$this->productImages->contains($productImage)) {
-          $this->productImages[] = $productImage;
-          $productImage->setProduct($this);
-      }
+    if (!$this->productImages->contains($productImage)) {
+      $this->productImages[] = $productImage;
+      $productImage->setProduct($this);
+    }
 
-      return $this;
+    return $this;
   }
 
   public function removeProductImage(ProductImage $productImage): self
   {
-      if ($this->productImages->removeElement($productImage)) {
-          // set the owning side to null (unless already changed)
-          if ($productImage->getProduct() === $this) {
-              $productImage->setProduct(null);
-          }
+    if ($this->productImages->removeElement($productImage)) {
+      // set the owning side to null (unless already changed)
+      if ($productImage->getProduct() === $this) {
+        $productImage->setProduct(null);
       }
+    }
 
-      return $this;
+    return $this;
   }
 
   /**
@@ -391,28 +457,65 @@ class Product implements SluggableInterface, TimestampableInterface
    */
   public function getOrderHasProducts(): Collection
   {
-      return $this->orderHasProducts;
+    return $this->orderHasProducts;
   }
 
   public function addOrderHasProduct(OrderHasProduct $orderHasProduct): self
   {
-      if (!$this->orderHasProducts->contains($orderHasProduct)) {
-          $this->orderHasProducts[] = $orderHasProduct;
-          $orderHasProduct->setProduct($this);
-      }
+    if (!$this->orderHasProducts->contains($orderHasProduct)) {
+      $this->orderHasProducts[] = $orderHasProduct;
+      $orderHasProduct->setProduct($this);
+    }
 
-      return $this;
+    return $this;
   }
 
   public function removeOrderHasProduct(OrderHasProduct $orderHasProduct): self
   {
-      if ($this->orderHasProducts->removeElement($orderHasProduct)) {
-          // set the owning side to null (unless already changed)
-          if ($orderHasProduct->getProduct() === $this) {
-              $orderHasProduct->setProduct(null);
-          }
+    if ($this->orderHasProducts->removeElement($orderHasProduct)) {
+      // set the owning side to null (unless already changed)
+      if ($orderHasProduct->getProduct() === $this) {
+        $orderHasProduct->setProduct(null);
       }
+    }
 
-      return $this;
+    return $this;
+  }
+
+  public function getImageName(): ?string
+  {
+    return $this->imageName;
+  }
+
+  public function setImageName(?string $imageName): self
+  {
+    $this->imageName = $imageName;
+
+    return $this;
+  }
+
+  /**
+   * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
+   * of 'UploadedFile' is injected into this setter to trigger the update. If this
+   * bundle's configuration parameter 'inject_on_load' is set to 'true' this setter
+   * must be able to accept an instance of 'File' as the bundle will inject one here
+   * during Doctrine hydration.
+   *
+   * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile|null $imageFile
+   */
+  public function setImageFile(?File $imageFile = null): void
+  {
+    $this->imageFile = $imageFile;
+
+    if (null !== $imageFile) {
+      // It is required that at least one field changes if you are using doctrine
+      // otherwise the event listeners won't be called and the file is lost
+      $this->updatedAt = new \DateTimeImmutable();
+    }
+  }
+
+  public function getImageFile(): ?File
+  {
+    return $this->imageFile;
   }
 }
