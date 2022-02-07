@@ -1,17 +1,93 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~bootstrap/scss/bootstrap';
 
-$footer-link: #F4FFFA!important;
-$green-footer:#87A397;
+$primary:#87A397;
+$secondary-clear: #F4FFFA!important;
+$banner-button: #FBEADF;
+$secondary-dark:#56474A;
 
 footer {
-  background-color: $green-footer;
-  color: $footer-link;
+  background-color: $primary;
+  color: $secondary-clear;
 
   a.text-muted {
-    color: $footer-link;
+    color: $secondary-clear;
     font-family: 'Open Sans', sans-serif;
     font-family: 'Raleway', sans-serif;
     font-size: 18px;
   }
+}
+
+.banner {
+
+    .display.font-weight-bold {
+        writing-mode: vertical-lr;
+        transform: rotate(-180deg);
+        margin: 5px 0PX -5PX 20PX;
+    }
+
+    .jumbotron.bg-cover.text-white{
+        background: url(assets/uploads/banner1.jpg) no-repeat center center ;
+        background-size: cover;
+        background-attachment: fixed;
+        position: relative;
+        height: 70vh;
+    }
+
+    @media screen and (max-width: (765px))
+    {
+        .jumbotron.bg-cover.text-white{
+            background: url(assets/uploads/banner-resp.jpg) no-repeat center center ;
+            position: relative;
+            background-size: cover;
+        }
+    }
+
+    .btn-primary {
+        background-color: $banner-button;
+        color: $secondary-dark;
+        border-radius: 0%;
+        font-family: 'Open Sans', sans-serif;
+        font-family: 'Raleway', sans-serif;
+        font-size: 18px;
+        font-weight: 400;
+        border: none;
+    }
+
+    .btn-primary:hover {
+        background-color: $primary;
+    }
+
+    h1 {
+        // padding: 100px 0px 0px 0px;
+        font-size: 50px;
+        position: absolute;
+        left: 0px;
+        bottom: 50px;
+        font-family: 'Open Sans', sans-serif;
+        font-family: 'Raleway', sans-serif;
+        font-weight: 600;
+    }
+
+    .descr {
+        position: absolute;
+        bottom: 30px;
+        left: 142px;
+    }
+
+    @media screen and (max-width: (765px))
+    {
+        .descr{
+            right: 20px;
+            left:89px;
+        }
+
+        h1 {
+            margin: 0PX 0PX 0PX 20PX;
+        }
+
+        .btn-primary {
+            font-size: 18px;
+        }
+    }
 }
