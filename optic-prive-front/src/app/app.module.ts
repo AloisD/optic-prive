@@ -9,6 +9,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { BannerComponent } from './components/banner/banner.component';
+import { HomePageComponent } from './pages/home-page/home-page.component';
 
 export function createTranslateLoader(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient, './assets/i18n/','.json')
@@ -19,7 +20,8 @@ export function createTranslateLoader(httpClient: HttpClient) {
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    BannerComponent
+    BannerComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,
