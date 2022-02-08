@@ -5,7 +5,9 @@ namespace App\Controller\Admin;
 use App\Entity\Product;
 use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
@@ -22,27 +24,25 @@ class ProductCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-        return [
-            IdField::new('id')->hideOnForm(),
-            TextField::new('name'),
-            TextField::new('reference'),
-            TextField::new('color_code')->hideOnIndex(),
-            ChoiceField::new('category')->setChoices(['Male' => 'male', 'Female' => 'female', 'Child' => 'child', 'Unisex' => 'unisex']),
-/*             ChoiceField::new('type')->setChoices(['Sunglasses' => 'sunglasses', 'Sport' => 'sport']), */
-            ChoiceField::new('UvProtection')->setChoices(['0' => 'category0', '1' => 'category1', '2' => 'category2', '3' => 'category3', '4' => 'category4'])->hideOnIndex(),
-            ChoiceField::new('ItemAvailability')->setChoices(['Discontinued' => 'discontinued', 'In stock' => 'inStock', 'Out of stock' => 'outOfStock']),
-            ChoiceField::new('state')->setChoices(['Damaged' => 'damagedCondition', 'New' => 'newCondition', 'Refurbished' => 'refurbishedCondition', 'Used' => 'usedCondition']),
-            MoneyField::new('selling_price')->setCurrency('EUR'),
-            MoneyField::new('retail_price')->setCurrency('EUR')->hideOnIndex(),
-            NumberField::new('quantity'),
-            NumberField::new('eye_size')->hideOnIndex(),
-            NumberField::new('bridge_size')->hideOnIndex(),
-            NumberField::new('temple_length')->hideOnIndex(),
-
-
-            DateTimeField::new('created_at')->hideOnForm(),
-            DateTimeField::new('updated_at')->hideOnForm(),
-        ];
+        yield IdField::new('id')->hideOnForm();
+        yield TextField::new('name');
+        yield CollectionField::new('brand');
+/*        yield AssociationField::new('brand');/* ->autocomplete() use autocomplete if you have too many values causing "out of memory" errors */
+        yield TextField::new('reference');
+        yield TextField::new('color_code')->hideOnIndex();
+        yield ChoiceField::new('category')->setChoices(['Male' => 'male', 'Female' => 'female', 'Child' => 'child', 'Unisex' => 'unisex']);
+/*      yield ChoiceField::new('segment')->setChoices(['Sunglasses' => 'sunglasses', 'Sport' => 'sport']); */
+        yield ChoiceField::new('UvProtection')->setChoices(['0' => 'category0', '1' => 'category1', '2' => 'category2', '3' => 'category3', '4' => 'category4'])->hideOnIndex();
+        yield ChoiceField::new('ItemAvailability')->setChoices(['Discontinued' => 'discontinued', 'In stock' => 'inStock', 'Out of stock' => 'outOfStock']);
+        yield ChoiceField::new('state')->setChoices(['Damaged' => 'damagedCondition', 'New' => 'newCondition', 'Refurbished' => 'refurbishedCondition', 'Used' => 'usedCondition']);
+        yield MoneyField::new('selling_price')->setCurrency('EUR');
+        yield MoneyField::new('retail_price')->setCurrency('EUR')->hideOnIndex();
+        yield NumberField::new('quantity');
+        yield NumberField::new('eye_size')->hideOnIndex();
+        yield NumberField::new('bridge_size')->hideOnIndex();
+        yield NumberField::new('temple_length')->hideOnIndex();
+        yield DateTimeField::new('created_at')->hideOnForm();
+        yield DateTimeField::new('updated_at')->hideOnForm();
     }
 
     public function persistEntity(EntityManagerInterface $entityManager, $entityInstance): void

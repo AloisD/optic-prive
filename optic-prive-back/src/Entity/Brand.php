@@ -7,13 +7,14 @@ use App\Repository\BrandRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use EasyCorp\Bundle\EasyAdminBundle\Contracts\Collection\CollectionInterface;
 use Knp\DoctrineBehaviors\Contract\Entity\TimestampableInterface;
 use Knp\DoctrineBehaviors\Model\Timestampable\TimestampableTrait;
 
 
 #[ORM\Entity(repositoryClass: BrandRepository::class)]
 #[ApiResource]
-class Brand implements TimestampableInterface
+class Brand implements TimestampableInterface, CollectionInterface
 {
   use TimestampableTrait;
 
@@ -93,5 +94,10 @@ class Brand implements TimestampableInterface
     }
 
     return $this;
+  }
+
+  public function __toString()
+  {
+    return $this->name;
   }
 }
