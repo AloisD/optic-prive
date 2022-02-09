@@ -1,5 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~bootstrap/scss/bootstrap';
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+
 
 $primary:#87A397;
 $secondary-clear: #F4FFFA!important;
@@ -90,4 +92,79 @@ footer {
             font-size: 18px;
         }
     }
+}
+
+.recent-product {
+
+  .card {
+      border:none;
+  }
+
+  img {
+      border-radius: 10px;
+  }
+
+  h4 {
+      font-family: 'Raleway', sans-serif !important;
+      font-size: 19px;
+  }
+
+  p {
+      font-family: 'Raleway', sans-serif !important;
+      font-size: 17px;
+  }
+
+  .cart-icon {
+      position: absolute;
+      border-radius: 50%;
+      right: 23px;
+      bottom: 23px;
+      color: #56474A;
+  }
+
+  .cart-relative{
+      position: relative;
+  }
+
+  .news {
+      padding-top: 2em;
+      padding-bottom: 1.1em;
+  }
+
+  p.description {
+      text-align: left;
+      padding: 2em;
+      font-weight: 600;
+  }
+
+  .trait {
+      width: 100%;
+      border: .3em solid #FBEADF;
+      margin-top: 4em;
+      background-color: #FBEADF;
+  }
+
+  @media screen and (max-width: (765px))
+  {
+      .row {
+          // margin-left: 0px;
+          // margin-right: 0px;
+          flex-direction: column-reverse;
+      }
+
+      .trait {
+          transform: translateX(-30px);
+          margin-top: 0px;
+          border: .4em solid #FBEADF;
+      }
+
+      .col-6 {
+          width: 100%;
+      }
+
+      p.description {
+          padding: 1.5em;
+      }
+
+  }
 }
