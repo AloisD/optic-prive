@@ -2,11 +2,17 @@
 @import '~bootstrap/scss/bootstrap';
 @import "~bootstrap-icons/font/bootstrap-icons.css";
 
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap');
+
 
 $primary:#87A397;
 $secondary-clear: #F4FFFA!important;
 $banner-button: #FBEADF;
 $secondary-dark:#56474A;
+
+body {
+  font-family: 'Raleway', sans-serif;
+}
 
 footer {
   background-color: $primary;
