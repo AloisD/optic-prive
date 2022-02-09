@@ -1,0 +1,159 @@
+$primary-color : #87A397;
+$primary-contrast: #F4FFFA;
+$secondary-color : #FBEADF;
+$secondary-contrast : #56474A;
+
+body {
+    font-family: 'Raleway', sans-serif;
+}
+
+nav {
+    margin: 10px;
+
+    button {
+        box-shadow: none !important;
+    }
+    .form-control {
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-radius: 0%;
+    box-shadow: none !important;
+    }
+}
+
+span.rotate {
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+    color: $primary-contrast;
+    padding: 0px 0px 0px 10px;
+    font-size: 20px;
+}
+
+.card-color {
+    background-color: $primary-color;
+    padding: 10px;
+    margin: 0px 20px;
+    display: flex;
+    align-items: flex-end;
+}
+
+.box-image {
+    padding: 0px 30px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.icon-bg {
+    color: $secondary-contrast;
+    font-size: 2.5rem;
+    background: $secondary-color;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.icon {
+    p {
+        color: $secondary-contrast;
+        margin: 10px 0px;
+    }
+
+    a {
+        text-decoration: none;
+    }
+}
+
+.container {
+    width: auto;
+}
+
+.col {
+    padding: 0px;
+    margin: 0px;
+}
+
+.box-search {
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.part-rigth {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    div {
+        margin: 5px;
+    }
+
+    p {
+        color: black;
+        margin: 10px 0px;
+    }
+
+    a {
+        color: black;
+        text-decoration: none;
+        padding: 0px 20px;
+    }
+
+    button {
+        background: none;
+        border: none;
+    }
+}
+
+/* STYLE MODAL */
+
+.modal-header {
+    border-bottom: none;
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+}
+
+.modal-content {
+    background-color: $secondary-color;
+    border: none;
+    border-radius: 0px;
+}
+
+.modal-body {
+    .btn-primary {
+        background-color: $primary-color;
+        border: none;
+        border-radius: 0%;
+        color: $primary-contrast;
+    }
+}
+
+.modal-img {
+    width: 100%;
+    height: 100%;
+}
+
+.login-box {
+    padding: 0px;
+}
+
+.modal-client {
+    margin: 30px;
+
+    input {
+        margin: 10px 0px;
+        border-radius: 0px;
+        border: none;
+        box-shadow: none !important;
+    }
+
+    p {
+        font-size: 20px;
+        color: $secondary-contrast;
+    }
+
+    a {
+        color: $secondary-contrast;
+    }
+}
