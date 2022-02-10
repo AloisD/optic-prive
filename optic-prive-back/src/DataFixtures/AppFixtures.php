@@ -10,17 +10,38 @@ use App\Entity\Product;
 use App\Entity\Segment;
 use App\Entity\Shape;
 use App\Entity\Style;
+use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AppFixtures extends Fixture
 {
+  private $encoder;
+
+  public function __construct(UserPasswordHasherInterface $encoder)
+  {
+    $this->encoder = $encoder;
+  }
 
   public function load(ObjectManager $manager): void
   {
     $faker = \Faker\Factory::create();
 
+    //user nbr:8 password:8888 encoded  pseudo:random email:random
+    for ($u = 0; $u < 8; $u++) {
+      $user = new User();
+      $hash = $this->encoder->hashPassword($user, "8888");
+      $user
+        ->setPassword($hash)
+        ->setPseudo($faker->word())
+        ->setEmail($faker->email);
+
+      $manager->persist($user);
+    }
+
+    // product
     $product = new Product();
     $product
       ->setName("aviator classic")
