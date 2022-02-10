@@ -10,6 +10,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { BannerComponent } from './components/banner/banner.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
+import { NavbarMobileComponent } from './components/navbar-mobile/navbar-mobile.component';
 
 export function createTranslateLoader(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient, './assets/i18n/','.json')
@@ -21,7 +22,8 @@ export function createTranslateLoader(httpClient: HttpClient) {
     HeaderComponent,
     FooterComponent,
     BannerComponent,
-    HomePageComponent
+    HomePageComponent,
+    NavbarMobileComponent
   ],
   imports: [
     BrowserModule,
