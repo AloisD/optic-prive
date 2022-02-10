@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Address;
 use App\Entity\Order;
 use App\Entity\Product;
+<<<<<<< HEAD
 use App\Entity\Brand;
 use App\Entity\Color;
 use App\Entity\LensType;
@@ -12,6 +13,9 @@ use App\Entity\Material;
 use App\Entity\Segment;
 use App\Entity\Shape;
 use App\Entity\Style;
+=======
+use App\Entity\ProductImage;
+>>>>>>> aafc90f1d632764cb7de1c12f0b28bd85f9d0922
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -38,6 +42,7 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
+<<<<<<< HEAD
         yield MenuItem::subMenu('Offer', 'fa fa-article')->setSubItems([
             MenuItem::linkToCrud('Product', 'fas fa-list', Product::class),
             MenuItem::linkToCrud('Brand', 'fas fa-list', Brand::class),
@@ -48,6 +53,13 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToCrud('Color', 'fas fa-list', Color::class),
             MenuItem::linkToCrud('Material', 'fas fa-list', Material::class),
         ]);
+=======
+        yield MenuItem::linkToCrud('Product', 'fas fa-list', Product::class);
+/*         yield MenuItem::subMenu('Offer', 'fa fa-article')->setSubItems([
+            MenuItem::linkToCrud('Product', 'fas fa-list', Product::class),
+            MenuItem::linkToCrud('Picture', 'fas fa-list', ProductImage::class)
+        ]); */
+>>>>>>> aafc90f1d632764cb7de1c12f0b28bd85f9d0922
         yield MenuItem::linkToCrud('Order', 'fas fa-list', Order::class);
         yield MenuItem::linkToCrud('Address', 'fas fa-list', Address::class);
         yield MenuItem::linkToUrl('Visit public website', null, '/');

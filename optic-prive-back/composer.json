@@ -34,8 +34,12 @@
         "symfony/twig-bundle": "6.0.*",
         "symfony/validator": "6.0.*",
         "symfony/webpack-encore-bundle": "^1.13",
+<<<<<<< HEAD
         "symfony/yaml": "6.0.*",
         "vich/uploader-bundle": "^1.19"
+=======
+        "symfony/yaml": "6.0.*"
+>>>>>>> aafc90f1d632764cb7de1c12f0b28bd85f9d0922
     },
     "config": {
         "allow-plugins": {
