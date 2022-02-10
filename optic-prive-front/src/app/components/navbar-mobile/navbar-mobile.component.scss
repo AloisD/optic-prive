@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Raleway:wght@400;600&display=swap');/* Banner css FBEADF */
+$banner-button: #FBEADF;
+$text-color-dark:#56474A;
+$kaki: #87A397;
+
+body {
+
+  .navbar>.container-fluid {
+      // display: flex;
+      // flex-wrap: inherit;
+      align-items: self-end;
+      // justify-content: space-between;
+  }
+
+  .bi::before, [class^="bi-"]::before, [class*=" bi-"]::before {
+    vertical-align: -0.3em;
+  }
+
+  .navbar {
+      background-color: $kaki!important;
+  }
+
+  a:hover {
+      color: $text-color-dark!important;
+  }
+
+  .navbar-brand {
+  margin-right: 1rem;
+  padding-bottom: 0;
+  }
+
+  .text-decoration-none {
+      margin-right: 0.8em;
+      margin-left: 0.4em;
+  }
+
+  .svg {
+      fill: $banner-button;
+  }
+
+  button {
+      box-shadow: none !important;
+  }
+  .form-control {
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  border-radius: 0%;
+  box-shadow: none !important;
+  background: none;
+  }
+
+  .navbar-dark .navbar-nav .nav-link {
+  color: $banner-button;
+  }
+
+  .dropdown-item {
+  color: $text-color-dark;
+  }
+
+  i {
+    font-size: 1.7rem;
+    color: $banner-button;
+  }
+
+  input {
+    padding-top: 1.2em;
+    height: 100%;
+  }
+
+  input::placeholder  {
+    color: $banner-button;
+  }
+}
+
