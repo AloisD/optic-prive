@@ -217,4 +217,9 @@ class Address implements TimestampableInterface
 
       return $this;
   }
+
+  public function __toString()
+  {
+    return $this->recipient. ': ' .$this->name;
+  }
 }
