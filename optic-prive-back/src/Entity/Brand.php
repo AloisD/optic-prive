@@ -14,7 +14,7 @@ use Knp\DoctrineBehaviors\Model\Timestampable\TimestampableTrait;
 
 #[ORM\Entity(repositoryClass: BrandRepository::class)]
 #[ApiResource]
-class Brand implements TimestampableInterface, CollectionInterface
+class Brand implements TimestampableInterface
 {
   use TimestampableTrait;
 

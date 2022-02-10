@@ -7,7 +7,6 @@ use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
@@ -26,14 +25,18 @@ class ProductCrudController extends AbstractCrudController
     {
         yield IdField::new('id')->hideOnForm();
         yield TextField::new('name');
-        yield CollectionField::new('brand');
-/*        yield AssociationField::new('brand');/* ->autocomplete() use autocomplete if you have too many values causing "out of memory" errors */
+        yield AssociationField::new('brand');/* ->autocomplete() use autocomplete if you have too many values causing "out of memory" errors */
         yield TextField::new('reference');
         yield TextField::new('color_code')->hideOnIndex();
         yield ChoiceField::new('category')->setChoices(['Male' => 'male', 'Female' => 'female', 'Child' => 'child', 'Unisex' => 'unisex']);
-/*      yield ChoiceField::new('segment')->setChoices(['Sunglasses' => 'sunglasses', 'Sport' => 'sport']); */
+        yield AssociationField::new('segment')->hideOnIndex();
+        yield AssociationField::new('shape')->hideOnIndex();
+        yield AssociationField::new('lens_type')->hideOnIndex();
+        yield AssociationField::new('style')->hideOnIndex();
+        yield AssociationField::new('color')->hideOnIndex();
+        yield AssociationField::new('material')->hideOnIndex();
         yield ChoiceField::new('UvProtection')->setChoices(['0' => 'category0', '1' => 'category1', '2' => 'category2', '3' => 'category3', '4' => 'category4'])->hideOnIndex();
-        yield ChoiceField::new('ItemAvailability')->setChoices(['Discontinued' => 'discontinued', 'In stock' => 'inStock', 'Out of stock' => 'outOfStock']);
+        yield ChoiceField::new('ItemAvailability')->setChoices(['Discontinued' => 'discontinued', 'In stock' => 'inStock', 'Out of stock' => 'outOfStock'])->hideOnIndex();;
         yield ChoiceField::new('state')->setChoices(['Damaged' => 'damagedCondition', 'New' => 'newCondition', 'Refurbished' => 'refurbishedCondition', 'Used' => 'usedCondition']);
         yield MoneyField::new('selling_price')->setCurrency('EUR');
         yield MoneyField::new('retail_price')->setCurrency('EUR')->hideOnIndex();
@@ -45,7 +48,7 @@ class ProductCrudController extends AbstractCrudController
         yield DateTimeField::new('updated_at')->hideOnForm();
     }
 
-    public function persistEntity(EntityManagerInterface $entityManager, $entityInstance): void
+/*     public function persistEntity(EntityManagerInterface $entityManager, $entityInstance): void
     {
         if (!$entityInstance instanceof Product) return;
 
@@ -53,7 +56,7 @@ class ProductCrudController extends AbstractCrudController
         $entityInstance->setUpdatedAt(new \DateTimeImmutable);
 
         parent::persistEntity($entityManager, $entityInstance);
-    }
+    } */
 
 /*     public function configureCrud(Crud $crud): Crud
     {
