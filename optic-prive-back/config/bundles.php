@@ -14,8 +14,5 @@ return [
     Knp\DoctrineBehaviors\DoctrineBehaviorsBundle::class => ['all' => true],
     EasyCorp\Bundle\EasyAdminBundle\EasyAdminBundle::class => ['all' => true],
     Symfony\WebpackEncoreBundle\WebpackEncoreBundle::class => ['all' => true],
-<<<<<<< HEAD
     Vich\UploaderBundle\VichUploaderBundle::class => ['all' => true],
-=======
->>>>>>> aafc90f1d632764cb7de1c12f0b28bd85f9d0922
 ];
