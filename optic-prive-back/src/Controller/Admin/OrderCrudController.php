@@ -29,24 +29,4 @@ class OrderCrudController extends AbstractCrudController
         yield AssociationField::new('delivery_address');
         yield AssociationField::new('shipping');
     }
-    /*
-    public function configureFields(string $pageName): iterable
-    {
-        return [
-            IdField::new('id')->hideOnForm(),
-            DateTimeField::new('created_at')->hideOnForm(),
-            DateTimeField::new('updated_at')->hideOnForm(),
-            ChoiceField::new('order_status')->setChoices(['Cancelled' => 'orderCancelled', 'Delivered' => 'orderDelivered', 'In Transit' => 'orderInTransit', 'Payment Due' => 'orderPaymentDue', 'Pickup Available' => 'orderPickupAvailable', 'Problem' => 'orderProblem', 'Processing' => 'orderProcessing', 'Returned' => 'orderReturned']),
-        ];
-    }
-
-    public function persistEntity(EntityManagerInterface $entityManager, $entityInstance): void
-    {
-        if (!$entityInstance instanceof Order) return;
-
-        $entityInstance->setCreatedAt(new \DateTimeImmutable);
-        $entityInstance->setUpdatedAt(new \DateTimeImmutable);
-
-        parent::persistEntity($entityManager, $entityInstance);
-    } */
 }

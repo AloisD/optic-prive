@@ -19,14 +19,4 @@ class BrandCrudController extends AbstractCrudController
     {
         yield TextField::new('name');
     }
-
-    public function persistEntity(EntityManagerInterface $entityManager, $entityInstance): void
-    {
-        if (!$entityInstance instanceof Brand) return;
-
-        $entityInstance->setCreatedAt(new \DateTimeImmutable);
-        $entityInstance->setUpdatedAt(new \DateTimeImmutable);
-
-        parent::persistEntity($entityManager, $entityInstance);
-    }
 }

@@ -50,7 +50,6 @@ class DashboardController extends AbstractDashboardController
         ]);
         yield MenuItem::linkToCrud('Order', 'fas fa-list', Order::class);
         yield MenuItem::linkToCrud('Address', 'fas fa-list', Address::class);
-
         yield MenuItem::linkToUrl('Visit public website', null, '/');
     }
 }
