@@ -12,46 +12,28 @@
         <p class="description">La première marketplace qui regroupe l’ensemble des marchés de la lunette (neuf, seconde main et reconditionnées) et qui permet aux professionnels de l’optique de mettre en vente leurs lunettes présentes en magasin sur le web.</p>
       </div>
     </div>
-      <div class="news">
-        <h4>LES NOUVEAUTÉS</h4>
-      </div>
-      <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="news">
+      <h4>LES NOUVEAUTÉS</h4>
+    </div>
+    <div class="row row-cols-1 row-cols-md-3 g-4" style="list-style: none">
+      <li *ngFor="let product of products">
         <div class="col">
-            <div class="card h-100">
-                <div class="cart-relative">
-                <img src="assets/uploads/glass1.jpeg" class="card-img-top" alt="...">
-                <button type="button" class="btn btn-light cart-icon"><i class="bi bi-bag" style="font-size:27px"></i></button>
-                </div>
-                <div class="card-body">
-                  <h5 class="card-title">Burberry</h5>
-                  <p class="card-text">24 €</p>
-                </div>
-              </div>
+          <div class="card h-100">
+            <div class="cart-relative">
+              <img src="assets/uploads/glass1.jpeg" class="card-img-top" alt="...">
+              <button type="button" class="btn btn-light cart-icon"><i class="bi bi-bag" style="font-size:27px"></i></button>
             </div>
-            <div class="col">
-              <div class="card h-100">
-                <div class="cart-relative">
-                  <img src="assets/uploads/glass1.jpeg" class="card-img-top" alt="...">
-                  <button type="button" class="btn btn-light cart-icon"><i class="bi bi-bag" style="font-size:27px"></i></button>
-                  </div>
-                <div class="card-body">
-                  <h5 class="card-title">Prada</h5>
-                  <p class="card-text">200 €</p>
-                </div>
-              </div>
+            <div class="card-body">
+              <h5 class="card-title"> {{ product.name }} - {{ product.reference }} </h5>
+              <p class="card-text"> {{ product.retail_price }} € </p>
             </div>
-            <div class="col">
-              <div class="card h-100">
-                <div class="cart-relative">
-                  <img src="assets/uploads/glass4.jpeg" class="card-img-top" alt="...">
-                  <button type="button" class="btn btn-light cart-icon"><i class="bi bi-bag" style="font-size:27px"></i></button>
-                  </div>
-                <div class="card-body">
-                  <h5 class="card-title">Ray-Ban</h5>
-                  <p class="card-text">140 €</p>
-                </div>
-              </div>
-            </div>
+          </div>
         </div>
-      </div>
+      </li>
+    </div>
+  </div>
 </body>
+
+<!-- <pre>
+  {{ products | json }}
+</pre> -->
