@@ -11,6 +11,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { BannerComponent } from './components/banner/banner.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { CartPageComponent } from './pages/cart-page/cart-page.component';
 
 
 export function createTranslateLoader(httpClient: HttpClient) {
@@ -24,7 +25,8 @@ export function createTranslateLoader(httpClient: HttpClient) {
     FooterComponent,
     BannerComponent,
     HomePageComponent,
-    NavbarComponent
+    NavbarComponent,
+    CartPageComponent
   ],
   imports: [
     BrowserModule,
