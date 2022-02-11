@@ -518,4 +518,9 @@ class Product implements SluggableInterface, TimestampableInterface
   {
     return $this->imageFile;
   }
+
+  public function __toString()
+  {
+    return $this->name;
+  }
 }

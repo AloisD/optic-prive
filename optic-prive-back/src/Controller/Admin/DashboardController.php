@@ -9,6 +9,7 @@ use App\Entity\Brand;
 use App\Entity\Color;
 use App\Entity\LensType;
 use App\Entity\Material;
+use App\Entity\ProductImage;
 use App\Entity\Segment;
 use App\Entity\Shape;
 use App\Entity\Style;
@@ -40,6 +41,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::subMenu('Offer', 'fa fa-article')->setSubItems([
             MenuItem::linkToCrud('Product', 'fas fa-list', Product::class),
+            MenuItem::linkToCrud('Product image', 'fas fa-list', ProductImage::class),
             MenuItem::linkToCrud('Brand', 'fas fa-list', Brand::class),
             MenuItem::linkToCrud('Shape', 'fas fa-list', Shape::class),
             MenuItem::linkToCrud('Segment', 'fas fa-list', Segment::class),
