@@ -48,5 +48,5 @@ class OrderCrudController extends AbstractCrudController
         $entityInstance->setUpdatedAt(new \DateTimeImmutable);
 
         parent::persistEntity($entityManager, $entityInstance);
-    }
+    } */
 }

@@ -5,7 +5,6 @@ namespace App\Controller\Admin;
 use App\Entity\Address;
 use App\Entity\Order;
 use App\Entity\Product;
-use App\Entity\ProductImage;
 use App\Entity\Brand;
 use App\Entity\Color;
 use App\Entity\LensType;
@@ -51,12 +50,7 @@ class DashboardController extends AbstractDashboardController
         ]);
         yield MenuItem::linkToCrud('Order', 'fas fa-list', Order::class);
         yield MenuItem::linkToCrud('Address', 'fas fa-list', Address::class);
-/*         yield MenuItem::subMenu('Offer', 'fa fa-article')->setSubItems([
-            MenuItem::linkToCrud('Product', 'fas fa-list', Product::class),
-            MenuItem::linkToCrud('Picture', 'fas fa-list', ProductImage::class)
-        ]); */
-        yield MenuItem::linkToCrud('Order', 'fas fa-list', Order::class);
-        yield MenuItem::linkToCrud('Address', 'fas fa-list', Address::class);
+
         yield MenuItem::linkToUrl('Visit public website', null, '/');
     }
 }
