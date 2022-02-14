@@ -41,6 +41,7 @@ body {
   button {
       box-shadow: none !important;
   }
+
   .form-control {
   border-top: none;
   border-right: none;
@@ -73,3 +74,65 @@ body {
   }
 }
 
+/* STYLE MODAL */
+.modal-header {
+  border-bottom: none;
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+}
+
+.modal-content {
+  background-color: $banner-button;
+  border: none;
+  border-radius: 0px;
+}
+
+.modal-body {
+  .btn-primary {
+      background-color: $kaki;
+      border: none;
+      border-radius: 0%;
+      color: $text-color-dark;
+      box-shadow: none !important;
+  }
+}
+
+.modal-img {
+  width: 100%;
+  height: 100%;
+}
+
+.login-box {
+  padding: 0px;
+}
+
+.modal-client {
+  margin: 30px;
+
+  input {
+      margin: 10px 0px;
+      border-radius: 0px;
+      border: none;
+      box-shadow: none !important;
+  }
+
+  p {
+      font-size: 20px;
+      color: $text-color-dark;
+  }
+
+  a {
+      color: $text-color-dark;
+  }
+}
+
+button {
+  box-shadow: none !important;
+  background-color: transparent;
+  border: none;
+}
+
+.modal-client input {
+  background-color: white;
+}
