@@ -1,4 +1,45 @@
-$primary: red;
+$primary: #87A397;
+$secondary: #FBEADF;
+
+$primary-contrast: #F4FFFA;
+$secondary-contrast: #56474A;
+
+
+// Boutons //
+.btn {
+  height: 40px;
+  font-size: 1rem !important;
+  box-shadow: none !important;
+  border: none !important;
+  border-radius: 0% !important;
+}
+
+.btn:hover {
+  font-size: 1.05rem !important;
+}
+
+.btn-primary {
+  color: $primary-contrast !important;
+  border: none !important;
+  border-radius: 0% !important;
+}
+
+.btn-secondary {
+  color: #56474A !important;
+}
+
+.btn-secondary:hover {
+  background-color: $primary !important;
+  color: $primary-contrast !important;
+}
+
+.small-btn {
+  width: 100px;
+}
+
+.big-btn {
+  width: 170px;
+}
 
 @import '~bootstrap/scss/bootstrap';
 @import "~bootstrap-icons/font/bootstrap-icons.css";
