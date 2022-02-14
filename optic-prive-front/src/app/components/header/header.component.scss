@@ -3,10 +3,6 @@ $primary-contrast: #F4FFFA;
 $secondary-color : #FBEADF;
 $secondary-contrast : #56474A;
 
-body {
-    font-family: 'Raleway', sans-serif;
-}
-
 nav {
     margin: 10px;
 
@@ -105,8 +101,8 @@ span.rotate {
     }
 }
 
-/* STYLE MODAL */
 
+/* STYLE MODAL */
 .modal-header {
     border-bottom: none;
     position: absolute;
@@ -126,6 +122,7 @@ span.rotate {
         border: none;
         border-radius: 0%;
         color: $primary-contrast;
+        box-shadow: none !important;
     }
 }
 
