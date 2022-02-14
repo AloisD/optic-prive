@@ -1,14 +1,11 @@
-$primary-color : #87A397;
+$primary: #87A397;
 $primary-contrast: #F4FFFA;
-$secondary-color : #FBEADF;
+$secondary: #FBEADF;
 $secondary-contrast : #56474A;
 
 nav {
     margin: 10px;
 
-    button {
-        box-shadow: none !important;
-    }
     .form-control {
     border-top: none;
     border-right: none;
@@ -27,7 +24,7 @@ span.rotate {
 }
 
 .card-color {
-    background-color: $primary-color;
+    background-color: $primary;
     padding: 10px;
     margin: 0px 20px;
     display: flex;
@@ -43,7 +40,7 @@ span.rotate {
 .icon-bg {
     color: $secondary-contrast;
     font-size: 2.5rem;
-    background: $secondary-color;
+    background: $secondary;
     padding: 10px;
     border-radius: 10px;
 }
@@ -111,20 +108,11 @@ span.rotate {
 }
 
 .modal-content {
-    background-color: $secondary-color;
+    background-color: $secondary;
     border: none;
     border-radius: 0px;
 }
 
-.modal-body {
-    .btn-primary {
-        background-color: $primary-color;
-        border: none;
-        border-radius: 0%;
-        color: $primary-contrast;
-        box-shadow: none !important;
-    }
-}
 
 .modal-img {
     width: 100%;
@@ -139,7 +127,7 @@ span.rotate {
     margin: 30px;
 
     input {
-        margin: 10px 0px;
+        margin: 15px 0px;
         border-radius: 0px;
         border: none;
         box-shadow: none !important;
@@ -152,5 +140,9 @@ span.rotate {
 
     a {
         color: $secondary-contrast;
+
+    }
+    .form-group {
+      margin: 15px 0px;
     }
 }
