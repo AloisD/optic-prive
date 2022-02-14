@@ -298,21 +298,9 @@
     "symfony/options-resolver": {
         "version": "v6.0.3"
     },
-<<<<<<< HEAD
     "symfony/mime": {
         "version": "v6.0.3"
     },
-    "symfony/options-resolver": {
-        "version": "v6.0.3"
-    },
-=======
-<<<<<<< HEAD
-    "symfony/mime": {
-        "version": "v6.0.3"
-    },
-=======
->>>>>>> aafc90f1d632764cb7de1c12f0b28bd85f9d0922
->>>>>>> f28806c36a561d26a18b9b5f5d65abb2538e0854
     "symfony/password-hasher": {
         "version": "v6.0.2"
     },
@@ -322,18 +310,6 @@
     "symfony/polyfill-intl-icu": {
         "version": "v1.24.0"
     },
-<<<<<<< HEAD
-    "symfony/polyfill-intl-icu": {
-        "version": "v1.24.0"
-    },
-=======
-<<<<<<< HEAD
->>>>>>> f28806c36a561d26a18b9b5f5d65abb2538e0854
-    "symfony/polyfill-intl-idn": {
-        "version": "v1.24.0"
-    },
-=======
->>>>>>> aafc90f1d632764cb7de1c12f0b28bd85f9d0922
     "symfony/polyfill-intl-normalizer": {
         "version": "v1.24.0"
     },

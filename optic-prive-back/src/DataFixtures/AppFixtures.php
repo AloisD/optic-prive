@@ -10,12 +10,20 @@ use App\Entity\Product;
 use App\Entity\Segment;
 use App\Entity\Shape;
 use App\Entity\Style;
+use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AppFixtures extends Fixture
 {
+  private $encoder;
+
+  public function __construct(UserPasswordHasherInterface $encoder)
+  {
+    $this->encoder = $encoder;
+  }
 
   public function load(ObjectManager $manager): void
   {
@@ -90,7 +98,19 @@ class AppFixtures extends Fixture
       ->setMaterial($material);
 
     $manager->persist($product);
-    $manager->flush();
+
+    //create some random users
+    for ($i = 0; $i < 10; $i++) {
+      $user = new User();
+      $hash = $this->encoder->hashPassword($user, "8888");
+      $user
+        ->setUsername($faker->word())
+        ->setPassword($hash)
+        ->setEmail($faker->email());
+
+      $manager->persist($user);
+      $manager->flush();
+    }
   }
 
   private function getDataProduct(Product $product, $faker)
