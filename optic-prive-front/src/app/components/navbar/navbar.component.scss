@@ -43,7 +43,7 @@ body {
   }
 
   .form-control {
-  border-top: none;
+  border-top: 1em;
   border-right: none;
   border-left: none;
   border-radius: 0%;
@@ -53,6 +53,14 @@ body {
 
   .navbar-dark .navbar-nav .nav-link {
   color: $banner-button;
+  }
+
+  .navbar-nav {
+    padding-left: 1em;
+  }
+
+  ul {
+    margin-top: 1em;
   }
 
   .dropdown-item {
@@ -71,6 +79,10 @@ body {
 
   input::placeholder  {
     color: $banner-button;
+  }
+
+  .d-flex {
+    padding-bottom: 7px;
   }
 }
 
