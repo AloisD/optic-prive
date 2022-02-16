@@ -1,0 +1,16 @@
+h1 {
+  font-size: 50px;
+  position: absolute;
+  font-weight: 600;
+  white-space: nowrap;
+  margin-top: 2%;
+}
+
+.display {
+  writing-mode: vertical-lr;
+  transform: rotate(-180deg);
+}
+
+input {
+  border-radius: 0px;
+}
