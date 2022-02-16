@@ -9,6 +9,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -22,46 +23,43 @@ class ProductCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         yield IdField::new('id')->hideOnForm();
-        yield TextField::new('name');
-        yield CollectionField::new('productImages')
+
+        yield FormField::addTab('Informations essentielles');
+          yield FormField::addPanel('détails du produit');
+            yield TextField::new('name', 'nom');
+            yield AssociationField::new('brand', 'marque')->setColumns(3);/* ->autocomplete() use autocomplete if you have too many values causing "out of memory" errors */
+            yield TextField::new('reference', 'référence')->setColumns(3);
+            yield TextField::new('color_code', 'code couleur')->setColumns(3)->hideOnIndex();
+            yield FormField::addRow();
+            yield ChoiceField::new('category', 'catégorie')->setColumns(3)->setChoices(['Hommes' => 'male', 'Femmes' => 'female', 'Enfants' => 'child', 'Mixte' => 'unisex']);
+            yield AssociationField::new('segment')->setColumns(3)->hideOnIndex();
+            yield FormField::addRow();
+            yield AssociationField::new('shape', 'forme')->setColumns(3)->hideOnIndex();
+            yield AssociationField::new('color','couleur')->setColumns(3)->hideOnIndex();
+            yield AssociationField::new('material', 'matériau')->setColumns(3)->hideOnIndex();
+          yield FormField::addPanel('détails de l\'offre');
+            yield NumberField::new('quantity', 'quantité')->setColumns(3);
+            yield ChoiceField::new('state', 'état')->setColumns(3)->setChoices(['Damaged' => 'damagedCondition', 'New' => 'newCondition', 'Refurbished' => 'refurbishedCondition', 'Used' => 'usedCondition']);
+            yield ChoiceField::new('ItemAvailability', 'disponibilité')->setColumns(3)->setChoices(['Discontinued' => 'discontinued', 'In stock' => 'inStock', 'Out of stock' => 'outOfStock'])->hideOnIndex();;
+            yield FormField::addRow();
+            yield NumberField::new('selling_price', 'prix demandé')->setColumns(3);
+            yield NumberField::new('retail_price', 'prix en magasin')->setColumns(3)->hideOnIndex();
+
+        yield FormField::addTab('Images');
+          yield CollectionField::new('productImages', 'images du produit')
           ->setEntryType(ProductImageType::class);
-        yield AssociationField::new('brand');/* ->autocomplete() use autocomplete if you have too many values causing "out of memory" errors */
-        yield TextField::new('reference');
-        yield TextField::new('color_code')->hideOnIndex();
-        yield ChoiceField::new('category')->setChoices(['Male' => 'male', 'Female' => 'female', 'Child' => 'child', 'Unisex' => 'unisex']);
-        yield AssociationField::new('segment')->hideOnIndex();
-        yield AssociationField::new('shape')->hideOnIndex();
-        yield AssociationField::new('lens_type')->hideOnIndex();
-        yield AssociationField::new('style')->hideOnIndex();
-        yield AssociationField::new('color')->hideOnIndex();
-        yield AssociationField::new('material')->hideOnIndex();
-        yield ChoiceField::new('UvProtection')->setChoices(['0' => 'category0', '1' => 'category1', '2' => 'category2', '3' => 'category3', '4' => 'category4'])->hideOnIndex();
-        yield ChoiceField::new('ItemAvailability')->setChoices(['Discontinued' => 'discontinued', 'In stock' => 'inStock', 'Out of stock' => 'outOfStock'])->hideOnIndex();;
-        yield ChoiceField::new('state')->setChoices(['Damaged' => 'damagedCondition', 'New' => 'newCondition', 'Refurbished' => 'refurbishedCondition', 'Used' => 'usedCondition']);
-        yield NumberField::new('selling_price');
-        yield NumberField::new('retail_price')->hideOnIndex();
-        yield NumberField::new('quantity');
-        yield NumberField::new('eye_size')->hideOnIndex();
-        yield NumberField::new('bridge_size')->hideOnIndex();
-        yield NumberField::new('temple_length')->hideOnIndex();
+
+        yield FormField::addTab('Informations complémentaires');
+        yield FormField::addPanel('détails');
+            yield AssociationField::new('style', 'style')->setColumns(3)->hideOnIndex();
+            yield ChoiceField::new('UvProtection', 'catégorie de filtration UV')->setColumns(3)->setChoices(['Aucune' => 'category0', 'cat 1' => 'category1', 'cat 2' => 'category2', 'cat 3' => 'category3', 'cat 4' => 'category4'])->hideOnIndex();
+            yield AssociationField::new('lens_type', 'type de verres')->setColumns(3)->hideOnIndex();
+          yield FormField::addPanel('taille');
+            yield NumberField::new('eye_size', 'taille des verres')->setColumns(3)->hideOnIndex();
+            yield NumberField::new('bridge_size', 'taille du pont')->setColumns(3)->hideOnIndex();
+            yield NumberField::new('temple_length', 'taille des branches')->setColumns(3)->hideOnIndex();
+
         yield DateTimeField::new('created_at')->hideOnForm();
         yield DateTimeField::new('updated_at')->hideOnForm();
     }
-
-/*     public function persistEntity(EntityManagerInterface $entityManager, $entityInstance): void
-    {
-        if (!$entityInstance instanceof Product) return;
-
-        $entityInstance->setCreatedAt(new \DateTimeImmutable);
-        $entityInstance->setUpdatedAt(new \DateTimeImmutable);
-
-        parent::persistEntity($entityManager, $entityInstance);
-    } */
-
-/*     public function configureCrud(Crud $crud): Crud
-    {
-        return $crud
-             ->setNumberFormat('%.2d');
-    } */
-
 }

@@ -112,7 +112,7 @@ class Product implements SluggableInterface, TimestampableInterface
   #[ORM\Column(type: 'enumUvProtection', nullable: true)]
   private $uv_protection;
 
-  #[ORM\Column(type: 'enumItemAvailability')]
+  #[ORM\Column(type: 'enumItemAvailability', nullable: false)]
   private $item_availability;
 
   #[ORM\ManyToOne(targetEntity: Brand::class, inversedBy: 'products')]
@@ -143,7 +143,7 @@ class Product implements SluggableInterface, TimestampableInterface
   #[ORM\JoinColumn(nullable: false)]
   private $material;
 
-  #[ORM\OneToMany(mappedBy: 'product', targetEntity: ProductImage::class)]
+  #[ORM\OneToMany(mappedBy: 'product', targetEntity: ProductImage::class, cascade: [ 'persist' ])]
   private $productImages;
 
   #[ORM\OneToMany(mappedBy: 'product', targetEntity: OrderHasProduct::class)]

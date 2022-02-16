@@ -4,11 +4,11 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\ProductImageRepository;
-use Doctrine\ORM\Mapping as ORM;
 use Knp\DoctrineBehaviors\Contract\Entity\TimestampableInterface;
 use Knp\DoctrineBehaviors\Model\Timestampable\TimestampableTrait;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: ProductImageRepository::class)]
 #[ApiResource]
@@ -25,13 +25,16 @@ class ProductImage implements TimestampableInterface
   private $id;
 
   #[ORM\Column(type: 'string', length: 255)]
-  private $path;
+  private ?string $path = null;
 
   /**
-   * @Vich\UploadableField(mapping="product_image", fileNameProperty="path")
-   * @var File
-   */
-  private $image;
+  * NOTE: This is not a mapped field of entity metadata, just a simple property.
+  *
+  * @Vich\UploadableField(mapping="product_image", fileNameProperty="path")
+  *
+  * @var File|null
+  */
+  private ?File $image = null;
 
   #[ORM\ManyToOne(targetEntity: Product::class, inversedBy: 'productImages')]
   #[ORM\JoinColumn(nullable: false)]
@@ -40,18 +43,6 @@ class ProductImage implements TimestampableInterface
   public function getId(): ?int
   {
     return $this->id;
-  }
-
-  public function getPath(): ?string
-  {
-    return $this->path;
-  }
-
-  public function setPath(string $path): self
-  {
-    $this->path = $path;
-
-    return $this;
   }
 
   public function getProduct(): ?Product
@@ -65,12 +56,6 @@ class ProductImage implements TimestampableInterface
 
       return $this;
   }
-
-  public function __toString()
-  {
-    return $this->getPath();
-  }
-
 
   /**
    * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
@@ -95,6 +80,23 @@ class ProductImage implements TimestampableInterface
   public function getImage(): ?File
   {
     return $this->image;
+  }
+
+  public function getPath(): ?string
+  {
+    return $this->path;
+  }
+
+  public function setPath(string $path): self
+  {
+    $this->path = $path;
+
+    return $this;
+  }
+
+  public function __toString()
+  {
+    return $this->getPath();
   }
 
 }

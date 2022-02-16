@@ -57,6 +57,6 @@ class DashboardController extends AbstractDashboardController
         ]);
         yield MenuItem::linkToCrud('Commandes', 'fas fa-list', Order::class);
         yield MenuItem::linkToCrud('Adresses', 'fas fa-list', Address::class);
-        yield MenuItem::linkToUrl('Visiter le site public', null, 'www.optic-prive.com');
+        yield MenuItem::linkToUrl('Visiter le site public', null, '/');
     }
 }
