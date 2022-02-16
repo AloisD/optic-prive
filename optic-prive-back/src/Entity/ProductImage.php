@@ -87,7 +87,7 @@ class ProductImage implements TimestampableInterface
     return $this->path;
   }
 
-  public function setPath(string $path): self
+  public function setPath(?string $path): self
   {
     $this->path = $path;
 

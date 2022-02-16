@@ -47,7 +47,8 @@ class ProductCrudController extends AbstractCrudController
 
         yield FormField::addTab('Images');
           yield CollectionField::new('productImages', 'images du produit')
-          ->setEntryType(ProductImageType::class);
+          ->setEntryType(ProductImageType::class)
+          ->renderExpanded();
 
         yield FormField::addTab('Informations complémentaires');
         yield FormField::addPanel('détails');

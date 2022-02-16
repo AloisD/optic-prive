@@ -143,7 +143,7 @@ class Product implements SluggableInterface, TimestampableInterface
   #[ORM\JoinColumn(nullable: false)]
   private $material;
 
-  #[ORM\OneToMany(mappedBy: 'product', targetEntity: ProductImage::class, cascade: [ 'persist' ])]
+  #[ORM\OneToMany(mappedBy: 'product', targetEntity: ProductImage::class, cascade: [ 'persist' ], orphanRemoval: true)]
   private $productImages;
 
   #[ORM\OneToMany(mappedBy: 'product', targetEntity: OrderHasProduct::class)]
