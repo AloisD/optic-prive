@@ -48,7 +48,8 @@ class ProductCrudController extends AbstractCrudController
         yield FormField::addTab('Images');
           yield CollectionField::new('productImages', 'images du produit')
           ->setEntryType(ProductImageType::class)
-          ->renderExpanded();
+          ->renderExpanded()
+          ->hideOnIndex();
 
         yield FormField::addTab('Informations complémentaires');
         yield FormField::addPanel('détails');
@@ -60,7 +61,7 @@ class ProductCrudController extends AbstractCrudController
             yield NumberField::new('bridge_size', 'taille du pont')->setColumns(3)->hideOnIndex();
             yield NumberField::new('temple_length', 'taille des branches')->setColumns(3)->hideOnIndex();
 
-        yield DateTimeField::new('created_at')->hideOnForm();
-        yield DateTimeField::new('updated_at')->hideOnForm();
+        yield DateTimeField::new('created_at', 'date de création')->hideOnForm();
+        yield DateTimeField::new('updated_at', 'dernière mise à jour')->hideOnForm();
     }
 }
