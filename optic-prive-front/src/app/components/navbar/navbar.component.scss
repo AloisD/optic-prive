@@ -86,7 +86,7 @@ body {
   }
 }
 
-/* STYLE MODAL */
+/* STYLE MODAL
 .modal-header {
   border-bottom: none;
   position: absolute;
@@ -127,6 +127,8 @@ body {
       border-radius: 0px;
       border: none;
       box-shadow: none !important;
+      background-color: white;
+
   }
 
   p {
@@ -138,13 +140,10 @@ body {
       color: $text-color-dark;
   }
 }
+*/
 
 button {
   box-shadow: none !important;
   background-color: transparent;
   border: none;
-}
-
-.modal-client input {
-  background-color: white;
 }

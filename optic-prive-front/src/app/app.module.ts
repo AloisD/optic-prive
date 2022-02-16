@@ -12,6 +12,7 @@ import { BannerComponent } from './components/banner/banner.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { CartPageComponent } from './pages/cart-page/cart-page.component';
+import { FormsModule } from '@angular/forms';
 
 
 export function createTranslateLoader(httpClient: HttpClient) {
@@ -38,7 +39,8 @@ export function createTranslateLoader(httpClient: HttpClient) {
         deps: [HttpClient]
       }
     }),
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
