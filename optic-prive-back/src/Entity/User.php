@@ -2,18 +2,34 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
+use App\Controller\Api\MeAction;
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Knp\DoctrineBehaviors\Contract\Entity\TimestampableInterface;
 use Knp\DoctrineBehaviors\Model\Timestampable\TimestampableTrait;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
+#[ApiResource(
+  collectionOperations: [],
+  itemOperations: [
+      'get' => [ 'security' => 'is_granted("ROLE_ADMIN") or (is_granted("ROLE_USER") and user.getId() == object.getId())'],
+      'me' => [
+          'method' => 'GET',
+          'path' => '/me',
+          'controller' => MeAction::class,
+          'read' => false,
+          'normalization_context' => [ 'groups' => [ 'read_profile' ]]
+      ]
+  ]
+)]
 class User implements UserInterface, PasswordAuthenticatedUserInterface, TimestampableInterface
 {
     use TimestampableTrait;
-    
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]

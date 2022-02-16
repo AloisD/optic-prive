@@ -101,12 +101,29 @@ class AppFixtures extends Fixture
 
     //create some random users
     for ($i = 0; $i < 10; $i++) {
+      $admin = new User();
+      $hash = $this->encoder->hashPassword($admin, "8888");
+      $admin
+        ->setUsername($faker->word())
+        ->setPassword($hash)
+        ->setEmail($faker->email())
+        ->setRoles([
+          "ROLE_ADMIN"
+      ]);
+
+      $manager->persist($admin);
+      $manager->flush();
+    }
+    for ($i = 0; $i < 10; $i++) {
       $user = new User();
       $hash = $this->encoder->hashPassword($user, "8888");
       $user
         ->setUsername($faker->word())
         ->setPassword($hash)
-        ->setEmail($faker->email());
+        ->setEmail($faker->email())
+        ->setRoles([
+          "ROLE_USER"
+      ]);
 
       $manager->persist($user);
       $manager->flush();

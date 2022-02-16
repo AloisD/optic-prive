@@ -9,12 +9,12 @@ import { ProductService } from 'src/app/services/product/product.service';
 export class HomePageComponent implements OnInit {
   products!: [IProduct];
 
-  constructor(private productService: ProductService) { }
+  // constructor(private productService: ProductService) { }
 
   ngOnInit(): void {
-    this.productService.getProducts().subscribe((datas: any) => {
-      this.products = datas['hydra:member'];
-      console.log(this.products);
-    });
+    // this.productService.getProducts().subscribe((datas: any) => {
+    //   this.products = datas['hydra:member'];
+    //   console.log(this.products);
+    // });
   }
 }
