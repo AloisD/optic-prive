@@ -36,7 +36,7 @@ use App\Controller\Api;
     ],
     'put',
     'delete',
-    'post_image' => [
+    'product_image' => [
       'method' => 'POST',
       'path' => '/products/{id}/image',
       'controller' => ProductImageAction::class,
@@ -143,7 +143,7 @@ class Product implements SluggableInterface, TimestampableInterface
   #[ORM\JoinColumn(nullable: false)]
   private $material;
 
-  #[ORM\OneToMany(mappedBy: 'product', targetEntity: ProductImage::class, cascade: [ 'persist' ], orphanRemoval: true)]
+  #[ORM\OneToMany(mappedBy: 'product', targetEntity: ProductImage::class, cascade: ['persist'], orphanRemoval: true)]
   private $productImages;
 
   #[ORM\OneToMany(mappedBy: 'product', targetEntity: OrderHasProduct::class)]
