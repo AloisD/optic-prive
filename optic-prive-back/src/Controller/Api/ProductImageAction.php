@@ -22,6 +22,7 @@ final class ProductImageAction extends AbstractController
       throw new BadRequestHttpException('image is required');
     }
     $productImage = new ProductImage();
+    $productImage->setImage($uploadedFile);
     $productImage->setPath($uploadedFile->getClientOriginalName());
     $productImage->setProduct($data);
     $data->addProductImage($productImage);
