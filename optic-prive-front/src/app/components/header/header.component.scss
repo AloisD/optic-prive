@@ -97,6 +97,18 @@ span.rotate {
         background: none;
         border: none;
     }
+
+    .cart-button {
+      position: relative;
+    }
+
+    .badge {
+      font-size: 9px;
+      border-radius: 50%;
+      right: -15%;
+      bottom: -28%;
+      padding: 0.3em 0.56em;
+    }
 }
 
 
@@ -141,7 +153,7 @@ span.rotate {
     a {
         color: $secondary-contrast;
     }
-  
+
     .form-group {
       margin: 15px 0px;
     }

@@ -45,12 +45,18 @@ h1 {
 
 .card {
   margin: auto;
-  max-width: 950px;
+  max-width: 900px;
   width: 100%;
   box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.04);
   border-radius: .5rem;
   border: transparent;
   margin-top: 2em;
+
+  @media screen and (max-width: (1300px))
+  {
+    max-width: 950px;
+  }
+
 }
 
 .bread {

@@ -20,7 +20,7 @@
           <div class="card h-100">
             <div class="cart-relative">
               <img src="assets/uploads/glass1.jpeg" class="card-img-top" alt="...">
-              <button type="button" class="btn btn-light cart-icon"><i class="bi bi-bag" style="font-size:27px"></i></button>
+              <button type="button" class="btn btn-light cart-icon" (click)=addtocart(product)><i class="bi bi-bag" style="font-size:27px"></i></button>
             </div>
             <div class="card-body">
               <h5 class="card-title"> {{ product.name }} - {{ product.reference }} </h5>
