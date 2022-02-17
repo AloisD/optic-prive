@@ -1,3 +1,5 @@
+@use '../../../scss/custom' as *;
+
 h1 {
   font-size: 50px;
   position: absolute;
@@ -12,5 +14,37 @@ h1 {
 }
 
 input {
-  border-radius: 0px;
+  border-radius: 0px !important;
+  border: none !important;
+}
+
+.container {
+  border: solid 1px $secondary;
+  border-radius: 10px;
+  background-color: $secondary;
+}
+
+h2 {
+   text-align: center;
+   margin: 40px 0px;
+}
+
+form {
+  margin : 40px;
+}
+
+
+@media screen and (max-width: (765px))
+{
+  h1 {
+    font-size: 30px;
+    position: absolute;
+    font-weight: 600;
+    white-space: nowrap;
+    margin-top: 2%;
+  }
+
+  form {
+    margin : 10px;
+  }
 }
