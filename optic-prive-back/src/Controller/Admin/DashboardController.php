@@ -19,9 +19,15 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
 
 class DashboardController extends AbstractDashboardController
 {
+    public function configureAssets(): Assets
+    {
+        return Assets::new()->addCssFile('css/admin.css');
+    }
+
     #[Route('/admin', name: 'admin')]
     public function index(): Response
     {
@@ -38,20 +44,19 @@ class DashboardController extends AbstractDashboardController
 
     public function configureMenuItems(): iterable
     {
-        yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
-        yield MenuItem::subMenu('Offer', 'fa fa-article')->setSubItems([
-            MenuItem::linkToCrud('Product', 'fas fa-list', Product::class),
-            MenuItem::linkToCrud('Product image', 'fas fa-list', ProductImage::class),
-            MenuItem::linkToCrud('Brand', 'fas fa-list', Brand::class),
-            MenuItem::linkToCrud('Shape', 'fas fa-list', Shape::class),
-            MenuItem::linkToCrud('Segment', 'fas fa-list', Segment::class),
-            MenuItem::linkToCrud('Lens type', 'fas fa-list', LensType::class),
-            MenuItem::linkToCrud('Style', 'fas fa-list', Style::class),
-            MenuItem::linkToCrud('Color', 'fas fa-list', Color::class),
-            MenuItem::linkToCrud('Material', 'fas fa-list', Material::class),
+        yield MenuItem::linkToDashboard('Tableau de bord', 'fa fa-home');
+        yield MenuItem::linkToCrud('Produits', 'fas fa-list', Product::class);
+        yield MenuItem::subMenu('Catégories', 'fa fa-article')->setSubItems([
+            MenuItem::linkToCrud('Marques', 'fas fa-list', Brand::class),
+            MenuItem::linkToCrud('Formes', 'fas fa-list', Shape::class),
+            MenuItem::linkToCrud('Segments', 'fas fa-list', Segment::class),
+            MenuItem::linkToCrud('Types de verres', 'fas fa-list', LensType::class),
+            MenuItem::linkToCrud('Styles', 'fas fa-list', Style::class),
+            MenuItem::linkToCrud('Couleurs', 'fas fa-list', Color::class),
+            MenuItem::linkToCrud('Matériaux', 'fas fa-list', Material::class),
         ]);
-        yield MenuItem::linkToCrud('Order', 'fas fa-list', Order::class);
-        yield MenuItem::linkToCrud('Address', 'fas fa-list', Address::class);
-        yield MenuItem::linkToUrl('Visit public website', null, '/');
+        yield MenuItem::linkToCrud('Commandes', 'fas fa-list', Order::class);
+        yield MenuItem::linkToCrud('Adresses', 'fas fa-list', Address::class);
+        yield MenuItem::linkToUrl('Visiter le site public', null, '/');
     }
 }

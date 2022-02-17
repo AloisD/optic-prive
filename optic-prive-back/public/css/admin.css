@@ -1,0 +1,15 @@
+:root {
+  --body-bg: #F4FFFA;
+  --sidebar-bg: #FBEADF;
+  --sidebar-menu-active-item-bg: #F4FFFA;
+  --text-on-primary: #F4FFFA;
+  --responsive-header-bg: #FBEADF;
+  --color-primary: #87A397;
+  --link-color: #87A397;
+  --user-avatar-icon-color: #87A397;
+}
+
+.page-item.active .page-link {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+}

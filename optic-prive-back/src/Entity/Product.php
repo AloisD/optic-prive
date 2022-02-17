@@ -14,10 +14,8 @@ use App\Repository\ProductRepository;
 use App\Controller\Api\ProductImageAction;
 use Doctrine\Common\Collections\Collection;
 use ApiPlatform\Core\Annotation\ApiResource;
-use Symfony\Component\HttpFoundation\File\File;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Serializer\Annotation\Groups;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Knp\DoctrineBehaviors\Model\Sluggable\SluggableTrait;
 use Knp\DoctrineBehaviors\Contract\Entity\SluggableInterface;
 use Knp\DoctrineBehaviors\Contract\Entity\TimestampableInterface;
@@ -63,9 +61,6 @@ use App\Controller\Api;
     ],
   ],
 )]
-/**
- * @Vich\Uploadable
- */
 class Product implements SluggableInterface, TimestampableInterface
 {
   use SluggableTrait;
@@ -117,7 +112,7 @@ class Product implements SluggableInterface, TimestampableInterface
   #[ORM\Column(type: 'enumUvProtection', nullable: true)]
   private $uv_protection;
 
-  #[ORM\Column(type: 'enumItemAvailability')]
+  #[ORM\Column(type: 'enumItemAvailability', nullable: false)]
   private $item_availability;
 
   #[ORM\ManyToOne(targetEntity: Brand::class, inversedBy: 'products')]
@@ -148,21 +143,11 @@ class Product implements SluggableInterface, TimestampableInterface
   #[ORM\JoinColumn(nullable: false)]
   private $material;
 
-  #[ORM\OneToMany(mappedBy: 'product', targetEntity: ProductImage::class)]
+  #[ORM\OneToMany(mappedBy: 'product', targetEntity: ProductImage::class, cascade: [ 'persist' ], orphanRemoval: true)]
   private $productImages;
 
   #[ORM\OneToMany(mappedBy: 'product', targetEntity: OrderHasProduct::class)]
   private $orderHasProducts;
-
-  /**
-   * @Vich\UploadableField(mapping="product_image", fileNameProperty="imageName")
-   * @var File
-   */
-  private $imageFile;
-
-
-  #[ORM\Column(type: 'string', length: 255, nullable: true)]
-  private $imageName;
 
   public function __construct()
   {
@@ -481,43 +466,6 @@ class Product implements SluggableInterface, TimestampableInterface
     }
 
     return $this;
-  }
-
-  public function getImageName(): ?string
-  {
-    return $this->imageName;
-  }
-
-  public function setImageName(?string $imageName): self
-  {
-    $this->imageName = $imageName;
-
-    return $this;
-  }
-
-  /**
-   * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
-   * of 'UploadedFile' is injected into this setter to trigger the update. If this
-   * bundle's configuration parameter 'inject_on_load' is set to 'true' this setter
-   * must be able to accept an instance of 'File' as the bundle will inject one here
-   * during Doctrine hydration.
-   *
-   * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile|null $imageFile
-   */
-  public function setImageFile(?File $imageFile = null): void
-  {
-    $this->imageFile = $imageFile;
-
-    if (null !== $imageFile) {
-      // It is required that at least one field changes if you are using doctrine
-      // otherwise the event listeners won't be called and the file is lost
-      $this->updatedAt = new \DateTimeImmutable();
-    }
-  }
-
-  public function getImageFile(): ?File
-  {
-    return $this->imageFile;
   }
 
   public function __toString()
