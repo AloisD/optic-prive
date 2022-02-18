@@ -23,7 +23,10 @@
           </button>
         </div>
         <div>
-          <a href="/panier"><i class="bi bi-bag"></i></a>
+          <button routerLink="panier" class="cart-button">
+            <i class="bi bi-bag"></i>
+          <div class="badge bg-primary position-absolute">{{ totalProduct }}</div>
+          </button>
         </div>
         <div class="d-flex justify-content-end align-items-center">
           <a href="#">FR</a>
