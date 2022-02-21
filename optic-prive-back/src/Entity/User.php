@@ -2,114 +2,135 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
+use App\Controller\Api\MeAction;
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Knp\DoctrineBehaviors\Contract\Entity\TimestampableInterface;
 use Knp\DoctrineBehaviors\Model\Timestampable\TimestampableTrait;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
+#[ApiResource(
+  collectionOperations: [
+    'me' => [
+      'pagination_enabled' => false,
+      'method' => 'GET',
+      'path' => '/me',
+      'controller' => MeAction::class,
+      'read' => false,
+      'normalization_context' => ['groups' => ['read_profile']]
+    ]
+  ],
+  itemOperations: [
+    'get' => ['security' => 'is_granted("ROLE_ADMIN") or (is_granted("ROLE_USER") and user.getId() == object.getId())']
+  ]
+)]
 class User implements UserInterface, PasswordAuthenticatedUserInterface, TimestampableInterface
 {
-    use TimestampableTrait;
-    
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column(type: 'integer')]
-    private $id;
+  use TimestampableTrait;
 
-    #[ORM\Column(type: 'string', length: 180, unique: true)]
-    private $email;
+  #[ORM\Id]
+  #[ORM\GeneratedValue]
+  #[ORM\Column(type: 'integer')]
+  private $id;
 
-    #[ORM\Column(type: 'json')]
-    private $roles = [];
+  #[Groups(["read_profile"])]
+  #[ORM\Column(type: 'string', length: 180, unique: true)]
+  private $email;
 
-    #[ORM\Column(type: 'string')]
-    private $password;
+  #[Groups(["read_profile"])]
+  #[ORM\Column(type: 'json')]
+  private $roles = [];
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $username;
+  #[ORM\Column(type: 'string')]
+  private $password;
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
+  #[Groups(["read_profile"])]
+  #[ORM\Column(type: 'string', length: 255, nullable: true)]
+  private $username;
 
-    public function getEmail(): ?string
-    {
-        return $this->email;
-    }
+  public function getId(): ?int
+  {
+    return $this->id;
+  }
 
-    public function setEmail(string $email): self
-    {
-        $this->email = $email;
+  public function getEmail(): ?string
+  {
+    return $this->email;
+  }
 
-        return $this;
-    }
+  public function setEmail(string $email): self
+  {
+    $this->email = $email;
 
-    /**
-     * A visual identifier that represents this user.
-     *
-     * @see UserInterface
-     */
-    public function getUserIdentifier(): string
-    {
-        return (string) $this->email;
-    }
+    return $this;
+  }
 
-    /**
-     * @see UserInterface
-     */
-    public function getRoles(): array
-    {
-        $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
+  /**
+   * A visual identifier that represents this user.
+   *
+   * @see UserInterface
+   */
+  public function getUserIdentifier(): string
+  {
+    return (string) $this->email;
+  }
 
-        return array_unique($roles);
-    }
+  /**
+   * @see UserInterface
+   */
+  public function getRoles(): array
+  {
+    $roles = $this->roles;
+    // guarantee every user at least has ROLE_USER
+    $roles[] = 'ROLE_USER';
 
-    public function setRoles(array $roles): self
-    {
-        $this->roles = $roles;
+    return array_unique($roles);
+  }
 
-        return $this;
-    }
+  public function setRoles(array $roles): self
+  {
+    $this->roles = $roles;
 
-    /**
-     * @see PasswordAuthenticatedUserInterface
-     */
-    public function getPassword(): string
-    {
-        return $this->password;
-    }
+    return $this;
+  }
 
-    public function setPassword(string $password): self
-    {
-        $this->password = $password;
+  /**
+   * @see PasswordAuthenticatedUserInterface
+   */
+  public function getPassword(): string
+  {
+    return $this->password;
+  }
 
-        return $this;
-    }
+  public function setPassword(string $password): self
+  {
+    $this->password = $password;
 
-    /**
-     * @see UserInterface
-     */
-    public function eraseCredentials()
-    {
-        // If you store any temporary, sensitive data on the user, clear it here
-        // $this->plainPassword = null;
-    }
+    return $this;
+  }
 
-    public function getUsername(): ?string
-    {
-        return $this->username;
-    }
+  /**
+   * @see UserInterface
+   */
+  public function eraseCredentials()
+  {
+    // If you store any temporary, sensitive data on the user, clear it here
+    // $this->plainPassword = null;
+  }
 
-    public function setUsername(?string $username): self
-    {
-        $this->username = $username;
+  public function getUsername(): ?string
+  {
+    return $this->username;
+  }
 
-        return $this;
-    }
+  public function setUsername(?string $username): self
+  {
+    $this->username = $username;
+
+    return $this;
+  }
 }

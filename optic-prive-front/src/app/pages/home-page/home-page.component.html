@@ -8,7 +8,12 @@
         <div class="trait"></div>
       </div>
       <div class="col-md-8">
-        <p class="description">La première marketplace qui regroupe l’ensemble des marchés de la lunette (neuf, seconde main et reconditionnées) et qui permet aux professionnels de l’optique de mettre en vente leurs lunettes présentes en magasin sur le web.</p>
+        <p class="description">
+          La première marketplace qui regroupe l’ensemble des marchés de la
+          lunette (neuf, seconde main et reconditionnées) et qui permet aux
+          professionnels de l’optique de mettre en vente leurs lunettes
+          présentes en magasin sur le web.
+        </p>
       </div>
     </div>
     <div class="news">
@@ -23,8 +28,10 @@
               <button type="button" class="btn  cart-icon" (click)=addtocart(product)><i class="bi bi-bag-plus" style="font-size:27px"></i></button>
             </div>
             <div class="card-body">
-              <h5 class="card-title"> {{ product.name }} - {{ product.reference }} </h5>
-              <p class="card-text"> {{ product.retail_price }} € </p>
+              <h5 class="card-title">
+                {{ product.name }} - {{ product.reference }}
+              </h5>
+              <p class="card-text">{{ product.retail_price }} €</p>
             </div>
           </div>
         </div>
