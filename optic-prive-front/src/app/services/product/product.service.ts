@@ -13,6 +13,7 @@ export class ProductService {
   getProducts(): Observable<IProduct> {
     return this.http.get<IProduct>(`${this.$url}/products`)
     .pipe(map((res:any)=>{
+      console.log(res);
       return res;
     }))
   }

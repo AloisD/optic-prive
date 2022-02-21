@@ -76,11 +76,11 @@ class Product implements SluggableInterface, TimestampableInterface
   private $name;
 
   #[ORM\Column(type: 'string', length: 255)]
-  #[Groups(["product_read"])]
+  #[Groups(["product_read", "product_details_read"])]
   private $reference;
 
   #[ORM\Column(type: 'string', length: 255)]
-  #[Groups(["product_details_read"])]
+  #[Groups(["product_read", "product_details_read"])]
   private $color_code;
 
   #[ORM\Column(type: 'decimal', precision: 5, scale: '2')]
@@ -88,28 +88,35 @@ class Product implements SluggableInterface, TimestampableInterface
   private $retail_price;
 
   #[ORM\Column(type: 'decimal', precision: 5, scale: '2')]
+  #[Groups(["product_read", "product_details_read"])]
   private $selling_price;
 
   #[ORM\Column(type: 'integer')]
-  #[Groups(["product_details_read"])]
+  #[Groups(["product_read", "product_details_read"])]
   private $quantity;
 
   #[ORM\Column(type: 'integer', nullable: true)]
+  #[Groups(["product_details_read"])]
   private $eye_size;
 
   #[ORM\Column(type: 'integer', nullable: true)]
+  #[Groups(["product_details_read"])]
   private $bridge_size;
 
   #[ORM\Column(type: 'integer', nullable: true)]
+  #[Groups(["product_details_read"])]
   private $temple_length;
 
   #[ORM\Column(type: 'enumState')]
+  #[Groups(["product_details_read"])]
   private $state;
 
   #[ORM\Column(type: 'enumCategory')]
+  #[Groups(["product_details_read"])]
   private $category;
 
   #[ORM\Column(type: 'enumUvProtection', nullable: true)]
+  #[Groups(["product_details_read"])]
   private $uv_protection;
 
   #[ORM\Column(type: 'enumItemAvailability', nullable: false)]
@@ -117,33 +124,41 @@ class Product implements SluggableInterface, TimestampableInterface
 
   #[ORM\ManyToOne(targetEntity: Brand::class, inversedBy: 'products')]
   #[ORM\JoinColumn(nullable: false)]
+  #[Groups(["product_read", "product_details_read"])]
   private $brand;
 
   #[ORM\ManyToOne(targetEntity: Shape::class, inversedBy: 'products')]
   #[ORM\JoinColumn(nullable: false)]
+  #[Groups(["product_details_read"])]
   private $shape;
 
   #[ORM\ManyToOne(targetEntity: Segment::class, inversedBy: 'products')]
   #[ORM\JoinColumn(nullable: false)]
+  #[Groups(["product_details_read"])]
   private $segment;
 
   #[ORM\ManyToOne(targetEntity: LensType::class, inversedBy: 'products')]
   #[ORM\JoinColumn(nullable: false)]
+  #[Groups(["product_details_read"])]
   private $lens_type;
 
   #[ORM\ManyToOne(targetEntity: Style::class, inversedBy: 'products')]
   #[ORM\JoinColumn(nullable: false)]
+  #[Groups(["product_details_read"])]
   private $style;
 
   #[ORM\ManyToOne(targetEntity: Color::class, inversedBy: 'products')]
   #[ORM\JoinColumn(nullable: false)]
+  #[Groups(["product_details_read"])]
   private $color;
 
   #[ORM\ManyToOne(targetEntity: Material::class, inversedBy: 'products')]
   #[ORM\JoinColumn(nullable: false)]
+  #[Groups(["product_details_read"])]
   private $material;
 
   #[ORM\OneToMany(mappedBy: 'product', targetEntity: ProductImage::class, cascade: ['persist'], orphanRemoval: true)]
+  #[Groups(["product_read", "product_details_read"])]
   private $productImages;
 
   #[ORM\OneToMany(mappedBy: 'product', targetEntity: OrderHasProduct::class)]

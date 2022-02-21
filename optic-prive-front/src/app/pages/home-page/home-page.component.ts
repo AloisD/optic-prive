@@ -15,13 +15,13 @@ export class HomePageComponent implements OnInit {
   ngOnInit(): void {
     this.productService.getProducts().subscribe((datas: any) => {
       this.products = datas['hydra:member'];
-      console.log(this.products);
 
-      this.products.forEach((a:any) => {
-        Object.assign(a,{quantity:1,total:a.retail_price});
+      this.products.forEach((product:any) => {
+        Object.assign(product,{quantityOrdered:0});
       });
     })
   }
+
   addtocart(product: any){
     this.cartService.addtoCart(product);
   }
