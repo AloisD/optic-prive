@@ -23,21 +23,16 @@ export class CartPageComponent implements OnInit {
       this.productsQuantity = this.cartService.getProductsQuantity();
     })
   }
+
   removeItem(product: any){
-    this.cartService.removeCartProduct(product);
+    this.cartService.deleteCartProduct(product);
   }
 
   decreaseQuantity(product: any) {
-    console.log("decrease");
-    if (product.quantityOrdered == 1) {
-      this.removeItem(product);
-      return;
-    }
-    product.quantityOrdered -= 1;
+    this.cartService.removeFromCart(product);
   }
 
   increaseQuantity(product: any) {
-    console.log("increase");
-    product.quantityOrdered += 1;
+    this.cartService.addToCart(product);
   }
 }
