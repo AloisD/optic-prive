@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { IProduct } from 'src/app/models/IProduct';
@@ -7,13 +7,10 @@ import { IProduct } from 'src/app/models/IProduct';
   providedIn: 'root',
 })
 export class ProductService {
-  private $url = 'https://127.0.0.1:8000/api';
+  private $url = 'https://localhost:8000/api';
   constructor(private http: HttpClient) {}
 
   getProducts(): Observable<IProduct> {
-    return this.http.get<IProduct>(`${this.$url}/products`)
-    .pipe(map((res:any)=>{
-      return res;
-    }))
+    return this.http.get<IProduct>(`${this.$url}/products`);
   }
 }
