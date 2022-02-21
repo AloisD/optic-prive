@@ -29,7 +29,10 @@
           </button>
         </div>
         <div>
-          <a href="#"><i class="bi bi-bag"></i></a>
+          <button routerLink="panier" class="cart-button">
+            <i class="bi bi-bag"></i>
+          <div class="badge bg-primary position-absolute">{{ totalProduct }}</div>
+          </button>
         </div>
         <div class="d-flex justify-content-end align-items-center">
           <a href="#">FR</a>
@@ -45,52 +48,36 @@
       <div class="row">
         <div class="col-md-12 mx-auto">
           <div class="box-image">
-            <div class="card-color">
-              <span class="rotate">Solaires</span>
-              <a href="#">
-                <img
-                  src="assets/uploads/solaires.jpg"
-                  alt=""
-                  class="img-fluid"
-                />
-              </a>
-            </div>
-            <div class="card-color">
-              <span class="rotate">Sport</span>
-              <a href="#">
-                <img src="assets/uploads/sport.jpg" alt="" class="img-fluid" />
-              </a>
-            </div>
-            <div class="card-color">
-              <span class="rotate">Lumière bleue</span>
-              <a href="#">
-                <img
-                  src="assets/uploads/lumiere_bleue.jpg"
-                  alt=""
-                  class="img-fluid"
-                />
-              </a>
-            </div>
-            <div class="card-color">
-              <span class="rotate">Vintage</span>
-              <a href="#">
-                <img
-                  src="assets/uploads/vintage.jpg"
-                  alt=""
-                  class="img-fluid"
-                />
-              </a>
-            </div>
-            <div class="card-color">
-              <span class="rotate">Accessoires</span>
-              <a href="#">
-                <img
-                  src="assets/uploads/accessoires.jpg"
-                  alt=""
-                  class="img-fluid"
-                />
-              </a>
-            </div>
+            <a href="#">
+              <div class="card-color">
+                <span class="rotate">Solaires</span>
+                <img src="assets/uploads/solaires.jpg" alt="woman wearing sunglasses"/>
+              </div>
+            </a>
+            <a href="#">
+              <div class="card-color">
+                <span class="rotate">Sport</span>
+                <img src="assets/uploads/sport.jpg" alt="man on a bike wearing sport sunglasses"/>
+              </div>
+            </a>
+            <a href="#">
+              <div class="card-color">
+                <span class="rotate">Lumière bleue</span>
+                <img src="assets/uploads/lumiere_bleue.jpg" alt="woman in front of a laptop"/>
+              </div>
+            </a>
+            <a href="#">
+              <div class="card-color">
+                <span class="rotate">Vintage</span>
+                <img src="assets/uploads/vintage.jpg" alt="woman wearing vintage sunglasses"/>
+              </div>
+            </a>
+            <a href="#">
+              <div class="card-color">
+                <span class="rotate">Accessoires</span>
+                <img src="assets/uploads/accessoires.jpg" alt="glasses case"/>
+              </div>
+            </a>
           </div>
         </div>
       </div>
@@ -213,6 +200,16 @@
                       >Créer un compte</a
                     >
                   </div>
+                  <div class="form-group">
+                    <a href="#" target="_blank">Mot de passe oublié ?</a>
+                  </div>
+                </form>
+              </div>
+
+              <div class="modal-client">
+                <p>NOUVEAU CLIENT ?</p>
+                <div class="form-group">
+                  <button class="btn btn-primary big-btn" routerLink="/inscription" role="button" data-bs-dismiss="modal">Créer un compte</button>
                 </div>
               </div>
             </div>

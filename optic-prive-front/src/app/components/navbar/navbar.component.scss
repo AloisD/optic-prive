@@ -1,15 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Raleway:wght@400;600&display=swap');/* Banner css FBEADF */
-$banner-button: #FBEADF;
-$text-color-dark:#56474A;
-$kaki: #87A397;
+@use '../../../scss/custom' as *;
 
 body {
 
   .navbar>.container-fluid {
-      // display: flex;
-      // flex-wrap: inherit;
       align-items: self-end;
-      // justify-content: space-between;
   }
 
   .bi::before, [class^="bi-"]::before, [class*=" bi-"]::before {
@@ -17,11 +11,7 @@ body {
   }
 
   .navbar {
-      background-color: $kaki!important;
-  }
-
-  a:hover {
-      color: $text-color-dark!important;
+      background-color: $primary;
   }
 
   .navbar-brand {
@@ -35,7 +25,7 @@ body {
   }
 
   .svg {
-      fill: $banner-button;
+      fill: $secondary;
   }
 
   button {
@@ -52,7 +42,7 @@ body {
   }
 
   .navbar-dark .navbar-nav .nav-link {
-  color: $banner-button;
+  color: $secondary;
   }
 
   .navbar-nav {
@@ -64,12 +54,12 @@ body {
   }
 
   .dropdown-item {
-  color: $text-color-dark;
+  color: $secondary-contrast;
   }
 
   i {
     font-size: 1.7rem;
-    color: $banner-button;
+    color: $secondary;
   }
 
   input {
@@ -78,7 +68,7 @@ body {
   }
 
   input::placeholder  {
-    color: $banner-button;
+    color: $secondary;
   }
 
   .d-flex {
@@ -86,61 +76,14 @@ body {
   }
 }
 
-/* STYLE MODAL
-.modal-header {
-  border-bottom: none;
-  position: absolute;
-  width: 100%;
-  z-index: 1;
+.badge {
+  font-size: 12px;
+  border-radius: 50%;
+  right: 12%;
+  top: 67%;
+  padding: 0.3em 0.56em;
+  background-color: $secondary-contrast;
 }
-
-.modal-content {
-  background-color: $banner-button;
-  border: none;
-  border-radius: 0px;
-}
-
-.modal-body {
-  .btn-primary {
-      background-color: $kaki;
-      border: none;
-      border-radius: 0%;
-      color: $text-color-dark;
-      box-shadow: none !important;
-  }
-}
-
-.modal-img {
-  width: 100%;
-  height: 100%;
-}
-
-.login-box {
-  padding: 0px;
-}
-
-.modal-client {
-  margin: 30px;
-
-  input {
-      margin: 10px 0px;
-      border-radius: 0px;
-      border: none;
-      box-shadow: none !important;
-      background-color: white;
-
-  }
-
-  p {
-      font-size: 20px;
-      color: $text-color-dark;
-  }
-
-  a {
-      color: $text-color-dark;
-  }
-}
-*/
 
 button {
   box-shadow: none !important;

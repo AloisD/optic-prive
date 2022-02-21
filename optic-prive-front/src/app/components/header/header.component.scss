@@ -1,7 +1,10 @@
+
 $primary: #87A397;
 $primary-contrast: #F4FFFA;
 $secondary: #FBEADF;
 $secondary-contrast : #56474A;
+
+
 
 nav {
     margin: 10px;
@@ -21,21 +24,45 @@ span.rotate {
     color: $primary-contrast;
     padding: 0px 0px 0px 10px;
     font-size: 20px;
+    font-weight: 200;
+}
+
+a:hover {
+  text-decoration: none;
+
+  span.rotate {
+    font-size: 25px;
+  }
+
+  img {
+    height: 180px;
+  }
 }
 
 .card-color {
     background-color: $primary;
     padding: 10px;
-    margin: 0px 20px;
+    margin: 0px 10px;
     display: flex;
     align-items: flex-end;
+}
+
+img {
+  height: 200px;
+}
+
+@media screen and (max-width: (1200px))
+{
+  img {
+    height: 150px;
+  }
 }
 
 .box-image {
     padding: 0px 30px;
     display: flex;
     justify-content: space-around;
-    margin-top: 2em;
+    margin: 40px 0px;
 }
 
 .icon-bg {
@@ -97,6 +124,18 @@ span.rotate {
         background: none;
         border: none;
     }
+
+    .cart-button {
+      position: relative;
+    }
+
+    .badge {
+      font-size: 9px;
+      border-radius: 50%;
+      right: -15%;
+      bottom: -28%;
+      padding: 0.3em 0.56em;
+    }
 }
 
 
@@ -141,7 +180,7 @@ span.rotate {
     a {
         color: $secondary-contrast;
     }
-  
+
     .form-group {
       margin: 15px 0px;
     }
