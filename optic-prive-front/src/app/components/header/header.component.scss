@@ -35,7 +35,7 @@ a:hover {
   }
 
   img {
-    height: 180px;
+    height: 190px;
   }
 }
 
@@ -55,6 +55,12 @@ img {
 {
   img {
     height: 150px;
+  }
+
+  a:hover {
+    img {
+      height: 160px;
+    }
   }
 }
 
