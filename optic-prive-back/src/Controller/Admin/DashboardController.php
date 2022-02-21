@@ -13,6 +13,7 @@ use App\Entity\ProductImage;
 use App\Entity\Segment;
 use App\Entity\Shape;
 use App\Entity\Style;
+use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -57,6 +58,7 @@ class DashboardController extends AbstractDashboardController
         ]);
         yield MenuItem::linkToCrud('Commandes', 'fas fa-list', Order::class);
         yield MenuItem::linkToCrud('Adresses', 'fas fa-list', Address::class);
+        yield MenuItem::linkToCrud('Utilisateurs', 'fas fa-list', User::class);
         yield MenuItem::linkToUrl('Visiter le site public', null, '/');
     }
 }
