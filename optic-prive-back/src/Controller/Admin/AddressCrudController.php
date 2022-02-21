@@ -26,6 +26,5 @@ class AddressCrudController extends AbstractCrudController
         yield NumberField::new('number')->hideOnIndex();;
         yield TextField::new('company')->hideOnIndex();;
         yield TextareaField::new('additionnal_details')->hideOnIndex();;
-
     }
 }
