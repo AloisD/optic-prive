@@ -1,15 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Raleway:wght@400;600&display=swap');/* Banner css FBEADF */
-$banner-button: #FBEADF;
-$text-color-dark:#56474A;
-$kaki: #87A397;
+@use '../../../scss/custom' as *;
 
 body {
 
   .navbar>.container-fluid {
-      // display: flex;
-      // flex-wrap: inherit;
       align-items: self-end;
-      // justify-content: space-between;
   }
 
   .bi::before, [class^="bi-"]::before, [class*=" bi-"]::before {
@@ -17,11 +11,7 @@ body {
   }
 
   .navbar {
-      background-color: $kaki!important;
-  }
-
-  a:hover {
-      color: $text-color-dark!important;
+      background-color: $primary;
   }
 
   .navbar-brand {
@@ -35,7 +25,7 @@ body {
   }
 
   .svg {
-      fill: $banner-button;
+      fill: $secondary;
   }
 
   button {
@@ -52,7 +42,7 @@ body {
   }
 
   .navbar-dark .navbar-nav .nav-link {
-  color: $banner-button;
+  color: $secondary;
   }
 
   .navbar-nav {
@@ -64,12 +54,12 @@ body {
   }
 
   .dropdown-item {
-  color: $text-color-dark;
+  color: $secondary-contrast;
   }
 
   i {
     font-size: 1.7rem;
-    color: $banner-button;
+    color: $secondary;
   }
 
   input {
@@ -78,7 +68,7 @@ body {
   }
 
   input::placeholder  {
-    color: $banner-button;
+    color: $secondary;
   }
 
   .d-flex {
@@ -92,7 +82,7 @@ body {
   right: 12%;
   top: 67%;
   padding: 0.3em 0.56em;
-  background-color: $text-color-dark;
+  background-color: $secondary-contrast;
 }
 
 button {
