@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { catchError, of } from 'rxjs';
-import { IUser } from 'src/app/models/IUser';
 import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 
 @Component({
@@ -13,7 +12,7 @@ export class HeaderComponent implements OnInit {
     email: 'sarina.mueller@hotmail.com',
     password: '8888',
   };
-  private userConnected!: IUser;
+
   constructor(private authenticationService: AuthenticationService) {}
 
   ngOnInit(): void {
@@ -25,12 +24,11 @@ export class HeaderComponent implements OnInit {
   login() {
     this.authenticationService.authentication(this.user).subscribe(
       () => {
-        this.authenticationService.me().subscribe((responseMe) => {
-          this.userConnected = responseMe;
-          console.log('UserConnected:', this.userConnected);
+        this.authenticationService.me().subscribe((response) => {
+          console.log(response);
         });
       },
-      (err) => console.error('Error: ', err)
+      (err) => console.error('ERREUR: ', err)
     );
   }
 }
