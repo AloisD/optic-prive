@@ -35,7 +35,7 @@ a:hover {
   }
 
   img {
-    height: 180px;
+    height: 190px;
   }
 }
 
@@ -55,6 +55,12 @@ img {
 {
   img {
     height: 150px;
+  }
+
+  a:hover {
+    img {
+      height: 160px;
+    }
   }
 }
 
@@ -140,6 +146,18 @@ img {
 
 
 /* STYLE MODAL */
+.modal {
+  h2 {
+    text-align: center;
+  }
+}
+input {
+  margin: 15px 0px;
+  border-radius: 0px;
+  border: none;
+  box-shadow: none !important;
+}
+
 .modal-header {
   border-bottom: none;
   position: absolute;
@@ -164,13 +182,6 @@ img {
 
 .modal-client {
     margin: 30px;
-
-    input {
-        margin: 15px 0px;
-        border-radius: 0px;
-        border: none;
-        box-shadow: none !important;
-    }
 
     p {
         font-size: 20px;
