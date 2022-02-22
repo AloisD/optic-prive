@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, findIndex } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
 
-  public cartProducts : any =[]
+  public cartProducts : any[] = [];
   public products = new BehaviorSubject<any>([]);
 
   constructor() { }
@@ -21,11 +21,17 @@ export class CartService {
   }
 
   addToCart(product : any){
+    const currentIndex = this.cartProducts.findIndex((currentProduct) => {
+      return currentProduct.id === product.id;
+    });
+
     if (product.quantityOrdered >= product.quantity) return;
-    if (!this.cartProducts.includes(product)) {
+    if (currentIndex === -1) {
+      product.quantityOrdered = 1;
       this.cartProducts.push(product);
+    } else {
+      this.cartProducts[currentIndex].quantityOrdered +=1;
     }
-    product.quantityOrdered +=1;
     this.getTotalPrice();
     this.products.next(this.cartProducts);
   }
@@ -61,15 +67,10 @@ export class CartService {
     return productsQuantity;
   }
 
-  deleteCartProduct(product: any){
-    console.log(this.cartProducts);             // debug, à supprimer
-    console.log(product);                       // debug, à supprimer
-    this.cartProducts.map((a:any, index:any)=>{
-      if(product.id === a.id){
-        this.cartProducts.splice(index,1);
-      }
+  deleteCartProduct(product: any) {
+    this.cartProducts = this.cartProducts.filter((currentProduct) => {
+      return currentProduct.id !== product.id;
     })
     this.products.next(this.cartProducts);
   }
-
 }

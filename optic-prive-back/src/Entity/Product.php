@@ -69,6 +69,7 @@ class Product implements SluggableInterface, TimestampableInterface
   #[ORM\Id]
   #[ORM\GeneratedValue]
   #[ORM\Column(type: 'integer')]
+  #[Groups(["product_read", "product_details_read"])]
   private $id;
 
   #[Groups(["product_read", "product_details_read"])]
