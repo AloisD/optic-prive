@@ -4,7 +4,8 @@ $secondary: #FBEADF;
 $secondary-contrast : #56474A;
 
 nav {
-    margin: 10px;
+  padding: 10px 0px;
+  background-color: rgb(255, 255, 255);
 
     .form-control {
     border-top: none;
@@ -17,6 +18,19 @@ nav {
 
 .container {
     width: auto;
+}
+
+.fixed {
+  position: fixed;
+  width: 100%;
+  transition: 0.2s linear;
+  top: 0px;
+}
+
+.nofixed {
+  position: static;
+  transition: 0.2s linear;
+  top: -50px;
 }
 
 .box-search {
@@ -76,6 +90,12 @@ nav {
     background-color: $secondary;
     border: none;
     border-radius: 0px;
+
+    input {
+      border-radius: 0px;
+      border: none;
+      box-shadow: none !important;
+  }
 }
 
 .modal-img {
@@ -89,13 +109,6 @@ nav {
 
 .modal-client {
     margin: 30px;
-
-    input {
-        margin: 15px 0px;
-        border-radius: 0px;
-        border: none;
-        box-shadow: none !important;
-    }
 
     p {
         font-size: 20px;
