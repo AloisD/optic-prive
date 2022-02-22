@@ -12,7 +12,7 @@ import { CartService } from 'src/app/services/cart/cart.service';
 })
 export class HeaderComponent implements OnInit {
   public user = {
-    email: 'sarina.mueller@hotmail.com',
+    email: 'santina89@hotmail.com',
     password: '8888',
   };
   private userConnected!: IUser;
@@ -28,8 +28,8 @@ export class HeaderComponent implements OnInit {
     this.authenticationService
       .products()
       .subscribe((response) => console.log('Products: ', response));
-  } 
-    
+  }
+
   login() {
     this.authenticationService.authentication(this.user).subscribe(
       () => {

@@ -29,8 +29,9 @@ export function createTranslateLoader(httpClient: HttpClient) {
     HomePageComponent,
     NavbarComponent,
     CartPageComponent,
-    RegistrationPageComponent
+    RegistrationPageComponent,
   ],
+
   imports: [
     BrowserModule,
     AppRoutingModule,
