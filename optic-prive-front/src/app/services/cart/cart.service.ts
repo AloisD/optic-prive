@@ -56,7 +56,7 @@ export class CartService {
     this.cartProducts.map((product: any)=>{
       grandTotal += +product.selling_price * product.quantityOrdered;
     })
-    return Math.round(grandTotal*100)/100;
+    return grandTotal;
   }
 
   getProductsQuantity() : number {
