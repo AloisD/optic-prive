@@ -17,7 +17,9 @@ export class HeaderComponent implements OnInit {
   };
   private userConnected!: IUser;
   model: User = new User();
-  public totalProduct: number = 0;
+  public totalProduct : number = 0;
+  public productsQuantity !: number;
+
   constructor(
     private authenticationService: AuthenticationService,
     private cartService: CartService
@@ -26,7 +28,9 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.cartService.getProducts().subscribe((res) => {
       this.totalProduct = res.length;
+      this.productsQuantity = this.cartService.getProductsQuantity();
     });
+
     this.authenticationService
       .products()
       .subscribe((response) => console.log('Products: ', response));

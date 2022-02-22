@@ -41,10 +41,8 @@
               </button>
             </div>
             <div class="card-body">
-              <h5 class="card-title">
-                {{ product.name }} - {{ product.reference }}
-              </h5>
-              <p class="card-text">{{ product.retail_price }} €</p>
+              <h5 class="card-title"> {{ product.name }} - {{ product.reference }} </h5>
+              <p class="card-text"><s>{{ product.retail_price }} €</s> {{ product.selling_price }} €</p>
             </div>
           </div>
         </div>
@@ -52,7 +50,3 @@
     </div>
   </div>
 </body>
-
-<!-- <pre>
-  {{ products | json }}
-</pre> -->
