@@ -17,19 +17,21 @@ export class HeaderComponent implements OnInit {
   };
   private userConnected!: IUser;
   model: User = new User();
-  public totalProduct : number = 0;
-  constructor(private authenticationService: AuthenticationService, private cartService : CartService) {}
+  public totalProduct: number = 0;
+  constructor(
+    private authenticationService: AuthenticationService,
+    private cartService: CartService
+  ) {}
 
   ngOnInit(): void {
-    this.cartService.getProducts()
-    .subscribe(res=>{
+    this.cartService.getProducts().subscribe((res) => {
       this.totalProduct = res.length;
     });
     this.authenticationService
       .products()
       .subscribe((response) => console.log('Products: ', response));
-  } 
-    
+  }
+
   login() {
     this.authenticationService.authentication(this.user).subscribe(
       () => {
@@ -40,5 +42,9 @@ export class HeaderComponent implements OnInit {
       },
       (err) => console.error('Error: ', err)
     );
+  }
+
+  onSubmit() {
+    console.log(this.model);
   }
 }
