@@ -210,6 +210,9 @@
     "ramsey/uuid": {
         "version": "4.2.3"
     },
+    "stripe/stripe-php": {
+        "version": "v7.114.0"
+    },
     "symfony/asset": {
         "version": "v6.0.1"
     },
@@ -329,6 +332,9 @@
         "version": "v1.24.0"
     },
     "symfony/polyfill-intl-icu": {
+        "version": "v1.24.0"
+    },
+    "symfony/polyfill-intl-idn": {
         "version": "v1.24.0"
     },
     "symfony/polyfill-intl-normalizer": {
