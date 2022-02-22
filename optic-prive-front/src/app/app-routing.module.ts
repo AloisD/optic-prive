@@ -7,7 +7,7 @@ import { RegistrationPageComponent } from './pages/registration-page/registratio
 const routes: Routes = [
   { path: '', component: HomePageComponent },
   { path: 'panier', component: CartPageComponent },
-  { path: 'inscription', component: RegistrationPageComponent }
+  { path: 'inscription', component: RegistrationPageComponent },
 ];
 
 @NgModule({
