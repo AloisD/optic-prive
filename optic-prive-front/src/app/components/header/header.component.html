@@ -1,6 +1,8 @@
 <body>
-  <nav class="navbar navbar-expand-lg justify-content-between d-none d-lg-block">
-    <div class="container box-search" >
+  <nav
+    class="navbar navbar-expand-lg justify-content-between d-none d-lg-block"
+  >
+    <div class="container box-search">
       <div class="">
         <form class="d-flex">
           <button class="btn" type="submit">
@@ -18,7 +20,11 @@
       <div class="part-rigth">
         <div>
           <!-- Button trigger modal -->
-          <button type="button" data-bs-toggle="modal" data-bs-target="#loginModal">
+          <button
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#loginModal"
+          >
             SE CONNECTER
           </button>
         </div>
@@ -45,31 +51,43 @@
             <a href="#">
               <div class="card-color">
                 <span class="rotate">Solaires</span>
-                <img src="assets/uploads/solaires.jpg" alt="woman wearing sunglasses"/>
+                <img
+                  src="assets/uploads/solaires.jpg"
+                  alt="woman wearing sunglasses"
+                />
               </div>
             </a>
             <a href="#">
               <div class="card-color">
                 <span class="rotate">Sport</span>
-                <img src="assets/uploads/sport.jpg" alt="man on a bike wearing sport sunglasses"/>
+                <img
+                  src="assets/uploads/sport.jpg"
+                  alt="man on a bike wearing sport sunglasses"
+                />
               </div>
             </a>
             <a href="#">
               <div class="card-color">
                 <span class="rotate">Lumière bleue</span>
-                <img src="assets/uploads/lumiere_bleue.jpg" alt="woman in front of a laptop"/>
+                <img
+                  src="assets/uploads/lumiere_bleue.jpg"
+                  alt="woman in front of a laptop"
+                />
               </div>
             </a>
             <a href="#">
               <div class="card-color">
                 <span class="rotate">Vintage</span>
-                <img src="assets/uploads/vintage.jpg" alt="woman wearing vintage sunglasses"/>
+                <img
+                  src="assets/uploads/vintage.jpg"
+                  alt="woman wearing vintage sunglasses"
+                />
               </div>
             </a>
             <a href="#">
               <div class="card-color">
                 <span class="rotate">Accessoires</span>
-                <img src="assets/uploads/accessoires.jpg" alt="glasses case"/>
+                <img src="assets/uploads/accessoires.jpg" alt="glasses case" />
               </div>
             </a>
           </div>
@@ -115,57 +133,166 @@
     </div>
   </section>
 
-<!-- Modal -->
-<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-   <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
+  <!-- Modal 1 -->
+  <div
+    class="modal fade"
+    id="loginModal"
+    tabindex="-1"
+    aria-labelledby="loginModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
 
-      <div class="modal-body">
-        <div class="container-fluid">
-          <div class="row justify-content-evenly login-box">
-
-            <div class="col-md-6 blok">
-              <img class="modal-img" src="assets/uploads/montagne.jpg" alt="">
-            </div>
-
-            <div class="col-md-6 blok">
-
-              <div class="modal-client">
-                <p>DÉJÀ CLIENT ?</p>
-                <form (ngSubmit)="onSubmit()" method="post">
-                  <div class="form-group">
-                    <input name="email" type="email" [(ngModel)]="model.email" class="form-control" placeholder="Email" required="required">
-                  </div>
-                  <div class="form-group">
-                    <input name="password" type="password" [(ngModel)]="model.password" class="form-control" placeholder="Mot de passe" required="required">
-                  </div>
-                  <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-block big-btn">Se connecter</button>
-                  </div>
-                  <div class="form-group">
-                    <a href="#" target="_blank">Mot de passe oublié ?</a>
-                  </div>
-                </form>
+        <div class="modal-body">
+          <div class="container-fluid">
+            <div class="row justify-content-evenly login-box">
+              <div class="col-md-6 blok">
+                <img
+                  class="modal-img"
+                  src="assets/uploads/montagne.jpg"
+                  alt=""
+                />
               </div>
 
-              <div class="modal-client">
-                <p>NOUVEAU CLIENT ?</p>
-                <div class="form-group">
-                  <a class="btn btn-primary big-btn" routerLink="/inscription" role="button">Créer un compte</a>
+              <div class="col-md-6 blok">
+                <div class="modal-client">
+                  <p>DÉJÀ CLIENT ?</p>
+                  <form (ngSubmit)="onSubmit()" method="post">
+                    <div class="form-group">
+                      <input
+                        name="email"
+                        type="email"
+                        [(ngModel)]="user.email"
+                        class="form-control"
+                        placeholder="Email"
+                        required="required"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <input
+                        name="password"
+                        type="password"
+                        [(ngModel)]="user.password"
+                        class="form-control"
+                        placeholder="Mot de passe"
+                        required="required"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <button
+                        type="submit"
+                        (click)="login()"
+                        class="btn btn-primary btn-block big-btn"
+                      >
+                        Connexion
+                      </button>
+                    </div>
+                    <div class="form-group">
+                      <a href="#" target="_blank">Mot de passe oublié ?</a>
+                    </div>
+                  </form>
+                </div>
+
+                <div class="modal-client">
+                  <p>NOUVEAU CLIENT ?</p>
+                  <div class="form-group">
+                    <!-- Button trigger modal -->
+                    <button
+                      class="btn btn-primary big-btn"
+                      data-bs-target="#registrationModal"
+                      data-bs-toggle="modal"
+                      data-bs-dismiss="modal"
+                    >
+                      Inscription
+                    </button>
+                  </div>
                 </div>
               </div>
-
             </div>
-
           </div>
         </div>
       </div>
-
     </div>
   </div>
-</div>
 
+  <!-- Modal 2 -->
+  <div
+    class="modal fade"
+    id="registrationModal"
+    aria-hidden="true"
+    aria-labelledby="registrationModalLabel"
+    tabindex="-1"
+  >
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <div class="container justify-content-center m-5">
+            <h2>Créer un compte</h2>
+            <form (ngSubmit)="onSubmit()">
+              <div class="my-4">
+                <input
+                  name="userName"
+                  type="text"
+                  [(ngModel)]="model.userName"
+                  class="form-control"
+                  placeholder="Pseudo"
+                  required="required"
+                />
+              </div>
+              <div class="my-4">
+                <input
+                  name="email"
+                  type="email"
+                  [(ngModel)]="model.email"
+                  class="form-control"
+                  placeholder="Email"
+                  required="required"
+                />
+              </div>
+              <div class="my-4">
+                <input
+                  name="password"
+                  type="password"
+                  [(ngModel)]="model.password"
+                  class="form-control"
+                  placeholder="Mot de passe"
+                  required="required"
+                />
+                <div class="form-text">8 caractères minimum</div>
+              </div>
+              <div class="m- form-check">
+                <input type="checkbox" class="form-check-input" id="check1" />
+                <label class="form-check-label" for="check1"
+                  >J'ai lu et j'accepte les conditions générales
+                  d'utilisation</label
+                >
+              </div>
+              <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-primary big-btn m-4">
+                  Inscription
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
