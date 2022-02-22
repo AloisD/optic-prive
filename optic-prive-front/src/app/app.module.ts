@@ -14,6 +14,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { CartPageComponent } from './pages/cart-page/cart-page.component';
 import { FormsModule } from '@angular/forms';
 import { RegistrationPageComponent } from './pages/registration-page/registration-page.component';
+import { ShippingPageComponent } from './pages/checkout/shipping-page/shipping-page.component';
+import { StepperComponent } from './components/stepper/stepper.component';
 
 
 export function createTranslateLoader(httpClient: HttpClient) {
@@ -30,6 +32,8 @@ export function createTranslateLoader(httpClient: HttpClient) {
     NavbarComponent,
     CartPageComponent,
     RegistrationPageComponent,
+    ShippingPageComponent,
+    StepperComponent,
   ],
 
   imports: [

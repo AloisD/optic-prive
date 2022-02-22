@@ -41,7 +41,11 @@ $secondary-contrast: #56474A;
   width: 170px;
 }
 
+select,input {
+  box-shadow: none !important;
+}
+
 @import '~bootstrap/scss/bootstrap';
 @import "~bootstrap-icons/font/bootstrap-icons.css";
 
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;400;600&display=swap');
