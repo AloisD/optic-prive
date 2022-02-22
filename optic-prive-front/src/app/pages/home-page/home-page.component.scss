@@ -5,6 +5,16 @@ $secondary-clear: #F4FFFA;
   padding: 10px;
   border-radius: 50%;
   background-color: white;
+  font-size: 25px;
+}
+
+.bi:hover {
+  background-color: $primary;
+  color: $secondary-clear;
+}
+
+.bi:active {
+  background-color: white;
 }
 
 .recent-product {
