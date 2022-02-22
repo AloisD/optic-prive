@@ -14,4 +14,5 @@ export interface IProduct {
   state: string;
   category: string;
   uv_protection: string;
+  productImages: [any];
 }

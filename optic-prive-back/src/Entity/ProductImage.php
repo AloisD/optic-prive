@@ -8,6 +8,7 @@ use Knp\DoctrineBehaviors\Contract\Entity\TimestampableInterface;
 use Knp\DoctrineBehaviors\Model\Timestampable\TimestampableTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: ProductImageRepository::class)]
@@ -25,15 +26,16 @@ class ProductImage implements TimestampableInterface
   private $id;
 
   #[ORM\Column(type: 'string', length: 255)]
+  #[Groups(["product_read"])]
   private ?string $path = null;
 
   /**
-  * NOTE: This is not a mapped field of entity metadata, just a simple property.
-  *
-  * @Vich\UploadableField(mapping="product_image", fileNameProperty="path")
-  *
-  * @var File|null
-  */
+   * NOTE: This is not a mapped field of entity metadata, just a simple property.
+   *
+   * @Vich\UploadableField(mapping="product_image", fileNameProperty="path")
+   *
+   * @var File|null
+   */
   private ?File $image = null;
 
   #[ORM\ManyToOne(targetEntity: Product::class, inversedBy: 'productImages')]
@@ -47,14 +49,14 @@ class ProductImage implements TimestampableInterface
 
   public function getProduct(): ?Product
   {
-      return $this->product;
+    return $this->product;
   }
 
   public function setProduct(?Product $product): self
   {
-      $this->product = $product;
+    $this->product = $product;
 
-      return $this;
+    return $this;
   }
 
   /**
@@ -98,5 +100,4 @@ class ProductImage implements TimestampableInterface
   {
     return $this->getPath();
   }
-
 }
