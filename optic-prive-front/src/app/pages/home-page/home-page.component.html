@@ -20,17 +20,17 @@
       <h4>LES NOUVEAUTÉS</h4>
     </div>
     <div class="row row-cols-1 row-cols-md-3 g-4" style="list-style: none">
-      <pre>
-        {{ products | json }}
-      </pre>
       <li *ngFor="let product of products">
         <div class="col">
           <div class="card h-100">
             <div class="cart-relative">
               <img
-                src="assets/uploads/glass1.jpeg"
+                *ngIf="product.productImages.length"
+                src="https://localhost:8000/images/products/{{
+                  product.productImages[0].path
+                }}"
                 class="card-img-top"
-                alt="..."
+                alt="{{ product.reference }}"
               />
               <button
                 type="button"
