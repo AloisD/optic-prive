@@ -11,6 +11,8 @@ export class HeaderComponent implements OnInit {
 
   model: User = new User();
   public totalProduct : number = 0;
+  public productsQuantity !: number;
+
 
   constructor(private cartService : CartService) {}
 
@@ -18,6 +20,7 @@ export class HeaderComponent implements OnInit {
     this.cartService.getProducts()
     .subscribe(res=>{
       this.totalProduct = res.length;
+      this.productsQuantity = this.cartService.getProductsQuantity();
     })
   }
 
