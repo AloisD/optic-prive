@@ -1,13 +1,12 @@
-
 $primary: #87A397;
 $primary-contrast: #F4FFFA;
 $secondary: #FBEADF;
 $secondary-contrast : #56474A;
 
-
-
 nav {
-    margin: 10px;
+  z-index: 1;
+  padding: 10px 0px;
+  background-color: rgb(255, 255, 255);
 
     .form-control {
     border-top: none;
@@ -18,79 +17,21 @@ nav {
     }
 }
 
-span.rotate {
-    writing-mode: vertical-lr;
-    transform: rotate(180deg);
-    color: $primary-contrast;
-    padding: 0px 0px 0px 10px;
-    font-size: 20px;
-    font-weight: 200;
-}
-
-a:hover {
-  text-decoration: none;
-
-  span.rotate {
-    font-size: 25px;
-  }
-
-  img {
-    height: 180px;
-  }
-}
-
-.card-color {
-    background-color: $primary;
-    padding: 10px;
-    margin: 0px 10px;
-    display: flex;
-    align-items: flex-end;
-}
-
-img {
-  height: 200px;
-}
-
-@media screen and (max-width: (1200px))
-{
-  img {
-    height: 150px;
-  }
-}
-
-.box-image {
-    padding: 0px 30px;
-    display: flex;
-    justify-content: space-around;
-    margin: 40px 0px;
-}
-
-.icon-bg {
-    color: $secondary-contrast;
-    font-size: 2.5rem;
-    background: $secondary;
-    padding: 10px;
-    border-radius: 10px;
-}
-
-.icon {
-    p {
-        color: $secondary-contrast;
-        margin: 10px 0px;
-    }
-
-    a {
-        text-decoration: none;
-    }
-}
-
 .container {
     width: auto;
 }
 
-.col {
-    padding: 0px;
-    margin: 0px;
+.fixed {
+  position: fixed;
+  width: 100%;
+  transition: 0.2s linear;
+  top: 0px;
+}
+
+.nofixed {
+  position: static;
+  transition: 0.2s linear;
+  top: -50px;
 }
 
 .box-search {
@@ -130,11 +71,10 @@ img {
     }
 
     .badge {
-      font-size: 9px;
-      border-radius: 50%;
-      right: -15%;
-      bottom: -28%;
-      padding: 0.3em 0.56em;
+      font-size: 13px;
+      right: -30%;
+      bottom: -30%;
+      border-radius: 50px;
     }
 }
 
@@ -151,6 +91,12 @@ img {
     background-color: $secondary;
     border: none;
     border-radius: 0px;
+
+    input {
+      border-radius: 0px;
+      border: none;
+      box-shadow: none !important;
+  }
 }
 
 .modal-img {
@@ -164,13 +110,6 @@ img {
 
 .modal-client {
     margin: 30px;
-
-    input {
-        margin: 15px 0px;
-        border-radius: 0px;
-        border: none;
-        box-shadow: none !important;
-    }
 
     p {
         font-size: 20px;
