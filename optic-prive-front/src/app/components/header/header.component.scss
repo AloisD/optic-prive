@@ -3,6 +3,10 @@ $primary-contrast: #F4FFFA;
 $secondary: #FBEADF;
 $secondary-contrast : #56474A;
 
+:host {
+  display: block;
+}
+
 nav {
   z-index: 1;
   padding: 10px 0px;

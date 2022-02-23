@@ -12,19 +12,6 @@ import { CartService } from 'src/app/services/cart/cart.service';
 })
 export class HeaderComponent implements OnInit {
 
-  navbarfixed:boolean = false;
-
-  @HostListener('window:scroll',['$event']) onscroll(){
-    if(window.scrollY > 100)
-    {
-      this.navbarfixed = true;
-    }
-    else
-    {
-      this.navbarfixed = false;
-    }
-  }
-
   public user = {
     email: '',
     password: '8888',

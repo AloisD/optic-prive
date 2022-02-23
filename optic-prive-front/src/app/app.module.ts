@@ -13,7 +13,10 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { CartPageComponent } from './pages/cart-page/cart-page.component';
 import { FormsModule } from '@angular/forms';
+import { ShippingPageComponent } from './pages/checkout/shipping-page/shipping-page.component';
+import { StepperComponent } from './components/stepper/stepper.component';
 import { CategoriesComponent } from './components/categories/categories.component';
+
 
 
 export function createTranslateLoader(httpClient: HttpClient) {
@@ -29,8 +32,11 @@ export function createTranslateLoader(httpClient: HttpClient) {
     HomePageComponent,
     NavbarComponent,
     CartPageComponent,
+    ShippingPageComponent,
+    StepperComponent,
     CategoriesComponent
   ],
+
   imports: [
     BrowserModule,
     AppRoutingModule,
