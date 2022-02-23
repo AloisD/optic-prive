@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, findIndex } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
 
-  public cartProducts : any =[]
+  public cartProducts : any[] = [];
   public products = new BehaviorSubject<any>([]);
 
   constructor() { }
@@ -20,28 +20,57 @@ export class CartService {
     this.products.next(product);
   }
 
-  addtoCart(product : any){
-    this.cartProducts.push(product);
-    this.products.next(this.cartProducts);
+  addToCart(product : any){
+    const currentIndex = this.cartProducts.findIndex((currentProduct) => {
+      return currentProduct.id === product.id;
+    });
+
+    if (product.quantityOrdered >= product.quantity) return;
+    if (currentIndex === -1) {
+      product.quantityOrdered = 1;
+      this.cartProducts.push(product);
+    } else {
+      this.cartProducts[currentIndex].quantityOrdered +=1;
+    }
     this.getTotalPrice();
-    console.log(this.cartProducts)
-  }
-
-  getTotalPrice(){
-    let grandTotal = 0;
-    this.cartProducts.map((a:any)=>{
-      grandTotal += a.total;
-    })
-    return grandTotal;
-  }
-
-  removeCartProduct(product: any){
-    this.cartProducts.map((a:any, index:any)=>{
-      if(product.id=== a.id){
-        this.cartProducts.splice(index,1);
-      }
-    })
     this.products.next(this.cartProducts);
   }
 
+  removeFromCart(product : any){
+    if (this.cartProducts.includes(product)) {
+      if (product.quantityOrdered == 1) {
+        this.deleteCartProduct(product);
+        return;
+      } else {
+        product.quantityOrdered -=1;
+      }
+      this.getTotalPrice();
+      this.products.next(this.cartProducts);
+    } else {
+      console.error("not in the cart");
+    }
+  }
+
+  getTotalPrice() : number {
+    let grandTotal = 0;
+    this.cartProducts.map((product: any)=>{
+      grandTotal += +product.selling_price * product.quantityOrdered;
+    })
+    return Math.round(grandTotal*100)/100;
+  }
+
+  getProductsQuantity() : number {
+    let productsQuantity = 0;
+    this.cartProducts.map((product: any)=>{
+      productsQuantity += +product.quantityOrdered;
+    })
+    return productsQuantity;
+  }
+
+  deleteCartProduct(product: any) {
+    this.cartProducts = this.cartProducts.filter((currentProduct) => {
+      return currentProduct.id !== product.id;
+    })
+    this.products.next(this.cartProducts);
+  }
 }

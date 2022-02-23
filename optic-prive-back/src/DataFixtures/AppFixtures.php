@@ -7,6 +7,7 @@ use App\Entity\Color;
 use App\Entity\LensType;
 use App\Entity\Material;
 use App\Entity\Product;
+use App\Entity\ProductImage;
 use App\Entity\Segment;
 use App\Entity\Shape;
 use App\Entity\Style;
@@ -39,6 +40,28 @@ class AppFixtures extends Fixture
       ->setQuantity($faker->randomNumber(1, true));
 
     $this->getDataProduct($product, $faker);
+
+    $product1 = new Product();
+    $product1
+      ->setName("pilot")
+      ->setReference('BB4535 F46H 44-97')
+      ->setColorCode('noir')
+      ->setRetailPrice($faker->randomFloat(1, 10, 30))
+      ->setSellingPrice($faker->randomFloat(1, 10, 30))
+      ->setQuantity($faker->randomNumber(1, true));
+
+    $this->getDataProduct($product1, $faker);
+
+    $product2 = new Product();
+    $product2
+      ->setName("classic")
+      ->setReference('BRFRF FGG44 56-32')
+      ->setColorCode('blanc')
+      ->setRetailPrice($faker->randomFloat(1, 10, 30))
+      ->setSellingPrice($faker->randomFloat(1, 10, 30))
+      ->setQuantity($faker->randomNumber(1, true));
+
+    $this->getDataProduct($product2, $faker);
 
     //brand
     $brand = new Brand();
@@ -87,6 +110,22 @@ class AppFixtures extends Fixture
       ->setLogo($faker->imageUrl(640, 480, 'animals', true));
     $manager->persist($material);
 
+    //product_images
+    $productImage = new ProductImage;
+    $productImage
+      ->setPath("ray-ban-6214c562cd88e070069467.png");
+    $manager->persist($productImage);
+
+    $productImage1 = new ProductImage;
+    $productImage1
+      ->setPath("hugo-boss-boss-1131-s-003ir.jpg");
+    $manager->persist($productImage1);
+
+    $productImage2 = new ProductImage;
+    $productImage2
+      ->setPath("hugo-boss-boss-1131-s-003ir2.jpg");
+    $manager->persist($productImage2);
+
 
     $product
       ->setBrand($brand)
@@ -95,9 +134,34 @@ class AppFixtures extends Fixture
       ->setLensType($lensType)
       ->setStyle($style)
       ->setColor($color)
-      ->setMaterial($material);
+      ->setMaterial($material)
+      ->addProductImage($productImage);
 
     $manager->persist($product);
+
+    $product1
+      ->setBrand($brand)
+      ->setShape($shape)
+      ->setSegment($segment)
+      ->setLensType($lensType)
+      ->setStyle($style)
+      ->setColor($color)
+      ->setMaterial($material)
+      ->addProductImage($productImage1);
+
+    $manager->persist($product1);
+
+    $product2
+      ->setBrand($brand)
+      ->setShape($shape)
+      ->setSegment($segment)
+      ->setLensType($lensType)
+      ->setStyle($style)
+      ->setColor($color)
+      ->setMaterial($material)
+      ->addProductImage($productImage2);
+
+    $manager->persist($product2);
 
     //create some random users
     for ($i = 0; $i < 10; $i++) {
