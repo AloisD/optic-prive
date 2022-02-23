@@ -1,5 +1,6 @@
 <app-banner></app-banner>
 <app-header></app-header>
+<app-categories></app-categories>
 
 <body>
   <div class="container recent-product">
@@ -19,7 +20,7 @@
     <div class="news">
       <h4>LES NOUVEAUTÉS</h4>
     </div>
-    <div class="row row-cols-1 row-cols-md-3 g-4" style="list-style: none">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" style="list-style: none">
       <li *ngFor="let product of products">
         <div class="col">
           <div class="card h-100">
@@ -37,7 +38,7 @@
                 class="btn cart-icon"
                 (click)="addtocart(product)"
               >
-                <i class="bi bi-bag-plus" style="font-size: 27px"></i>
+                <i class="bi bi-bag-plus"></i>
               </button>
             </div>
             <div class="card-body">
