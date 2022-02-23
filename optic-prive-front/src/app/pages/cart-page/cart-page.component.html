@@ -1,4 +1,4 @@
-<app-header></app-header>
+<app-header class="sticky-top"></app-header>
 
 <div class="container-bread">
   <div class="bread container">
@@ -12,74 +12,69 @@
     </nav>
   </div>
 </div>
-
-<body>
-
-  <div class="container">
-    <h1 class="display font-weight-bold">Optic Privé</h1>
-
-    <div class="card">
-      <div class="row">
-        <div class="col-md-8 cart">
-          <div class="title">
-            <div class="row">
-              <app-stepper></app-stepper>
-              <div class="col">
-                <h5><b>PANIER</b></h5>
-              </div>
-            </div>
-          </div>
-          <hr>
-          <div *ngFor="let product of products; let i = index" class="row border-bottom">
-            <div class="row main align-items-center text-align-center">
-              <div class="col-2">
-                <img
-                *ngIf="product.productImages.length"
-                src="https://localhost:8000/images/products/{{
-                  product.productImages[0].path
-                }}"
-                class="img-fluid"
-                alt="{{ product.reference }}"
-                />
-              </div>
-              <div class="col">
-                <div class="row justify-content-center">{{ product.brand.name }}</div>
-                <div class="row justify-content-center">{{ product.reference }} - {{ product.color_code }}</div>
-              </div>
-              <div class="col">
-                <a class="pointer" (click)="decreaseQuantity(product)">-</a>
-                <a type="number">{{ product.quantityOrdered }}</a>
-                <a class="pointer" (click)="increaseQuantity(product)">+</a>
-              </div>
-              <div class="col">{{ product.selling_price }} €</div>
-              <div class="col close pointer" (click)="removeItem(product)">&#10005;</div>
-            </div>
-          </div>
-          <div class="back-to-shop pointer" routerLink="">&leftarrow; Continuez vos achats
-          </div>
-        </div>
-        <div class="col-md-4 summary">
-          <div class="title">
-            <h5><b>Récapitulatif</b></h5>
-          </div>
-          <hr>
+<div class="container">
+  <h1 class="display font-weight-bold">Optic Privé</h1>
+  <div class="card">
+    <div class="row">
+      <div class="col-md-8 cart">
+        <div class="title">
           <div class="row">
-            <div class="col" style="padding-left:0;">{{ productsQuantity }}</div>
-            <div class="col text-right">{{ grandTotal.toFixed(2) }} €</div>
+            <app-stepper></app-stepper>
+            <div class="col">
+              <h5><b>PANIER</b></h5>
+            </div>
           </div>
-          <form>
-            <p>LIVRAISON</p>
-            <select>
-              <option class="text-muted" value="5">Livraison Standard - 5.00 €</option>
-            </select>
-<!--             <p>CODE PROMO</p> <input id="code" placeholder="Entrer votre code">-->
-          </form>
-          <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
-            <div class="col">TOTAL</div>
-            <div class="col text-right">{{ grandTotal.toFixed(2) }} €</div>
-          </div> <button class="btn">VALIDER LE PANIER</button>
         </div>
+        <hr>
+        <div *ngFor="let product of products; let i = index" class="row border-bottom">
+          <div class="row main align-items-center text-align-center">
+            <div class="col-2">
+              <img
+              *ngIf="product.productImages.length"
+              src="https://localhost:8000/images/products/{{
+                product.productImages[0].path
+              }}"
+              class="img-fluid"
+              alt="{{ product.reference }}"
+              />
+            </div>
+            <div class="col">
+              <div class="row justify-content-center">{{ product.brand.name }}</div>
+              <div class="row justify-content-center">{{ product.reference }} - {{ product.color_code }}</div>
+            </div>
+            <div class="col">
+              <a class="pointer" (click)="decreaseQuantity(product)">-</a>
+              <a type="number">{{ product.quantityOrdered }}</a>
+              <a class="pointer" (click)="increaseQuantity(product)">+</a>
+            </div>
+            <div class="col">{{ product.selling_price }} €</div>
+            <div class="col close pointer" (click)="removeItem(product)">&#10005;</div>
+          </div>
+        </div>
+        <div class="back-to-shop pointer" routerLink="">&leftarrow; Continuez vos achats
+        </div>
+      </div>
+      <div class="col-md-4 summary">
+        <div class="title">
+          <h5><b>Récapitulatif</b></h5>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col" style="padding-left:0;">{{ productsQuantity }}</div>
+          <div class="col text-right">{{ grandTotal.toFixed(2) }} €</div>
+        </div>
+        <form>
+          <p>LIVRAISON</p>
+          <select>
+            <option class="text-muted" value="5">Livraison Standard - 5.00 €</option>
+          </select>
+<!--             <p>CODE PROMO</p> <input id="code" placeholder="Entrer votre code">-->
+        </form>
+        <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
+          <div class="col">TOTAL</div>
+          <div class="col text-right">{{ grandTotal.toFixed(2) }} €</div>
+        </div> <button class="btn">VALIDER LE PANIER</button>
       </div>
     </div>
   </div>
-</body>
+</div>
