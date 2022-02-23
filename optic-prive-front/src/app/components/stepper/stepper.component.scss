@@ -1,0 +1,82 @@
+@use '../../../scss/custom' as *;
+
+.progress-checkout-container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 3em;
+
+  &::before{
+  content: "";
+  width: 90%;
+  height: 2px;
+  background-color: black;
+  position: absolute;
+  top: 14px;
+  bottom: 50%;
+  left: 6%;
+  }
+
+}
+
+.progress-step-container {
+  &.selected {
+    .step-check {
+      background-color: $primary;
+    }
+    .step-title{
+      color: $primary;
+    }
+  }
+
+  &.actual {
+    i {
+      display: inline;
+    }
+  }
+}
+
+.progress-bar {
+  content: "";
+  height: 5px;
+  background-color: $primary;
+  position: absolute;
+  top: 14px;
+  bottom: 50%;
+  left: 6%;
+}
+
+.progress-step-container{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.step-check{
+  background-color: $primary;
+  height: 30px;
+  width: 30px;
+  border-radius: 30px;
+  margin-bottom: 1rem;
+  position: relative;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 60%;
+}
+
+.progress-step-container .step-check{
+  background-image: none;
+  background-color: white;
+  border: 2px solid $primary;
+}
+
+.step-title{
+  color: black;
+}
+
+i {
+  font-size: 20px;
+  margin: 2.5px;
+  display: none;
+  }
+

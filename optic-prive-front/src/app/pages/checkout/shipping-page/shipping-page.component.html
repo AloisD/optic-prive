@@ -1,0 +1,83 @@
+<app-header></app-header>
+
+<div class="container-bread">
+  <div class="bread container">
+    <nav
+      style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);"
+      aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item cursor" routerLink="/">Accueil</li>
+        <li class="breadcrumb-item cursor" routerLink="/panier">Panier</li>
+        <li class="breadcrumb-item active" aria-current="page">Livraison</li>
+      </ol>
+    </nav>
+  </div>
+</div>
+
+<body>
+
+  <div class="container">
+    <h1 class="display font-weight-bold">Optic Privé</h1>
+    <div class="card">
+      <div class="row">
+        <div class="col-md-8 cart">
+          <div class="title">
+            <div class="row">
+              <app-stepper [selectedIndex]="1"></app-stepper>
+
+              <div class="col">
+                <h2><b>LIVRAISON</b></h2>
+              </div>
+            </div>
+          </div>
+
+          <div class="">
+            <select class="form-select" aria-label="Default select example">
+              <option selected>France métropolitaine</option>
+              <option value="1">Corse</option>
+              <option value="2">Union Européenne</option>
+              <option value="3">DOM-TOM</option>
+            </select>
+
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+              <label class="form-check-label" for="flexRadioDefault1">
+                Livraison La poste (5-10 jours)
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+              <label class="form-check-label" for="flexRadioDefault2">
+                Livraison prioritaire Colissimo
+              </label>
+            </div>
+          </div>
+
+          <div class="back-to-shop" routerLink="">&leftarrow; Continuez vos achats
+          </div>
+        </div>
+        <div class="col-md-4 summary">
+          <div>
+            <h5><b>Récapitulatif</b></h5>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col" style="padding-left:0;">3 PRODUITS</div>
+          </div>
+
+          <div class="row" style="padding: 3vh 0;">
+            <div class="col">Livraison</div>
+            <div class="col text-right">10 €   </div>
+          </div>
+
+          <div class="row" style="padding: 1vh 0;">
+            <div class="col">TOTAL</div>
+            <div class="col text-right">132.00 €</div>
+          </div>
+          <button class="btn">CONTINUER</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+

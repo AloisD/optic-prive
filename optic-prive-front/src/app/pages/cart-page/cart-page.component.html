@@ -22,7 +22,12 @@
       <div class="row">
         <div class="col-md-8 cart">
           <div class="title">
+            <div class="row">
+              <app-stepper></app-stepper>
+              <div class="col">
                 <h5><b>PANIER</b></h5>
+              </div>
+            </div>
           </div>
           <hr>
           <div *ngFor="let product of products; let i = index" class="row border-bottom">
