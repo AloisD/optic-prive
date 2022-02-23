@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-stepper',
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./stepper.component.scss']
 })
 export class StepperComponent implements OnInit {
- selectedIndex=1;
+ @Input() selectedIndex=0;
  elements = ["Panier", "Livraison", "Connexion", "Paiement"];
  spaces = ["0","26", "60", "90","90"];
 
