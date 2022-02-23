@@ -11,7 +11,7 @@ export class CartPageComponent implements OnInit {
 
   public products : any = [];
   public grandTotal !: number;
-
+  public productsQuantity !: number;
 
   constructor(private cartService : CartService) { }
 
@@ -20,9 +20,20 @@ export class CartPageComponent implements OnInit {
     .subscribe(res=>{
       this.products = res;
       this.grandTotal = this.cartService.getTotalPrice();
-    })
+      this.productsQuantity = this.cartService.getProductsQuantity();
+    });
+    console.log(this.products);
   }
+
   removeItem(product: any){
-    this.cartService.removeCartProduct(product);
+    this.cartService.deleteCartProduct(product);
+  }
+
+  decreaseQuantity(product: any) {
+    this.cartService.removeFromCart(product);
+  }
+
+  increaseQuantity(product: any) {
+    this.cartService.addToCart(product);
   }
 }

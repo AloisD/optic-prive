@@ -16,6 +16,8 @@ import { FormsModule } from '@angular/forms';
 import { RegistrationPageComponent } from './pages/registration-page/registration-page.component';
 import { ShippingPageComponent } from './pages/checkout/shipping-page/shipping-page.component';
 import { StepperComponent } from './components/stepper/stepper.component';
+import { CategoriesComponent } from './components/categories/categories.component';
+
 
 
 export function createTranslateLoader(httpClient: HttpClient) {
@@ -34,6 +36,7 @@ export function createTranslateLoader(httpClient: HttpClient) {
     RegistrationPageComponent,
     ShippingPageComponent,
     StepperComponent,
+    CategoriesComponent
   ],
 
   imports: [

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { catchError, of } from 'rxjs';
 import { IUser } from 'src/app/models/IUser';
 import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
@@ -11,13 +11,29 @@ import { CartService } from 'src/app/services/cart/cart.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
+
+  navbarfixed:boolean = false;
+
+  @HostListener('window:scroll',['$event']) onscroll(){
+    if(window.scrollY > 100)
+    {
+      this.navbarfixed = true;
+    }
+    else
+    {
+      this.navbarfixed = false;
+    }
+  }
+
   public user = {
-    email: 'santina89@hotmail.com',
+    email: '',
     password: '8888',
   };
   private userConnected!: IUser;
   model: User = new User();
-  public totalProduct: number = 0;
+  public totalProduct : number = 0;
+  public productsQuantity !: number;
+
   constructor(
     private authenticationService: AuthenticationService,
     private cartService: CartService
@@ -26,7 +42,9 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.cartService.getProducts().subscribe((res) => {
       this.totalProduct = res.length;
+      this.productsQuantity = this.cartService.getProductsQuantity();
     });
+
     this.authenticationService
       .products()
       .subscribe((response) => console.log('Products: ', response));
@@ -43,6 +61,7 @@ export class HeaderComponent implements OnInit {
       (err) => console.error('Error: ', err)
     );
   }
+
 
   onSubmit() {
     console.log(this.model);
