@@ -25,4 +25,3 @@ export class HomePageComponent implements OnInit {
     this.cartService.addToCart(product);
   }
 }
-

@@ -9,7 +9,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Knp\DoctrineBehaviors\Contract\Entity\TimestampableInterface;
 use Knp\DoctrineBehaviors\Model\Timestampable\TimestampableTrait;
-
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: BrandRepository::class)]
 #[ApiResource]
@@ -23,6 +23,7 @@ class Brand implements TimestampableInterface
   private $id;
 
   #[ORM\Column(type: 'string', length: 255)]
+  #[Groups(["product_read", "product_details_read"])]
   private $name;
 
   #[ORM\Column(type: 'string', length: 255, nullable: true)]

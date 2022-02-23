@@ -27,9 +27,18 @@
           <hr>
           <div *ngFor="let product of products; let i = index" class="row border-bottom">
             <div class="row main align-items-center text-align-center">
-              <div class="col-2"><img class="img-fluid" src="assets/uploads/glass1.jpeg"></div>
+              <div class="col-2">
+                <img
+                *ngIf="product.productImages.length"
+                src="https://localhost:8000/images/products/{{
+                  product.productImages[0].path
+                }}"
+                class="img-fluid"
+                alt="{{ product.reference }}"
+                />
+              </div>
               <div class="col">
-                <div class="row justify-content-center">{{ product.brand }}</div>
+                <div class="row justify-content-center">{{ product.brand.name }}</div>
                 <div class="row justify-content-center">{{ product.reference }} - {{ product.color_code }}</div>
               </div>
               <div class="col">
@@ -51,7 +60,7 @@
           <hr>
           <div class="row">
             <div class="col" style="padding-left:0;">{{ productsQuantity }}</div>
-            <div class="col text-right">{{ grandTotal }} €</div>
+            <div class="col text-right">{{ grandTotal.toFixed(2) }} €</div>
           </div>
           <form>
             <p>LIVRAISON</p>
@@ -62,7 +71,7 @@
           </form>
           <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
             <div class="col">TOTAL</div>
-            <div class="col text-right">{{ grandTotal }} €</div>
+            <div class="col text-right">{{ grandTotal.toFixed(2) }} €</div>
           </div> <button class="btn">VALIDER LE PANIER</button>
         </div>
       </div>
