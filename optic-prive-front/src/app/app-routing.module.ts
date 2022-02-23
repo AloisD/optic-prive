@@ -7,7 +7,6 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 const routes: Routes = [
   { path: '', component: HomePageComponent },
   { path: 'panier', component: CartPageComponent },
-  { path: 'inscription', component: RegistrationPageComponent },
   { path: 'livraison', component: ShippingPageComponent }
 ];
 
