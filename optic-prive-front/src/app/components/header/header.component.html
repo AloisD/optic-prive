@@ -1,30 +1,19 @@
 <body>
-  <nav
-    class="navbar navbar-expand-lg justify-content-between d-none d-lg-block" (scroll)="onscroll()" [ngClass]="navbarfixed?'fixed':'nofixed'"
-  >
+<!--   <nav class="navbar navbar-expand-lg justify-content-between d-none d-lg-block" (scroll)="onscroll()" [ngClass]="navbarfixed?'fixed':'nofixed'"> -->
+  <nav class="navbar sticky-top navbar-expand-lg justify-content-between">
     <div class="container box-search">
-      <div class="">
+      <div>
         <form class="d-flex">
           <button class="btn" type="submit">
             <i class="bi bi-search"></i>
           </button>
-          <input
-            class="form-control me-2"
-            type="search"
-            placeholder="Recherche"
-            aria-label="Search"
-          />
+          <input class="form-control me-2" type="search" placeholder="Recherche" aria-label="Search"/>
         </form>
       </div>
-
       <div class="part-rigth">
         <div>
           <!-- Button trigger modal -->
-          <button
-            type="button"
-            data-bs-toggle="modal"
-            data-bs-target="#loginModal"
-          >
+          <button type="button" data-bs-toggle="modal" data-bs-target="#loginModal">
             SE CONNECTER
           </button>
         </div>

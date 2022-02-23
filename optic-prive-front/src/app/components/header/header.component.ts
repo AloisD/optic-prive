@@ -12,7 +12,7 @@ import { CartService } from 'src/app/services/cart/cart.service';
 })
 export class HeaderComponent implements OnInit {
 
-  navbarfixed:boolean = false;
+/*   navbarfixed:boolean = false;
 
   @HostListener('window:scroll',['$event']) onscroll(){
     if(window.scrollY > 100)
@@ -23,7 +23,7 @@ export class HeaderComponent implements OnInit {
     {
       this.navbarfixed = false;
     }
-  }
+  } */
 
   public user = {
     email: '',
