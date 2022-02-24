@@ -54,7 +54,7 @@ h1 {
 
   @media screen and (max-width: (1300px))
   {
-    max-width: 950px;
+    max-width: 850px;
   }
 
 }
@@ -154,11 +154,12 @@ img {
 }
 
 h5 {
-  margin-top: 4vh;
+  margin-top: 1vh;
 }
 
 hr {
-  margin-top: 1.25rem;
+  margin-bottom: 1.50rem;
+  margin-top: 4vh;
 }
 
 form {
@@ -170,8 +171,13 @@ select {
   padding: 1.5vh 1vh;
   margin-bottom: 4vh;
   outline: none;
-  background-color: rgb(247, 247, 247);
+  background-color: white;
   width: 50%;
+
+  @media screen and (max-width: (1000px))
+  {
+    width: 80%;
+  }
 }
 
 input {
@@ -191,7 +197,7 @@ input:focus::-webkit-input-placeholder {
   color: white;
   width: 100%;
   font-size: 15px;
-  margin-top: 4vh;
+  margin-top: 4.5rem;
   padding: 1vh;
   border-radius: 0;
 }
@@ -261,3 +267,11 @@ a:hover {
   margin-top: 16px;
 }
 
+label {
+  margin-top: 2px;
+  margin-left: 4px;
+}
+
+b {
+  font-size: 24px;
+}

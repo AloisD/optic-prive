@@ -6,7 +6,7 @@
       style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);"
       aria-label="breadcrumb">
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/">Accueil</a></li>
+        <li class="breadcrumb-item cursor" routerLink="/">Accueil</li>
         <li class="breadcrumb-item active" aria-current="page">Panier</li>
       </ol>
     </nav>
@@ -16,7 +16,7 @@
 <body>
 
   <div class="container">
-    <h1 class="display font-weight-bold">Optic Privé</h1>
+    <h1 class="display font-weight-bold cursor" routerLink="/">Optic Privé</h1>
 
     <div class="card">
       <div class="row">
@@ -25,7 +25,7 @@
             <div class="row">
               <app-stepper></app-stepper>
               <div class="col">
-                <h5><b>PANIER</b></h5>
+                <h2><b>PANIER</b></h2>
               </div>
             </div>
           </div>
@@ -55,7 +55,7 @@
               <div class="col close pointer" (click)="removeItem(product)">&#10005;</div>
             </div>
           </div>
-          <div class="back-to-shop pointer" routerLink="">&leftarrow; Continuez vos achats
+          <div class="back-to-shop pointer" routerLink="">&leftarrow; Retour à l'accueil
           </div>
         </div>
         <div class="col-md-4 summary">
@@ -64,7 +64,7 @@
           </div>
           <hr>
           <div class="row">
-            <div class="col" style="padding-left:0;">{{ productsQuantity }}</div>
+            <div class="col" style="padding-left:0;">{{ productsQuantity }} PRODUITS</div>
             <div class="col text-right">{{ grandTotal.toFixed(2) }} €</div>
           </div>
           <form>
@@ -77,7 +77,7 @@
           <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
             <div class="col">TOTAL</div>
             <div class="col text-right">{{ grandTotal.toFixed(2) }} €</div>
-          </div> <button class="btn">VALIDER LE PANIER</button>
+          </div> <button class="btn" routerLink="/livraison">VALIDER LE PANIER</button>
         </div>
       </div>
     </div>
