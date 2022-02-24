@@ -4,10 +4,6 @@ $kaki: #87A397;
 
 .global {
   min-height: 100vh;
-  vertical-align: middle;
-  font-family: sans-serif;
-  font-weight: bold;
-  padding-top: 1em;
   font-family: 'Raleway', sans-serif;
 }
 
@@ -29,6 +25,7 @@ a {
 
 .title {
   margin-bottom: 5vh;
+  white-space: nowrap;
 
   @media screen and (max-width: (765px))
   {
@@ -54,7 +51,6 @@ a {
   {
     max-width: 740px;
   }
-
 }
 
 .bread {
@@ -171,6 +167,18 @@ select {
   outline: none;
   width: 100%;
   background-color: rgb(247, 247, 247);
+  font-size: 80%;
+
+    @media screen and (max-width: (1200px))
+    {
+      font-size: 75%;
+    }
+
+    @media screen and (max-width: (768px))
+    {
+      font-size: 100%;
+    }
+
 }
 
 input {
@@ -249,6 +257,7 @@ a:hover {
 
 .container {
   display: flex;
+  padding-top:50px
 }
 
 
