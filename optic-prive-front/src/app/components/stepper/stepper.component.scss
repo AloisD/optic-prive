@@ -10,7 +10,7 @@
   content: "";
   width: 90%;
   height: 2px;
-  background-color: black;
+  background-color: $primary;
   position: absolute;
   top: 14px;
   bottom: 50%;
@@ -75,8 +75,10 @@
 }
 
 i {
-  font-size: 20px;
-  margin: 2.5px;
+  font-size: 25px;
   display: none;
+  position: absolute;
+  top: -4.9px;
+  color: white;
   }
 
