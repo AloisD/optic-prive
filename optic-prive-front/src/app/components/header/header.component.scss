@@ -25,19 +25,6 @@ nav {
     width: auto;
 }
 
-.fixed {
-  position: fixed;
-  width: 100%;
-  transition: 0.2s linear;
-  top: 0px;
-}
-
-.nofixed {
-  position: static;
-  transition: 0.2s linear;
-  top: -50px;
-}
-
 .box-search {
     width: 100%;
     margin: 0 auto;

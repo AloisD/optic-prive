@@ -1,10 +1,11 @@
-@use 'scss/custom';
+@use 'scss/custom' as *;
 
-body {
-  font-family: 'Raleway', sans-serif;
-}
+
 
 .cursor {
   cursor: pointer;
 }
 
+@import '~bootstrap/scss/bootstrap';
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600&display=swap');
