@@ -29,7 +29,9 @@ export class CartPageComponent implements OnInit {
   }
 
   decreaseQuantity(product: any) {
+    console.log(product.quantityOrdered);
     this.cartService.removeFromCart(product);
+    console.log(product.quantityOrdered);
   }
 
   increaseQuantity(product: any) {
