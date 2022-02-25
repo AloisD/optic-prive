@@ -2,31 +2,13 @@ $banner-button: #FBEADF;
 $text-color-dark:#56474A;
 $kaki: #87A397;
 
+.global {
+  min-height: 100vh;
+  font-family: 'Raleway', sans-serif;
+}
+
 a {
   text-decoration: none;
-}
-
-body {
-  min-height: 100vh;
-  vertical-align: middle;
-  font-family: sans-serif;
-  font-size: 0.8rem;
-  font-weight: bold;
-  padding-top: 2em;
-  font-family: 'Open Sans', sans-serif;
-  font-family: 'Raleway', sans-serif;
-  // display: flex;
-}
-
-h1 {
-  // padding: 100px 0px 0px 0px;
-  font-size: 50px;
-  position: absolute;
-  font-family: 'Open Sans', sans-serif;
-  font-family: 'Raleway', sans-serif;
-  font-weight: 600;
-  white-space: nowrap;
-  margin-top: 2%;
 }
 
 .text-align-end {
@@ -41,13 +23,9 @@ h1 {
   cursor: pointer;
 }
 
-.display.font-weight-bold {
-  writing-mode: vertical-lr;
-  transform: rotate(-180deg);
-}
-
 .title {
   margin-bottom: 5vh;
+  white-space: nowrap;
 
   @media screen and (max-width: (765px))
   {
@@ -57,18 +35,22 @@ h1 {
 
 .card {
   margin: auto;
-  max-width: 900px;
+  max-width: 1000px;
   width: 100%;
   box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.04);
   border-radius: .5rem;
   border: transparent;
   margin-top: 2em;
 
-  @media screen and (max-width: (1300px))
+  @media screen and (max-width: (1400px))
   {
     max-width: 850px;
   }
 
+  @media screen and (max-width: (1300px))
+  {
+    max-width: 740px;
+  }
 }
 
 .bread {
@@ -185,6 +167,18 @@ select {
   outline: none;
   width: 100%;
   background-color: rgb(247, 247, 247);
+  font-size: 80%;
+
+    @media screen and (max-width: (1200px))
+    {
+      font-size: 75%;
+    }
+
+    @media screen and (max-width: (768px))
+    {
+      font-size: 100%;
+    }
+
 }
 
 input {
@@ -263,6 +257,7 @@ a:hover {
 
 .container {
   display: flex;
+  padding-top:50px
 }
 
 

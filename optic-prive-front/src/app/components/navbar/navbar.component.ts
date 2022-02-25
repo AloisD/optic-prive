@@ -8,14 +8,13 @@ import { CartService } from 'src/app/services/cart/cart.service';
 })
 export class NavbarComponent implements OnInit {
 
-  public totalProduct : number = 0;
-
+  public productsQuantity !: number;
 
   constructor(private cartService : CartService) { }
 
   ngOnInit(): void {this.cartService.getProducts()
     .subscribe(res=>{
-      this.totalProduct = res.length;
+      this.productsQuantity = this.cartService.getProductsQuantity();
     })
   }
 }

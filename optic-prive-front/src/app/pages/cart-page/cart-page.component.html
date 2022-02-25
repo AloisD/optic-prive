@@ -1,5 +1,5 @@
 <app-header class="sticky-top"></app-header>
-
+<div class="global space-lg">
 <div class="container-bread">
   <div class="bread container">
     <nav
@@ -13,7 +13,7 @@
   </div>
 </div>
 <div class="container">
-  <h1 class="display font-weight-bold cursor" routerLink="/">Optic Privé</h1>
+  <app-logo></app-logo>
   <div class="card">
     <div class="row">
       <div class="col-md-8 cart">
@@ -65,16 +65,17 @@
         </div>
         <form>
           <p>LIVRAISON</p>
-          <select>
-            <option class="text-muted" value="5">Livraison Standard - 5.00 €</option>
+          <select class="form-select">
+            <option value="1">Livraison Standard - 5.00 €</option>
           </select>
 <!--             <p>CODE PROMO</p> <input id="code" placeholder="Entrer votre code">-->
         </form>
         <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
           <div class="col">TOTAL</div>
           <div class="col text-right">{{ grandTotal.toFixed(2) }} €</div>
-        </div> <button class="btn">VALIDER LE PANIER</button>
+        </div> <button class="btn" routerLink="/livraison">VALIDER LE PANIER</button>
       </div>
     </div>
   </div>
+</div>
 </div>

@@ -11,15 +11,14 @@ import { CartService } from 'src/app/services/cart/cart.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-
   public user = {
     email: '',
     password: '8888',
   };
   private userConnected!: IUser;
   model: User = new User();
-  public totalProduct : number = 0;
-  public productsQuantity !: number;
+  public totalProduct: number = 0;
+  public productsQuantity!: number;
 
   constructor(
     private authenticationService: AuthenticationService,
@@ -28,7 +27,9 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.cartService.getProducts().subscribe((res) => {
-      this.totalProduct = res.length;
+      if (res) {
+        this.totalProduct = res.length;
+      }
       this.productsQuantity = this.cartService.getProductsQuantity();
     });
 
@@ -48,7 +49,6 @@ export class HeaderComponent implements OnInit {
       (err) => console.error('Error: ', err)
     );
   }
-
 
   onSubmit() {
     console.log(this.model);

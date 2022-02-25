@@ -12,63 +12,62 @@ nav {
   padding: 10px 0px;
   background-color: rgb(255, 255, 255);
 
-    .form-control {
+  .form-control {
     border-top: none;
     border-right: none;
     border-left: none;
     border-radius: 0%;
     box-shadow: none !important;
-    }
+  }
 }
 
 .container {
-    width: auto;
+  width: auto;
 }
 
 .box-search {
-    width: 100%;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
 }
 
 .part-rigth {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-    div {
-        margin: 5px;
-    }
+  div {
+    margin: 5px;
+  }
 
-    p {
-        color: black;
-        margin: 10px 0px;
-    }
+  p {
+    color: black;
+    margin: 10px 0px;
+  }
 
-    a {
-        color: black;
-        text-decoration: none;
-        padding: 0px 20px;
-    }
+  a {
+    color: black;
+    text-decoration: none;
+    padding: 0px 20px;
+  }
 
-    button {
-        background: none;
-        border: none;
-    }
+  button {
+    background: none;
+    border: none;
+  }
 
-    .cart-button {
-      position: relative;
-    }
+  .cart-button {
+    position: relative;
+  }
 
-    .badge {
-      font-size: 13px;
-      right: -30%;
-      bottom: -30%;
-      border-radius: 50px;
-    }
+  .badge {
+    padding: 5.1px 8.5px;
+    right: -20%;
+    bottom: -20%;
+    font-size: 15px;
+  }
 }
-
 
 /* STYLE MODAL */
 .modal-header {
@@ -79,14 +78,14 @@ nav {
 }
 
 .modal-content {
-    background-color: $secondary;
-    border: none;
-    border-radius: 0px;
+  background-color: $secondary;
+  border: none;
+  border-radius: 0px;
 
-    input {
-      border-radius: 0px;
-      border: none;
-      box-shadow: none !important;
+  input {
+    border-radius: 0px;
+    border: none;
+    box-shadow: none !important;
   }
 }
 
@@ -103,12 +102,12 @@ nav {
     margin: 30px;
 
     p {
-        font-size: 20px;
-        color: $secondary-contrast;
+      font-size: 20px;
+      color: $secondary-contrast;
     }
 
     a {
-        color: $secondary-contrast;
+      color: $secondary-contrast;
     }
 
     .form-group {

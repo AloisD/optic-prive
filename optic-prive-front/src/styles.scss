@@ -1,9 +1,17 @@
 @use 'scss/custom' as *;
 
-
-
 .cursor {
   cursor: pointer;
+}
+
+.space-lg {
+  padding-top: 3.5em;
+}
+
+@media screen and (min-width: (992px)) {
+  .space-lg {
+    padding-top: 0em;
+  }
 }
 
 @import '~bootstrap/scss/bootstrap';

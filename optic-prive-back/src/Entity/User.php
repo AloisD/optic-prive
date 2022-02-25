@@ -5,6 +5,8 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Controller\Api\MeAction;
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Knp\DoctrineBehaviors\Contract\Entity\TimestampableInterface;
 use Knp\DoctrineBehaviors\Model\Timestampable\TimestampableTrait;
@@ -51,6 +53,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Timesta
   #[Groups(["read_profile"])]
   #[ORM\Column(type: 'string', length: 255, nullable: true)]
   private $username;
+
+  #[ORM\OneToMany(mappedBy: 'user', targetEntity: BusinessUser::class)]
+  private $businessUsers;
+
+  #[ORM\OneToMany(mappedBy: 'user', targetEntity: Address::class)]
+  private $addresses;
+
+  #[ORM\OneToMany(mappedBy: 'buyer', targetEntity: Order::class)]
+  private $orders;
+
+  #[ORM\OneToMany(mappedBy: 'seller', targetEntity: Product::class)]
+  private $products;
+
+  public function __construct()
+  {
+      $this->businessUsers = new ArrayCollection();
+      $this->addresses = new ArrayCollection();
+      $this->orders = new ArrayCollection();
+      $this->products = new ArrayCollection();
+  }
 
   public function getId(): ?int
   {
@@ -132,5 +154,113 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Timesta
     $this->username = $username;
 
     return $this;
+  }
+
+  /**
+   * @return Collection<int, BusinessUser>
+   */
+  public function getBusinessUsers(): Collection
+  {
+      return $this->businessUsers;
+  }
+
+  public function addBusinessUser(BusinessUser $businessUser): self
+  {
+      if (!$this->businessUsers->contains($businessUser)) {
+          $this->businessUsers[] = $businessUser;
+          $businessUser->setUser($this);
+      }
+
+      return $this;
+  }
+
+  public function removeBusinessUser(BusinessUser $businessUser): self
+  {
+      if ($this->businessUsers->removeElement($businessUser)) {
+          // set the owning side to null (unless already changed)
+          if ($businessUser->getUser() === $this) {
+              $businessUser->setUser(null);
+          }
+      }
+
+      return $this;
+  }
+
+  /**
+   * @return Collection<int, Address>
+   */
+  public function getAddresses(): Collection
+  {
+      return $this->addresses;
+  }
+
+  public function addAddress(Address $address): self
+  {
+      if (!$this->addresses->contains($address)) {
+          $this->addresses[] = $address;
+          $address->setUser($this);
+      }
+
+      return $this;
+  }
+
+  public function removeAddress(Address $address): self
+  {
+      if ($this->addresses->removeElement($address)) {
+          // set the owning side to null (unless already changed)
+          if ($address->getUser() === $this) {
+              $address->setUser(null);
+          }
+      }
+
+      return $this;
+  }
+
+  /**
+   * @return Collection<int, Order>
+   */
+  public function getOrders(): Collection
+  {
+      return $this->orders;
+  }
+
+  public function addOrder(Order $order): self
+  {
+      if (!$this->orders->contains($order)) {
+          $this->orders[] = $order;
+          $order->setBuyer($this);
+
+   * @return Collection<int, Product>
+   */
+  public function getProducts(): Collection
+  {
+      return $this->products;
+  }
+
+  public function addProduct(Product $product): self
+  {
+      if (!$this->products->contains($product)) {
+          $this->products[] = $product;
+          $product->setSeller($this);
+      }
+      return $this;
+  }
+
+  public function removeOrder(Order $order): self
+  {
+      if ($this->orders->removeElement($order)) {
+          // set the owning side to null (unless already changed)
+          if ($order->getBuyer() === $this) {
+              $order->setBuyer(null);
+
+  public function removeProduct(Product $product): self
+  {
+      if ($this->products->removeElement($product)) {
+          // set the owning side to null (unless already changed)
+          if ($product->getSeller() === $this) {
+              $product->setSeller(null);
+          }
+      }
+      return $this;
   }
 }
