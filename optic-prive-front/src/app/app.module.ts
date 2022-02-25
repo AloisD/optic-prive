@@ -16,11 +16,14 @@ import { FormsModule } from '@angular/forms';
 import { ShippingPageComponent } from './pages/checkout/shipping-page/shipping-page.component';
 import { StepperComponent } from './components/stepper/stepper.component';
 import { CategoriesComponent } from './components/categories/categories.component';
+import { ProductPageComponent } from './pages/product-page/product-page.component';
 import { LogoComponent } from './components/logo/logo.component';
 import { ToastGlobalComponent } from './components/toast-global/toast-global.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastsContainer } from './components/toast-global/toasts-container.component';
-
+=======
+import { SummaryOrderPageComponent } from './pages/checkout/summary-order-page/summary-order-page.component';
+import { LoginComponent } from './pages/checkout/login/login.component';
 export function createTranslateLoader(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient, './assets/i18n/', '.json');
 }
@@ -40,6 +43,9 @@ export function createTranslateLoader(httpClient: HttpClient) {
     LogoComponent,
     ToastGlobalComponent,
     ToastsContainer,
+    SummaryOrderPageComponent,
+    LoginComponent,
+    ProductPageComponent
   ],
 
   imports: [
