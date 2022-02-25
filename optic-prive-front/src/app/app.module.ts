@@ -16,6 +16,7 @@ import { FormsModule } from '@angular/forms';
 import { ShippingPageComponent } from './pages/checkout/shipping-page/shipping-page.component';
 import { StepperComponent } from './components/stepper/stepper.component';
 import { CategoriesComponent } from './components/categories/categories.component';
+import { ProductPageComponent } from './pages/product-page/product-page.component';
 import { LogoComponent } from './components/logo/logo.component';
 import { SummaryOrderPageComponent } from './pages/checkout/summary-order-page/summary-order-page.component';
 import { LoginComponent } from './pages/checkout/login/login.component';
@@ -40,7 +41,8 @@ export function createTranslateLoader(httpClient: HttpClient) {
     CategoriesComponent,
     LogoComponent,
     SummaryOrderPageComponent,
-    LoginComponent
+    LoginComponent,
+    ProductPageComponent
   ],
 
   imports: [

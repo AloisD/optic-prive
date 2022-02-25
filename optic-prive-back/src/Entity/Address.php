@@ -51,6 +51,10 @@ class Address implements TimestampableInterface
   #[ORM\OneToMany(mappedBy: 'delivery_address', targetEntity: Order::class)]
   private $ordres;
 
+  #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'addresses')]
+  #[ORM\JoinColumn(nullable: false)]
+  private $user;
+
   public function __construct()
   {
       $this->orders = new ArrayCollection();
@@ -221,5 +225,17 @@ class Address implements TimestampableInterface
   public function __toString()
   {
     return $this->recipient. ': ' .$this->name;
+  }
+
+  public function getUser(): ?User
+  {
+      return $this->user;
+  }
+
+  public function setUser(?User $user): self
+  {
+      $this->user = $user;
+
+      return $this;
   }
 }
