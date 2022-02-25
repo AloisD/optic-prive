@@ -43,12 +43,13 @@
               <div class="row justify-content-center">{{ product.reference }} - {{ product.color_code }}</div>
             </div>
             <div class="col">
-              <a class="pointer" (click)="decreaseQuantity(product)">-</a>
+              <a *ngIf="product.quantityOrdered == 1; else decrease" (click)="setProductToDelete(product)" class="pointer" data-bs-toggle="modal" data-bs-target="#deletionModal">-</a>
+              <ng-template #decrease><a class="pointer" (click)="decreaseQuantity(product)">-</a></ng-template>
               <a type="number">{{ product.quantityOrdered }}</a>
               <a class="pointer" (click)="increaseQuantity(product)">+</a>
             </div>
             <div class="col">{{ product.selling_price }} €</div>
-            <div class="col close pointer" (click)="removeItem(product)">&#10005;</div>
+            <div class="col close pointer" data-bs-toggle="modal" data-bs-target="#deletionModal" (click)="setProductToDelete(product)">&#10005;</div>
           </div>
         </div>
         <div class="back-to-shop pointer" routerLink="/">&leftarrow; Retour à l'accueil
@@ -76,4 +77,36 @@
     </div>
   </div>
 </div>
+
+<!-- Modal -->
+<div *ngIf="productToDelete" class="modal fade" id="deletionModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Retirer le produit suivant de votre panier ?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="d-flex justify-content-around">
+          <div class="">
+            <img
+            *ngIf="productToDelete.productImages.length"
+            src="https://localhost:8000/images/products/{{
+              productToDelete.productImages[0].path
+            }}"
+            class="img-fluid"
+            alt="{{ productToDelete.reference }}"
+            />
+          </div>
+          <div class="">
+            <div class="row justify-content-center">{{ productToDelete.brand.name }}</div>
+            <div class="row justify-content-center">{{ productToDelete.reference }} - {{ productToDelete.color_code }}</div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal"(click)="removeItem(productToDelete)">Retirer</button>
+      </div>
+    </div>
+  </div>
 </div>
