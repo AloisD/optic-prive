@@ -22,7 +22,6 @@ class UserCrudController extends AbstractCrudController
         yield IdField::new('id')->hideOnForm();
         yield EmailField::new('email');
         yield ArrayField::new('roles');//->setChoices(['administrateur' => 'ROLE_ADMIN', 'vendeur' => 'ROLE_PROFESSIONAL', 'client' => 'ROLE_CUSTOMER']);
-        yield TextField::new('password');
         yield DateTimeField::new('created_at')->hideOnForm();
         yield DateTimeField::new('updated_at')->hideOnForm();
     }
