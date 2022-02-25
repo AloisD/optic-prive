@@ -40,7 +40,7 @@ export function createTranslateLoader(httpClient: HttpClient) {
     ShippingPageComponent,
     StepperComponent,
     CategoriesComponent,
-    LoginModalComponent
+    LoginModalComponent,
     LogoComponent,
     SummaryOrderPageComponent,
     LoginComponent,
