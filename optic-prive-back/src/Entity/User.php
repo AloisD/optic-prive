@@ -63,15 +63,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Timesta
   #[ORM\OneToMany(mappedBy: 'buyer', targetEntity: Order::class)]
   private $orders;
 
-  #[ORM\OneToMany(mappedBy: 'buyer', targetEntity: Order::class)]
-  private $ordres;
+  #[ORM\OneToMany(mappedBy: 'seller', targetEntity: Product::class)]
+  private $products;
 
   public function __construct()
   {
       $this->businessUsers = new ArrayCollection();
       $this->addresses = new ArrayCollection();
       $this->orders = new ArrayCollection();
-      $this->ordres = new ArrayCollection();
+      $this->products = new ArrayCollection();
   }
 
   public function getId(): ?int
@@ -219,30 +219,48 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Timesta
   /**
    * @return Collection<int, Order>
    */
-  public function getOrdres(): Collection
+  public function getOrders(): Collection
   {
-      return $this->ordres;
+      return $this->orders;
   }
 
-  public function addOrdre(Order $ordre): self
+  public function addOrder(Order $order): self
   {
-      if (!$this->ordres->contains($ordre)) {
-          $this->ordres[] = $ordre;
-          $ordre->setBuyer($this);
-      }
+      if (!$this->orders->contains($order)) {
+          $this->orders[] = $order;
+          $order->setBuyer($this);
 
+   * @return Collection<int, Product>
+   */
+  public function getProducts(): Collection
+  {
+      return $this->products;
+  }
+
+  public function addProduct(Product $product): self
+  {
+      if (!$this->products->contains($product)) {
+          $this->products[] = $product;
+          $product->setSeller($this);
+      }
       return $this;
   }
 
-  public function removeOrdre(Order $ordre): self
+  public function removeOrder(Order $order): self
   {
-      if ($this->ordres->removeElement($ordre)) {
+      if ($this->orders->removeElement($order)) {
           // set the owning side to null (unless already changed)
-          if ($ordre->getBuyer() === $this) {
-              $ordre->setBuyer(null);
+          if ($order->getBuyer() === $this) {
+              $order->setBuyer(null);
+
+  public function removeProduct(Product $product): self
+  {
+      if ($this->products->removeElement($product)) {
+          // set the owning side to null (unless already changed)
+          if ($product->getSeller() === $this) {
+              $product->setSeller(null);
           }
       }
-
       return $this;
   }
 }
