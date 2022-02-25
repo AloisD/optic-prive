@@ -12,7 +12,9 @@ const routes: Routes = [
   { path: 'panier', component: CartPageComponent },
   { path: 'recapitulatif', component: SummaryOrderPageComponent },
   { path: 'connexion', component: LoginComponent },
-  { path: 'produit', component: ProductPageComponent }
+  { path: 'produit', component: ProductPageComponent },
+  { path: 'livraison', component: ShippingPageComponent }
+
 ];
 
 @NgModule({
