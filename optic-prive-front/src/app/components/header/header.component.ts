@@ -4,6 +4,7 @@ import { IUser } from 'src/app/models/IUser';
 import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 import { User } from 'src/app/models/User';
 import { CartService } from 'src/app/services/cart/cart.service';
+import { ToastService } from 'src/app/services/toast/toast.service';
 
 @Component({
   selector: 'app-header',
@@ -22,7 +23,8 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private authenticationService: AuthenticationService,
-    private cartService: CartService
+    private cartService: CartService,
+    public toastService: ToastService
   ) {}
 
   ngOnInit(): void {
@@ -44,13 +46,32 @@ export class HeaderComponent implements OnInit {
         this.authenticationService.me().subscribe((responseMe) => {
           this.userConnected = responseMe;
           console.log('UserConnected:', this.userConnected);
+          this.showSuccess(`Hello ${this.userConnected.username} `);
         });
       },
-      (err) => console.error('Error: ', err)
+      (err) => {
+        console.error('Error: ', err);
+        this.showError();
+      }
     );
   }
 
   onSubmit() {
     console.log(this.model);
+  }
+
+  // Toasts
+  showSuccess(message: string) {
+    this.toastService.show(message, {
+      classname: 'bg-success text-light',
+      delay: 5000,
+    });
+  }
+
+  showError() {
+    this.toastService.show('La connexion a échouée', {
+      classname: 'bg-danger text-light',
+      delay: 5000,
+    });
   }
 }

@@ -17,11 +17,12 @@ import { ShippingPageComponent } from './pages/checkout/shipping-page/shipping-p
 import { StepperComponent } from './components/stepper/stepper.component';
 import { CategoriesComponent } from './components/categories/categories.component';
 import { LogoComponent } from './components/logo/logo.component';
-
-
+import { ToastGlobalComponent } from './components/toast-global/toast-global.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ToastsContainer } from './components/toast-global/toasts-container.component';
 
 export function createTranslateLoader(httpClient: HttpClient) {
-  return new TranslateHttpLoader(httpClient, './assets/i18n/','.json')
+  return new TranslateHttpLoader(httpClient, './assets/i18n/', '.json');
 }
 
 @NgModule({
@@ -36,7 +37,9 @@ export function createTranslateLoader(httpClient: HttpClient) {
     ShippingPageComponent,
     StepperComponent,
     CategoriesComponent,
-    LogoComponent
+    LogoComponent,
+    ToastGlobalComponent,
+    ToastsContainer,
   ],
 
   imports: [
@@ -45,14 +48,15 @@ export function createTranslateLoader(httpClient: HttpClient) {
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
-        useFactory: (createTranslateLoader),
-        deps: [HttpClient]
-      }
+        useFactory: createTranslateLoader,
+        deps: [HttpClient],
+      },
     }),
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgbModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
