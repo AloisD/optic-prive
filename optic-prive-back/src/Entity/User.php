@@ -57,9 +57,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Timesta
   #[ORM\OneToMany(mappedBy: 'user', targetEntity: BusinessUser::class)]
   private $businessUsers;
 
+  #[ORM\OneToMany(mappedBy: 'user', targetEntity: Address::class)]
+  private $addresses;
+
   public function __construct()
   {
       $this->businessUsers = new ArrayCollection();
+      $this->addresses = new ArrayCollection();
   }
 
   public function getId(): ?int
@@ -168,6 +172,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Timesta
           // set the owning side to null (unless already changed)
           if ($businessUser->getUser() === $this) {
               $businessUser->setUser(null);
+          }
+      }
+
+      return $this;
+  }
+
+  /**
+   * @return Collection<int, Address>
+   */
+  public function getAddresses(): Collection
+  {
+      return $this->addresses;
+  }
+
+  public function addAddress(Address $address): self
+  {
+      if (!$this->addresses->contains($address)) {
+          $this->addresses[] = $address;
+          $address->setUser($this);
+      }
+
+      return $this;
+  }
+
+  public function removeAddress(Address $address): self
+  {
+      if ($this->addresses->removeElement($address)) {
+          // set the owning side to null (unless already changed)
+          if ($address->getUser() === $this) {
+              $address->setUser(null);
           }
       }
 
