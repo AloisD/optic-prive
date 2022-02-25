@@ -57,7 +57,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Timesta
   #[ORM\OneToMany(mappedBy: 'user', targetEntity: BusinessUser::class)]
   private $businessUsers;
 
-  #[ORM\OneToMany(mappedBy: 'user', targetEntity: Address::class)]
+  #[ORM\OneToMany(mappedBy: 'user', targetEntity: Address::class, cascade: ['persist'], orphanRemoval: true)]
   private $addresses;
 
   public function __construct()
