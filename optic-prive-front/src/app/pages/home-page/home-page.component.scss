@@ -2,6 +2,12 @@ $primary:#87A397;
 $secondary: #FBEADF;
 $secondary-clear: #F4FFFA;
 
+.top-right {
+  position: absolute;
+  top: 8px;
+  right: 16px;
+}
+
 //BUTTON ADD TO CART
 .bi {
   padding: 10px 12px 10px 12px;

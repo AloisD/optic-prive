@@ -33,6 +33,8 @@
                 class="card-img-top"
                 alt="{{ product.reference }}"
               />
+              <p class="top-right" *ngIf="((product.retail_price - product.selling_price) * -100 / product.retail_price) > 0">+ {{ ((product.retail_price - product.selling_price) * -100 / product.retail_price).toFixed(0) }} %</p>
+              <p class="top-right" *ngIf="((product.retail_price - product.selling_price) * -100 / product.retail_price) <= 0"> {{ ((product.retail_price - product.selling_price) * -100 / product.retail_price).toFixed(0) }} %</p>
               <button
                 type="button"
                 class="btn cart-icon"
@@ -43,7 +45,6 @@
             </div>
             <div class="card-body">
               <h5 class="card-title"> {{ product.name }} - {{ product.reference }} </h5>
-              <p> {{ ((product.retail_price - product.selling_price) * -100 / product.retail_price).toFixed(0) }} %</p>
               <p class="card-text"><s>{{ product.retail_price }} €</s> {{ product.selling_price }} €</p>
             </div>
           </div>
