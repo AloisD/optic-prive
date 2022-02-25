@@ -59,15 +59,13 @@
           <h5><b>Récapitulatif</b></h5>
         </div>
         <hr>
-        <div class="row">
-          <div class="col" style="padding-left:0;">{{ productsQuantity }}</div>
-          <div class="col text-right">{{ grandTotal.toFixed(2) }} €</div>
+        <div class="col">
+          <div class="col" style="padding-left:0;">Il y a {{ productsQuantity }} articles dans le panier.</div>
+          <!-- <div class="col text-right">{{ grandTotal.toFixed(2) }} €</div> -->
         </div>
         <form>
-          <p>LIVRAISON</p>
-          <select class="form-select">
-            <option value="1">Livraison Standard - 5.00 €</option>
-          </select>
+          <div class="col">LIVRAISON</div>
+          <div class="col text-right small">Calculé à l'étape suivante</div>
 <!--             <p>CODE PROMO</p> <input id="code" placeholder="Entrer votre code">-->
         </form>
         <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">

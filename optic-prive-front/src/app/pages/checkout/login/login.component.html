@@ -21,31 +21,14 @@
         <div class="col-md-8 cart">
           <div class="title">
             <div class="row">
-              <app-stepper [selectedIndex]="1"></app-stepper>
+              <app-stepper [selectedIndex]="2"></app-stepper>
               <div class="col">
-                <h2><b>LIVRAISON</b></h2>
+                <h2><b>DEJA CLIENT ?</b></h2>
               </div>
             </div>
           </div>
           <div class="">
-            <select class="form-select" aria-label="Default select example">
-              <option selected>France métropolitaine</option>
-              <option value="1">Corse</option>
-              <option value="2">Union Européenne</option>
-              <option value="3">DOM-TOM</option>
-            </select>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-              <label class="form-check-label" for="flexRadioDefault1">
-                Livraison La poste (5-10 jours)
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-              <label class="form-check-label" for="flexRadioDefault2">
-                Livraison prioritaire Colissimo
-              </label>
-            </div>
+
           </div>
           <div class="back-to-shop cursor" routerLink="/panier">&leftarrow; Précédent
           </div>
@@ -56,15 +39,15 @@
           </div>
           <hr>
           <div class="row">
-            <div class="col" style="padding:1vh;">Il y a {{ productsQuantity }} articles dans le panier.</div>
+            <div class="col" style="padding:1vh;">Il y a  articles dans le panier.</div>
           </div>
           <div class="row" style="padding: 3vh 0;">
             <div class="col bold">Livraison :</div>
-            <div class="col text-right">{{ shipping[0]}} € </div>
+            <div class="col text-right"> € </div>
           </div>
           <div class="row" style="padding: 1vh 0;">
             <div class="col">TOTAL :</div>
-            <div class="col text-right">{{ grandTotal.toFixed(2) }} €</div>
+            <div class="col text-right">€</div>
           </div>
           <button class="btn" routerLink="/recapitulatif">CONTINUER</button>
         </div>
