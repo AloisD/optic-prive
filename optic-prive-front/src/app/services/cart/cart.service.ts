@@ -35,7 +35,6 @@ export class CartService {
     } else {
       this.cartProducts[currentIndex].quantityOrdered +=1;
     }
-    this.getTotalPrice();
     this.products.next(this.cartProducts); //this.products.next([...this.cartProducts, product]); code écrit par Michel, ne pas supprimer sans explication de sa part
   }
 
@@ -43,7 +42,6 @@ export class CartService {
     const currentIndex = this.cartProducts.findIndex((currentProduct) => {
       return currentProduct.id === product.id;
     });
-
     if (currentIndex === -1) {
       console.error("not in the cart");
     } else {
@@ -51,7 +49,7 @@ export class CartService {
         this.deleteCartProduct(product);
         return;
       } else {
-        product.quantityOrdered -=1;
+        this.cartProducts[currentIndex].quantityOrdered -=1;
       }
       this.products.next(this.cartProducts);
     }
