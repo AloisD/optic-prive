@@ -5,6 +5,8 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Controller\Api\MeAction;
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Knp\DoctrineBehaviors\Contract\Entity\TimestampableInterface;
 use Knp\DoctrineBehaviors\Model\Timestampable\TimestampableTrait;
@@ -51,6 +53,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Timesta
   #[Groups(["read_profile"])]
   #[ORM\Column(type: 'string', length: 255, nullable: true)]
   private $username;
+
+  #[ORM\OneToMany(mappedBy: 'user', targetEntity: BusinessUser::class)]
+  private $businessUsers;
+
+  public function __construct()
+  {
+      $this->businessUsers = new ArrayCollection();
+  }
 
   public function getId(): ?int
   {
@@ -132,5 +142,35 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Timesta
     $this->username = $username;
 
     return $this;
+  }
+
+  /**
+   * @return Collection<int, BusinessUser>
+   */
+  public function getBusinessUsers(): Collection
+  {
+      return $this->businessUsers;
+  }
+
+  public function addBusinessUser(BusinessUser $businessUser): self
+  {
+      if (!$this->businessUsers->contains($businessUser)) {
+          $this->businessUsers[] = $businessUser;
+          $businessUser->setUser($this);
+      }
+
+      return $this;
+  }
+
+  public function removeBusinessUser(BusinessUser $businessUser): self
+  {
+      if ($this->businessUsers->removeElement($businessUser)) {
+          // set the owning side to null (unless already changed)
+          if ($businessUser->getUser() === $this) {
+              $businessUser->setUser(null);
+          }
+      }
+
+      return $this;
   }
 }
