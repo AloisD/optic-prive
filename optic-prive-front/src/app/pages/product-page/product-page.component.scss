@@ -1,0 +1,82 @@
+@use '../../../scss/custom' as *;
+
+// SCSS LOGO
+h1 {
+  font-size: 50px;
+  position: absolute;
+  font-weight: 600;
+  white-space: nowrap;
+  margin-top: 2%;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.display.font-weight-bold {
+  writing-mode: vertical-lr;
+  transform: rotate(-180deg);
+}
+// FIN SCSS LOGO
+
+p {
+  margin: 0px;
+}
+
+h2 {
+  font-weight: bold;
+  font-size: 36px;
+}
+
+.discount {
+  background-color: $secondary-contrast;
+  color: $secondary;
+  padding: 5px;
+  width: 60px;
+}
+
+.boxes {
+  margin: 15px 0px;
+  line-height: 1.6;
+}
+
+.details {
+  font-size: 18px;
+  margin-right: 20%;
+}
+
+.category {
+  font-weight: 500;
+  font-size: 14px;
+  margin-top: 0;
+}
+
+.reference {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.retail-price {
+  font-size: 20px;
+  text-decoration-line: line-through;
+}
+
+.selling-price {
+  font-weight: bold;
+  font-size: 28px;
+}
+
+.modal-trigger {
+  border: none;
+  background: none;
+  text-decoration: underline;
+}
+
+.modal-trigger:hover {
+  font-size: 1.12rem;
+}
+
+.modal-content {
+  border: none;
+  border-radius: 0px;
+}
