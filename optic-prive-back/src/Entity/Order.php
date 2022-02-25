@@ -40,10 +40,6 @@ class Order implements TimestampableInterface
   #[ORM\JoinColumn(nullable: false)]
   private $shipping;
 
-  #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'orders')]
-  #[ORM\JoinColumn(nullable: false)]
-  private $buyer;
-
   public function __construct()
   {
       $this->orderHasProducts = new ArrayCollection();
@@ -128,18 +124,6 @@ class Order implements TimestampableInterface
   public function setShipping(?ShippingOption $shipping): self
   {
       $this->shipping = $shipping;
-
-      return $this;
-  }
-
-  public function getBuyer(): ?User
-  {
-      return $this->buyer;
-  }
-
-  public function setBuyer(?User $buyer): self
-  {
-      $this->buyer = $buyer;
 
       return $this;
   }
