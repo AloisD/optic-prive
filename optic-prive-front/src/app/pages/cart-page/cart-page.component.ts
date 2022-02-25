@@ -12,6 +12,7 @@ export class CartPageComponent implements OnInit {
   public products : any = [];
   public grandTotal !: number;
   public productsQuantity !: number;
+  public paiement = new Array();
 
   constructor(private cartService : CartService) { }
 
@@ -22,7 +23,7 @@ export class CartPageComponent implements OnInit {
       this.grandTotal = this.cartService.getTotalPrice();
       this.productsQuantity = this.cartService.getProductsQuantity();
     });
-    console.log(this.products);
+    // console.log(this.products);
   }
 
   removeItem(product: any){
@@ -35,5 +36,24 @@ export class CartPageComponent implements OnInit {
 
   increaseQuantity(product: any) {
     this.cartService.addToCart(product);
+  }
+
+  getProductDetails() {
+    this.cartService.getProducts()
+    .subscribe(res=>{
+      console.log(res);
+      for (let index = 0; index < res.length; index++) {
+        const element = res[index];
+        let temp = {
+          'nom': element.name,
+          'quantity': element.quantityOrdered,
+          'price': element.selling_price,
+        };
+        this.paiement.push(temp);
+        console.log('temp', temp);
+      }
+    });
+    console.log('paiement',this.paiement);
+
   }
 }
