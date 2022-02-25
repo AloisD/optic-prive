@@ -1,0 +1,64 @@
+<app-header class="sticky-top"></app-header>
+
+<div class="container my-5">
+  <div class="row">
+
+    <div class="col-1">
+      <h1 class="display font-weight-bold cursor" routerLink="/">Optic Privé</h1>
+    </div>
+
+    <div class="col d-flex justify-content-center">
+      <img src="https://via.placeholder.com/350" alt="">
+    </div>
+
+    <div class="col-lg-6 col-md-8 col-10 container">
+      <div>
+        <div class="boxes category">SOLAIRES</div>
+        <div class="discount d-flex justify-content-center">- 10%</div>
+        <div class="boxes">
+          <h2>Hugo Boss</h2>
+        </div>
+        <div class="boxes">
+          <p class="reference">Ref : 33445565 6666</p>
+          <p class="reference">Vendu par : Quelqu'un</p>
+
+        </div>
+        <div class="boxes d-flex justify-content-between details">
+          <div>
+            <p>Couleur : Noir</p>
+            <p>Matériau : Métal</p>
+            <p>État : Neuf</p>
+          </div>
+          <div>
+            <button class="modal-trigger" type="button" data-bs-toggle="modal" data-bs-target="#detailsModal">
+            Plus de détails</button>
+          </div>
+        </div>
+        <div class="boxes mt-4">
+          <div class="retail-price">Prix magasin : 70 €</div>
+          <div class="selling-price">Prix Optic Privé : 40 €</div>
+        </div>
+        <div><button class="btn btn-primary big-btn">AJOUTER AU PANIER</button></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="detailsModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Détails du produit</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Retour</button>
+      </div>
+    </div>
+  </div>
+</div>

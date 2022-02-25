@@ -4,6 +4,9 @@ $secondary: #FBEADF;
 $primary-contrast: #F4FFFA;
 $secondary-contrast: #56474A;
 
+body {
+  font-family: 'Raleway', sans-serif !important;
+}
 
 // Boutons //
 .btn {
@@ -38,13 +41,9 @@ $secondary-contrast: #56474A;
 }
 
 .big-btn {
-  width: 170px;
+  width: 190px;
 }
 
 select,input {
   box-shadow: none !important;
 }
-
-@import '~bootstrap/scss/bootstrap';
-@import "~bootstrap-icons/font/bootstrap-icons.css";
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600&display=swap');
