@@ -63,11 +63,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Timesta
   #[ORM\OneToMany(mappedBy: 'buyer', targetEntity: Order::class)]
   private $orders;
 
+  #[ORM\OneToMany(mappedBy: 'buyer', targetEntity: Order::class)]
+  private $ordres;
+
   public function __construct()
   {
       $this->businessUsers = new ArrayCollection();
       $this->addresses = new ArrayCollection();
       $this->orders = new ArrayCollection();
+      $this->ordres = new ArrayCollection();
   }
 
   public function getId(): ?int
@@ -215,27 +219,27 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Timesta
   /**
    * @return Collection<int, Order>
    */
-  public function getOrders(): Collection
+  public function getOrdres(): Collection
   {
-      return $this->orders;
+      return $this->ordres;
   }
 
-  public function addOrder(Order $order): self
+  public function addOrdre(Order $ordre): self
   {
-      if (!$this->orders->contains($order)) {
-          $this->orders[] = $order;
-          $order->setBuyer($this);
+      if (!$this->ordres->contains($ordre)) {
+          $this->ordres[] = $ordre;
+          $ordre->setBuyer($this);
       }
 
       return $this;
   }
 
-  public function removeOrder(Order $order): self
+  public function removeOrdre(Order $ordre): self
   {
-      if ($this->orders->removeElement($order)) {
+      if ($this->ordres->removeElement($ordre)) {
           // set the owning side to null (unless already changed)
-          if ($order->getBuyer() === $this) {
-              $order->setBuyer(null);
+          if ($ordre->getBuyer() === $this) {
+              $ordre->setBuyer(null);
           }
       }
 

@@ -40,7 +40,7 @@ class Order implements TimestampableInterface
   #[ORM\JoinColumn(nullable: false)]
   private $shipping;
 
-  #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'orders')]
+  #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'ordres')]
   #[ORM\JoinColumn(nullable: false)]
   private $buyer;
 
