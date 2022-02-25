@@ -17,6 +17,8 @@ import { ShippingPageComponent } from './pages/checkout/shipping-page/shipping-p
 import { StepperComponent } from './components/stepper/stepper.component';
 import { CategoriesComponent } from './components/categories/categories.component';
 import { LogoComponent } from './components/logo/logo.component';
+import { SummaryOrderPageComponent } from './pages/checkout/summary-order-page/summary-order-page.component';
+import { LoginComponent } from './pages/checkout/login/login.component';
 
 
 
@@ -36,7 +38,9 @@ export function createTranslateLoader(httpClient: HttpClient) {
     ShippingPageComponent,
     StepperComponent,
     CategoriesComponent,
-    LogoComponent
+    LogoComponent,
+    SummaryOrderPageComponent,
+    LoginComponent
   ],
 
   imports: [
