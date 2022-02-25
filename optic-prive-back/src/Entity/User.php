@@ -60,9 +60,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Timesta
   #[ORM\OneToMany(mappedBy: 'user', targetEntity: Address::class)]
   private $addresses;
 
-  #[ORM\OneToMany(mappedBy: 'buyer', targetEntity: Order::class)]
-  private $orders;
-
   #[ORM\OneToMany(mappedBy: 'seller', targetEntity: Product::class)]
   private $products;
 
@@ -70,7 +67,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Timesta
   {
       $this->businessUsers = new ArrayCollection();
       $this->addresses = new ArrayCollection();
-      $this->orders = new ArrayCollection();
       $this->products = new ArrayCollection();
   }
 
@@ -217,19 +213,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Timesta
   }
 
   /**
-   * @return Collection<int, Order>
-   */
-  public function getOrders(): Collection
-  {
-      return $this->orders;
-  }
-
-  public function addOrder(Order $order): self
-  {
-      if (!$this->orders->contains($order)) {
-          $this->orders[] = $order;
-          $order->setBuyer($this);
-
    * @return Collection<int, Product>
    */
   public function getProducts(): Collection
@@ -243,15 +226,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Timesta
           $this->products[] = $product;
           $product->setSeller($this);
       }
+
       return $this;
   }
-
-  public function removeOrder(Order $order): self
-  {
-      if ($this->orders->removeElement($order)) {
-          // set the owning side to null (unless already changed)
-          if ($order->getBuyer() === $this) {
-              $order->setBuyer(null);
 
   public function removeProduct(Product $product): self
   {
@@ -261,6 +238,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Timesta
               $product->setSeller(null);
           }
       }
+
       return $this;
   }
 }
