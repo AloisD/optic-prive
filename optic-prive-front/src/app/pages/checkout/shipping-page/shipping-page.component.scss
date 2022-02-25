@@ -6,16 +6,9 @@ a {
   text-decoration: none;
 }
 
-body {
+.global {
   min-height: 100vh;
-  vertical-align: middle;
-  font-family: sans-serif;
-  font-size: 0.8rem;
-  font-weight: bold;
-  padding-top: 2em;
-  font-family: 'Open Sans', sans-serif;
   font-family: 'Raleway', sans-serif;
-  // display: flex;
 }
 
 h1 {
@@ -36,6 +29,7 @@ h1 {
 
 .title {
   margin-bottom: 5vh;
+  white-space: nowrap;
 
   @media screen and (max-width: (765px))
   {
@@ -45,18 +39,22 @@ h1 {
 
 .card {
   margin: auto;
-  max-width: 900px;
+  max-width: 1000px;
   width: 100%;
   box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.04);
   border-radius: .5rem;
   border: transparent;
   margin-top: 2em;
 
-  @media screen and (max-width: (1300px))
+  @media screen and (max-width: (1400px))
   {
     max-width: 850px;
   }
 
+  @media screen and (max-width: (1300px))
+  {
+    max-width: 740px;
+  }
 }
 
 .bread {
@@ -274,4 +272,8 @@ label {
 
 b {
   font-size: 24px;
+}
+
+.col.text-right {
+  white-space: nowrap;
 }
