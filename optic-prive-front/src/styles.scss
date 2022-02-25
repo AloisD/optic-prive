@@ -4,7 +4,10 @@
   cursor: pointer;
 }
 
-.space-lg {
+.modal-backdrop {
+  z-index: auto;
+
+  .space-lg {
   padding-top: 3.5em;
 }
 

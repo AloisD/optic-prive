@@ -12,6 +12,7 @@ export class CartPageComponent implements OnInit {
   public products : any = [];
   public grandTotal !: number;
   public productsQuantity !: number;
+  public productToDelete : any;
 
   constructor(private cartService : CartService) { }
 
@@ -22,9 +23,10 @@ export class CartPageComponent implements OnInit {
       this.grandTotal = this.cartService.getTotalPrice();
       this.productsQuantity = this.cartService.getProductsQuantity();
     });
+    this.setProductToDelete(this.products[0]);
   }
 
-  removeItem(product: any){
+  removeItem(product: any) {
     this.cartService.deleteCartProduct(product);
   }
 
@@ -34,5 +36,9 @@ export class CartPageComponent implements OnInit {
 
   increaseQuantity(product: any) {
     this.cartService.addToCart(product);
+  }
+
+  setProductToDelete(product : any) {
+    this.productToDelete = product;
   }
 }

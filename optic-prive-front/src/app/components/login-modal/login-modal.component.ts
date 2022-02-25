@@ -1,29 +1,33 @@
 import { Component, OnInit } from '@angular/core';
+import { IUser } from 'src/app/models/IUser';
+import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
+import { User } from 'src/app/models/User';
 import { CartService } from 'src/app/services/cart/cart.service';
-import { ToastService } from 'src/app/services/toast/toast.service';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss'],
+  selector: 'app-login-modal',
+  templateUrl: './login-modal.component.html',
+  styleUrls: ['./login-modal.component.scss']
 })
-export class HeaderComponent implements OnInit {
 
+export class LoginModalComponent implements OnInit {
+  public user = {
+    email: '',
+    password: '8888',
+  };
+  private userConnected!: IUser;
+  model: User = new User();
   public totalProduct : number = 0;
   public productsQuantity !: number;
 
   constructor(
     private authenticationService: AuthenticationService,
-    private cartService: CartService,
-    public toastService: ToastService
     private cartService: CartService
   ) {}
 
   ngOnInit(): void {
     this.cartService.getProducts().subscribe((res) => {
-      if (res) {
-        this.totalProduct = res.length;
-      }
+      this.totalProduct = res.length;
       this.productsQuantity = this.cartService.getProductsQuantity();
     });
 
@@ -38,32 +42,13 @@ export class HeaderComponent implements OnInit {
         this.authenticationService.me().subscribe((responseMe) => {
           this.userConnected = responseMe;
           console.log('UserConnected:', this.userConnected);
-          this.showSuccess(`Hello ${this.userConnected.username} `);
         });
       },
-      (err) => {
-        console.error('Error: ', err);
-        this.showError();
-      }
+      (err) => console.error('Error: ', err)
     );
   }
 
   onSubmit() {
     console.log(this.model);
-  }
-
-  // Toasts
-  showSuccess(message: string) {
-    this.toastService.show(message, {
-      classname: 'bg-success text-light',
-      delay: 5000,
-    });
-  }
-
-  showError() {
-    this.toastService.show('La connexion a échouée', {
-      classname: 'bg-danger text-light',
-      delay: 5000,
-    });
   }
 }
