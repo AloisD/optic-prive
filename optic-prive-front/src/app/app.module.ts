@@ -19,14 +19,13 @@ import { CategoriesComponent } from './components/categories/categories.componen
 import { LoginModalComponent } from './components/login-modal/login-modal.component';
 import { ProductPageComponent } from './pages/product-page/product-page.component';
 import { LogoComponent } from './components/logo/logo.component';
-import { ToastGlobalComponent } from './components/toast-global/toast-global.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ToastsContainer } from './components/toast-global/toasts-container.component';
-=======
 import { SummaryOrderPageComponent } from './pages/checkout/summary-order-page/summary-order-page.component';
 import { LoginComponent } from './pages/checkout/login/login.component';
+
+
+
 export function createTranslateLoader(httpClient: HttpClient) {
-  return new TranslateHttpLoader(httpClient, './assets/i18n/', '.json');
+  return new TranslateHttpLoader(httpClient, './assets/i18n/','.json')
 }
 
 @NgModule({
@@ -43,8 +42,6 @@ export function createTranslateLoader(httpClient: HttpClient) {
     CategoriesComponent,
     LoginModalComponent,
     LogoComponent,
-    ToastGlobalComponent,
-    ToastsContainer,
     SummaryOrderPageComponent,
     LoginComponent,
     ProductPageComponent
@@ -56,15 +53,14 @@ export function createTranslateLoader(httpClient: HttpClient) {
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
-        useFactory: createTranslateLoader,
-        deps: [HttpClient],
-      },
+        useFactory: (createTranslateLoader),
+        deps: [HttpClient]
+      }
     }),
     HttpClientModule,
-    FormsModule,
-    NgbModule,
+    FormsModule
   ],
   providers: [],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
