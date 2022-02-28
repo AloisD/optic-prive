@@ -13,4 +13,8 @@ export class ProductService {
   getProducts(): Observable<IProduct> {
     return this.http.get<IProduct>(`${this.$url}/products`);
   }
+
+  getLatestProducts(): Observable<IProduct> {
+    return this.http.get<IProduct>(`${this.$url}/products/latest`);
+  }
 }
