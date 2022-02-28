@@ -1,31 +1,12 @@
 @use '../../../scss/custom' as *;
 
-// SCSS LOGO
-h1 {
-  font-size: 50px;
-  position: absolute;
-  font-weight: 600;
-  white-space: nowrap;
-  margin-top: 2%;
-}
-
-.pointer {
-  cursor: pointer;
-}
-
-.display.font-weight-bold {
-  writing-mode: vertical-lr;
-  transform: rotate(-180deg);
-}
-// FIN SCSS LOGO
-
 p {
   margin: 0px;
 }
 
 h2 {
   font-weight: bold;
-  font-size: 36px;
+  font-size: 40px;
 }
 
 .discount {
@@ -41,7 +22,7 @@ h2 {
 }
 
 .details {
-  font-size: 18px;
+  font-size: 16px;
   margin-right: 20%;
 }
 
@@ -79,4 +60,75 @@ h2 {
 .modal-content {
   border: none;
   border-radius: 0px;
+}
+
+.image {
+  width: auto;
+  height: 380px;
+}
+
+@media screen and (max-width: (992px))
+{
+  .image {
+    width: auto;
+    height: 300px;
+  }
+
+  .boxes {
+    margin: 10px 0px;
+    line-height: 1.6;
+  }
+
+  h2 {
+    font-size: 30px;
+  }
+
+  .details {
+    font-size: 12px;
+    // margin-right: 20%;
+  }
+
+  .retail-price {
+    font-size: 15px;
+  }
+
+  .selling-price {
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: (768px))
+{
+  .image {
+    width: auto;
+    height: 330px;
+  }
+
+  .boxes {
+    margin: 20px 0px;
+  }
+
+  h2 {
+    font-size: 35px;
+  }
+
+  .details {
+    font-size: 16px;
+  }
+
+  .retail-price {
+    font-size: 16px;
+  }
+
+  .selling-price {
+    font-size: 22px;
+  }
+
+  .button {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+  }
+
+
 }
