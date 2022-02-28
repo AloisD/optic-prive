@@ -34,7 +34,7 @@
                 alt="{{ product.reference }}"
               />
               <p class="top-right" *ngIf="((product.retail_price - product.selling_price) * -100 / product.retail_price) > 0">+ {{ ((product.retail_price - product.selling_price) * -100 / product.retail_price).toFixed(0) }} %</p>
-              <p class="top-right" *ngIf="((product.retail_price - product.selling_price) * -100 / product.retail_price) <= 0"> {{ ((product.retail_price - product.selling_price) * -100 / product.retail_price).toFixed(0) }} %</p>
+              <p class="top-right" *ngIf="((product.retail_price - product.selling_price) * -100 / product.retail_price) <= 0">- {{ ((product.retail_price - product.selling_price) * 100 / product.retail_price).toFixed(0) }} %</p>
               <button
                 type="button"
                 class="btn cart-icon"

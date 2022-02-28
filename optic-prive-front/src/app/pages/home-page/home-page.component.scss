@@ -6,8 +6,10 @@ $secondary-clear: #F4FFFA;
   position: absolute;
   top: 8px;
   right: 16px;
-  color: $secondary;
+  color: white;
   background-color: $primary;
+  width: 60px;
+  text-align: center;
 }
 
 //BUTTON ADD TO CART
