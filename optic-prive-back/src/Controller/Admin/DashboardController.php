@@ -2,7 +2,6 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Address;
 use App\Entity\Order;
 use App\Entity\Product;
 use App\Entity\Brand;
@@ -10,9 +9,9 @@ use App\Entity\BusinessUser;
 use App\Entity\Color;
 use App\Entity\LensType;
 use App\Entity\Material;
-use App\Entity\ProductImage;
 use App\Entity\Segment;
 use App\Entity\Shape;
+use App\Entity\ShippingOption;
 use App\Entity\Style;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
@@ -22,6 +21,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 
 class DashboardController extends AbstractDashboardController
 {
@@ -37,6 +37,15 @@ class DashboardController extends AbstractDashboardController
 
         return $this->redirect($adminUrlGenerator->setController(ProductCrudController::class)->generateUrl());
     }
+
+    public function configureCrud(): Crud
+    {
+        return Crud::new()
+        ->setPaginatorPageSize(20)
+        ->setPaginatorRangeSize(4)
+        ;
+    }
+
 
     public function configureDashboard(): Dashboard
     {
@@ -62,6 +71,7 @@ class DashboardController extends AbstractDashboardController
           MenuItem::linkToCrud('Pro', 'fas fa-list', BusinessUser::class),
         ]);
         yield MenuItem::linkToCrud('Commandes', 'fas fa-list', Order::class);
+        yield MenuItem::linkToCrud('Frais de port', 'fas fa-list', ShippingOption::class);
         yield MenuItem::linkToUrl('Visiter le site public', null, '/');
     }
 }
