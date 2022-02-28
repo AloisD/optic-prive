@@ -7,9 +7,8 @@ import { CartService } from 'src/app/services/cart/cart.service';
 @Component({
   selector: 'app-login-modal',
   templateUrl: './login-modal.component.html',
-  styleUrls: ['./login-modal.component.scss']
+  styleUrls: ['./login-modal.component.scss'],
 })
-
 export class LoginModalComponent implements OnInit {
   public user = {
     email: '',
@@ -17,8 +16,8 @@ export class LoginModalComponent implements OnInit {
   };
   private userConnected!: IUser;
   model: User = new User();
-  public totalProduct : number = 0;
-  public productsQuantity !: number;
+  public totalProduct: number = 0;
+  public productsQuantity!: number;
 
   constructor(
     private authenticationService: AuthenticationService,
@@ -27,7 +26,9 @@ export class LoginModalComponent implements OnInit {
 
   ngOnInit(): void {
     this.cartService.getProducts().subscribe((res) => {
-      this.totalProduct = res.length;
+      if (res) {
+        this.totalProduct = res.length;
+      }
       this.productsQuantity = this.cartService.getProductsQuantity();
     });
 

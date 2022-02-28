@@ -21,6 +21,7 @@ use Knp\DoctrineBehaviors\Contract\Entity\SluggableInterface;
 use Knp\DoctrineBehaviors\Contract\Entity\TimestampableInterface;
 use Knp\DoctrineBehaviors\Model\Timestampable\TimestampableTrait;
 use App\Controller\Api;
+use App\Controller\Api\ProductLatestAction;
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
 #[ApiResource(
@@ -28,7 +29,15 @@ use App\Controller\Api;
     'get' => [
       'normalization_context' => ['groups' => ['product_read']],
     ],
-    "post"
+    "post",
+    'product_latest' => [
+      'normalization_context' => ['groups' => ['product_read']],
+      'method' => 'GET',
+      'pagination_enabled' =>  false,
+      'path' => '/products/latest',
+      'controller' => ProductLatestAction::class,
+      'deserialize' => false
+    ],
   ],
   itemOperations: [
     'get' => [
@@ -58,7 +67,7 @@ use App\Controller\Api;
           ],
         ],
       ],
-    ],
+    ]
   ],
 )]
 class Product implements SluggableInterface, TimestampableInterface
