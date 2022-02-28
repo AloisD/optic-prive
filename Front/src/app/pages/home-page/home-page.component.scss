@@ -1,0 +1,105 @@
+$primary:#87A397;
+$secondary: #FBEADF;
+$secondary-clear: #F4FFFA;
+
+.top-right {
+  position: absolute;
+  top: 8px;
+  right: 16px;
+  color: $secondary;
+  background-color: $primary;
+}
+
+//BUTTON ADD TO CART
+.bi {
+  padding: 10px 12px 10px 12px;
+  border-radius: 50%;
+  background-color: $secondary;
+  font-size: 25px;
+}
+
+.bi:hover {
+  background-color: $primary;
+  color: $secondary-clear;
+}
+
+.bi:active {
+  background-color: white;
+}
+
+.recent-product {
+
+  .card {
+    border:none;
+    padding-bottom: 3em;
+  }
+
+  img {
+    border-radius: 10px;
+    object-fit: cover;
+    }
+
+  h4 {
+    font-size: 19px;
+  }
+
+  p {
+    font-size: 17px;
+  }
+
+  .cart-icon {
+    position: absolute;
+    border-radius: 50%;
+    right: 20px;
+    bottom: 23px;
+    color: #56474A;
+  }
+
+  .cart-relative{
+    position: relative;
+  }
+
+  .news {
+    padding-top: 2em;
+    padding-bottom: 1.1em;
+  }
+
+  p.description {
+    text-align: left;
+    padding: 2em;
+    font-weight: 600;
+  }
+
+  .trait {
+    width: 100%;
+    border: .3em solid #FBEADF;
+    margin-top: 4em;
+    background-color: #FBEADF;
+  }
+
+  .card-title::first-letter {
+    text-transform: uppercase;
+  }
+
+  @media screen and (max-width: (765px))
+  {
+      .row {
+        flex-direction: column-reverse;
+      }
+
+      .trait {
+        transform: translateX(-30px);
+        margin-top: 0px;
+        border: .4em solid #FBEADF;
+      }
+
+      .col-6 {
+        width: 100%;
+      }
+
+      p.description {
+        padding: 1.5em;
+      }
+
+  }
+}

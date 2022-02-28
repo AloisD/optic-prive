@@ -1,0 +1,21 @@
+@use 'scss/custom' as *;
+@import '~bootstrap/scss/bootstrap';
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600&display=swap');
+
+.cursor {
+  cursor: pointer;
+}
+
+.modal-backdrop {
+  z-index: auto;
+  .space-lg {
+    padding-top: 3.5em;
+  }
+}
+
+@media screen and (min-width: (992px)) {
+  .space-lg {
+    padding-top: 0em;
+  }
+}
