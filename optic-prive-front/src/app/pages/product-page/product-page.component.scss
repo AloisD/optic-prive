@@ -129,6 +129,32 @@ h2 {
     display: flex;
     justify-content: center;
   }
+}
 
+@media screen and (max-width: (500px))
+{
+  .image {
+    width: auto;
+    height: 270px;
+  }
+}
 
+@media screen and (max-width: (350px))
+{
+  .image {
+    width: auto;
+    height: 170px;
+  }
+
+  .details {
+    font-size: 12px;
+  }
+
+  .selling-price {
+    font-size: 18px;
+  }
+
+  .button {
+    margin-top: 30px;
+  }
 }
