@@ -1,0 +1,99 @@
+@use '../../../scss/custom' as *;
+
+.navbar {
+  position: fixed;
+  top: 0;
+  z-index: 2;
+  width: 100%;
+}
+
+.global {
+
+  .navbar>.container-fluid {
+      align-items: self-end;
+  }
+
+  .bi::before, [class^="bi-"]::before, [class*=" bi-"]::before {
+    vertical-align: -0.3em;
+  }
+
+  .navbar {
+      background-color: $primary;
+  }
+
+  .navbar-brand {
+  margin-right: 1rem;
+  padding-bottom: 0;
+  }
+
+  .text-decoration-none {
+      margin-right: 0.8em;
+      margin-left: 0.4em;
+  }
+
+  .svg {
+      fill: $secondary;
+  }
+
+  button {
+      box-shadow: none !important;
+  }
+
+  .form-control {
+  border-top: 1em;
+  border-right: none;
+  border-left: none;
+  border-radius: 0%;
+  box-shadow: none !important;
+  background: none;
+  }
+
+  .navbar-dark .navbar-nav .nav-link {
+  color: $secondary;
+  }
+
+  .navbar-nav {
+    padding-left: 1em;
+  }
+
+  ul {
+    margin-top: 1em;
+  }
+
+  .dropdown-item {
+  color: $secondary-contrast;
+  }
+
+  i {
+    font-size: 1.7rem;
+    color: $secondary;
+  }
+
+  input {
+    padding-top: 1.2em;
+    height: 100%;
+  }
+
+  input::placeholder  {
+    color: $secondary;
+  }
+
+  .d-flex {
+    padding-bottom: 7px;
+  }
+}
+
+.badge {
+  font-size: 12px;
+  border-radius: 50%;
+  right: 12%;
+  top: 67%;
+  padding: 0.3em 0.56em;
+  background-color: $secondary-contrast;
+}
+
+button {
+  box-shadow: none !important;
+  background-color: transparent;
+  border: none;
+}

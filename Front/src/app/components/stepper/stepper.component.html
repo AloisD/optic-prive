@@ -1,0 +1,17 @@
+<div class="progress-checkout-container position-relative">
+  <div
+    class="progress-bar"
+    [ngStyle]="{ width: spaces[selectedIndex] + '%' }"
+  ></div>
+  <div
+    *ngFor="let element of elements; let index = index"
+    [ngClass]="{
+      selected: selectedIndex >= index,
+      actual: selectedIndex > index
+    }"
+    class="progress-step-container"
+  >
+    <div class="step-check"><i class="bi bi-check-lg"></i></div>
+    <span class="step-title">{{ element }}</span>
+  </div>
+</div>

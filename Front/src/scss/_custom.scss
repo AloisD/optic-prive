@@ -1,0 +1,49 @@
+$primary: #87A397;
+$secondary: #FBEADF;
+
+$primary-contrast: #F4FFFA;
+$secondary-contrast: #56474A;
+
+body {
+  font-family: 'Raleway', sans-serif !important;
+}
+
+// Boutons //
+.btn {
+  height: 40px;
+  font-size: 1rem !important;
+  box-shadow: none !important;
+  border: none !important;
+  border-radius: 0% !important;
+}
+
+.btn:hover {
+  font-size: 1.05rem !important;
+}
+
+.btn-primary {
+  color: $primary-contrast !important;
+  border: none !important;
+  border-radius: 0% !important;
+}
+
+.btn-secondary {
+  color: #56474A !important;
+}
+
+.btn-secondary:hover {
+  background-color: $primary !important;
+  color: $primary-contrast !important;
+}
+
+.small-btn {
+  width: 100px;
+}
+
+.big-btn {
+  width: 190px;
+}
+
+select,input {
+  box-shadow: none !important;
+}

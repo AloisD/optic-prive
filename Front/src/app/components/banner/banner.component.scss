@@ -1,0 +1,56 @@
+.banner {
+
+    .display.font-weight-bold {
+        writing-mode: vertical-lr;
+        transform: rotate(-180deg);
+        margin: 5px 0PX -5PX 20PX;
+    }
+
+    .jumbotron.bg-cover.text-white{
+        background: url(../../../assets/uploads/banner1.jpg) no-repeat center center ;
+        background-size: cover;
+        background-attachment: fixed;
+        position: relative;
+        height: 70vh;
+    }
+
+    @media screen and (max-width: (765px))
+    {
+        .jumbotron.bg-cover.text-white{
+            background: url(../../../assets/uploads/banner-resp.jpg) no-repeat center center ;
+            position: relative;
+            background-size: cover;
+        }
+    }
+
+    h1 {
+        // padding: 100px 0px 0px 0px;
+        font-size: 50px;
+        position: absolute;
+        left: 0px;
+        bottom: 50px;
+        font-weight: 600;
+    }
+
+    .descr {
+        position: absolute;
+        bottom: 30px;
+        left: 142px;
+    }
+
+    @media screen and (max-width: (765px))
+    {
+        .descr{
+            right: 20px;
+            left:89px;
+        }
+
+        h1 {
+            margin: 0PX 0PX 0PX 20PX;
+        }
+    }
+}
+
+p {
+  font-size: x-large;
+}
