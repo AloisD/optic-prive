@@ -56,4 +56,16 @@ class ProductRepository extends ServiceEntityRepository
       ->getQuery()
       ->getResult();
   }
+
+    public function getProductsBySegment($value)
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.segment_id = :val')
+            ->setParameter('val', $value)
+            ->orderBy('p.createdAt', 'DESC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }

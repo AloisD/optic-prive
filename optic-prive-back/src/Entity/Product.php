@@ -38,6 +38,14 @@ use App\Controller\Api\ProductLatestAction;
       'controller' => ProductLatestAction::class,
       'deserialize' => false
     ],
+    'product_solaires' => [
+      'normalization_context' => ['groups' => ['product_read']],
+      'method' => 'GET',
+      'pagination_enabled' =>  true,
+      'path' => '/products/solaires',
+      'controller' => ProductSegmentAction::class,
+      'deserialize' => false
+    ],
   ],
   itemOperations: [
     'get' => [

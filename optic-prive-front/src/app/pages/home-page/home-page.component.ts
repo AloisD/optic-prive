@@ -15,7 +15,7 @@ export class HomePageComponent implements OnInit {
     private cartService: CartService
   ) {}
   ngOnInit(): void {
-    this.productService.getLatestProducts().subscribe((datas: any) => {
+    this.productService.getProductsBySegment().subscribe((datas: any) => {
       this.products = datas['hydra:member'];
       this.products.forEach((product: any) => {
         Object.assign(product, { quantityOrdered: 0 });
