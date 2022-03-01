@@ -9,6 +9,10 @@ span.rotate {
     font-weight: 200;
 }
 
+.icones {
+  margin-top: 45px;
+}
+
 a {
   text-decoration: none;
 }
@@ -36,6 +40,13 @@ img {
 }
 
 @media screen and (max-width: (1200px))
+{
+  .icones {
+    margin-top: 100px;
+  }
+}
+
+@media screen and (max-width: (992px))
 {
   img {
     height: 150px;

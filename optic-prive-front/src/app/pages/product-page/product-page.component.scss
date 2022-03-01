@@ -158,3 +158,28 @@ h2 {
     margin-top: 30px;
   }
 }
+
+// MODAL STYLE
+.modal-content {
+  background-color: $secondary;
+  color: $secondary-contrast;
+}
+
+.modal-header {
+  border-bottom : none;
+  padding: 30px 30px 10px 30px;
+}
+
+.modal-body {
+  padding: 10px 30px 30px 30px;
+}
+
+h5 {
+  text-decoration: underline;
+}
+
+.title {
+  margin-right: 10px;
+  font-size: 15px;
+  font-weight: 600;
+ }
