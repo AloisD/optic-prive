@@ -61,8 +61,6 @@ export class LoginModalComponent implements OnInit {
   }
 
   showSuccess(username: string) {
-    console.log('ICI', username);
-
     this.toastService.show(`Hello ${username}`, {
       classname: 'bg-success text-light',
       delay: 5000,
