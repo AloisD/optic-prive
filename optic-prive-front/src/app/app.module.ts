@@ -21,6 +21,7 @@ import { ProductPageComponent } from './pages/product-page/product-page.componen
 import { LogoComponent } from './components/logo/logo.component';
 import { SummaryOrderPageComponent } from './pages/checkout/summary-order-page/summary-order-page.component';
 import { LoginComponent } from './pages/checkout/login/login.component';
+import { CategoryPageComponent } from './pages/category-page/category-page.component';
 
 
 
@@ -44,7 +45,8 @@ export function createTranslateLoader(httpClient: HttpClient) {
     LogoComponent,
     SummaryOrderPageComponent,
     LoginComponent,
-    ProductPageComponent
+    ProductPageComponent,
+    CategoryPageComponent
   ],
 
   imports: [
