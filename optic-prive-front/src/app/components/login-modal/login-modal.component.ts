@@ -3,6 +3,7 @@ import { IUser } from 'src/app/models/IUser';
 import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 import { User } from 'src/app/models/User';
 import { CartService } from 'src/app/services/cart/cart.service';
+import { ToastService } from 'src/app/services/toast/toast.service';
 
 @Component({
   selector: 'app-login-modal',
@@ -21,7 +22,8 @@ export class LoginModalComponent implements OnInit {
 
   constructor(
     private authenticationService: AuthenticationService,
-    private cartService: CartService
+    private cartService: CartService,
+    private toastService: ToastService
   ) {}
 
   ngOnInit(): void {
@@ -43,13 +45,32 @@ export class LoginModalComponent implements OnInit {
         this.authenticationService.me().subscribe((responseMe) => {
           this.userConnected = responseMe;
           console.log('UserConnected:', this.userConnected);
+
+          this.showSuccess(this.userConnected.username);
         });
       },
-      (err) => console.error('Error: ', err)
+      (err) => {
+        console.error('Error: ', err);
+        this.showDanger();
+      }
     );
   }
 
   onSubmit() {
     console.log(this.model);
+  }
+
+  showSuccess(username: string) {
+    this.toastService.show(`Hello ${username}`, {
+      classname: 'bg-success text-light',
+      delay: 5000,
+    });
+  }
+
+  showDanger() {
+    this.toastService.show('La connexion a échouée', {
+      classname: 'bg-danger text-light',
+      delay: 5000,
+    });
   }
 }
