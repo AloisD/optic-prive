@@ -8,6 +8,7 @@ import { IProduct } from 'src/app/models/IProduct';
 })
 export class ProductService {
   private $url = 'https://localhost:8000/api';
+
   constructor(private http: HttpClient) {}
 
   getProducts(): Observable<IProduct> {
@@ -18,11 +19,12 @@ export class ProductService {
     return this.http.get<IProduct>(`${this.$url}/products/latest`);
   }
 
-  getProductsBySegment(): Observable<IProduct> {
+/*   getProductsBySegment(): Observable<IProduct> {
     return this.http.get<IProduct>(`${this.$url}/products/solaires`);
-  }
-
-/*   getProductsBySegment(segment_id: number): Observable<IProduct> {
-    return this.http.get<IProduct>(`${this.$url}/products/${$segment_id}`);
   } */
+
+  getProductsBySegment(segment_id: number): Observable<IProduct> {
+    console.log(`${this.$url}/products/${segment_id}`)
+    return this.http.get<IProduct>(`${this.$url}/products/${segment_id}`);
+  }
 }

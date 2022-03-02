@@ -9,6 +9,7 @@ import { ProductService } from 'src/app/services/product/product.service';
   styleUrls: ['./category-page.component.scss']
 })
 export class CategoryPageComponent implements OnInit {
+  segment_id!: number;
   products!: [IProduct];
 
   constructor(
@@ -17,7 +18,8 @@ export class CategoryPageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.productService.getProductsBySegment().subscribe((datas: any) => {
+    console.log(this.segment_id);
+    this.productService.getProductsBySegment(this.segment_id).subscribe((datas: any) => {
       this.products = datas['hydra:member'];
       this.products.forEach((product: any) => {
         Object.assign(product, { quantityOrdered: 0 });
@@ -27,6 +29,10 @@ export class CategoryPageComponent implements OnInit {
 
   addtocart(product: any) {
     this.cartService.addToCart(product);
+  }
+
+  getSegmentToDisplay(segment_id: number) {
+    this.segment_id = segment_id;
   }
 }
 

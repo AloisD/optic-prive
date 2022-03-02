@@ -39,11 +39,11 @@ use App\Controller\Api\ProductSegmentAction;
       'controller' => ProductLatestAction::class,
       'deserialize' => false
     ],
-    'product_solaires' => [
+    'product_segment' => [
       'normalization_context' => ['groups' => ['product_read']],
       'method' => 'GET',
       'pagination_enabled' =>  true,
-      'path' => '/products/solaires',
+      'path' => '/products/{segment_id}',
       'controller' => ProductSegmentAction::class,
       'deserialize' => false
     ],
