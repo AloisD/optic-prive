@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Controller\Api\MeAction;
+use App\Controller\Api\RegisterUserAction;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -17,6 +18,13 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ApiResource(
   collectionOperations: [
+    'register' => [
+      'pagination_enabled' => false,
+      'method' => 'POST',
+      'path' => '/users/register',
+      'controller' => RegisterUserAction::class,
+      'read' => false
+    ],
     'me' => [
       'pagination_enabled' => false,
       'method' => 'GET',
@@ -62,8 +70,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Timesta
 
   public function __construct()
   {
-      $this->businessUsers = new ArrayCollection();
-      $this->addresses = new ArrayCollection();
+    $this->businessUsers = new ArrayCollection();
+    $this->addresses = new ArrayCollection();
   }
 
   public function getId(): ?int
@@ -153,29 +161,29 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Timesta
    */
   public function getBusinessUsers(): Collection
   {
-      return $this->businessUsers;
+    return $this->businessUsers;
   }
 
   public function addBusinessUser(BusinessUser $businessUser): self
   {
-      if (!$this->businessUsers->contains($businessUser)) {
-          $this->businessUsers[] = $businessUser;
-          $businessUser->setUser($this);
-      }
+    if (!$this->businessUsers->contains($businessUser)) {
+      $this->businessUsers[] = $businessUser;
+      $businessUser->setUser($this);
+    }
 
-      return $this;
+    return $this;
   }
 
   public function removeBusinessUser(BusinessUser $businessUser): self
   {
-      if ($this->businessUsers->removeElement($businessUser)) {
-          // set the owning side to null (unless already changed)
-          if ($businessUser->getUser() === $this) {
-              $businessUser->setUser(null);
-          }
+    if ($this->businessUsers->removeElement($businessUser)) {
+      // set the owning side to null (unless already changed)
+      if ($businessUser->getUser() === $this) {
+        $businessUser->setUser(null);
       }
+    }
 
-      return $this;
+    return $this;
   }
 
   /**
@@ -183,29 +191,29 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Timesta
    */
   public function getAddresses(): Collection
   {
-      return $this->addresses;
+    return $this->addresses;
   }
 
   public function addAddress(Address $address): self
   {
-      if (!$this->addresses->contains($address)) {
-          $this->addresses[] = $address;
-          $address->setUser($this);
-      }
+    if (!$this->addresses->contains($address)) {
+      $this->addresses[] = $address;
+      $address->setUser($this);
+    }
 
-      return $this;
+    return $this;
   }
 
   public function removeAddress(Address $address): self
   {
-      if ($this->addresses->removeElement($address)) {
-          // set the owning side to null (unless already changed)
-          if ($address->getUser() === $this) {
-              $address->setUser(null);
-          }
+    if ($this->addresses->removeElement($address)) {
+      // set the owning side to null (unless already changed)
+      if ($address->getUser() === $this) {
+        $address->setUser(null);
       }
+    }
 
-      return $this;
+    return $this;
   }
 
   public function __toString()
