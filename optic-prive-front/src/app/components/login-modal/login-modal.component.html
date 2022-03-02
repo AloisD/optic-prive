@@ -146,8 +146,8 @@
             <div class="m- form-check">
               <input type="checkbox" class="form-check-input" id="check1" />
               <label class="form-check-label" for="check1"
-                >J'ai lu et j'accepte les conditions générales
-                d'utilisation</label
+                > <a [routerLink]="['conditions-generales']" target="_blanck" class="conditions"> J'ai lu et j'accepte les conditions générales
+                d'utilisation</a></label
               >
             </div>
             <div class="d-flex justify-content-center">
@@ -161,4 +161,3 @@
     </div>
   </div>
 </div>
-

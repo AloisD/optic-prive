@@ -6,7 +6,9 @@ import { ShippingPageComponent } from './pages/checkout/shipping-page/shipping-p
 import { SummaryOrderPageComponent } from './pages/checkout/summary-order-page/summary-order-page.component';
 import { ConceptPageComponent } from './pages/concept-page/concept-page.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
+import { LegalNoticePageComponent } from './pages/legal-notice-page/legal-notice-page.component';
 import { ProductPageComponent } from './pages/product-page/product-page.component';
+import { TermsOfSalesPageComponent } from './pages/terms-of-sales-page/terms-of-sales-page.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -15,8 +17,9 @@ const routes: Routes = [
   { path: 'connexion', component: LoginComponent },
   { path: 'produit/:id', component: ProductPageComponent },
   { path: 'livraison', component: ShippingPageComponent },
-  { path: 'concept', component: ConceptPageComponent }
-
+  { path: 'concept', component: ConceptPageComponent },
+  { path: 'mentions-legales', component: LegalNoticePageComponent },
+  { path: 'conditions-generales', component: TermsOfSalesPageComponent }
 ];
 
 @NgModule({
