@@ -4,6 +4,7 @@ import { CartPageComponent } from './pages/cart-page/cart-page.component';
 import { LoginComponent } from './pages/checkout/login/login.component';
 import { ShippingPageComponent } from './pages/checkout/shipping-page/shipping-page.component';
 import { SummaryOrderPageComponent } from './pages/checkout/summary-order-page/summary-order-page.component';
+import { ConceptPageComponent } from './pages/concept-page/concept-page.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { ProductPageComponent } from './pages/product-page/product-page.component';
 
@@ -13,7 +14,8 @@ const routes: Routes = [
   { path: 'recapitulatif', component: SummaryOrderPageComponent },
   { path: 'connexion', component: LoginComponent },
   { path: 'produit/:id', component: ProductPageComponent },
-  { path: 'livraison', component: ShippingPageComponent }
+  { path: 'livraison', component: ShippingPageComponent },
+  { path: 'concept', component: ConceptPageComponent }
 
 ];
 

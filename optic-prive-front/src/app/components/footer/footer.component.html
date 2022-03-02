@@ -5,9 +5,14 @@
         <div class="col-md-7">
           <ul class="nav flex-column">
             <li class="nav-item mb-2">
-              <a href="#" class="nav-link p-0 text-muted">{{ "Le concept" }}</a>
+              <a [routerLink]="['concept']" class="nav-link p-0 text-muted">{{ "Le concept" }}</a>
             </li>
             <li class="nav-item mb-2">
+              <a href="#" class="nav-link p-0 text-muted">{{
+                "Nous contacter"
+              }}</a>
+            </li>
+            <!-- <li class="nav-item mb-2">
               <a href="#" class="nav-link p-0 text-muted">F.A.Q</a>
             </li>
             <li class="nav-item mb-2">
@@ -17,16 +22,12 @@
               <a href="#" class="nav-link p-0 text-muted">{{
                 "Retours et échanges"
               }}</a>
-            </li>
+            </li> -->
           </ul>
         </div>
         <div class="col-md-4">
           <ul class="nav flex-column">
-            <li class="nav-item mb-2">
-              <a href="#" class="nav-link p-0 text-muted">{{
-                "Nous contacter"
-              }}</a>
-            </li>
+
             <li class="nav-item mb-2">
               <a href="#" class="nav-link p-0 text-muted">{{
                 "Mentions Légales"

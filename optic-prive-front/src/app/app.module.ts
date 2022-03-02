@@ -23,6 +23,7 @@ import { SummaryOrderPageComponent } from './pages/checkout/summary-order-page/s
 import { LoginComponent } from './pages/checkout/login/login.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastsContainer } from './components/toast/toasts-container.components';
+import { ConceptPageComponent } from './pages/concept-page/concept-page.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { ToastsContainer } from './components/toast/toasts-container.components'
     LoginComponent,
     ProductPageComponent,
     ToastsContainer,
+    ConceptPageComponent,
   ],
 
   imports: [
