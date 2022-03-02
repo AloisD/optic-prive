@@ -25,14 +25,16 @@
         <div class="col">
           <div class="card h-100">
             <div class="cart-relative">
-              <img
-                *ngIf="product.productImages.length"
-                src="https://localhost:8000/images/products/{{
-                  product.productImages[0].path
-                }}"
-                class="card-img-top"
-                alt="{{ product.reference }}"
-              />
+              <a [routerLink]="['produit', product.id]">
+                <img
+                  *ngIf="product.productImages.length"
+                  src="https://localhost:8000/images/products/{{
+                    product.productImages[0].path
+                  }}"
+                  class="card-img-top"
+                  alt="{{ product.reference }}"
+                />
+              </a>
               <p class="top-right" *ngIf="((product.retail_price - product.selling_price) * -100 / product.retail_price) > 0">+ {{ ((product.retail_price - product.selling_price) * -100 / product.retail_price).toFixed(0) }} %</p>
               <p class="top-right" *ngIf="((product.retail_price - product.selling_price) * -100 / product.retail_price) <= 0">- {{ ((product.retail_price - product.selling_price) * 100 / product.retail_price).toFixed(0) }} %</p>
               <button
@@ -44,8 +46,13 @@
               </button>
             </div>
             <div class="card-body">
-              <h5 class="card-title"> {{ product.name }} - {{ product.reference }} </h5>
-              <p class="card-text"><s>{{ product.retail_price }} €</s> {{ product.selling_price }} €</p>
+              <a [routerLink]="['produit', product.id]">
+                <h5 class="card-title"> {{ product.name }} </h5>
+
+              <p > (Ref : {{ product.reference }}) </p>
+              <span> <s>{{ product.retail_price }} €</s> </span>
+              <span class="selling_price"> {{ product.selling_price }} € </span>
+            </a>
             </div>
           </div>
         </div>

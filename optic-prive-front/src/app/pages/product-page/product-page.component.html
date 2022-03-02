@@ -42,21 +42,22 @@
 
     <div class="col-lg-5 col-md-5 col-10 container">
       <div class="mt-5 ms-4">
-        <div class="boxes category">SOLAIRES</div>
-        <div class="discount d-flex justify-content-center">- 10%</div>
+        <div class="boxes category"> !! SOLAIRES</div>
+        <div class="discount d-flex justify-content-center" *ngIf="((product.retail_price - product.selling_price) * -100 / product.retail_price) > 0"> + {{ ((product.retail_price - product.selling_price) * -100 / product.retail_price).toFixed(0) }} %</div>
+        <div class="discount d-flex justify-content-center" *ngIf="((product.retail_price - product.selling_price) * -100 / product.retail_price) <= 0">- {{ ((product.retail_price - product.selling_price) * 100 / product.retail_price).toFixed(0) }} %</div>
         <div class="boxes">
-          <h2>Hugo Boss</h2>
+          <h2> {{ product?.name }} </h2>
         </div>
         <div class="boxes">
-          <p class="reference">Ref : 33445565 6666</p>
-          <p class="reference">Vendu par : Quelqu'un</p>
+          <p class="reference">Ref : {{ product?.reference }}</p>
+          <p class="reference"> !! Vendu par : Quelqu'un</p>
 
         </div>
         <div class="boxes d-flex justify-content-between details">
           <div>
-            <p>Couleur : Noir</p>
+            <p>!! Couleur : </p>
             <p>Matériau : Métal</p>
-            <p>État : Neuf</p>
+            <p>État : {{ product?.state }}</p>
           </div>
           <div>
             <button class="modal-trigger" type="button" data-bs-toggle="modal" data-bs-target="#detailsModal">
@@ -64,8 +65,8 @@
           </div>
         </div>
         <div class="boxes mt-4">
-          <div class="retail-price">Prix magasin : 70 €</div>
-          <div class="selling-price">Prix Optic Privé : 40 €</div>
+          <div class="retail-price">Prix magasin : {{ product?.retail_price }} €</div>
+          <div class="selling-price">Prix Optic Privé : {{ product?.selling_price }} €</div>
         </div>
         <div class="button"><button class="btn btn-primary big-btn">AJOUTER AU PANIER</button></div>
       </div>
