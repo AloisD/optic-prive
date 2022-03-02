@@ -25,7 +25,6 @@ class UserCrudController extends AbstractCrudController
         yield IdField::new('id')->hideOnForm();
         yield EmailField::new('email');
         yield ArrayField::new('roles');//->setChoices(['administrateur' => 'ROLE_ADMIN', 'vendeur' => 'ROLE_PROFESSIONAL', 'client' => 'ROLE_CUSTOMER']);
-      /* yield FormField::addTab('Adresses'); */
       yield FormField::addPanel('Adresses')->setColumns(6);
         yield CollectionField::new('addresses')
           ->setEntryType(AddressType::class)
