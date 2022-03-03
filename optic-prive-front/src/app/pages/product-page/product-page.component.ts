@@ -24,6 +24,7 @@ export class ProductPageComponent implements OnInit {
 
     this.productService.getLatestProducts().subscribe((datas: any) => {
       this.products = datas['hydra:member'];
+      // console.log("Les produits####",this.products[0]);
       this.products.forEach((product: any) => {
         Object.assign(product, { quantityOrdered: 0 });
       });

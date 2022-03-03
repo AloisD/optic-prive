@@ -42,11 +42,13 @@
 
     <div class="col-lg-5 col-md-5 col-10 container">
       <div class="mt-5 ms-4">
-        <div class="boxes category"> !! SOLAIRES</div>
+        <pre>{{ product.color.name | json }}</pre>
+
+        <div class="boxes category"> {{ product.segment.name }} </div>
         <div class="discount d-flex justify-content-center" *ngIf="((product.retail_price - product.selling_price) * -100 / product.retail_price) > 0"> + {{ ((product.retail_price - product.selling_price) * -100 / product.retail_price).toFixed(0) }} %</div>
         <div class="discount d-flex justify-content-center" *ngIf="((product.retail_price - product.selling_price) * -100 / product.retail_price) <= 0">- {{ ((product.retail_price - product.selling_price) * 100 / product.retail_price).toFixed(0) }} %</div>
         <div class="boxes">
-          <h2> {{ product?.name }} </h2>
+          <h2> {{ product.brand.name }} </h2>
         </div>
         <div class="boxes">
           <p class="reference">Ref : {{ product?.reference }}</p>
@@ -55,7 +57,7 @@
         </div>
         <div class="boxes d-flex justify-content-between details">
           <div>
-            <p>!! Couleur : </p>
+            <p>Couleur : {{ product.color.name }} </p>
             <p>Matériau : Métal</p>
             <p>État : {{ product?.state }}</p>
           </div>

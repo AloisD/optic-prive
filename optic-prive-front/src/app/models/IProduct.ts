@@ -15,4 +15,13 @@ export interface IProduct {
   category: string;
   uv_protection: string;
   productImages: [any];
+  segment: {
+    name: string;
+  };
+  brand: {
+    name: string;
+  };
+  color: {
+    name: string;
+  }
 }
