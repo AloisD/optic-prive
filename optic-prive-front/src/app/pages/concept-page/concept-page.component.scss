@@ -1,0 +1,60 @@
+@use '../../../scss/custom' as *;
+
+img {
+  width: auto;
+  height: 250px;
+}
+
+.title {
+  background-color: $primary;
+  padding: 20px;
+
+  h2 {
+    color: $primary-contrast;
+    font-size: 25px;
+    font-weight: 300;
+    margin: 30px;
+  }
+}
+
+@media screen and (max-width: (1200px)) {
+  img {
+    width: auto;
+    height: 200px;
+  }
+
+  .title {
+    background-color: $primary;
+    padding: 15px;
+
+    h2 {
+      color: $primary-contrast;
+      font-size: 25px;
+      font-weight: 300;
+    }
+  }
+
+}
+
+@media screen and (max-width: (992px)) {
+  .top {
+    margin-top: 80px;
+  }
+}
+
+@media screen and (max-width: (576px)) {
+  img {
+    width: auto;
+    height: 100px;
+  }
+
+  .title {
+    padding: 15px;
+
+    h2 {
+      font-size: 15px;
+      font-weight: 300;
+      margin: 10px;
+    }
+  }
+}

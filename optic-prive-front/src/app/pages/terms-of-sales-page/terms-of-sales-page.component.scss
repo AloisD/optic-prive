@@ -1,0 +1,9 @@
+h2 {
+  text-align: center;
+}
+
+@media screen and (max-width: (992px)) {
+  h2 {
+    margin-top: 110px;
+  }
+}

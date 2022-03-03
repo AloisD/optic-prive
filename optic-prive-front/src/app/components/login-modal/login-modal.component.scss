@@ -7,6 +7,14 @@ $secondary-contrast : #56474A;
   display: block;
 }
 
+a:visited {
+  color: $secondary-contrast;
+}
+
+a {
+  color: black;
+}
+
 .container {
   width: auto;
 }
@@ -29,43 +37,6 @@ $secondary-contrast : #56474A;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
-}
-
-.part-rigth {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  div {
-    margin: 5px;
-  }
-
-  p {
-    color: black;
-    margin: 10px 0px;
-  }
-
-  a {
-    color: black;
-    text-decoration: none;
-    padding: 0px 20px;
-  }
-
-  button {
-    background: none;
-    border: none;
-  }
-
-  .cart-button {
-    position: relative;
-  }
-
-  .badge {
-    padding: 5.1px 8.5px;
-    right: -20%;
-    bottom: -20%;
-    font-size: 15px;
-  }
 }
 
 /* STYLE MODAL */
@@ -104,11 +75,7 @@ $secondary-contrast : #56474A;
       font-size: 20px;
       color: $secondary-contrast;
     }
-
-    a {
-      color: $secondary-contrast;
-    }
-
+    
     .form-group {
       margin: 15px 0px;
     }
