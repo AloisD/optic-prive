@@ -1,4 +1,3 @@
-
 <!-- Modal 1 -->
 <div
   class="modal fade"
@@ -22,11 +21,7 @@
         <div class="container-fluid">
           <div class="row justify-content-evenly login-box">
             <div class="col-md-6 blok">
-              <img
-                class="modal-img"
-                src="assets/uploads/montagne.jpg"
-                alt=""
-              />
+              <img class="modal-img" src="assets/uploads/montagne.jpg" alt="" />
             </div>
 
             <div class="col-md-6 blok">
@@ -106,52 +101,100 @@
           class="btn-close"
           data-bs-dismiss="modal"
           aria-label="Close"
+          #elemRegisterClose
         ></button>
       </div>
       <div class="modal-body">
         <div class="container justify-content-center m-5">
           <h2>Créer un compte</h2>
-          <form (ngSubmit)="onSubmit()">
+          <form
+            novalidate
+            (ngSubmit)="saveDatas(registerForm)"
+            #registerForm="ngForm"
+          >
             <div class="my-4">
               <input
-                name="userName"
                 type="text"
-                [(ngModel)]="model.userName"
+                name="username"
+                [(ngModel)]="model.username"
                 class="form-control"
                 placeholder="Pseudo"
-                required="required"
+                #usernameVar="ngModel"
+                required
+                minlength="3"
+                [ngClass]="{
+                  'is-invalid': usernameVar.touched && !usernameVar.valid
+                }"
               />
+              <div class="invalid-feedback">
+                <span *ngIf="usernameVar.errors">
+                  Entrez un pseudo, 3 caractères minimum
+                </span>
+              </div>
             </div>
+
             <div class="my-4">
               <input
-                name="email"
                 type="email"
+                name="email"
                 [(ngModel)]="model.email"
                 class="form-control"
                 placeholder="Email"
-                required="required"
+                #emailVar="ngModel"
+                required
+                email
+                [ngClass]="{
+                  'is-invalid': emailVar.touched && !emailVar.valid
+                }"
               />
+              <div class="invalid-feedback">
+                <span *ngIf="emailVar.errors"> Email non valide</span>
+              </div>
             </div>
             <div class="my-4">
               <input
-                name="password"
                 type="password"
+                name="password"
                 [(ngModel)]="model.password"
                 class="form-control"
                 placeholder="Mot de passe"
-                required="required"
+                #passwordVar="ngModel"
+                required
+                minlength="8"
+                [ngClass]="{
+                  'is-invalid': passwordVar.touched && !passwordVar.valid
+                }"
               />
-              <div class="form-text">8 caractères minimum</div>
+              <div class="invalid-feedback">
+                <span *ngIf="passwordVar.errors">
+                  Mot de passe invalide, 8 caractères minimum
+                </span>
+              </div>
             </div>
             <div class="m- form-check">
-              <input type="checkbox" class="form-check-input" id="check1" />
+              <input
+                type="checkbox"
+                [(ngModel)]="checkRules.rules"
+                name="rules"
+                class="form-check-input"
+                id="check1"
+                required
+                #checkRulesVar="ngModel"
+                [ngClass]="{
+                  'is-invalid': checkRulesVar.touched && !checkRulesVar.valid
+                }"
+              />
               <label class="form-check-label" for="check1"
                 >J'ai lu et j'accepte les conditions générales
                 d'utilisation</label
               >
             </div>
             <div class="d-flex justify-content-center">
-              <button type="submit" class="btn btn-primary big-btn m-4">
+              <button
+                type="submit"
+                [disabled]="!registerForm.valid"
+                class="btn btn-primary big-btn m-4"
+              >
                 Inscription
               </button>
             </div>
@@ -161,4 +204,3 @@
     </div>
   </div>
 </div>
-

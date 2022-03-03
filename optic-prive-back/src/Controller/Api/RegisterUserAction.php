@@ -31,7 +31,6 @@ final class RegisterUserAction extends AbstractController
     $data->setPassword($hash);
     $this->manager->persist($data);
     $this->manager->flush();
-    dd($data);
     return $data;
   }
 }

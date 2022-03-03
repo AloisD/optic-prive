@@ -38,7 +38,9 @@ export class AuthenticationService {
     });
   }
 
-  register(user: IUser) {
-    return this.http.post('https://localhost:8000/api/users/register', user);
+  register(user: any) {
+    return this.http.post('https://localhost:8000/api/users/register', user, {
+      withCredentials: true,
+    });
   }
 }
