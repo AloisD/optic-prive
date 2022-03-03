@@ -80,9 +80,33 @@ class AppFixtures extends Fixture
     //segment
     $segment = new Segment();
     $segment
-      ->setName($faker->word())
+      ->setName('solaires')
       ->setLogo($faker->imageUrl(640, 480, 'animals', true));
     $manager->persist($segment);
+
+    $segment2 = new Segment();
+    $segment2
+      ->setName('sport')
+      ->setLogo($faker->imageUrl(640, 480, 'animals', true));
+    $manager->persist($segment2);
+
+    $segment3 = new Segment();
+    $segment3
+      ->setName('lumiere_bleue')
+      ->setLogo($faker->imageUrl(640, 480, 'animals', true));
+    $manager->persist($segment3);
+
+    $segment4 = new Segment();
+    $segment4
+      ->setName('vintage')
+      ->setLogo($faker->imageUrl(640, 480, 'animals', true));
+    $manager->persist($segment4);
+
+    $segment5 = new Segment();
+    $segment5
+      ->setName('accessoires')
+      ->setLogo($faker->imageUrl(640, 480, 'animals', true));
+    $manager->persist($segment5);
 
     //lens_type
     $lensType = new LensType();

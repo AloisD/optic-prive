@@ -19,12 +19,7 @@ export class ProductService {
     return this.http.get<IProduct>(`${this.$url}/products/latest`);
   }
 
-/*   getProductsBySegment(): Observable<IProduct> {
-    return this.http.get<IProduct>(`${this.$url}/products/solaires`);
-  } */
-
-  getProductsBySegment(segment_id: number): Observable<IProduct> {
-    console.log(`${this.$url}/products/${segment_id}`)
-    return this.http.get<IProduct>(`${this.$url}/products/${segment_id}`);
+  getProductsBySegment(segment_name: string): Observable<IProduct> {
+    return this.http.get<IProduct>(`${this.$url}/products/${segment_name}`);
   }
 }

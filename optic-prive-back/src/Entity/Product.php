@@ -43,7 +43,7 @@ use App\Controller\Api\ProductSegmentAction;
       'normalization_context' => ['groups' => ['product_read']],
       'method' => 'GET',
       'pagination_enabled' =>  true,
-      'path' => '/products/{segment_id}',
+      'path' => '/products/{segment_name}',
       'controller' => ProductSegmentAction::class,
       'deserialize' => false
     ],

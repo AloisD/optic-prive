@@ -31,10 +31,6 @@ export class LoginModalComponent implements OnInit {
       }
       this.productsQuantity = this.cartService.getProductsQuantity();
     });
-
-    this.authenticationService
-      .products()
-      .subscribe((response) => console.log('Products: ', response));
   }
 
   login() {

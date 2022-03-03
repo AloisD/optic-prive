@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: 'connexion', component: LoginComponent },
   { path: 'produit', component: ProductPageComponent },
   { path: 'livraison', component: ShippingPageComponent },
-  { path: 'categorie', component: CategoryPageComponent },
+  { path: 'categorie/:name', component: CategoryPageComponent },
 ];
 
 @NgModule({
