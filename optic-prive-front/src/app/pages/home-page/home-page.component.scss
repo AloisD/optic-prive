@@ -8,11 +8,14 @@ $secondary-contrast: #56474A;
   top: 8px;
   right: 16px;
   color: white;
-  background-color: $primary;
+  background-color: $secondary-contrast;
   width: 60px;
+  padding: 5px;
   text-align: center;
 }
-
+h4 {
+  text-decoration-line: underline;
+}
 //BUTTON ADD TO CART
 .bi {
   padding: 10px 12px 10px 12px;
@@ -22,8 +25,8 @@ $secondary-contrast: #56474A;
 }
 
 .bi:hover {
-  background-color: $primary;
-  color: $secondary-clear;
+  // background-color: $secondary;
+  // color: $secondary-contrast;
   border: none;
 }
 
