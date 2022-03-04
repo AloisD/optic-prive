@@ -23,5 +23,17 @@ export interface IProduct {
   };
   color: {
     name: string;
-  }
+  };
+  material: {
+    name: string;
+  };
+  style: {
+    name: string;
+  };
+  shape: {
+    name: string;
+  };
+  lens_type: {
+    name: string;
+  };
 }

@@ -42,23 +42,30 @@
 
     <div class="col-lg-5 col-md-5 col-10 container">
       <div class="mt-5 ms-4">
-        <pre>{{ product.color.name | json }}</pre>
 
-        <div class="boxes category"> {{ product.segment.name }} </div>
+        <!-- Catégorie -->
+        <div class="boxes category">{{ product.segment.name }}</div>
+
+        <!-- % réduction -->
         <div class="discount d-flex justify-content-center" *ngIf="((product.retail_price - product.selling_price) * -100 / product.retail_price) > 0"> + {{ ((product.retail_price - product.selling_price) * -100 / product.retail_price).toFixed(0) }} %</div>
         <div class="discount d-flex justify-content-center" *ngIf="((product.retail_price - product.selling_price) * -100 / product.retail_price) <= 0">- {{ ((product.retail_price - product.selling_price) * 100 / product.retail_price).toFixed(0) }} %</div>
-        <div class="boxes">
-          <h2> {{ product.brand.name }} </h2>
-        </div>
-        <div class="boxes">
-          <p class="reference">Ref : {{ product?.reference }}</p>
-          <p class="reference"> !! Vendu par : Quelqu'un</p>
 
+        <!-- Marque -->
+        <div class="boxes">
+          <h2>{{ product.brand.name }}</h2>
         </div>
+
+        <div class="boxes">
+          <!-- Référence -->
+          <p class="reference">Ref : {{ product?.reference }}</p>
+          <!-- Vendeur -->
+          <p class="reference"> !! Vendu par : Quelqu'un !!</p>
+        </div>
+
         <div class="boxes d-flex justify-content-between details">
           <div>
-            <p>Couleur : {{ product.color.name }} </p>
-            <p>Matériau : Métal</p>
+            <p>Couleur : {{ product.color.name }}</p>
+            <p>Matériau : {{ product.material.name }}</p>
             <p>État : {{ product?.state }}</p>
           </div>
           <div>
@@ -92,10 +99,10 @@
             <span class="title">Catégorie</span><span> {{ product?.category }} </span>
           </div>
           <div>
-            <span class="title">Style</span><span>...</span>
+            <span class="title">Style</span><span>{{ product.style.name }}</span>
           </div>
           <div>
-            <span class="title">Forme</span><span>...</span>
+            <span class="title">Forme</span><span>{{ product.shape.name }}</span>
           </div>
           <div>
             <span class="title">Code couleur</span><span>{{ product?.color_code }}</span>
@@ -104,19 +111,19 @@
 
         <div class="mb-3">
           <div>
-            <span class="title">Taille des verres</span><span>...</span>
+            <span class="title">Taille des verres</span><span>{{ product?.eye_size }}</span>
           </div>
           <div>
-            <span class="title">Taille du pont</span><span>...</span>
+            <span class="title">Taille du pont</span><span>{{ product?.bridge_size }}</span>
           </div>
           <div>
-            <span class="title">Taille des branches</span><span>...</span>
+            <span class="title">Taille des branches</span><span>{{ product?.temple_length }}</span>
           </div>
         </div>
 
         <div>
           <div>
-            <span class="title">Type de verres</span><span>...</span>
+            <span class="title">Type de verres</span><span>{{ product.lens_type.name }}</span>
           </div>
           <div>
             <span class="title">Filtration UV</span><span>{{ product?.uv_protection }}</span>
