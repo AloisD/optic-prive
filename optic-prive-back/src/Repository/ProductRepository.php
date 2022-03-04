@@ -47,25 +47,4 @@ class ProductRepository extends ServiceEntityRepository
         ;
     }
     */
-
-  public function getLatestProducts(int $maxResult)
-  {
-    return $this->createQueryBuilder('p')
-      ->orderBy('p.createdAt', 'DESC')
-      ->setMaxResults($maxResult)
-      ->getQuery()
-      ->getResult();
-  }
-
-  public function getProductsBySegment(string $segment_name)
-  {
-    return $this->createQueryBuilder('p')
-      ->leftjoin('p.segment', 's', 'ON', 's.name = :val')
-      ->setParameter('val', $segment_name)
-      ->orderBy('p.createdAt', 'DESC')
-      ->setMaxResults(10)
-      ->getQuery()
-      ->getResult()
-    ;
-  }
 }
