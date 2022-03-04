@@ -19,6 +19,10 @@ class StripeController extends AbstractController
         dd($products);
         $stripe->products->create([
           'name' => 'Gold Special',
+          "metadata" => [
+            "reference" => "G34543",
+            "color_code" => "BFVDFGDF"
+          ]
         ]);
     }
 
@@ -79,15 +83,26 @@ class StripeController extends AbstractController
 
         $product = $stripe->products->create([
           'name' => 'Gold',
+          "metadata" => [
+            "reference" => "G34543",
+            "color_code" => "BFVDFGDF"
+          ],
         ]);
         // dd($product->id);
 
         $price = $stripe->prices->create([
-          'unit_amount' => 33333,
+          'unit_amount' => 30000,
           'currency' => 'eur',
           'product' => $product->id,
         ]);
         // dd($price->id);
+
+        $stripe->charges->create([
+          "amount" => 2000,
+          "currency" => "eur",
+          "source" => "tok_amex", // obtained with Stripe.js
+          "metadata" => ["order_id" => "6735"]
+        ]);
 
         $session = $stripe->checkout->sessions->create([
           'success_url' => 'https://example.com/success',

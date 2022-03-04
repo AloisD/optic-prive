@@ -10,6 +10,7 @@ use App\Entity\Product;
 use App\Entity\ProductImage;
 use App\Entity\Segment;
 use App\Entity\Shape;
+use App\Entity\ShippingOption;
 use App\Entity\Style;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
