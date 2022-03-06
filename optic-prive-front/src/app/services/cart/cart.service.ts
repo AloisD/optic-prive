@@ -1,20 +1,26 @@
 import { Injectable } from '@angular/core';
+import { IProduct } from 'src/app/models/IProduct';
 import { BehaviorSubject } from 'rxjs';
+
+
+export interface CartProduct extends IProduct {
+  quantityOrdered: number;
+}
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
-  public cartProducts: any[] = [];
-  public products = new BehaviorSubject<any>(null);
+  public cartProducts: CartProduct[] = [];
+  public products = new BehaviorSubject<CartProduct[]>([]);
 
   constructor() {
     const cartStorage = localStorage.getItem('cart');
     if (cartStorage) {
       this.products.next(JSON.parse(cartStorage));
-      this.cartProducts = JSON.parse(cartStorage);
     }
     this.products.subscribe((products) => {
+      this.cartProducts = products;
       localStorage.setItem('cart', JSON.stringify(products));
     });
   }
@@ -23,59 +29,59 @@ export class CartService {
     return this.products.asObservable();
   }
 
-  addToCart(product: any) {
+  addToCart(product: CartProduct) {
+    let newCartProducts: CartProduct[] = [];
     const currentIndex = this.cartProducts.findIndex((currentProduct) => {
       return currentProduct.id === product.id;
     });
     if (product.quantityOrdered >= product.quantity) return;
     if (currentIndex === -1) {
       product.quantityOrdered = 1;
-      this.cartProducts.push(product);
+      newCartProducts = [...this.cartProducts, product];
     } else {
-      this.cartProducts[currentIndex].quantityOrdered += 1;
+      newCartProducts = [...this.cartProducts];
+      newCartProducts[currentIndex].quantityOrdered += 1;
     }
-    this.products.next(this.cartProducts); //this.products.next([...this.cartProducts, product]); code écrit par Michel, ne pas supprimer sans explication de sa part
+    this.products.next(newCartProducts);
   }
 
-  removeFromCart(product: any) {
+  removeFromCart(product: CartProduct) {
     const currentIndex = this.cartProducts.findIndex((currentProduct) => {
       return currentProduct.id === product.id;
     });
+
     if (currentIndex === -1) {
       console.error('not in the cart');
-    } else {
-      if (this.cartProducts[currentIndex].quantityOrdered === 1) {
-        this.deleteCartProduct(product);
-        return;
-      } else {
-        this.cartProducts[currentIndex].quantityOrdered -= 1;
-      }
-      this.products.next(this.cartProducts);
+      return;
     }
+
+    if (this.cartProducts[currentIndex].quantityOrdered === 1) {
+      this.deleteCartProduct(product);
+      return;
+    }
+
+    let newCartProducts: CartProduct[] = [];
+    newCartProducts = [...this.cartProducts];
+    newCartProducts[currentIndex].quantityOrdered -= 1;
+    this.products.next(newCartProducts);
   }
 
   getTotalPrice(): number {
-    let grandTotal = 0;
-    this.cartProducts.map((product: any) => {
-      grandTotal += +product.selling_price * product.quantityOrdered;
-    });
-    return grandTotal;
+    return this.cartProducts.reduce((grandTotal, currentProduct) => {
+      return grandTotal + currentProduct.selling_price * currentProduct.quantityOrdered;
+    }, 0);
   }
 
   getProductsQuantity(): number {
-    let productsQuantity = 0;
-    if (this.cartProducts) {
-      this.cartProducts.map((product: any) => {
-        productsQuantity += +product.quantityOrdered;
-      });
-    }
-    return productsQuantity;
+    return this.cartProducts.reduce((productsQuantity, currentProduct) => {
+      return productsQuantity + currentProduct.quantityOrdered;
+    }, 0);
   }
 
-  deleteCartProduct(product: any) {
-    this.cartProducts = this.cartProducts.filter((currentProduct) => {
+  deleteCartProduct(product: CartProduct) {
+    const newCartProducts = this.cartProducts.filter((currentProduct) => {
       return currentProduct.id !== product.id;
     });
-    this.products.next(this.cartProducts);
+    this.products.next(newCartProducts);
   }
 }
