@@ -1,32 +1,60 @@
 $primary:#87A397;
 $secondary: #FBEADF;
 $secondary-clear: #F4FFFA;
+$secondary-contrast: #56474A;
 
 .top-right {
   position: absolute;
   top: 8px;
   right: 16px;
   color: white;
-  background-color: $primary;
+  background-color: $secondary-contrast;
   width: 60px;
+  padding: 5px;
   text-align: center;
 }
-
+h4 {
+  text-decoration-line: underline;
+}
 //BUTTON ADD TO CART
 .bi {
   padding: 10px 12px 10px 12px;
   border-radius: 50%;
-  background-color: $secondary;
-  font-size: 25px;
+  font-size: 22px;
+  border: solid 1px;
 }
 
 .bi:hover {
-  background-color: $primary;
-  color: $secondary-clear;
+  // background-color: $secondary;
+  // color: $secondary-contrast;
+  border: none;
 }
 
 .bi:active {
   background-color: white;
+}
+
+.card-body {
+  a {
+    text-decoration: none;
+    color: black;
+  }
+
+  h5 {
+    font-size: 20px;
+  }
+
+  p {
+    font-size: 15px;
+  }
+
+  .selling_price {
+    font-size: 18px;
+    border: solid 1px;
+    padding: 4px;
+    margin-left: 10px;
+  }
+
 }
 
 .recent-product {
@@ -43,10 +71,6 @@ $secondary-clear: #F4FFFA;
 
   h4 {
     font-size: 19px;
-  }
-
-  p {
-    font-size: 17px;
   }
 
   .cart-icon {

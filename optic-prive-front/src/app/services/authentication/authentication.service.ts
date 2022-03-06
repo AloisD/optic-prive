@@ -37,4 +37,10 @@ export class AuthenticationService {
       withCredentials: true,
     });
   }
+
+  register(user: any) {
+    return this.http.post('https://localhost:8000/api/users/register', user, {
+      withCredentials: true,
+    });
+  }
 }

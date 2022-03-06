@@ -22,4 +22,8 @@ export class ProductService {
   getProductsBySegment(segmentName: string | undefined): Observable<IProduct> {
     return this.http.get<IProduct>(`${this.$url}/segments/${segmentName}/products?page=1`); // remonte la première page, changer le numéro pour afficher une autre page
   }
+
+  getProduct(id:number): Observable<IProduct> {
+    return this.http.get<IProduct>(`${this.$url}/products/${id}`);
+  }
 }
