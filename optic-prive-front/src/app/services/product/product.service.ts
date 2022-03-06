@@ -16,10 +16,10 @@ export class ProductService {
   }
 
   getLatestProducts(): Observable<IProduct> {
-    return this.http.get<IProduct>(`${this.$url}/products?page=1&itemsPerPage=3&order%5BcreatedAt%5D=desc`);
+    return this.http.get<IProduct>(`${this.$url}/products?page=1&itemsPerPage=3&order%5BcreatedAt%5D=desc`); // on peut changer ici les paramètres de tri, d'ordre, de nombre d'items et de numéro de page
   }
 
-  getProductsBySegment(segment_name: string): Observable<IProduct> {
-    return this.http.get<IProduct>(`${this.$url}/segments/${segment_name}/products?page=1`);
+  getProductsBySegment(segmentName: string | undefined): Observable<IProduct> {
+    return this.http.get<IProduct>(`${this.$url}/segments/${segmentName}/products?page=1`); // remonte la première page, changer le numéro pour afficher une autre page
   }
 }
