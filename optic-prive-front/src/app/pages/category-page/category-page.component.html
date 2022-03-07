@@ -11,14 +11,15 @@
         <div class="card h-100">
           <div class="cart-relative">
             <a [routerLink]="['/produit', product.id]">
-            <img
-              *ngIf="product.productImages.length"
-              src="https://localhost:8000/images/products/{{
-                product.productImages[0].path
-              }}"
-              class="card-img-top"
-              alt="{{ product.reference }}"
-            /></a>
+              <img
+                *ngIf="product.productImages.length"
+                src="https://localhost:8000/images/products/{{
+                  product.productImages[0].path
+                }}"
+                class="card-img-top"
+                alt="{{ product.reference }}"
+              />
+            </a>
             <p class="top-right" *ngIf="((product.retail_price - product.selling_price) * -100 / product.retail_price) > 0">+ {{ ((product.retail_price - product.selling_price) * -100 / product.retail_price).toFixed(0) }} %</p>
             <p class="top-right" *ngIf="((product.retail_price - product.selling_price) * -100 / product.retail_price) <= 0">- {{ ((product.retail_price - product.selling_price) * 100 / product.retail_price).toFixed(0) }} %</p>
             <button
@@ -35,7 +36,7 @@
               <p > (Ref : {{ product.reference }}) </p>
               <span> <s> {{ product.retail_price }} € </s> </span>
               <span class="selling_price"> {{ product.selling_price }} € </span>
-              </a>
+            </a>
           </div>
         </div>
       </div>
