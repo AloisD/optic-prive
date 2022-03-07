@@ -27,17 +27,27 @@
               </div>
             </div>
           </div>
-          <div class="">
-            <select class="form-select" aria-label="Default select example">
+          <form>
+            <!-- <select class="form-select" aria-label="Default select example">
               <option selected *ngFor="let shippingOption of shippingOptions">{{shippingOption.name}}</option>
-            </select>
-            <div class="form-check" *ngFor="let shippingOption of shippingOptions">
-              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+            </select> -->
+            <div class="form-check form-group" *ngFor="let shippingOption of shippingOptions">
+              <input
+              class="form-check-input"
+              type="radio"
+              name="shippingOption"
+              id="shippingOption"
+              [value]="shippingOption.id"
+              (change)="changeShippingOption($event)"
+              [checked] = "shippingOption.id == cartService.getShippingPrice().id"
+              />
               <label class="form-check-label" for="flexRadioDefault1">
                 {{shippingOption.name}} : {{shippingOption.price}} €
               </label>
+
             </div>
-          </div>
+
+          </form>
           <div class="back-to-shop cursor" routerLink="/panier">&leftarrow; Précédent
           </div>
         </div>
@@ -51,11 +61,11 @@
           </div>
           <div class="row" style="padding: 3vh 0;">
             <div class="col bold">Livraison :</div>
-            <div class="col text-right">{{ shipping[0]}} € </div>
+            <div class="col text-right">{{ price }} € </div>
           </div>
           <div class="row" style="padding: 1vh 0;">
             <div class="col">TOTAL :</div>
-            <div class="col text-right">{{ grandTotal.toFixed(2) }} €</div>
+            <div class="col text-right">{{ (grandTotal + price).toFixed(2) }} €</div>
           </div>
           <button class="btn" routerLink="/recapitulatif">CONTINUER</button>
         </div>

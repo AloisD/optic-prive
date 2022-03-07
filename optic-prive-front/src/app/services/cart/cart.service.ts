@@ -7,6 +7,11 @@ import { BehaviorSubject } from 'rxjs';
 export class CartService {
   public cartProducts: any[] = [];
   public products = new BehaviorSubject<any>(null);
+  private price: number = 0;
+  public priceShipping = {
+    id:0,
+    price:0
+  };
 
   constructor() {
     const cartStorage = localStorage.getItem('cart');
@@ -77,5 +82,23 @@ export class CartService {
       return currentProduct.id !== product.id;
     });
     this.products.next(this.cartProducts);
+  }
+
+  setPrice (value: number) {
+    this.price = value
+  }
+
+  getPrice () {
+    return this.price;
+  }
+
+  setShippingPrice(value: any) {
+    this.priceShipping.id = value.id;
+    this.priceShipping.price = value.price;
+    localStorage.setItem('shipping-price', JSON.stringify(this.priceShipping));
+  }
+
+  getShippingPrice() {
+    return this.priceShipping;
   }
 }

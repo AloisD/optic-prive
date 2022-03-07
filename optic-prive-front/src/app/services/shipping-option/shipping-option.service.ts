@@ -7,7 +7,10 @@ import { IShippingOption } from 'src/app/models/IShippingOption';
   providedIn: 'root'
 })
 export class ShippingOptionService {
+
+  public shippingPrice :number = 0;
   private $url = 'https://localhost:8000/api';
+
   constructor(private http: HttpClient) {}
 
   getShippingOptions(): Observable<IShippingOption> {
