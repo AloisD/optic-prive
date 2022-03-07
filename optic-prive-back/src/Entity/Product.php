@@ -36,6 +36,13 @@ use App\Controller\Api\ProductSegmentAction;
     ],
     "post",
   ],
+  subresourceOperations: [
+    'api_segments_products_get_subresource' => [
+      'normalization_context' => [
+        'groups' => ['product_read']
+      ]
+    ],
+  ],
   itemOperations: [
     'get' => [
       'normalization_context' => ['groups' => ['product_details_read']],

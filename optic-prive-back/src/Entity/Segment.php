@@ -14,7 +14,11 @@ use Knp\DoctrineBehaviors\Model\Timestampable\TimestampableTrait;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: SegmentRepository::class)]
-#[ApiResource]
+#[ApiResource(
+  normalizationContext: [
+    'groups' => ['product_read']
+  ]
+)]
 class Segment implements TimestampableInterface
 {
   use TimestampableTrait;
