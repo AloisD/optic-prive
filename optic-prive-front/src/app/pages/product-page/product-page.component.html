@@ -44,7 +44,7 @@
       <div class="mt-5 ms-4">
 
         <!-- Catégorie -->
-        <div class="boxes category">{{ product.segment.name }}</div>
+        <div class="boxes category"> {{ product.segment.name }} </div>
 
         <!-- % réduction -->
         <div class="discount d-flex justify-content-center" *ngIf="((product.retail_price - product.selling_price) * -100 / product.retail_price) > 0"> + {{ ((product.retail_price - product.selling_price) * -100 / product.retail_price).toFixed(0) }} %</div>
@@ -52,7 +52,7 @@
 
         <!-- Marque -->
         <div class="boxes capitalize">
-          <h2>{{ product.brand.name }}</h2>
+          <h2> {{ product.brand.name }} </h2>
         </div>
 
         <div class="boxes">
@@ -77,7 +77,7 @@
           <div class="retail-price">Prix magasin : {{ product?.retail_price }} €</div>
           <div class="selling-price">Prix Optic Privé : {{ product?.selling_price }} €</div>
         </div>
-        <div class="button"><button class="btn btn-primary big-btn">AJOUTER AU PANIER</button></div>
+        <div class="button"><button class="btn btn-primary big-btn" (click)="addtocart(product)">AJOUTER AU PANIER</button></div>
       </div>
     </div>
 
@@ -99,34 +99,34 @@
             <span class="title">Catégorie</span><span class="capitalize"> {{ product?.category }} </span>
           </div>
           <div>
-            <span class="title">Style</span><span class="capitalize">{{ product.style.name }}</span>
+            <span class="title">Style</span><span class="capitalize"> {{ product.style.name }} </span>
           </div>
           <div>
-            <span class="title">Forme</span><span class="capitalize">{{ product.shape.name }}</span>
+            <span class="title">Forme</span><span class="capitalize"> {{ product.shape.name }} </span>
           </div>
           <div>
-            <span class="title">Code couleur</span><span class="capitalize">{{ product?.color_code }}</span>
+            <span class="title">Code couleur</span><span class="capitalize"> {{ product?.color_code }} </span>
           </div>
         </div>
 
         <div class="mb-3">
           <div>
-            <span class="title">Taille des verres</span><span>{{ product?.eye_size }}</span>
+            <span class="title">Taille des verres</span><span> {{ product?.eye_size }} </span>
           </div>
           <div>
-            <span class="title">Taille du pont</span><span>{{ product?.bridge_size }}</span>
+            <span class="title">Taille du pont</span><span> {{ product?.bridge_size }} </span>
           </div>
           <div>
-            <span class="title">Taille des branches</span><span>{{ product?.temple_length }}</span>
+            <span class="title">Taille des branches</span><span> {{ product?.temple_length }} </span>
           </div>
         </div>
 
         <div>
           <div>
-            <span class="title">Type de verres</span><span class="capitalize">{{ product.lens_type.name }}</span>
+            <span class="title">Type de verres</span><span class="capitalize"> {{ product.lens_type.name }} </span>
           </div>
           <div>
-            <span class="title">Filtration UV</span><span class="capitalize">{{ product?.uv_protection }}</span>
+            <span class="title">Filtration UV</span><span class="capitalize"> {{ product?.uv_protection }} </span>
           </div>
         </div>
 
@@ -138,5 +138,3 @@
     </div>
   </div>
 </div>
-
-

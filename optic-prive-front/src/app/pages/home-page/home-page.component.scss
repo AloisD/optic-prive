@@ -31,7 +31,8 @@ h4 {
 }
 
 .bi:active {
-  background-color: white;
+  background-color: $secondary-contrast;
+  color: $secondary;
 }
 
 .card-body {

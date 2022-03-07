@@ -1,15 +1,16 @@
 <app-header class="sticky-top"></app-header>
 <app-categories></app-categories>
-
+<app-logo></app-logo>
 <div class="container recent-product">
   <div class="news">
-    <h4>{{ segmentName }}</h4>
+    <h4> {{ segmentTitle }} </h4>
   </div>
   <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" style="list-style: none">
     <li *ngFor="let product of products">
       <div class="col">
         <div class="card h-100">
           <div class="cart-relative">
+            <a [routerLink]="['/produit', product.id]">
             <img
               *ngIf="product.productImages.length"
               src="https://localhost:8000/images/products/{{
@@ -17,7 +18,7 @@
               }}"
               class="card-img-top"
               alt="{{ product.reference }}"
-            />
+            /></a>
             <p class="top-right" *ngIf="((product.retail_price - product.selling_price) * -100 / product.retail_price) > 0">+ {{ ((product.retail_price - product.selling_price) * -100 / product.retail_price).toFixed(0) }} %</p>
             <p class="top-right" *ngIf="((product.retail_price - product.selling_price) * -100 / product.retail_price) <= 0">- {{ ((product.retail_price - product.selling_price) * 100 / product.retail_price).toFixed(0) }} %</p>
             <button
@@ -29,8 +30,12 @@
             </button>
           </div>
           <div class="card-body">
-            <h5 class="card-title"> {{ product.name }} - {{ product.reference }} </h5>
-            <p class="card-text"><s>{{ product.retail_price }} €</s> {{ product.selling_price }} €</p>
+            <a [routerLink]="['/produit', product.id]">
+              <h5 class="card-title"> {{ product.name }} </h5>
+              <p > (Ref : {{ product.reference }}) </p>
+              <span> <s> {{ product.retail_price }} € </s> </span>
+              <span class="selling_price"> {{ product.selling_price }} € </span>
+              </a>
           </div>
         </div>
       </div>
