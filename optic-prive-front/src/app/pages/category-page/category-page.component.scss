@@ -1,0 +1,96 @@
+@use '../../../scss/custom' as *;
+
+.top-right {
+  position: absolute;
+  top: 8px;
+  right: 16px;
+  color: white;
+  background-color: $secondary-contrast;
+  width: 60px;
+  padding: 5px;
+  text-align: center;
+}
+
+h4 {
+  text-decoration-line: underline;
+}
+
+//BUTTON ADD TO CART
+.bi {
+  padding: 10px 12px 10px 12px;
+  border-radius: 50%;
+  font-size: 22px;
+  border: solid 1px;
+}
+
+.bi:hover {
+  // background-color: $secondary;
+  // color: $secondary-contrast;
+  border: none;
+}
+
+.bi:active {
+  background-color: $secondary-contrast;
+  color: $secondary;
+}
+
+.card-body {
+  a {
+    text-decoration: none;
+    color: black;
+  }
+
+  h5 {
+    font-size: 20px;
+  }
+
+  p {
+    font-size: 15px;
+  }
+
+  .selling_price {
+    font-size: 18px;
+    border: solid 1px;
+    padding: 4px;
+    margin-left: 10px;
+  }
+}
+
+.recent-product {
+
+  .card {
+    border:none;
+    padding-bottom: 3em;
+  }
+
+  img {
+    border-radius: 10px;
+    object-fit: cover;
+    }
+
+  h4 {
+    font-size: 19px;
+  }
+
+  .cart-icon {
+    position: absolute;
+    border-radius: 50%;
+    right: 20px;
+    bottom: 23px;
+    color: #56474A;
+  }
+
+  .cart-relative{
+    position: relative;
+  }
+
+  .news {
+    padding-top: 2em;
+    padding-bottom: 1.1em;
+    text-transform: uppercase;
+  }
+
+  .card-title::first-letter {
+    text-transform: uppercase;
+  }
+}

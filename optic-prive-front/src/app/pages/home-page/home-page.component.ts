@@ -13,7 +13,7 @@ export class HomePageComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
-    private cartService: CartService
+    private cartService: CartService,
   ) {}
   ngOnInit(): void {
     this.productService.getLatestProducts().subscribe((datas: any) => {

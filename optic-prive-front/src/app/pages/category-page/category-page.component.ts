@@ -12,7 +12,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 export class CategoryPageComponent implements OnInit {
   products!: [IProduct];
   segmentName: string | undefined;
-
+  segmentTitle!: string;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -23,6 +23,24 @@ export class CategoryPageComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params: Params) => {
       this.segmentName = params['name'];
+      switch(this.segmentName) {
+        case 'solaires':
+          this.segmentTitle = 'Solaires';
+          break;
+        case 'sport':
+          this.segmentTitle = 'Sport';
+          break;
+        case 'lumiere_bleue':
+          this.segmentTitle = 'Lumière bleue';
+          break;
+        case 'vintage':
+          this.segmentTitle = 'Vintage';
+          break;
+        case 'accessoires':
+          this.segmentTitle = 'Accessoires';
+          break;
+      }
+
       this.productService.getProductsBySegment(this.segmentName).subscribe((datas: any) => {
         this.products = datas['hydra:member'];
         this.products.forEach((product: any) => {
