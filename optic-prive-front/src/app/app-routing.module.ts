@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CartPageComponent } from './pages/cart-page/cart-page.component';
+import { CategoryPageComponent } from './pages/category-page/category-page.component';
 import { LoginComponent } from './pages/checkout/login/login.component';
 import { ShippingPageComponent } from './pages/checkout/shipping-page/shipping-page.component';
 import { SummaryOrderPageComponent } from './pages/checkout/summary-order-page/summary-order-page.component';
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'panier', component: CartPageComponent },
   { path: 'recapitulatif', component: SummaryOrderPageComponent },
   { path: 'connexion', component: LoginComponent },
+  { path: 'categorie/:name', component: CategoryPageComponent },
   { path: 'produit/:id', component: ProductPageComponent },
   { path: 'livraison', component: ShippingPageComponent },
   { path: 'concept', component: ConceptPageComponent },

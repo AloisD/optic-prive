@@ -21,11 +21,17 @@ import { ProductPageComponent } from './pages/product-page/product-page.componen
 import { LogoComponent } from './components/logo/logo.component';
 import { SummaryOrderPageComponent } from './pages/checkout/summary-order-page/summary-order-page.component';
 import { LoginComponent } from './pages/checkout/login/login.component';
+import { CategoryPageComponent } from './pages/category-page/category-page.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastsContainer } from './components/toast/toasts-container.components';
 import { ConceptPageComponent } from './pages/concept-page/concept-page.component';
 import { LegalNoticePageComponent } from './pages/legal-notice-page/legal-notice-page.component';
 import { TermsOfSalesPageComponent } from './pages/terms-of-sales-page/terms-of-sales-page.component';
+
+
+export function createTranslateLoader(httpClient: HttpClient) {
+  return new TranslateHttpLoader(httpClient, './assets/i18n/','.json')
+}
 
 @NgModule({
   declarations: [
@@ -44,6 +50,7 @@ import { TermsOfSalesPageComponent } from './pages/terms-of-sales-page/terms-of-
     SummaryOrderPageComponent,
     LoginComponent,
     ProductPageComponent,
+    CategoryPageComponent
     ToastsContainer,
     ConceptPageComponent,
     LegalNoticePageComponent,

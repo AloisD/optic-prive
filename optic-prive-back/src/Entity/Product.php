@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiFilter;
 use App\Entity\Brand;
 use App\Entity\Shape;
 use App\Entity\Style;
@@ -14,6 +15,8 @@ use App\Repository\ProductRepository;
 use App\Controller\Api\ProductImageAction;
 use Doctrine\Common\Collections\Collection;
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Knp\DoctrineBehaviors\Model\Sluggable\SluggableTrait;
@@ -22,22 +25,16 @@ use Knp\DoctrineBehaviors\Contract\Entity\TimestampableInterface;
 use Knp\DoctrineBehaviors\Model\Timestampable\TimestampableTrait;
 use App\Controller\Api;
 use App\Controller\Api\ProductLatestAction;
+use App\Controller\Api\ProductSegmentAction;
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
 #[ApiResource(
+  paginationClientItemsPerPage: true,
   collectionOperations: [
     'get' => [
       'normalization_context' => ['groups' => ['product_read']],
     ],
     "post",
-    'product_latest' => [
-      'normalization_context' => ['groups' => ['product_read']],
-      'method' => 'GET',
-      'pagination_enabled' =>  false,
-      'path' => '/products/latest',
-      'controller' => ProductLatestAction::class,
-      'deserialize' => false
-    ],
   ],
   itemOperations: [
     'get' => [
@@ -70,6 +67,8 @@ use App\Controller\Api\ProductLatestAction;
     ]
   ],
 )]
+#[ApiFilter(SearchFilter::class, properties: [ 'name' => 'ipartial', 'segment' => 'exact'])]
+#[ApiFilter(OrderFilter::class, properties: ['createdAt'])]
 class Product implements SluggableInterface, TimestampableInterface
 {
   use SluggableTrait;
