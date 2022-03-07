@@ -138,32 +138,32 @@ class Product implements SluggableInterface, TimestampableInterface
 
   #[ORM\ManyToOne(targetEntity: Shape::class, inversedBy: 'products')]
   #[ORM\JoinColumn(nullable: false)]
-  #[Groups(["product_details_read"])]
+  #[Groups(["product_details_read", "product_read"])]
   private $shape;
 
   #[ORM\ManyToOne(targetEntity: Segment::class, inversedBy: 'products')]
   #[ORM\JoinColumn(nullable: false)]
-  #[Groups(["product_details_read"])]
+  #[Groups(["product_details_read", "product_read"])]
   private $segment;
 
   #[ORM\ManyToOne(targetEntity: LensType::class, inversedBy: 'products')]
   #[ORM\JoinColumn(nullable: false)]
-  #[Groups(["product_details_read"])]
+  #[Groups(["product_details_read", "product_read"])]
   private $lens_type;
 
   #[ORM\ManyToOne(targetEntity: Style::class, inversedBy: 'products')]
   #[ORM\JoinColumn(nullable: false)]
-  #[Groups(["product_details_read"])]
+  #[Groups(["product_details_read", "product_read"])]
   private $style;
 
   #[ORM\ManyToOne(targetEntity: Color::class, inversedBy: 'products')]
   #[ORM\JoinColumn(nullable: false)]
-  #[Groups(["product_details_read"])]
+  #[Groups(["product_details_read", "product_read"])]
   private $color;
 
   #[ORM\ManyToOne(targetEntity: Material::class, inversedBy: 'products')]
   #[ORM\JoinColumn(nullable: false)]
-  #[Groups(["product_details_read"])]
+  #[Groups(["product_details_read", "product_read"])]
   private $material;
 
   #[ORM\OneToMany(mappedBy: 'product', targetEntity: ProductImage::class, cascade: ['persist'], orphanRemoval: true)]
