@@ -23,15 +23,12 @@ export class CategoryPageComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params: Params) => {
       this.segmentName = params['name'];
-      console.log('name :: ', this.segmentName);
-
       this.productService.getProductsBySegment(this.segmentName).subscribe((datas: any) => {
         this.products = datas['hydra:member'];
         this.products.forEach((product: any) => {
           Object.assign(product, { quantityOrdered: 0 });
        });
       });
-
     });
   }
 
