@@ -5,8 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
-//import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-//import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { BannerComponent } from './components/banner/banner.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
@@ -28,11 +26,6 @@ import { ConceptPageComponent } from './pages/concept-page/concept-page.componen
 import { LegalNoticePageComponent } from './pages/legal-notice-page/legal-notice-page.component';
 import { TermsOfSalesPageComponent } from './pages/terms-of-sales-page/terms-of-sales-page.component';
 
-
-export function createTranslateLoader(httpClient: HttpClient) {
-  return new TranslateHttpLoader(httpClient, './assets/i18n/','.json')
-}
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,7 +43,7 @@ export function createTranslateLoader(httpClient: HttpClient) {
     SummaryOrderPageComponent,
     LoginComponent,
     ProductPageComponent,
-    CategoryPageComponent
+    CategoryPageComponent,
     ToastsContainer,
     ConceptPageComponent,
     LegalNoticePageComponent,
