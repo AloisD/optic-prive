@@ -1,7 +1,7 @@
 <app-header class="sticky-top"></app-header>
 <app-categories></app-categories>
 
-<div class="container mb-5">
+<div class="container mb-5" *ngIf="product">
   <div class="row">
 
     <div class="col col-lg-2 mt-5">
@@ -85,7 +85,7 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="detailsModalLabel" aria-hidden="true">
+<div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="detailsModalLabel" aria-hidden="true" *ngIf="product">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">

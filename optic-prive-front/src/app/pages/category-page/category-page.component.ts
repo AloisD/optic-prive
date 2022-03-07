@@ -40,6 +40,7 @@ export class CategoryPageComponent implements OnInit {
           this.segmentTitle = 'Accessoires';
           break;
       }
+
       this.productService.getProductsBySegment(this.segmentName).subscribe((datas: any) => {
         this.products = datas['hydra:member'];
         this.products.forEach((product: any) => {

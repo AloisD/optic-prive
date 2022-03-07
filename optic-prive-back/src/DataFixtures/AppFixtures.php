@@ -2,14 +2,17 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Address;
 use App\Entity\Brand;
 use App\Entity\Color;
 use App\Entity\LensType;
 use App\Entity\Material;
+use App\Entity\Order;
 use App\Entity\Product;
 use App\Entity\ProductImage;
 use App\Entity\Segment;
 use App\Entity\Shape;
+use App\Entity\ShippingOption;
 use App\Entity\Style;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -150,6 +153,12 @@ class AppFixtures extends Fixture
       ->setPath("hugo-boss-boss-1131-s-003ir2.jpg");
     $manager->persist($productImage2);
 
+    //shipping
+    $shippingOption = new ShippingOption;
+    $shippingOption
+      ->setName("livraisson express")
+      ->setPrice(5);
+    $manager->persist($shippingOption);
 
     $product
       ->setBrand($brand)
@@ -216,6 +225,39 @@ class AppFixtures extends Fixture
       $manager->persist($user);
       $manager->flush();
     }
+
+    //invoicing_address
+    $invoicingAddress = new Address;
+    $invoicingAddress
+      ->setName("112 avenue Charles de Gaulle")
+      ->setRecipient("345 rue Anatole France")
+      ->setCountry("France")
+      ->setCity("Neuilly-sur-Seine")
+      ->setUser($user);
+    $manager->persist($invoicingAddress);
+
+    //delivery_address
+    $deliveryAddress = new Address;
+    $deliveryAddress
+      ->setName("345 rue Anatole France")
+      ->setRecipient("112 avenue Charles de Gaulle")
+      ->setCountry("France")
+      ->setCity("Neuilly-sur-Seine")
+      ->setUser($user);
+    $manager->persist($deliveryAddress);
+
+    //orders
+    $order = new Order();
+    $order
+      ->setInvoicingAddress($invoicingAddress)
+      ->setDeliveryAddress($deliveryAddress)
+      ->setShipping($shippingOption);
+
+    $this->getDataOrder($order);
+
+    $manager->persist($order);
+
+    $manager->flush();
   }
 
   private function getDataProduct(Product $product, $faker)
@@ -240,6 +282,12 @@ class AppFixtures extends Fixture
 
     $templeLength = $this->getTempleLengthRandom($faker);
     $product->setTempleLength($templeLength);
+  }
+
+  private function getDataOrder(Order $order)
+  {
+    $orderStatus = $this->getOrderStatus();
+    $order->setOrderStatus($orderStatus);
   }
 
 
@@ -288,4 +336,14 @@ class AppFixtures extends Fixture
   }
 
   /**END  Product************************************************************************* */
+
+  /** Order *****************************************************************************/
+
+  private function getOrderStatus(): string
+  {
+    $items = ['orderCancelled','orderDelivered','orderInTransit','orderPaymentDue','orderPickupAvailable','orderProblem','orderProcessing','orderReturned'];
+    return $items[random_int(0, 7)];
+  }
+
+  /**END  Order************************************************************************* */
 }
