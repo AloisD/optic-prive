@@ -2,7 +2,9 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 use App\Repository\SegmentRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -20,16 +22,19 @@ class Segment implements TimestampableInterface
   #[ORM\Id]
   #[ORM\GeneratedValue]
   #[ORM\Column(type: 'integer')]
+  #[ApiProperty(identifier: false)]
   private $id;
 
   #[ORM\Column(type: 'string', length: 255)]
   #[Groups(["product_details_read", "product_read"])]
+  #[ApiProperty(identifier: true)]
   private $name;
 
   #[ORM\Column(type: 'string', length: 255, nullable: true)]
   private $logo;
 
   #[ORM\OneToMany(mappedBy: 'segment', targetEntity: Product::class)]
+  #[ApiSubresource()]
   private $products;
 
   public function __construct()
