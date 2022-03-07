@@ -14,6 +14,7 @@
           class="btn-close"
           data-bs-dismiss="modal"
           aria-label="Close"
+          #elemLoginClose
         ></button>
       </div>
 
@@ -27,7 +28,11 @@
             <div class="col-md-6 blok">
               <div class="modal-client">
                 <p>DÉJÀ CLIENT ?</p>
-                <form (ngSubmit)="onSubmit()" method="post">
+                <form
+                  novalidate
+                  (ngSubmit)="login(loginForm)"
+                  #loginForm="ngForm"
+                >
                   <div class="form-group">
                     <input
                       name="email"
@@ -35,8 +40,16 @@
                       [(ngModel)]="user.email"
                       class="form-control"
                       placeholder="Email"
+                      #emailVar="ngModel"
                       required="required"
+                      email
+                      [ngClass]="{
+                        'is-invalid': emailVar.touched && !emailVar.valid
+                      }"
                     />
+                    <div class="invalid-feedback">
+                      <span *ngIf="emailVar.errors"> Email non valide</span>
+                    </div>
                   </div>
                   <div class="form-group">
                     <input
@@ -45,13 +58,22 @@
                       [(ngModel)]="user.password"
                       class="form-control"
                       placeholder="Mot de passe"
-                      required="required"
+                      required
+                      #passwordVar="ngModel"
+                      [ngClass]="{
+                        'is-invalid': passwordVar.touched && !passwordVar.valid
+                      }"
                     />
+                    <div class="invalid-feedback">
+                      <span *ngIf="passwordVar.errors">
+                        Mot de passe invalide
+                      </span>
+                    </div>
                   </div>
                   <div class="form-group">
                     <button
                       type="submit"
-                      (click)="login()"
+                      [disabled]="!loginForm.valid"
                       class="btn btn-primary btn-block big-btn"
                     >
                       Connexion
@@ -140,15 +162,15 @@
                 [(ngModel)]="model.email"
                 class="form-control"
                 placeholder="Email"
-                #emailVar="ngModel"
+                #emailLoginVar="ngModel"
                 required
                 email
                 [ngClass]="{
-                  'is-invalid': emailVar.touched && !emailVar.valid
+                  'is-invalid': emailLoginVar.touched && !emailLoginVar.valid
                 }"
               />
               <div class="invalid-feedback">
-                <span *ngIf="emailVar.errors"> Email non valide</span>
+                <span *ngIf="emailLoginVar.errors"> Email non valide</span>
               </div>
             </div>
             <div class="my-4">
@@ -158,15 +180,16 @@
                 [(ngModel)]="model.password"
                 class="form-control"
                 placeholder="Mot de passe"
-                #passwordVar="ngModel"
+                #passwordLoginVar="ngModel"
                 required
                 minlength="8"
                 [ngClass]="{
-                  'is-invalid': passwordVar.touched && !passwordVar.valid
+                  'is-invalid':
+                    passwordLoginVar.touched && !passwordLoginVar.valid
                 }"
               />
               <div class="invalid-feedback">
-                <span *ngIf="passwordVar.errors">
+                <span *ngIf="passwordLoginVar.errors">
                   Mot de passe invalide, 8 caractères minimum
                 </span>
               </div>
@@ -184,9 +207,14 @@
                   'is-invalid': checkRulesVar.touched && !checkRulesVar.valid
                 }"
               />
-              <label class="form-check-label" for="check1"
-                > <a [routerLink]="['conditions-generales']" target="_blanck" class="conditions"> J'ai lu et j'accepte les conditions générales
-                d'utilisation</a></label
+              <label class="form-check-label" for="check1">
+                <a
+                  [routerLink]="['conditions-generales']"
+                  target="_blanck"
+                  class="conditions"
+                >
+                  J'ai lu et j'accepte les conditions générales d'utilisation</a
+                ></label
               >
             </div>
             <div class="d-flex justify-content-center">

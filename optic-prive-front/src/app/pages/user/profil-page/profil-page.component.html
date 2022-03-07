@@ -1,0 +1,75 @@
+<app-banner></app-banner>
+<app-header class="sticky-top"></app-header>
+<app-categories></app-categories>
+<div class="container mb-5">
+  <div class="row">
+    <div class="col-md-8 mx-auto">
+      <div class="list-group list-group-flush">
+        <li class="list-group-item active text-center">
+          Vos informations <strong>{{ userFromBDD?.username }}</strong>
+        </li>
+        <li class="list-group-item">
+          <div *ngIf="userFromBDD" class="row">
+            <div class="col-md-6">
+              <form>
+                <div class="mb-3">
+                  <label for="username" class="form-label">Pseudo</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="username"
+                    name="username"
+                    placeholder="pseudo"
+                    [(ngModel)]="userFromBDD.username"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    name="email"
+                    placeholder="email"
+                    [(ngModel)]="userFromBDD.email"
+                  />
+                </div>
+                <div>
+                  <button type="button" class="btn btn-primary">
+                    Mise à jour
+                  </button>
+                </div>
+              </form>
+            </div>
+            <div class="col-md-6">
+              <div class="mb-3">
+                <label for="createdAt" class="form-label">Compte crée le</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="createdAt"
+                  name="createdAt"
+                  value="{{ userFromBDD.createdAt | date: 'dd/MM/yyyy' }}"
+                  disabled
+                />
+              </div>
+              <div class="mb-3">
+                <label for="updatedAt" class="form-label"
+                  >Dernière modification:</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="updatedAt"
+                  name="updatedAt"
+                  value="{{ userFromBDD.updatedAt | date: 'dd/MM/yyyy' }}"
+                  disabled
+                />
+              </div>
+            </div>
+          </div>
+        </li>
+      </div>
+    </div>
+  </div>
+</div>

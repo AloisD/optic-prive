@@ -7,8 +7,10 @@ import { SummaryOrderPageComponent } from './pages/checkout/summary-order-page/s
 import { ConceptPageComponent } from './pages/concept-page/concept-page.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { LegalNoticePageComponent } from './pages/legal-notice-page/legal-notice-page.component';
+import { NotFoundPageComponent } from './pages/not-found/not-found-page/not-found-page.component';
 import { ProductPageComponent } from './pages/product-page/product-page.component';
 import { TermsOfSalesPageComponent } from './pages/terms-of-sales-page/terms-of-sales-page.component';
+import { ProfilPageComponent } from './pages/user/profil-page/profil-page.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -19,11 +21,14 @@ const routes: Routes = [
   { path: 'livraison', component: ShippingPageComponent },
   { path: 'concept', component: ConceptPageComponent },
   { path: 'mentions-legales', component: LegalNoticePageComponent },
-  { path: 'conditions-generales', component: TermsOfSalesPageComponent }
+  { path: 'conditions-generales', component: TermsOfSalesPageComponent },
+  { path: 'profil/:id', component: ProfilPageComponent },
+  { path: '404', component: NotFoundPageComponent },
+  { path: '**', redirectTo: '/404' },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

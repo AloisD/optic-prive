@@ -3,6 +3,7 @@ import {
   HttpHeaders,
   HttpParams,
   HttpParamsOptions,
+  JsonpClientBackend,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -40,6 +41,25 @@ export class AuthenticationService {
 
   register(user: any) {
     return this.http.post('https://localhost:8000/api/users/register', user, {
+      withCredentials: true,
+    });
+  }
+
+  saveUserToLocalstorage(id: any) {
+    localStorage.setItem('user-id', JSON.stringify(id));
+  }
+
+  getUserId(): number | null {
+    let userId;
+    if (localStorage.getItem('user-id')) {
+      const idString: any = localStorage.getItem('user-id');
+      userId = JSON.parse(idString);
+    }
+    return +userId;
+  }
+
+  getUser(id: number): Observable<any> {
+    return this.http.get(`https://localhost:8000/api/users/${id}`, {
       withCredentials: true,
     });
   }

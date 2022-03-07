@@ -5,6 +5,8 @@ import { User } from 'src/app/models/User';
 import { CartService } from 'src/app/services/cart/cart.service';
 import { ToastService } from 'src/app/services/toast/toast.service';
 import { NgForm } from '@angular/forms';
+import { switchMap } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-modal',
@@ -19,7 +21,7 @@ export class LoginModalComponent implements OnInit {
   public checkRules = {
     rules: false,
   };
-  private userConnected!: IUser;
+  public userConnected!: IUser;
   model: User = new User();
   public totalProduct: number = 0;
   public productsQuantity!: number;
@@ -29,10 +31,14 @@ export class LoginModalComponent implements OnInit {
     ElementRef
   >{};
 
+  @ViewChild('elemLoginClose', { static: true }) elementLoginClose: ElementRef =
+    <ElementRef>{};
+
   constructor(
     private authenticationService: AuthenticationService,
     private cartService: CartService,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -43,20 +49,33 @@ export class LoginModalComponent implements OnInit {
       this.productsQuantity = this.cartService.getProductsQuantity();
     });
 
-    this.authenticationService
-      .products()
-      .subscribe((response) => console.log('Products: ', response));
+    this.authenticationService.products();
   }
 
-  login() {
-    this.authenticationService.authentication(this.user).subscribe(
-      () => {
-        this.authenticationService.me().subscribe((responseMe) => {
-          this.userConnected = responseMe;
-          //console.log('UserConnected:', this.userConnected);
+  login(loginForm: NgForm) {
+    let authFlow = this.authenticationService
+      .authentication(this.user)
+      .pipe(switchMap(() => this.authenticationService.me()));
 
-          this.showSuccess(this.userConnected.username);
-        });
+    authFlow.subscribe(
+      (responseMe) => {
+        this.userConnected = responseMe;
+
+        if (this.userConnected) {
+          //localStorage
+          this.authenticationService.saveUserToLocalstorage(
+            this.userConnected.id
+          );
+
+          // For close modal
+          let elLogin = this.elementLoginClose.nativeElement;
+          elLogin?.click();
+
+          //clear fields's form
+          loginForm.reset();
+
+          this.router.navigate(['profil', this.userConnected.id]);
+        }
       },
       (err) => {
         console.error('Error: ', err);
@@ -86,13 +105,6 @@ export class LoginModalComponent implements OnInit {
         this.registerFailed();
       }
     );
-  }
-
-  showSuccess(username: string) {
-    this.toastService.show(`Hello ${username}`, {
-      classname: 'bg-success text-light',
-      delay: 5000,
-    });
   }
 
   showDanger() {
