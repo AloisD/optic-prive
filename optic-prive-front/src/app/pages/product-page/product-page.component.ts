@@ -11,11 +11,11 @@ import { CartService } from 'src/app/services/cart/cart.service';
 })
 export class ProductPageComponent implements OnInit {
 
-  product! : IProduct;
+  product!: IProduct;
   id: number | undefined;
 
   constructor(
-    private route: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
     private productService: ProductService,
     private cartService: CartService,
    ) {}
