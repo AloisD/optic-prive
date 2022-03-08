@@ -45,6 +45,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Timesta
   #[ORM\Id]
   #[ORM\GeneratedValue]
   #[ORM\Column(type: 'integer')]
+  #[Groups(["read_profile"])]
   private $id;
 
   #[Groups(["read_profile"])]
