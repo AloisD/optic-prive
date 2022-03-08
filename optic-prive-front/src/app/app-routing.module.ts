@@ -11,7 +11,7 @@ import { LegalNoticePageComponent } from './pages/legal-notice-page/legal-notice
 import { NotFoundPageComponent } from './pages/not-found/not-found-page/not-found-page.component';
 import { ProductPageComponent } from './pages/product-page/product-page.component';
 import { TermsOfSalesPageComponent } from './pages/terms-of-sales-page/terms-of-sales-page.component';
-import { ProfilePageComponent } from './pages/user/profil-page/profil-page.component';
+import { ProfilePageComponent } from './pages/user/profile-page/profile-page.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
