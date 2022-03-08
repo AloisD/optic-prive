@@ -9,6 +9,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Knp\DoctrineBehaviors\Contract\Entity\TimestampableInterface;
 use Knp\DoctrineBehaviors\Model\Timestampable\TimestampableTrait;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: LensTypeRepository::class)]
 #[ApiResource]
@@ -22,6 +23,7 @@ class LensType implements TimestampableInterface
   private $id;
 
   #[ORM\Column(type: 'string', length: 255)]
+  #[Groups(["product_details_read", "product_read"])]
   private $name;
 
   #[ORM\OneToMany(mappedBy: 'lens_type', targetEntity: Product::class)]

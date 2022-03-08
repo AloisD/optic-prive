@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiFilter;
 use App\Entity\Brand;
 use App\Entity\Shape;
 use App\Entity\Style;
@@ -14,34 +15,34 @@ use App\Repository\ProductRepository;
 use App\Controller\Api\ProductImageAction;
 use Doctrine\Common\Collections\Collection;
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Knp\DoctrineBehaviors\Model\Sluggable\SluggableTrait;
 use Knp\DoctrineBehaviors\Contract\Entity\SluggableInterface;
 use Knp\DoctrineBehaviors\Contract\Entity\TimestampableInterface;
 use Knp\DoctrineBehaviors\Model\Timestampable\TimestampableTrait;
-use App\Controller\Api;
-use App\Controller\Api\ProductLatestAction;
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
 #[ApiResource(
+  paginationClientItemsPerPage: true,
   collectionOperations: [
     'get' => [
       'normalization_context' => ['groups' => ['product_read']],
     ],
     "post",
-    'product_latest' => [
-      'normalization_context' => ['groups' => ['product_read']],
-      'method' => 'GET',
-      'pagination_enabled' =>  false,
-      'path' => '/products/latest',
-      'controller' => ProductLatestAction::class,
-      'deserialize' => false
+  ],
+  subresourceOperations: [
+    'api_segments_products_get_subresource' => [
+      'normalization_context' => [
+        'groups' => ['product_read']
+      ]
     ],
   ],
   itemOperations: [
     'get' => [
-      'normalization_context' => ['groups' => ['product_details_read']],
+      'normalization_context' => ['groups' => ['product_details_read', 'product_read']],
     ],
     'put',
     'delete',
@@ -70,6 +71,8 @@ use App\Controller\Api\ProductLatestAction;
     ]
   ],
 )]
+#[ApiFilter(SearchFilter::class, properties: [ 'name' => 'ipartial', 'segment' => 'exact'])]
+#[ApiFilter(OrderFilter::class, properties: ['createdAt'])]
 class Product implements SluggableInterface, TimestampableInterface
 {
   use SluggableTrait;
@@ -139,32 +142,32 @@ class Product implements SluggableInterface, TimestampableInterface
 
   #[ORM\ManyToOne(targetEntity: Shape::class, inversedBy: 'products')]
   #[ORM\JoinColumn(nullable: false)]
-  #[Groups(["product_details_read"])]
+  #[Groups(["product_details_read", "product_read"])]
   private $shape;
 
   #[ORM\ManyToOne(targetEntity: Segment::class, inversedBy: 'products')]
   #[ORM\JoinColumn(nullable: false)]
-  #[Groups(["product_details_read"])]
+  #[Groups(["product_details_read", "product_read"])]
   private $segment;
 
   #[ORM\ManyToOne(targetEntity: LensType::class, inversedBy: 'products')]
   #[ORM\JoinColumn(nullable: false)]
-  #[Groups(["product_details_read"])]
+  #[Groups(["product_details_read", "product_read"])]
   private $lens_type;
 
   #[ORM\ManyToOne(targetEntity: Style::class, inversedBy: 'products')]
   #[ORM\JoinColumn(nullable: false)]
-  #[Groups(["product_details_read"])]
+  #[Groups(["product_details_read", "product_read"])]
   private $style;
 
   #[ORM\ManyToOne(targetEntity: Color::class, inversedBy: 'products')]
   #[ORM\JoinColumn(nullable: false)]
-  #[Groups(["product_details_read"])]
+  #[Groups(["product_details_read", "product_read"])]
   private $color;
 
   #[ORM\ManyToOne(targetEntity: Material::class, inversedBy: 'products')]
   #[ORM\JoinColumn(nullable: false)]
-  #[Groups(["product_details_read"])]
+  #[Groups(["product_details_read", "product_read"])]
   private $material;
 
   #[ORM\OneToMany(mappedBy: 'product', targetEntity: ProductImage::class, cascade: ['persist'], orphanRemoval: true)]
