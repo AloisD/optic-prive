@@ -25,7 +25,7 @@ import { ToastsContainer } from './components/toast/toasts-container.components'
 import { ConceptPageComponent } from './pages/concept-page/concept-page.component';
 import { LegalNoticePageComponent } from './pages/legal-notice-page/legal-notice-page.component';
 import { TermsOfSalesPageComponent } from './pages/terms-of-sales-page/terms-of-sales-page.component';
-import { ProfilPageComponent } from './pages/user/profil-page/profil-page.component';
+import { ProfilePageComponent } from './pages/user/profile-page/profile-page.component';
 import { NotFoundPageComponent } from './pages/not-found/not-found-page/not-found-page.component';
 
 @NgModule({
@@ -50,7 +50,7 @@ import { NotFoundPageComponent } from './pages/not-found/not-found-page/not-foun
     ConceptPageComponent,
     LegalNoticePageComponent,
     TermsOfSalesPageComponent,
-    ProfilPageComponent,
+    ProfilePageComponent,
     NotFoundPageComponent,
   ],
 
