@@ -32,7 +32,7 @@
             <div class="row">
               <br class="col">
                 <h6>VENDEUR : OPTIC MADELEINE</h6>
-                  <span>LIVRAISON :</span> <br>
+                  <span>LIVRAISON : {{ price }} €</span> <br>
                   <span>SOUS-TOTAL : {{ grandTotal.toFixed(2) }} €</span>
             </div>
           <div class="back-to-shop cursor" routerLink="/livraison">&leftarrow; Précédent
@@ -50,7 +50,7 @@
           </div>
           <div class="row" style="padding: 1vh 0;">
             <div class="col">TOTAL :</div>
-            <div class="col text-right">{{ grandTotal.toFixed(2) }} €</div>
+            <div class="col text-right">{{ (grandTotal+price).toFixed(2) }} €</div>
           </div>
           <button class="btn" routerLink="/connexion">CONTINUER</button>
         </div>

@@ -1,7 +1,4 @@
-$primary:#87A397;
-$secondary: #FBEADF;
-$secondary-clear: #F4FFFA;
-$secondary-contrast: #56474A;
+@use '../../../scss/custom' as *;
 
 .top-right {
   position: absolute;
@@ -13,9 +10,11 @@ $secondary-contrast: #56474A;
   padding: 5px;
   text-align: center;
 }
+
 h4 {
   text-decoration-line: underline;
 }
+
 //BUTTON ADD TO CART
 .bi {
   padding: 10px 12px 10px 12px;
@@ -55,7 +54,6 @@ h4 {
     padding: 4px;
     margin-left: 10px;
   }
-
 }
 
 .recent-product {
@@ -89,44 +87,10 @@ h4 {
   .news {
     padding-top: 2em;
     padding-bottom: 1.1em;
-  }
-
-  p.description {
-    text-align: left;
-    padding: 2em;
-    font-weight: 600;
-  }
-
-  .trait {
-    width: 100%;
-    border: .3em solid #FBEADF;
-    margin-top: 4em;
-    background-color: #FBEADF;
+    text-transform: uppercase;
   }
 
   .card-title::first-letter {
     text-transform: uppercase;
-  }
-
-  @media screen and (max-width: (765px))
-  {
-      .row {
-        flex-direction: column-reverse;
-      }
-
-      .trait {
-        transform: translateX(-30px);
-        margin-top: 0px;
-        border: .4em solid #FBEADF;
-      }
-
-      .col-6 {
-        width: 100%;
-      }
-
-      p.description {
-        padding: 1.5em;
-      }
-
   }
 }

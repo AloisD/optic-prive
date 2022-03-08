@@ -47,13 +47,4 @@ class ProductRepository extends ServiceEntityRepository
         ;
     }
     */
-
-  public function getLatestProducts(int $maxResult)
-  {
-    return $this->createQueryBuilder('p')
-      ->orderBy('p.createdAt', 'DESC')
-      ->setMaxResults($maxResult)
-      ->getQuery()
-      ->getResult();
-  }
 }

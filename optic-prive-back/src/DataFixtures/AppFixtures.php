@@ -2,14 +2,18 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Address;
 use App\Entity\Brand;
 use App\Entity\Color;
 use App\Entity\LensType;
 use App\Entity\Material;
+use App\Entity\Order;
+use App\Entity\OrderHasProduct;
 use App\Entity\Product;
 use App\Entity\ProductImage;
 use App\Entity\Segment;
 use App\Entity\Shape;
+use App\Entity\ShippingOption;
 use App\Entity\Style;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -80,9 +84,33 @@ class AppFixtures extends Fixture
     //segment
     $segment = new Segment();
     $segment
-      ->setName($faker->word())
+      ->setName('solaires')
       ->setLogo($faker->imageUrl(640, 480, 'animals', true));
     $manager->persist($segment);
+
+    $segment2 = new Segment();
+    $segment2
+      ->setName('sport')
+      ->setLogo($faker->imageUrl(640, 480, 'animals', true));
+    $manager->persist($segment2);
+
+    $segment3 = new Segment();
+    $segment3
+      ->setName('lumiere_bleue')
+      ->setLogo($faker->imageUrl(640, 480, 'animals', true));
+    $manager->persist($segment3);
+
+    $segment4 = new Segment();
+    $segment4
+      ->setName('vintage')
+      ->setLogo($faker->imageUrl(640, 480, 'animals', true));
+    $manager->persist($segment4);
+
+    $segment5 = new Segment();
+    $segment5
+      ->setName('accessoires')
+      ->setLogo($faker->imageUrl(640, 480, 'animals', true));
+    $manager->persist($segment5);
 
     //lens_type
     $lensType = new LensType();
@@ -126,6 +154,12 @@ class AppFixtures extends Fixture
       ->setPath("hugo-boss-boss-1131-s-003ir2.jpg");
     $manager->persist($productImage2);
 
+    //shipping
+    $shippingOption = new ShippingOption;
+    $shippingOption
+      ->setName("livraisson express")
+      ->setPrice(5);
+    $manager->persist($shippingOption);
 
     $product
       ->setBrand($brand)
@@ -192,6 +226,50 @@ class AppFixtures extends Fixture
       $manager->persist($user);
       $manager->flush();
     }
+
+    //invoicing_address
+    $invoicingAddress = new Address;
+    $invoicingAddress
+      ->setName("112 avenue Charles de Gaulle")
+      ->setRecipient("345 rue Anatole France")
+      ->setCountry("France")
+      ->setCity("Neuilly-sur-Seine")
+      ->setUser($user);
+    $manager->persist($invoicingAddress);
+
+    //delivery_address
+    $deliveryAddress = new Address;
+    $deliveryAddress
+      ->setName("345 rue Anatole France")
+      ->setRecipient("112 avenue Charles de Gaulle")
+      ->setCountry("France")
+      ->setCity("Neuilly-sur-Seine")
+      ->setUser($user);
+    $manager->persist($deliveryAddress);
+
+    //orders
+    $order = new Order();
+    $order
+      ->setInvoicingAddress($invoicingAddress)
+      ->setDeliveryAddress($deliveryAddress)
+      ->setShipping($shippingOption);
+
+    $this->getDataOrder($order);
+
+    $manager->persist($order);
+
+    //orderHasProduct
+    $orderHasProduct = new OrderHasProduct();
+    $orderHasProduct
+      ->setQuantity(3)
+      ->setProduct($product1)
+      ->setOrder($order);
+
+    $this->getDataOrderHasProduct($orderHasProduct);
+
+    $manager->persist($orderHasProduct);
+
+    $manager->flush();
   }
 
   private function getDataProduct(Product $product, $faker)
@@ -216,6 +294,18 @@ class AppFixtures extends Fixture
 
     $templeLength = $this->getTempleLengthRandom($faker);
     $product->setTempleLength($templeLength);
+  }
+
+  private function getDataOrder(Order $order)
+  {
+    $orderStatus = $this->getOrderStatus();
+    $order->setOrderStatus($orderStatus);
+  }
+
+  private function getDataOrderHasProduct(OrderHasProduct $orderHasProduct)
+  {
+    $orderStatus = $this->getOrderStatus();
+    $orderHasProduct->setOrderHasProductStatus($orderStatus);
   }
 
 
@@ -264,4 +354,14 @@ class AppFixtures extends Fixture
   }
 
   /**END  Product************************************************************************* */
+
+  /** Order *****************************************************************************/
+
+  private function getOrderStatus(): string
+  {
+    $items = ['orderCancelled','orderDelivered','orderInTransit','orderPaymentDue','orderPickupAvailable','orderProblem','orderProcessing','orderReturned'];
+    return $items[random_int(0, 7)];
+  }
+
+  /**END  Order************************************************************************* */
 }

@@ -9,6 +9,10 @@ h2 {
   font-size: 40px;
 }
 
+.capitalize {
+  text-transform: capitalize;
+}
+
 .discount {
   background-color: $secondary-contrast;
   color: $secondary;
@@ -28,8 +32,8 @@ h2 {
 
 .category {
   font-weight: 500;
-  font-size: 14px;
-  margin-top: 0;
+  font-size: 16px;
+  text-transform: uppercase;
 }
 
 .reference {

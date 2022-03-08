@@ -9,11 +9,11 @@ import { ProductService } from 'src/app/services/product/product.service';
   styleUrls: ['./home-page.component.scss'],
 })
 export class HomePageComponent implements OnInit {
-  products!: [IProduct];
+  public products!: [IProduct];
 
   constructor(
     private productService: ProductService,
-    private cartService: CartService
+    private cartService: CartService,
   ) {}
 
   ngOnInit(): void {
