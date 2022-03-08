@@ -13,6 +13,9 @@ export class ProductPageComponent implements OnInit {
 
   product!: IProduct;
   id: number | undefined;
+  imagePath1: string | undefined;
+  imagePath2: string | undefined;
+  imagePath3: string | undefined;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -26,6 +29,12 @@ export class ProductPageComponent implements OnInit {
     });
     this.productService.getProduct(this.id!).subscribe((currentProduct: IProduct) => {
       this.product = currentProduct;
+      let index = 0;
+      this.imagePath1 = this.product.productImages[index].path;
+      index ++;
+      this.imagePath2 = this.product.productImages[index].path;
+      index ++;
+      this.imagePath3 = this.product.productImages[index].path;
     });
   }
 

@@ -17,16 +17,26 @@
         </div>
         <div class="carousel-inner">
           <div class="carousel-item active" data-bs-interval="10000">
-            <img src="../../../assets/uploads/testProductPage.jpg" class="d-block image" alt="...">
-
+            <img src="https://localhost:8000/images/products/{{
+              imagePath1
+            }}"
+            class="d-block image"
+            alt="{{ product.reference }} 1">
           </div>
           <div class="carousel-item" data-bs-interval="2000">
-            <img src="../../../assets/uploads/testProductPage2.jpg" class="d-block image" alt="...">
-
+            <img src="https://localhost:8000/images/products/{{
+              imagePath2
+            }}"
+            class="d-block image"
+            alt="{{ product.reference }} 1">
           </div>
           <div class="carousel-item">
-            <img src="../../../assets/uploads/testProductPage3.jpg" class="d-block image" alt="...">
-          </div>
+            <img src="https://localhost:8000/images/products/{{
+              imagePath3
+            }}"
+            class="d-block image"
+            alt="{{ product.reference }} 1">
+        </div>
         </div>
         <!-- <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
