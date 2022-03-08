@@ -25,6 +25,7 @@ import { ToastsContainer } from './components/toast/toasts-container.components'
 import { ConceptPageComponent } from './pages/concept-page/concept-page.component';
 import { LegalNoticePageComponent } from './pages/legal-notice-page/legal-notice-page.component';
 import { TermsOfSalesPageComponent } from './pages/terms-of-sales-page/terms-of-sales-page.component';
+import { FinalCheckoutPageComponent } from './pages/checkout/final-checkout-page/final-checkout-page.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { TermsOfSalesPageComponent } from './pages/terms-of-sales-page/terms-of-
     ConceptPageComponent,
     LegalNoticePageComponent,
     TermsOfSalesPageComponent,
+    FinalCheckoutPageComponent,
   ],
 
   imports: [

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CartPageComponent } from './pages/cart-page/cart-page.component';
 import { CategoryPageComponent } from './pages/category-page/category-page.component';
+import { FinalCheckoutPageComponent } from './pages/checkout/final-checkout-page/final-checkout-page.component';
 import { LoginComponent } from './pages/checkout/login/login.component';
 import { ShippingPageComponent } from './pages/checkout/shipping-page/shipping-page.component';
 import { SummaryOrderPageComponent } from './pages/checkout/summary-order-page/summary-order-page.component';
@@ -21,7 +22,8 @@ const routes: Routes = [
   { path: 'livraison', component: ShippingPageComponent },
   { path: 'concept', component: ConceptPageComponent },
   { path: 'mentions-legales', component: LegalNoticePageComponent },
-  { path: 'conditions-generales', component: TermsOfSalesPageComponent }
+  { path: 'conditions-generales', component: TermsOfSalesPageComponent },
+  { path: 'commande', component: FinalCheckoutPageComponent }
 ];
 
 @NgModule({
