@@ -11,7 +11,7 @@ import { LegalNoticePageComponent } from './pages/legal-notice-page/legal-notice
 import { NotFoundPageComponent } from './pages/not-found/not-found-page/not-found-page.component';
 import { ProductPageComponent } from './pages/product-page/product-page.component';
 import { TermsOfSalesPageComponent } from './pages/terms-of-sales-page/terms-of-sales-page.component';
-import { ProfilPageComponent } from './pages/user/profil-page/profil-page.component';
+import { ProfilePageComponent } from './pages/user/profil-page/profil-page.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -24,7 +24,7 @@ const routes: Routes = [
   { path: 'concept', component: ConceptPageComponent },
   { path: 'mentions-legales', component: LegalNoticePageComponent },
   { path: 'conditions-generales', component: TermsOfSalesPageComponent },
-  { path: 'profil/:id', component: ProfilPageComponent },
+  { path: 'profile/:id', component: ProfilePageComponent },
   { path: '404', component: NotFoundPageComponent },
   { path: '**', redirectTo: '/404' },
 ];
