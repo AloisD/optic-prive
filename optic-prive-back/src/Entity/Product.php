@@ -177,6 +177,10 @@ class Product implements SluggableInterface, TimestampableInterface
   #[ORM\OneToMany(mappedBy: 'product', targetEntity: OrderHasProduct::class)]
   private $orderHasProducts;
 
+  #[ORM\ManyToOne(targetEntity: user::class, inversedBy: 'products')]
+  #[ORM\JoinColumn(nullable: false)]
+  private $seller;
+
   public function __construct()
   {
     $this->productImages = new ArrayCollection();
@@ -499,5 +503,17 @@ class Product implements SluggableInterface, TimestampableInterface
   public function __toString()
   {
     return $this->name;
+  }
+
+  public function getSeller(): ?user
+  {
+      return $this->seller;
+  }
+
+  public function setSeller(?user $seller): self
+  {
+      $this->seller = $seller;
+
+      return $this;
   }
 }

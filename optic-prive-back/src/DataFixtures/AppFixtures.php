@@ -227,6 +227,37 @@ class AppFixtures extends Fixture
       $manager->flush();
     }
 
+    //create some vendors
+    $vendor = new User();
+    $hash = $this->encoder->hashPassword($vendor, "8888");
+    $vendor
+      ->setUsername($faker->word())
+      ->setPassword($hash)
+      ->setEmail($faker->email())
+      ->setRoles([
+        "ROLE_PRO"
+      ])
+      ->addProduct($product);
+
+    $manager->persist($vendor);
+    $manager->flush();
+
+    $vendor2 = new User();
+    $hash = $this->encoder->hashPassword($vendor2, "8888");
+    $vendor
+      ->setUsername($faker->word())
+      ->setPassword($hash)
+      ->setEmail($faker->email())
+      ->setRoles([
+        "ROLE_PRO"
+      ])
+      ->addProduct($product1)
+      ->addProduct($product2);
+
+    $manager->persist($vendor2);
+    $manager->flush();
+
+
     //invoicing_address
     $invoicingAddress = new Address;
     $invoicingAddress

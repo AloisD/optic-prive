@@ -68,10 +68,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Timesta
   #[ORM\OneToMany(mappedBy: 'user', targetEntity: Address::class, cascade: ['persist'], orphanRemoval: true)]
   private $addresses;
 
+  #[ORM\OneToMany(mappedBy: 'seller', targetEntity: Product::class)]
+  private $products;
+
   public function __construct()
   {
     $this->businessUsers = new ArrayCollection();
     $this->addresses = new ArrayCollection();
+    $this->products = new ArrayCollection();
   }
 
   public function getId(): ?int
@@ -219,5 +223,35 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Timesta
   public function __toString()
   {
     return $this->email;
+  }
+
+  /**
+   * @return Collection<int, Product>
+   */
+  public function getProducts(): Collection
+  {
+      return $this->products;
+  }
+
+  public function addProduct(Product $product): self
+  {
+      if (!$this->products->contains($product)) {
+          $this->products[] = $product;
+          $product->setSeller($this);
+      }
+
+      return $this;
+  }
+
+  public function removeProduct(Product $product): self
+  {
+      if ($this->products->removeElement($product)) {
+          // set the owning side to null (unless already changed)
+          if ($product->getSeller() === $this) {
+              $product->setSeller(null);
+          }
+      }
+
+      return $this;
   }
 }
