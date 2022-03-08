@@ -5,11 +5,14 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\OrderHasProductRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Knp\DoctrineBehaviors\Contract\Entity\TimestampableInterface;
+use Knp\DoctrineBehaviors\Model\Timestampable\TimestampableTrait;
 
 #[ORM\Entity(repositoryClass: OrderHasProductRepository::class)]
 #[ApiResource]
-class OrderHasProduct
+class OrderHasProduct implements TimestampableInterface
 {
+    use TimestampableTrait;
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
@@ -50,12 +53,6 @@ class OrderHasProduct
 
     #[ORM\Column(type: 'decimal', precision: 5, scale: 2, nullable: true)]
     private $plateform_fee_paid;
-
-    #[ORM\Column(type: 'datetime_immutable')]
-    private $createdAt;
-
-    #[ORM\Column(type: 'datetime_immutable')]
-    private $updatedAt;
 
     #[ORM\ManyToOne(targetEntity: Product::class, inversedBy: 'orderHasProducts')]
     #[ORM\JoinColumn(nullable: false)]
@@ -210,30 +207,6 @@ class OrderHasProduct
     public function setPlateformFeePaid(?string $plateform_fee_paid): self
     {
         $this->plateform_fee_paid = $plateform_fee_paid;
-
-        return $this;
-    }
-
-    public function getCreatedAt(): ?\DateTimeImmutable
-    {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt(\DateTimeImmutable $createdAt): self
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    public function getUpdatedAt(): ?\DateTimeImmutable
-    {
-        return $this->updatedAt;
-    }
-
-    public function setUpdatedAt(\DateTimeImmutable $updatedAt): self
-    {
-        $this->updatedAt = $updatedAt;
 
         return $this;
     }

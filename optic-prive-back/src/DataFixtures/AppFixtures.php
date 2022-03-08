@@ -8,6 +8,7 @@ use App\Entity\Color;
 use App\Entity\LensType;
 use App\Entity\Material;
 use App\Entity\Order;
+use App\Entity\OrderHasProduct;
 use App\Entity\Product;
 use App\Entity\ProductImage;
 use App\Entity\Segment;
@@ -257,6 +258,17 @@ class AppFixtures extends Fixture
 
     $manager->persist($order);
 
+    //orderHasProduct
+    $orderHasProduct = new OrderHasProduct();
+    $orderHasProduct
+      ->setQuantity(3)
+      ->setProduct($product1)
+      ->setOrder($order);
+
+    $this->getDataOrderHasProduct($orderHasProduct);
+
+    $manager->persist($orderHasProduct);
+
     $manager->flush();
   }
 
@@ -288,6 +300,12 @@ class AppFixtures extends Fixture
   {
     $orderStatus = $this->getOrderStatus();
     $order->setOrderStatus($orderStatus);
+  }
+
+  private function getDataOrderHasProduct(OrderHasProduct $orderHasProduct)
+  {
+    $orderStatus = $this->getOrderStatus();
+    $orderHasProduct->setOrderHasProductStatus($orderStatus);
   }
 
 
