@@ -23,9 +23,6 @@ use Knp\DoctrineBehaviors\Model\Sluggable\SluggableTrait;
 use Knp\DoctrineBehaviors\Contract\Entity\SluggableInterface;
 use Knp\DoctrineBehaviors\Contract\Entity\TimestampableInterface;
 use Knp\DoctrineBehaviors\Model\Timestampable\TimestampableTrait;
-use App\Controller\Api;
-use App\Controller\Api\ProductLatestAction;
-use App\Controller\Api\ProductSegmentAction;
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
 #[ApiResource(
@@ -45,7 +42,7 @@ use App\Controller\Api\ProductSegmentAction;
   ],
   itemOperations: [
     'get' => [
-      'normalization_context' => ['groups' => ['product_details_read']],
+      'normalization_context' => ['groups' => ['product_details_read', 'product_read']],
     ],
     'put',
     'delete',
