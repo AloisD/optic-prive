@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { IUser } from 'src/app/models/IUser';
 import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 import { ToastService } from 'src/app/services/toast/toast.service';
@@ -13,8 +13,9 @@ export class ProfilPageComponent implements OnInit {
   public userRecover!: any;
   public userFromBDD!: IUser;
   private idLocalStorage!: number | null;
+
   constructor(
-    private route: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
     private authenticationService: AuthenticationService,
     private router: Router,
     private toastService: ToastService
@@ -37,22 +38,26 @@ export class ProfilPageComponent implements OnInit {
 
   isAuthorized(): boolean {
     let authorized = false;
+    let id_url!: number;
 
-    const id_url = this.route.snapshot.params['id'];
+    this.activatedRoute.params.subscribe((params: Params) => {
+      id_url = params['id'];
+    });
+
     if (!id_url) {
-      this.router.navigate(['404']);
+      authorized = false;
     }
     if (this.authenticationService.getUserId()) {
       this.idLocalStorage = this.authenticationService.getUserId();
       if (!this.idLocalStorage) {
-        this.router.navigate(['404']);
+        authorized = false;
       }
       if (id_url == this.idLocalStorage) {
         authorized = true;
       }
     }
 
-    return true;
+    return authorized;
   }
 
   welcome(username: string) {

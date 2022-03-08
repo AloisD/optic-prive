@@ -1,1 +1,24 @@
-<p>not-found-page works!</p>
+<app-banner></app-banner>
+<div class="row justify-content-center my-3">
+  <div class="col-md-12 col-sm-12">
+    <div
+      class="card shadow-lg border-0 rounded-lg mx-auto"
+      style="width: 30rem"
+    >
+      <h3 class="card-header display-1 text-muted text-center">404</h3>
+
+      <span class="card-subtitle text-muted text-center my-2">
+        Page introuvable
+      </span>
+
+      <div class="card-body mx-auto">
+        <button
+          (click)="goHomePage()"
+          class="btn btn-sm btn-primary text-white"
+        >
+          Home Page
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
