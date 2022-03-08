@@ -74,7 +74,7 @@ export class LoginModalComponent implements OnInit {
           //clear fields's form
           loginForm.reset();
 
-          this.router.navigate(['profil', this.userConnected.id]);
+          this.router.navigate(['profile', this.userConnected.id]);
         }
       },
       (err) => {
