@@ -28,9 +28,6 @@
             </div>
           </div>
           <form>
-            <!-- <select class="form-select" aria-label="Default select example">
-              <option selected *ngFor="let shippingOption of shippingOptions">{{shippingOption.name}}</option>
-            </select> -->
             <div class="form-check form-group" *ngFor="let shippingOption of shippingOptions">
               <input
               class="form-check-input"
@@ -44,9 +41,7 @@
               <label class="form-check-label" for="flexRadioDefault1">
                 {{shippingOption.name}} : {{shippingOption.price}} €
               </label>
-
             </div>
-
           </form>
           <div class="back-to-shop cursor" routerLink="/panier">&leftarrow; Précédent
           </div>
@@ -80,6 +75,6 @@
       document.querySelector('.output').textContent = output;
   }
   </script>
-<pre>
+<!-- <pre>
   {{shippingOptions|json}}
-</pre>
+</pre> -->

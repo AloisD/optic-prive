@@ -15,8 +15,8 @@ export class ShippingPageComponent implements OnInit {
   public products : any = [];
   public grandTotal !: number;
   public productsQuantity !: number;
-  shipping = ["0","5","10", "15"];
   price : number = 0;
+  newPrice : number = 0;
 
   constructor(public cartService : CartService, private shippingOptionService : ShippingOptionService) { }
 
@@ -34,6 +34,10 @@ export class ShippingPageComponent implements OnInit {
         Object.assign(shippingOption);
       });
     });
+
+    if (this.cartService.getShippingPrice1()) {
+      this.price = this.cartService.getShippingPrice1();
+    }
   }
 
   changeShippingOption(e:any) {
@@ -44,16 +48,9 @@ export class ShippingPageComponent implements OnInit {
       console.log('id',e.target.value);
       console.log('prix', this.price);
       this.cartService.setShippingPrice({id:Number(e.target.value), price:this.price});
-      console.log(this.cartService.getShippingPrice());
-
+      console.log('total',this.cartService.getShippingPrice());
     })
   }
 }
 
-// getTotalPrice(): number {
-//   let grandTotal = 0;
-//   this.cartProducts.map((product: any) => {
-//     grandTotal += +product.selling_price * product.quantityOrdered;
-//   });
-//   return grandTotal;
 

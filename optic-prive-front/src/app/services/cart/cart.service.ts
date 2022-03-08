@@ -101,4 +101,8 @@ export class CartService {
   getShippingPrice() {
     return this.priceShipping;
   }
+
+  getShippingPrice1() {
+    return this.priceShipping.price;
+  }
 }
