@@ -179,6 +179,7 @@ class Product implements SluggableInterface, TimestampableInterface
 
   #[ORM\ManyToOne(targetEntity: user::class, inversedBy: 'products')]
   #[ORM\JoinColumn(nullable: false)]
+  #[Groups(["product_read", "product_details_read"])]
   private $seller;
 
   public function __construct()

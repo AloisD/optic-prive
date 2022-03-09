@@ -36,4 +36,7 @@ export interface IProduct {
   lens_type: {
     name: string;
   };
+  seller: {
+    email: string;
+  };
 }
