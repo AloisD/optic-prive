@@ -25,6 +25,7 @@ import { ToastsContainer } from './components/toast/toasts-container.components'
 import { ConceptPageComponent } from './pages/concept-page/concept-page.component';
 import { LegalNoticePageComponent } from './pages/legal-notice-page/legal-notice-page.component';
 import { TermsOfSalesPageComponent } from './pages/terms-of-sales-page/terms-of-sales-page.component';
+import { FinalCheckoutPageComponent } from './pages/checkout/final-checkout-page/final-checkout-page.component';
 import { NotFoundPageComponent } from './pages/not-found/not-found-page/not-found-page.component';
 import { ProfilePageComponent } from './pages/user/profile-page/profile-page.component';
 
@@ -50,6 +51,7 @@ import { ProfilePageComponent } from './pages/user/profile-page/profile-page.com
     ConceptPageComponent,
     LegalNoticePageComponent,
     TermsOfSalesPageComponent,
+    FinalCheckoutPageComponent,
     ProfilePageComponent,
     NotFoundPageComponent,
   ],

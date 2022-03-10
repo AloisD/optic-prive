@@ -1,0 +1,185 @@
+<app-header></app-header>
+<div class="global space-lg">
+  <div class="container-bread">
+    <div class="bread container">
+      <nav
+        style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);"
+        aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item cursor" routerLink="/">Accueil</li>
+          <li class="breadcrumb-item cursor" routerLink="/panier">Panier</li>
+          <li class="breadcrumb-item cursor" routerLink="/livraison">Livraison</li>
+          <li class="breadcrumb-item cursor" routerLink="/recapitulatif">Récapitulatif</li>
+          <li class="breadcrumb-item active" aria-current="page">Finaliser ma commade</li>
+
+        </ol>
+      </nav>
+    </div>
+  </div>
+
+  <div class="container">
+    <app-logo></app-logo>
+    <div class="card">
+      <div class="row">
+        <div class="col-md-8 cart">
+          <div class="title">
+            <div class="row">
+              <app-stepper [selectedIndex]="3"></app-stepper>
+              <div class="col">
+                <h2><b>FINALISER MA COMMANDE</b></h2>
+              </div>
+            </div>
+          </div>
+          <!-- Contenu du checkout -->
+
+          <div class="col-md-7 col-lg-8">
+            <form class="needs-validation" novalidate>
+              <div class="row g-3">
+
+                <div class="col-sm-6">
+                  <label for="firstName" class="form-label">Prénom</label>
+                  <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+                </div>
+
+                <div class="col-sm-6">
+                  <label for="lastName" class="form-label">Nom</label>
+                  <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+                </div>
+
+                <div class="col-12">
+                  <label for="address" class="form-label">Adresse</label>
+                  <input type="text" class="form-control" id="address" placeholder="" required>
+                  <div class="invalid-feedback">
+                    Votre adresse
+                  </div>
+                </div>
+
+                <div class="col-12">
+                  <label for="address2" class="form-label">Informations complémentaires <span class="text-muted">(Optionnel)</span></label>
+                  <input type="text" class="form-control" id="address2" placeholder="Apt, Bat">
+                </div>
+
+                <div class="col-md-6">
+                  <label for="state" class="form-label">Région</label>
+                  <input type="text" class="form-control" id="state" placeholder="" required>
+                  <div class="invalid-feedback">
+                    Donner un nom de région valide.
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <label for="zip" class="form-label">Code Postal</label>
+                  <input type="text" class="form-control" id="zip" placeholder="" required>
+                  <div class="invalid-feedback">
+                    Code postal requis.
+                  </div>
+                </div>
+
+              <div class="col-md-6">
+                <label for="city" class="form-label">Ville</label>
+                <input type="text" class="form-control" id="city" placeholder="" required>
+                <div class="invalid-feedback">
+                  Ville requis.
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <label for="country" class="form-label">Pays</label>
+                <input type="text" class="form-control" id="country" placeholder="" required>
+                <div class="invalid-feedback">
+                  Définir un pays valide.
+                </div>
+              </div>
+            </div>
+            <br>
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="same-address">
+                <label class="form-check-label" for="same-address">L’adresse de facturation est la même</label>
+              </div>
+
+              <hr class="my-4">
+
+              <h4 class="mb-3">Moyen de paiement</h4>
+
+              <div class="my-3">
+                <div class="form-check">
+                  <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked required>
+                  <label class="form-check-label" for="credit">Stripe</label>
+                </div>
+              </div>
+
+              <hr class="my-4">
+
+              <button class="w-100 btn btn-primary btn-lg" type="submit">PAYER AVEC STRIPE</button>
+            </form>
+          </div>
+
+          <div class="back-to-shop cursor" routerLink="/recapitulatif">&leftarrow; Précédent
+          </div>
+        </div>
+        <div class="col-md-4 summary">
+          <div>
+            <h5><b>Récapitulatif</b></h5>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col" style="padding:1vh;">Il y a {{ productsQuantity }} articles dans le panier.</div>
+          </div>
+          <div *ngFor="let product of products; let i = index" class="row border-bottom">
+            <div class="row main align-items-center text-align-center">
+              <div class="col-5">
+                <div class="row justify-content-center">{{ product.brand.name }}</div>
+                <div class="row justify-content-center">- {{ product.color_code }}</div>
+              </div>
+              <div class="col">
+                <a type="number">{{ product.quantityOrdered }}</a>
+              </div>
+              <div class="col">{{ product.selling_price }} €</div>
+              <div class="col close cursor" data-bs-toggle="modal" data-bs-target="#deletionModal" (click)="setProductToDelete(product)">&#10005;</div>
+            </div>
+          </div>
+          <div class="row" style="padding: 3vh 0;">
+          </div>
+          <div class="row" style="padding: 1vh 0;">
+
+            <div class="col">TOTAL :</div>
+            <div class="col text-right">{{ (grandTotal+price).toFixed(2) }} €</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div *ngIf="productToDelete" class="modal fade" id="deletionModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Retirer le produit suivant de votre panier ?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="d-flex justify-content-around">
+          <div class="">
+            <img
+            *ngIf="productToDelete.productImages.length"
+            src="https://localhost:8000/images/products/{{
+              productToDelete.productImages[0].path
+            }}"
+            class="img-fluid"
+            alt="{{ productToDelete.reference }}"
+            />
+          </div>
+          <div class="">
+            <div class="row justify-content-center">{{ productToDelete.brand.name }}</div>
+            <div class="row justify-content-center">{{ productToDelete.reference }} - {{ productToDelete.color_code }}</div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal"(click)="removeItem(productToDelete)">Retirer</button>
+      </div>
+    </div>
+  </div>
+</div>
