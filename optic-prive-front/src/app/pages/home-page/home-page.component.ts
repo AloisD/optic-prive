@@ -15,6 +15,7 @@ export class HomePageComponent implements OnInit {
     private productService: ProductService,
     private cartService: CartService,
   ) {}
+
   ngOnInit(): void {
     this.productService.getLatestProducts().subscribe((datas: any) => {
       this.products = datas['hydra:member'];

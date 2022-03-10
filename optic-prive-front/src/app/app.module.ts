@@ -26,6 +26,8 @@ import { ConceptPageComponent } from './pages/concept-page/concept-page.componen
 import { LegalNoticePageComponent } from './pages/legal-notice-page/legal-notice-page.component';
 import { TermsOfSalesPageComponent } from './pages/terms-of-sales-page/terms-of-sales-page.component';
 import { FinalCheckoutPageComponent } from './pages/checkout/final-checkout-page/final-checkout-page.component';
+import { NotFoundPageComponent } from './pages/not-found/not-found-page/not-found-page.component';
+import { ProfilePageComponent } from './pages/user/profile-page/profile-page.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +52,8 @@ import { FinalCheckoutPageComponent } from './pages/checkout/final-checkout-page
     LegalNoticePageComponent,
     TermsOfSalesPageComponent,
     FinalCheckoutPageComponent,
+    ProfilePageComponent,
+    NotFoundPageComponent,
   ],
 
   imports: [

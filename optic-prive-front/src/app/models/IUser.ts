@@ -3,4 +3,6 @@ export interface IUser {
   username: string;
   email: string;
   roles: string[];
+  createdAt: Date;
+  updatedAt: Date;
 }
