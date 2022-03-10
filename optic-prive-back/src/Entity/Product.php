@@ -133,6 +133,7 @@ class Product implements SluggableInterface, TimestampableInterface
   private $uv_protection;
 
   #[ORM\Column(type: 'enumItemAvailability', nullable: false)]
+  #[Groups(["product_details_read"])]
   private $item_availability;
 
   #[ORM\ManyToOne(targetEntity: Brand::class, inversedBy: 'products')]

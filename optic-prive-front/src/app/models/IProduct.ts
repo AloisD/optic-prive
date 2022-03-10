@@ -12,6 +12,7 @@ export interface IProduct {
   created_at: Date;
   updated_at: Date;
   state: string;
+  itemAvailability: string;
   category: string;
   uv_protection: string;
   productImages: [any];

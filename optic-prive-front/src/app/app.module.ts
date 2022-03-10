@@ -55,7 +55,7 @@ import { ProfilePageComponent } from './pages/user/profile-page/profile-page.com
   ],
 
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     HttpClientModule,
     FormsModule,

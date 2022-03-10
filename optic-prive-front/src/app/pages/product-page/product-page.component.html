@@ -1,6 +1,31 @@
 <app-header class="sticky-top"></app-header>
 <app-categories></app-categories>
 
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org/",
+    "@type": "Product",
+    "name": "{{ product.brand.name }} {{ product?.reference }}",
+    "image": [
+      "https://localhost:8000/images/products/{{ imagePath1 }}",
+      "https://localhost:8000/images/products/{{ imagePath2 }}",
+      "https://localhost:8000/images/products/{{ imagePath3 }}"
+     ],
+    "brand": {
+      "@type": "Brand",
+      "name": "{{ product.brand.name }}"
+    },
+    "offers": {
+      "@type": "Offer",
+      "url": "https://example.com/anvil",
+      "priceCurrency": "EUR",
+      "price": "{{ product?.selling_price }}",
+      "itemCondition": "{{ product.state }}",
+      "availability": "{{ product.itemAvailability }}"
+    }
+  }
+</script>
+
 <div class="container mb-5" *ngIf="product">
   <div class="row">
 
@@ -148,3 +173,5 @@
     </div>
   </div>
 </div>
+
+
