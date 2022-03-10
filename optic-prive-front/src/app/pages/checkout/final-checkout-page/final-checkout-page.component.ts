@@ -13,6 +13,8 @@ export class FinalCheckoutPageComponent implements OnInit {
   public productsQuantity !: number;
   public summaryShippingPrice !:number;
   public price !:number;
+  public productToDelete : any;
+
 
   constructor(private cartService : CartService, private shippingOptionService :ShippingOptionService) { }
 
@@ -25,7 +27,7 @@ export class FinalCheckoutPageComponent implements OnInit {
       this.price = this.cartService.getPrice();
       console.log('prix',this.price);
     });
-    console.log('cartProducts', this.cartService.cartProducts);
+    this.setProductToDelete(this.products[0]);
   }
 
   changePriceShipping()
@@ -33,5 +35,16 @@ export class FinalCheckoutPageComponent implements OnInit {
     this.summaryShippingPrice = this.shippingOptionService.shippingPrice;
   }
 
+  removeItem(product: any) {
+    this.cartService.deleteCartProduct(product);
+  }
+
+  decreaseQuantity(product: any) {
+    this.cartService.removeFromCart(product);
+  }
+
+  setProductToDelete(product : any) {
+    this.productToDelete = product;
+  }
 }
 

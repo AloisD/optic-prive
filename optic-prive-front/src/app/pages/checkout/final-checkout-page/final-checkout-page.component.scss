@@ -28,7 +28,6 @@ h1 {
 }
 
 .title {
-  margin-bottom: 5vh;
   white-space: nowrap;
 
   @media screen and (max-width: (765px))
@@ -128,6 +127,7 @@ h1 {
 .col {
   padding: 0 1vh;
   text-decoration: none;
+  white-space: nowrap;
 }
 
 a {
@@ -136,7 +136,7 @@ a {
 
 .close {
   margin-left: auto;
-  font-size: 0.7rem;
+  text-align: right;
 }
 
 img {
@@ -195,7 +195,7 @@ input:focus::-webkit-input-placeholder {
   color: white;
   width: 100%;
   font-size: 15px;
-  margin-top: 4.5rem;
+  margin-top: 0.5rem;
   padding: 1vh;
   border-radius: 0;
 }
@@ -257,4 +257,8 @@ a:hover {
 
 .col-lg-8 {
   width: 90%;
+}
+
+input {
+  margin-bottom: 0vh;
 }
