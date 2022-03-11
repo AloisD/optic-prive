@@ -157,9 +157,15 @@ class AppFixtures extends Fixture
     //shipping
     $shippingOption = new ShippingOption;
     $shippingOption
-      ->setName("livraisson express")
+      ->setName("Livraison Express")
       ->setPrice(5);
     $manager->persist($shippingOption);
+
+    $shippingOption1 = new ShippingOption;
+    $shippingOption1
+      ->setName("Livraison Gratuite")
+      ->setPrice(0);
+    $manager->persist($shippingOption1);
 
     //create some vendors
     $vendor = new User();
