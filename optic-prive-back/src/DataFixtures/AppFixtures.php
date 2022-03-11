@@ -263,7 +263,9 @@ class AppFixtures extends Fixture
       ->setRecipient("345 rue Anatole France")
       ->setCountry("France")
       ->setCity("Neuilly-sur-Seine")
-      ->setUser($user);
+      ->setUser($user)
+      ->setFirstname('Jean')
+      ->setLastname('Dujardin');
     $manager->persist($invoicingAddress);
 
     //delivery_address
@@ -273,7 +275,9 @@ class AppFixtures extends Fixture
       ->setRecipient("112 avenue Charles de Gaulle")
       ->setCountry("France")
       ->setCity("Neuilly-sur-Seine")
-      ->setUser($user);
+      ->setUser($user)
+      ->setFirstname('Johnny')
+      ->setLastname('Halliday');
     $manager->persist($deliveryAddress);
 
     //orders
@@ -297,6 +301,17 @@ class AppFixtures extends Fixture
     $this->getDataOrderHasProduct($orderHasProduct);
 
     $manager->persist($orderHasProduct);
+
+    //orderHasProduct1
+    $orderHasProduct1 = new OrderHasProduct();
+    $orderHasProduct1
+      ->setQuantity(2)
+      ->setProduct($product2)
+      ->setOrder($order);
+
+    $this->getDataOrderHasProduct($orderHasProduct1);
+
+    $manager->persist($orderHasProduct1);
 
     $manager->flush();
   }
@@ -394,3 +409,4 @@ class AppFixtures extends Fixture
 
   /**END  Order************************************************************************* */
 }
+

@@ -12,7 +12,7 @@ use Knp\DoctrineBehaviors\Model\Timestampable\TimestampableTrait;
 
 #[ORM\Entity(repositoryClass: OrderRepository::class)]
 #[ORM\Table(name: '`order`')]
-#[ApiResource]
+#[ApiResource()]
 class Order implements TimestampableInterface
 {
   use TimestampableTrait;

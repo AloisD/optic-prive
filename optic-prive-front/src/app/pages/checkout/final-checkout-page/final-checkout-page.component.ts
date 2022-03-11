@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Payment } from 'src/app/models/Payment';
 import { CartService } from 'src/app/services/cart/cart.service';
+import { PaymentService } from 'src/app/services/payment/payment.service';
 import { ShippingOptionService } from 'src/app/services/shipping-option/shipping-option.service';
 
 @Component({
@@ -14,9 +17,10 @@ export class FinalCheckoutPageComponent implements OnInit {
   public summaryShippingPrice !:number;
   public price !:number;
   public productToDelete : any;
+  public payment : Payment = new Payment();
 
 
-  constructor(private cartService : CartService, private shippingOptionService :ShippingOptionService) { }
+  constructor(private cartService : CartService, private shippingOptionService :ShippingOptionService, private paymentService: PaymentService) { }
 
   ngOnInit(): void {
     this.cartService.getProducts()
@@ -45,6 +49,11 @@ export class FinalCheckoutPageComponent implements OnInit {
 
   setProductToDelete(product : any) {
     this.productToDelete = product;
+  }
+
+  checkout(checkoutForm: NgForm) {
+    console.log(checkoutForm.form.value);
+    this.paymentService.pay(checkoutForm.form.value);
   }
 }
 
