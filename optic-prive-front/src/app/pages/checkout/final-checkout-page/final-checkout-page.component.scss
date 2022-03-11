@@ -257,6 +257,11 @@ a:hover {
 
 .col-lg-8 {
   width: 90%;
+
+  @media screen and (max-width: (765px))
+  {
+    width: 97%;
+  }
 }
 
 input {
