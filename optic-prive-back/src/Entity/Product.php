@@ -178,7 +178,7 @@ class Product implements SluggableInterface, TimestampableInterface
   #[ORM\OneToMany(mappedBy: 'product', targetEntity: OrderHasProduct::class)]
   private $orderHasProducts;
 
-  #[ORM\ManyToOne(targetEntity: user::class, inversedBy: 'products')]
+  #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'products')]
   #[ORM\JoinColumn(nullable: false)]
   private $seller;
 
