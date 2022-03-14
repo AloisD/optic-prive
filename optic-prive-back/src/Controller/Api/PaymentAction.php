@@ -17,9 +17,9 @@ final class PaymentAction extends AbstractController
     $this->manager = $manager;
   }
 
-  public function __invoke( $data, Request $request)
+  public function __invoke($data, Request $request)
   {
-    dd($data);
+    $data = json_decode($request->getContent());
     return $data;
   }
 }

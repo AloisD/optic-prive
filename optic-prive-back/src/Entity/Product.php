@@ -71,7 +71,7 @@ use Knp\DoctrineBehaviors\Model\Timestampable\TimestampableTrait;
     ]
   ],
 )]
-#[ApiFilter(SearchFilter::class, properties: [ 'name' => 'ipartial', 'segment' => 'exact'])]
+#[ApiFilter(SearchFilter::class, properties: ['name' => 'ipartial', 'segment' => 'exact'])]
 #[ApiFilter(OrderFilter::class, properties: ['createdAt'])]
 class Product implements SluggableInterface, TimestampableInterface
 {
@@ -177,7 +177,7 @@ class Product implements SluggableInterface, TimestampableInterface
   #[ORM\OneToMany(mappedBy: 'product', targetEntity: OrderHasProduct::class)]
   private $orderHasProducts;
 
-  #[ORM\ManyToOne(targetEntity: user::class, inversedBy: 'products')]
+  #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'products')]
   #[ORM\JoinColumn(nullable: false)]
   private $seller;
 
@@ -505,15 +505,15 @@ class Product implements SluggableInterface, TimestampableInterface
     return $this->name;
   }
 
-  public function getSeller(): ?user
+  public function getSeller(): ?User
   {
-      return $this->seller;
+    return $this->seller;
   }
 
-  public function setSeller(?user $seller): self
+  public function setSeller(?User $seller): self
   {
-      $this->seller = $seller;
+    $this->seller = $seller;
 
-      return $this;
+    return $this;
   }
 }

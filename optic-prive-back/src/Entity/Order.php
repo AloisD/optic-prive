@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use App\Controller\Api\PaymentAction;
 use App\Repository\OrderRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -12,7 +13,15 @@ use Knp\DoctrineBehaviors\Model\Timestampable\TimestampableTrait;
 
 #[ORM\Entity(repositoryClass: OrderRepository::class)]
 #[ORM\Table(name: '`order`')]
-#[ApiResource()]
+#[ApiResource(collectionOperations: [
+  'payment' => [
+    'pagination_enabled' => false,
+    'method' => 'POST',
+    'path' => '/payment',
+    'controller' => PaymentAction::class,
+    'read' => false
+  ]
+])]
 class Order implements TimestampableInterface
 {
   use TimestampableTrait;
@@ -42,7 +51,7 @@ class Order implements TimestampableInterface
 
   public function __construct()
   {
-      $this->orderHasProducts = new ArrayCollection();
+    $this->orderHasProducts = new ArrayCollection();
   }
 
   public function getId(): ?int
@@ -67,64 +76,64 @@ class Order implements TimestampableInterface
    */
   public function getOrderHasProducts(): Collection
   {
-      return $this->orderHasProducts;
+    return $this->orderHasProducts;
   }
 
   public function addOrderHasProduct(OrderHasProduct $orderHasProduct): self
   {
-      if (!$this->orderHasProducts->contains($orderHasProduct)) {
-          $this->orderHasProducts[] = $orderHasProduct;
-          $orderHasProduct->setOrder($this);
-      }
+    if (!$this->orderHasProducts->contains($orderHasProduct)) {
+      $this->orderHasProducts[] = $orderHasProduct;
+      $orderHasProduct->setOrder($this);
+    }
 
-      return $this;
+    return $this;
   }
 
   public function removeOrderHasProduct(OrderHasProduct $orderHasProduct): self
   {
-      if ($this->orderHasProducts->removeElement($orderHasProduct)) {
-          // set the owning side to null (unless already changed)
-          if ($orderHasProduct->getOrder() === $this) {
-              $orderHasProduct->setOrder(null);
-          }
+    if ($this->orderHasProducts->removeElement($orderHasProduct)) {
+      // set the owning side to null (unless already changed)
+      if ($orderHasProduct->getOrder() === $this) {
+        $orderHasProduct->setOrder(null);
       }
+    }
 
-      return $this;
+    return $this;
   }
 
   public function getInvoicingAddress(): ?Address
   {
-      return $this->invoicing_address;
+    return $this->invoicing_address;
   }
 
   public function setInvoicingAddress(?Address $invoicing_address): self
   {
-      $this->invoicing_address = $invoicing_address;
+    $this->invoicing_address = $invoicing_address;
 
-      return $this;
+    return $this;
   }
 
   public function getDeliveryAddress(): ?Address
   {
-      return $this->delivery_address;
+    return $this->delivery_address;
   }
 
   public function setDeliveryAddress(?Address $delivery_address): self
   {
-      $this->delivery_address = $delivery_address;
+    $this->delivery_address = $delivery_address;
 
-      return $this;
+    return $this;
   }
 
   public function getShipping(): ?ShippingOption
   {
-      return $this->shipping;
+    return $this->shipping;
   }
 
   public function setShipping(?ShippingOption $shipping): self
   {
-      $this->shipping = $shipping;
+    $this->shipping = $shipping;
 
-      return $this;
+    return $this;
   }
 }
