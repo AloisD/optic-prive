@@ -141,7 +141,7 @@ class PrepareStripe
       $reference = $orderHasProduct->getProduct()->getReference();
       $colorCode = $orderHasProduct->getProduct()->getColorCode();
       $sellingPrice = $orderHasProduct->getProduct()->getSellingPrice();
-      $quantity = $orderHasProduct->getProduct()->getQuantity();
+      $quantity = $orderHasProduct->getQuantity();
 
       //création de produit
       $product = $stripe->products->create([
@@ -149,7 +149,7 @@ class PrepareStripe
         "metadata" => [
           "reference" => $reference,
           "color_code" => $colorCode,
-          "seller_id" => '1'    /// try to find seller
+          "seller_id" => $orderHasProduct->getProduct()->getSeller()->getId()
         ],
       ]);
 

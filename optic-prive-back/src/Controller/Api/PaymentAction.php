@@ -44,7 +44,7 @@ final class PaymentAction extends AbstractController
   {
     $data = json_decode($request->getContent());
 
-    $prepareStrype = new PrepareStripe(
+    $prepareStripe = new PrepareStripe(
       $this->manager,
       $this->userRepository,
       $this->shippingOptionRepository,
@@ -52,7 +52,7 @@ final class PaymentAction extends AbstractController
       $this->orderHasProductRepository,
       $this->orderRepository
     );
-    $orderId = $prepareStrype->getIdOrder($data);
-    return $prepareStrype->payment($orderId);
+    $orderId = $prepareStripe->getIdOrder($data);
+    return $prepareStripe->payment($orderId);
   }
 }
