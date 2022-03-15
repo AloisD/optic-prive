@@ -26,7 +26,7 @@ const routes: Routes = [
   { path: 'mentions-legales', component: LegalNoticePageComponent },
   { path: 'conditions-generales', component: TermsOfSalesPageComponent },
   { path: 'commande', component: FinalCheckoutPageComponent },
-  { path: 'profile/:id', component: ProfilePageComponent },
+  { path: 'profile', component: ProfilePageComponent },
   { path: '404', component: NotFoundPageComponent },
   { path: '**', redirectTo: '/404' },
 ];

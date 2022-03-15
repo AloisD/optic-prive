@@ -38,24 +38,11 @@ export class ProfilePageComponent implements OnInit {
 
     isAuthorized(): boolean {
         let authorized = false;
-        let id_url!: number;
-
-        this.activatedRoute.params.subscribe((params: Params) => {
-            id_url = params["id"];
-        });
-
-        if (!id_url) {
+        this.idLocalStorage = this.authenticationService.getUserId();
+        if (!this.idLocalStorage) {
             authorized = false;
         }
-        if (this.authenticationService.getUserId()) {
-            this.idLocalStorage = this.authenticationService.getUserId();
-            if (!this.idLocalStorage) {
-                authorized = false;
-            }
-            if (id_url == this.idLocalStorage) {
-                authorized = true;
-            }
-        }
+        authorized = true;
 
         return authorized;
     }
