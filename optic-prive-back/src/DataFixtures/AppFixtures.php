@@ -36,50 +36,106 @@ class AppFixtures extends Fixture
 
     $product = new Product();
     $product
-      ->setName("aviator classic")
-      ->setReference('RB3025 L0205 58-14')
-      ->setColorCode('poli or:vert') // monture color : glasses color
-      ->setRetailPrice($faker->randomFloat(1, 10, 30))
-      ->setSellingPrice($faker->randomFloat(1, 10, 30))
-      ->setQuantity($faker->randomNumber(1, true));
-
-    $this->getDataProduct($product, $faker);
+      ->setName(' ')
+      ->setReference('NB6046')
+      ->setColorCode('3') // monture color : glasses color
+      ->setRetailPrice(93.00)
+      ->setSellingPrice(74.40)
+      ->setQuantity(1)
+      ->setEyeSize(53)
+      ->setBridgeSize(20)
+      ->setTempleLength(150)
+      ->setState('newCondition')
+      ->setCategory('unisex')
+      ->setUvProtection('category3')
+      ->setItemAvailability('inStock');
 
     $product1 = new Product();
     $product1
-      ->setName("pilot")
-      ->setReference('BB4535 F46H 44-97')
-      ->setColorCode('noir')
-      ->setRetailPrice($faker->randomFloat(1, 10, 30))
-      ->setSellingPrice($faker->randomFloat(1, 10, 30))
-      ->setQuantity($faker->randomNumber(1, true));
-
-    $this->getDataProduct($product1, $faker);
+      ->setName(' ')
+      ->setReference('NB6030')
+      ->setColorCode('3') // monture color : glasses color
+      ->setRetailPrice(93.00)
+      ->setSellingPrice(74.40)
+      ->setQuantity(1)
+      ->setEyeSize(54)
+      ->setBridgeSize(17)
+      ->setTempleLength(135)
+      ->setState('newCondition')
+      ->setCategory('unisex')
+      ->setUvProtection('category3')
+      ->setItemAvailability('inStock');
 
     $product2 = new Product();
     $product2
-      ->setName("classic")
-      ->setReference('BRFRF FGG44 56-32')
-      ->setColorCode('blanc')
-      ->setRetailPrice($faker->randomFloat(1, 10, 30))
-      ->setSellingPrice($faker->randomFloat(1, 10, 30))
-      ->setQuantity($faker->randomNumber(1, true));
+      ->setName(' ')
+      ->setReference('NB6037')
+      ->setColorCode('4') // monture color : glasses color
+      ->setRetailPrice(93.00)
+      ->setSellingPrice(74.40)
+      ->setQuantity(1)
+      ->setEyeSize(54)
+      ->setBridgeSize(21)
+      ->setTempleLength(135)
+      ->setState('newCondition')
+      ->setCategory('unisex')
+      ->setUvProtection('category3')
+      ->setItemAvailability('inStock');
 
-    $this->getDataProduct($product2, $faker);
+    $product3 = new Product();
+    $product3
+      ->setName(' ')
+      ->setReference('NB6038')
+      ->setColorCode('3') // monture color : glasses color
+      ->setRetailPrice(93.00)
+      ->setSellingPrice(74.40)
+      ->setQuantity(1)
+      ->setEyeSize(54)
+      ->setBridgeSize(19)
+      ->setTempleLength(135)
+      ->setState('newCondition')
+      ->setCategory('unisex')
+      ->setUvProtection('category3')
+      ->setItemAvailability('inStock');
+
+    $product4 = new Product();
+    $product4
+      ->setName(' ')
+      ->setReference('NB6037')
+      ->setColorCode('1') // monture color : glasses color
+      ->setRetailPrice(93.00)
+      ->setSellingPrice(74.40)
+      ->setQuantity(1)
+      ->setEyeSize(54)
+      ->setBridgeSize(20)
+      ->setTempleLength(135)
+      ->setState('newCondition')
+      ->setCategory('unisex')
+      ->setUvProtection('category3')
+      ->setItemAvailability('inStock');
 
     //brand
     $brand = new Brand();
     $brand
-      ->setName("Hugo Boss")
-      ->setLogo("https://fr.wikipedia.org/wiki/Hugo_Boss#/media/Fichier:HUGO-BOSS_POS.png");
+      ->setName("New Balance")
+      ->setLogo("https://commons.wikimedia.org/wiki/File:NB_Stckd_logo.jpg");
     $manager->persist($brand);
 
     //shape
     $shape = new Shape();
     $shape
-      ->setName("square")
-      ->setLogo($faker->imageUrl(640, 480, 'animals', true));
+      ->setName("rectangle");
     $manager->persist($shape);
+
+    $shape1 = new Shape();
+    $shape1
+      ->setName("papillon");
+    $manager->persist($shape1);
+
+    $shape2 = new Shape();
+    $shape2
+      ->setName("pentos");
+    $manager->persist($shape2);
 
     //segment
     $segment = new Segment();
@@ -115,44 +171,122 @@ class AppFixtures extends Fixture
     //lens_type
     $lensType = new LensType();
     $lensType
-      ->setName("soft");
+      ->setName("verres mirroir/polarisés");
     $manager->persist($lensType);
+
+    $lensType1 = new LensType();
+    $lensType1
+      ->setName("verres polarisés");
+    $manager->persist($lensType1);
 
     //style
     $style = new Style();
     $style
-      ->setName("sport");
+      ->setName(" ");
     $manager->persist($style);
 
     //color
     $color = new Color();
     $color
-      ->setName("black")
-      ->setLogo($faker->hexColor());
+      ->setName("noir/jaune");
     $manager->persist($color);
+
+    $color1 = new Color();
+    $color1
+      ->setName("bleu/blanc/violet");
+    $manager->persist($color1);
+
+    $color2 = new Color();
+    $color2
+      ->setName("gris translucide/rouge");
+    $manager->persist($color2);
+
+    $color3 = new Color();
+    $color3
+      ->setName("rouge/noir/bleu");
+    $manager->persist($color3);
 
     //material
     $material = new Material();
     $material
-      ->setName("titanium")
-      ->setLogo($faker->imageUrl(640, 480, 'animals', true));
+      ->setName(" ");
     $manager->persist($material);
 
     //product_images
     $productImage = new ProductImage;
     $productImage
-      ->setPath("ray-ban-6214c562cd88e070069467.png");
+      ->setPath('NB6038.jpeg');
     $manager->persist($productImage);
 
     $productImage1 = new ProductImage;
     $productImage1
-      ->setPath("hugo-boss-boss-1131-s-003ir.jpg");
+      ->setPath('NB6038 (2).jpeg');
     $manager->persist($productImage1);
 
     $productImage2 = new ProductImage;
     $productImage2
-      ->setPath("hugo-boss-boss-1131-s-003ir2.jpg");
+      ->setPath('NB6038 (3).jpeg');
     $manager->persist($productImage2);
+
+    $productImage3 = new ProductImage;
+    $productImage3
+      ->setPath('NB6037-1.jpeg');
+    $manager->persist($productImage3);
+
+    $productImage4 = new ProductImage;
+    $productImage4
+      ->setPath('NB6037-1 (2).jpeg');
+    $manager->persist($productImage4);
+
+    $productImage5 = new ProductImage;
+    $productImage5
+      ->setPath('NB6037-1 (3).jpeg');
+    $manager->persist($productImage5);
+
+    $productImage6 = new ProductImage;
+    $productImage6
+      ->setPath('NB6046.jpeg');
+    $manager->persist($productImage6);
+
+    $productImage7 = new ProductImage;
+    $productImage7
+      ->setPath('NB6046 (2).jpeg');
+    $manager->persist($productImage7);
+
+    $productImage8 = new ProductImage;
+    $productImage8
+      ->setPath('NB6046 (3).jpeg');
+    $manager->persist($productImage8);
+
+    $productImage9 = new ProductImage;
+    $productImage9
+      ->setPath('NB6046 (4).jpeg');
+    $manager->persist($productImage9);
+
+    $productImage10 = new ProductImage;
+    $productImage10
+      ->setPath('NB6037-4.jpeg');
+    $manager->persist($productImage10);
+
+    $productImage11 = new ProductImage;
+    $productImage11
+      ->setPath('NB6037-4 (2).jpeg');
+    $manager->persist($productImage11);
+
+    $productImage12 = new ProductImage;
+    $productImage12
+      ->setPath('NB6037-4 (3).jpeg');
+    $manager->persist($productImage12);
+
+    $productImage13 = new ProductImage;
+    $productImage13
+      ->setPath('NB6030 (2).jpeg');
+    $manager->persist($productImage13);
+
+    $productImage14 = new ProductImage;
+    $productImage14
+      ->setPath('NB6030');
+    $manager->persist($productImage14);
 
     //shipping
     $shippingOption = new ShippingOption;
@@ -177,7 +311,7 @@ class AppFixtures extends Fixture
       ->setRoles([
         "ROLE_PRO"
       ])
-      ->addProduct($product);
+      ->addProduct($product3);
 
     $manager->persist($vendor);
 
@@ -190,8 +324,7 @@ class AppFixtures extends Fixture
       ->setRoles([
         "ROLE_PRO"
       ])
-      ->addProduct($product1)
-      ->addProduct($product2);
+      ->addProduct($product4);
 
     $manager->persist($vendor2);
 
@@ -204,33 +337,72 @@ class AppFixtures extends Fixture
       ->setStyle($style)
       ->setColor($color)
       ->setMaterial($material)
-      ->addProductImage($productImage);
+      ->addProductImage($productImage6)
+      ->addProductImage($productImage7)
+      ->addProductImage($productImage8)
+      ->addProductImage($productImage9)
+      ->setSeller($vendor);
 
     $manager->persist($product);
 
     $product1
       ->setBrand($brand)
-      ->setShape($shape)
+      ->setShape($shape1)
       ->setSegment($segment)
-      ->setLensType($lensType)
+      ->setLensType($lensType1)
       ->setStyle($style)
-      ->setColor($color)
+      ->setColor($color1)
       ->setMaterial($material)
-      ->addProductImage($productImage1);
+      ->addProductImage($productImage13)
+      ->addProductImage($productImage14)
+      ->setSeller($vendor);
 
     $manager->persist($product1);
 
     $product2
       ->setBrand($brand)
+      ->setShape($shape2)
+      ->setSegment($segment)
+      ->setLensType($lensType1)
+      ->setStyle($style)
+      ->setColor($color2)
+      ->setMaterial($material)
+      ->addProductImage($productImage3)
+      ->addProductImage($productImage4)
+      ->addProductImage($productImage5)
+      ->setSeller($vendor);
+
+    $manager->persist($product2);
+
+    $product3
+      ->setBrand($brand)
       ->setShape($shape)
       ->setSegment($segment)
-      ->setLensType($lensType)
+      ->setLensType($lensType1)
+      ->setStyle($style)
+      ->setColor($color3)
+      ->setMaterial($material)
+      ->addProductImage($productImage)
+      ->addProductImage($productImage1)
+      ->addProductImage($productImage2)
+      ->setSeller($vendor);
+
+    $manager->persist($product3);
+
+    $product4
+      ->setBrand($brand)
+      ->setShape($shape2)
+      ->setSegment($segment)
+      ->setLensType($lensType1)
       ->setStyle($style)
       ->setColor($color)
       ->setMaterial($material)
-      ->addProductImage($productImage2);
+      ->addProductImage($productImage10)
+      ->addProductImage($productImage11)
+      ->addProductImage($productImage12)
+      ->setSeller($vendor);
 
-    $manager->persist($product2);
+    $manager->persist($product4);
 
     //create some random users
     for ($i = 0; $i < 10; $i++) {
