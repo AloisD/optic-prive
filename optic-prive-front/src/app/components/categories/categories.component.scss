@@ -18,12 +18,10 @@ a {
 }
 
 a:hover {
-  span.rotate {
-    font-size: 25px;
-  }
-
   img {
-    height: 180px;
+    height: 190px;
+    -webkit-transition: .2s ease-in-out;
+    transition: .2s ease-in-out;
   }
 }
 
@@ -44,13 +42,21 @@ img {
   .icones {
     margin-top: 100px;
   }
+
+  img {
+    height: 150px;
+  }
+
+  a:hover {
+    img {
+      height: 160px;
+    }
+  }
 }
 
 @media screen and (max-width: (992px))
 {
-  img {
-    height: 150px;
-  }
+
 }
 
 .box-image {

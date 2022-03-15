@@ -28,6 +28,7 @@ import { TermsOfSalesPageComponent } from './pages/terms-of-sales-page/terms-of-
 import { FinalCheckoutPageComponent } from './pages/checkout/final-checkout-page/final-checkout-page.component';
 import { NotFoundPageComponent } from './pages/not-found/not-found-page/not-found-page.component';
 import { ProfilePageComponent } from './pages/user/profile-page/profile-page.component';
+import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { ProfilePageComponent } from './pages/user/profile-page/profile-page.com
     FinalCheckoutPageComponent,
     ProfilePageComponent,
     NotFoundPageComponent,
+    BreadcrumbComponent,
   ],
 
   imports: [
