@@ -71,6 +71,15 @@ h2 {
   height: 380px;
 }
 
+.pointer {
+  cursor: pointer;
+  line-height: 10px;
+}
+
+.pointer:hover {
+  font-size: 1.12rem;
+}
+
 @media screen and (max-width: (992px))
 {
   .image {

@@ -17,6 +17,12 @@ img {
   }
 }
 
+.container-bread {
+  background-color: #FBEADF;
+  line-height: 2.5em;
+  margin: 20px 0px;
+}
+
 @media screen and (max-width: (1200px)) {
   img {
     width: auto;
@@ -37,8 +43,8 @@ img {
 }
 
 @media screen and (max-width: (992px)) {
-  .top {
-    margin-top: 80px;
+  .container-bread {
+    margin-top: 68px;
   }
 }
 

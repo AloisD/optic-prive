@@ -1,0 +1,17 @@
+@use '../../../scss/custom' as *;
+
+.bread {
+  padding-left: 3%;
+  line-height: 2.5em;
+}
+
+.container-bread {
+  background-color: #FBEADF;
+  margin-top: 1em;
+}
+
+@media screen and (max-width: (992px)) {
+  .container-bread {
+      margin-top: 30px;
+  }
+}
