@@ -33,7 +33,7 @@
           </div>
           <div class="card-body">
             <a [routerLink]="['/produit', product.id]">
-              <h5 class="card-title"> {{ product.name }} </h5>
+              <h5 class="card-title"> {{ product.brand.name }} </h5>
               <p > (Ref : {{ product.reference }}) </p>
               <span> <s> {{ product.retail_price }} € </s> </span>
               <span class="selling_price"> {{ product.selling_price }} € </span>
