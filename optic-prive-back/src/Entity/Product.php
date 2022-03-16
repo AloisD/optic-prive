@@ -86,7 +86,7 @@ class Product implements SluggableInterface, TimestampableInterface
   private $id;
 
   #[Groups(["product_read", "product_details_read"])]
-  #[ORM\Column(type: 'string', length: 255, nullable: true)]
+  #[ORM\Column(type: 'string', length: 255)]
   private $name;
 
   #[ORM\Column(type: 'string', length: 255)]

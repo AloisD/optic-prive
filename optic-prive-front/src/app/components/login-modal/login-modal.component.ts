@@ -76,7 +76,7 @@ export class LoginModalComponent implements OnInit {
 
           this.connexionSuccess();
 
-          this.router.navigate(['profile']);
+          //   this.router.navigate(['profile']);
         }
       },
       (err) => {
