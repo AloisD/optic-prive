@@ -90,8 +90,8 @@ export class FinalCheckoutPageComponent implements OnInit {
     this.paymentService.pay(objPayement).subscribe((response: any) => {
       console.log('Response:', response);
       if (response['url']) {
-        console.log('response', response['url']);
-        window.location.href = response['url'];
+        console.log('url stripe :', response['url']);
+        window.open(`${response['url']}`, '_blank');
       }
     });
   }
