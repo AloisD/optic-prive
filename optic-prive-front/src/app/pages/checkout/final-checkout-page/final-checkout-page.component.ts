@@ -59,6 +59,7 @@ export class FinalCheckoutPageComponent implements OnInit {
 
   checkout(checkoutForm: NgForm) {
     // console.log(checkoutForm.form.value);
+
     const products = this.products;
     let shippingId = this.cartService.getShippingPriceId();
     let userId: number | null;
@@ -83,9 +84,6 @@ export class FinalCheckoutPageComponent implements OnInit {
       shippingId: shippingId,
       userId,
     };
-
-    // console.log('objPayement', objPayement);
-    //let obj = JSON.parse('{ "myString": "string", "myNumber": 4 }');
 
     this.paymentService.pay(objPayement).subscribe((response: any) => {
       console.log('Response:', response);

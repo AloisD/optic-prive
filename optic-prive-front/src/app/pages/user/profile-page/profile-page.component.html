@@ -9,9 +9,13 @@
           Vos informations <strong>{{ userFromBDD?.username }}</strong>
         </li>
         <li class="list-group-item">
-          <div *ngIf="userFromBDD" class="row">
+          <div *ngIf="userFromBDD" class="row mb-3">
             <div class="col-md-6">
-              <form>
+              <form
+                novalidate
+                (ngSubmit)="update(updateForm)"
+                #updateForm="ngForm"
+              >
                 <div class="mb-3">
                   <label for="username" class="form-label">Pseudo</label>
                   <input
@@ -21,7 +25,18 @@
                     name="username"
                     placeholder="pseudo"
                     [(ngModel)]="userFromBDD.username"
+                    required
+                    minlength="3"
+                    #username="ngModel"
+                    [ngClass]="{
+                      'is-invalid': username.touched && !username.valid
+                    }"
                   />
+                  <div class="invalid-feedback">
+                    <span *ngIf="username.errors">
+                      Pseudo invalide, 3 caractères minimum
+                    </span>
+                  </div>
                 </div>
                 <div class="mb-3">
                   <label for="email" class="form-label">Email</label>
@@ -32,10 +47,23 @@
                     name="email"
                     placeholder="email"
                     [(ngModel)]="userFromBDD.email"
+                    #email="ngModel"
+                    required
+                    email
+                    [ngClass]="{
+                      'is-invalid': email.touched && !email.valid
+                    }"
                   />
+                  <div class="invalid-feedback">
+                    <span *ngIf="email.errors"> Email non valide</span>
+                  </div>
                 </div>
                 <div>
-                  <button type="button" class="btn btn-primary">
+                  <button
+                    type="submit"
+                    [disabled]="!updateForm.valid"
+                    class="btn btn-primary"
+                  >
                     Mise à jour
                   </button>
                 </div>
@@ -66,6 +94,72 @@
                   disabled
                 />
               </div>
+            </div>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <ul class="nav nav-tabs mt-3" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button
+                class="nav-link active"
+                id="home-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#addresses"
+                type="button"
+                role="tab"
+                aria-controls="addresses"
+                aria-selected="true"
+              >
+                Adresses
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button
+                class="nav-link"
+                id="profile-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#orders"
+                type="button"
+                role="tab"
+                aria-controls="orders"
+                aria-selected="false"
+              >
+                Mes commandes
+              </button>
+            </li>
+          </ul>
+          <div class="tab-content" id="myTabContent">
+            <div
+              class="tab-pane fade show active"
+              id="addresses"
+              role="tabpanel"
+              aria-labelledby="home-tab"
+            >
+              <div *ngIf="addresses?.length > 0">
+                <table class="table table-striped mt-3">
+                  <tr>
+                    <th>Adresse</th>
+                    <th>City</th>
+                    <th>Country</th>
+                  </tr>
+                  <tr *ngFor="let addresse of addresses">
+                    <td>{{ addresse.recipient }}</td>
+                    <td>{{ addresse.city }}</td>
+                    <td>{{ addresse.country }}</td>
+                  </tr>
+                </table>
+              </div>
+              <div class="text-center p-3" *ngIf="addresses?.length == 0">
+                <span>Aucune adresse enregistrée</span>
+              </div>
+            </div>
+            <div
+              class="tab-pane fade p-3 text-center"
+              id="orders"
+              role="tabpanel"
+              aria-labelledby="orders-tab"
+            >
+              <span>IL MANQUE <strong>LA CLE BUYER_ID</strong> DANS ORDER</span>
             </div>
           </div>
         </li>

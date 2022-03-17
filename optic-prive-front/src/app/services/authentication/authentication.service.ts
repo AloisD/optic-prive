@@ -6,13 +6,16 @@ import {
   JsonpClientBackend,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { IUser } from 'src/app/models/IUser';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthenticationService {
+  private messageSource = new BehaviorSubject('connexion');
+  currentMessage = this.messageSource.asObservable();
+
   constructor(private http: HttpClient) {}
 
   authentication(user: any) {
@@ -60,6 +63,22 @@ export class AuthenticationService {
 
   getUser(id: number): Observable<any> {
     return this.http.get(`https://localhost:8000/api/users/${id}`, {
+      withCredentials: true,
+    });
+  }
+
+  changeMessage(message: string) {
+    this.messageSource.next(message);
+  }
+
+  clearLocalStorage() {
+    localStorage.removeItem('user-id');
+    localStorage.removeItem('cart');
+    localStorage.removeItem('shipping-price');
+  }
+
+  update(userId: any, user: any) {
+    return this.http.put(`https://localhost:8000/api/users/${userId}`, user, {
       withCredentials: true,
     });
   }

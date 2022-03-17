@@ -35,7 +35,8 @@ use Symfony\Component\Serializer\Annotation\Groups;
     ]
   ],
   itemOperations: [
-    'get' => ['security' => 'is_granted("ROLE_ADMIN") or (is_granted("ROLE_USER") and user.getId() == object.getId())']
+    'get' => ['security' => 'is_granted("ROLE_ADMIN") or (is_granted("ROLE_USER") and user.getId() == object.getId())'],
+    'put'
   ]
 )]
 class User implements UserInterface, PasswordAuthenticatedUserInterface, TimestampableInterface
@@ -231,28 +232,28 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Timesta
    */
   public function getProducts(): Collection
   {
-      return $this->products;
+    return $this->products;
   }
 
   public function addProduct(Product $product): self
   {
-      if (!$this->products->contains($product)) {
-          $this->products[] = $product;
-          $product->setSeller($this);
-      }
+    if (!$this->products->contains($product)) {
+      $this->products[] = $product;
+      $product->setSeller($this);
+    }
 
-      return $this;
+    return $this;
   }
 
   public function removeProduct(Product $product): self
   {
-      if ($this->products->removeElement($product)) {
-          // set the owning side to null (unless already changed)
-          if ($product->getSeller() === $this) {
-              $product->setSeller(null);
-          }
+    if ($this->products->removeElement($product)) {
+      // set the owning side to null (unless already changed)
+      if ($product->getSeller() === $this) {
+        $product->setSeller(null);
       }
+    }
 
-      return $this;
+    return $this;
   }
 }
