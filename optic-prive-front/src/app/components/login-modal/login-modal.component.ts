@@ -76,6 +76,9 @@ export class LoginModalComponent implements OnInit {
 
           this.connexionSuccess();
 
+          // send message to header component
+          this.authenticationService.changeMessage('logout');
+
           //   this.router.navigate(['profile']);
         }
       },
