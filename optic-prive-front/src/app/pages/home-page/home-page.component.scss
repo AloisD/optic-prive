@@ -18,16 +18,15 @@ h4 {
 }
 //BUTTON ADD TO CART
 .bi {
-  padding: 10px 12px 10px 12px;
+  padding: 8px 10px;
   border-radius: 50%;
-  font-size: 22px;
+  font-size: 18px;
   border: solid 1px;
 }
 
 .bi:hover {
-  // background-color: $secondary;
-  // color: $secondary-contrast;
   border: none;
+  font-size: 22px;
 }
 
 .bi:active {
@@ -55,18 +54,18 @@ h4 {
     padding: 4px;
     margin-left: 10px;
   }
-
 }
 
 .recent-product {
 
   .card {
     border:none;
+    border-radius: 0px;
     padding-bottom: 3em;
   }
 
   img {
-    border-radius: 10px;
+    border-radius: 0px;
     object-fit: cover;
     }
 
