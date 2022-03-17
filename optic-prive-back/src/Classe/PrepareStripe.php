@@ -75,7 +75,8 @@ class PrepareStripe
       ->setInvoicingAddress($invoicingAddress)
       ->setDeliveryAddress($deliveryAddress)
       ->setShipping($shippingOption)
-      ->setOrderStatus('orderPaymentDue'); //  !!! to confirmed
+      ->setOrderStatus('orderPaymentDue')
+      ->setBuyer($user);
     $this->manager->persist($order);
 
 

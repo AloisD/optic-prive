@@ -2,7 +2,10 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use App\Controller\Api\PaymentAction;
 use App\Repository\OrderRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -14,6 +17,7 @@ use Knp\DoctrineBehaviors\Model\Timestampable\TimestampableTrait;
 #[ORM\Entity(repositoryClass: OrderRepository::class)]
 #[ORM\Table(name: '`order`')]
 #[ApiResource(collectionOperations: [
+  'get',
   'payment' => [
     'pagination_enabled' => false,
     'method' => 'POST',
@@ -22,6 +26,9 @@ use Knp\DoctrineBehaviors\Model\Timestampable\TimestampableTrait;
     'read' => false
   ]
 ])]
+
+#[ApiFilter(SearchFilter::class, properties: ['buyer' => 'exact'])]
+#[ApiFilter(OrderFilter::class, properties: ['createdAt'])]
 class Order implements TimestampableInterface
 {
   use TimestampableTrait;
@@ -143,13 +150,13 @@ class Order implements TimestampableInterface
 
   public function getBuyer(): ?User
   {
-      return $this->buyer;
+    return $this->buyer;
   }
 
   public function setBuyer(?User $buyer): self
   {
-      $this->buyer = $buyer;
+    $this->buyer = $buyer;
 
-      return $this;
+    return $this;
   }
 }

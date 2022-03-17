@@ -3,6 +3,9 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use App\Repository\AddressRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -12,6 +15,8 @@ use Knp\DoctrineBehaviors\Model\Timestampable\TimestampableTrait;
 
 #[ORM\Entity(repositoryClass: AddressRepository::class)]
 #[ApiResource]
+#[ApiFilter(SearchFilter::class, properties: ['user' => 'exact'])]
+#[ApiFilter(OrderFilter::class, properties: ['createdAt'])]
 class Address implements TimestampableInterface
 {
   use TimestampableTrait;
@@ -63,8 +68,8 @@ class Address implements TimestampableInterface
 
   public function __construct()
   {
-      $this->orders = new ArrayCollection();
-      $this->ordres = new ArrayCollection();
+    $this->orders = new ArrayCollection();
+    $this->ordres = new ArrayCollection();
   }
 
   public function getId(): ?int
@@ -173,29 +178,29 @@ class Address implements TimestampableInterface
    */
   public function getOrders(): Collection
   {
-      return $this->orders;
+    return $this->orders;
   }
 
   public function addOrder(Order $order): self
   {
-      if (!$this->orders->contains($order)) {
-          $this->orders[] = $order;
-          $order->setInvoicingAddress($this);
-      }
+    if (!$this->orders->contains($order)) {
+      $this->orders[] = $order;
+      $order->setInvoicingAddress($this);
+    }
 
-      return $this;
+    return $this;
   }
 
   public function removeOrder(Order $order): self
   {
-      if ($this->orders->removeElement($order)) {
-          // set the owning side to null (unless already changed)
-          if ($order->getInvoicingAddress() === $this) {
-              $order->setInvoicingAddress(null);
-          }
+    if ($this->orders->removeElement($order)) {
+      // set the owning side to null (unless already changed)
+      if ($order->getInvoicingAddress() === $this) {
+        $order->setInvoicingAddress(null);
       }
+    }
 
-      return $this;
+    return $this;
   }
 
   /**
@@ -203,69 +208,69 @@ class Address implements TimestampableInterface
    */
   public function getOrdres(): Collection
   {
-      return $this->ordres;
+    return $this->ordres;
   }
 
   public function addOrdre(Order $ordre): self
   {
-      if (!$this->ordres->contains($ordre)) {
-          $this->ordres[] = $ordre;
-          $ordre->setDeliveryAddress($this);
-      }
+    if (!$this->ordres->contains($ordre)) {
+      $this->ordres[] = $ordre;
+      $ordre->setDeliveryAddress($this);
+    }
 
-      return $this;
+    return $this;
   }
 
   public function removeOrdre(Order $ordre): self
   {
-      if ($this->ordres->removeElement($ordre)) {
-          // set the owning side to null (unless already changed)
-          if ($ordre->getDeliveryAddress() === $this) {
-              $ordre->setDeliveryAddress(null);
-          }
+    if ($this->ordres->removeElement($ordre)) {
+      // set the owning side to null (unless already changed)
+      if ($ordre->getDeliveryAddress() === $this) {
+        $ordre->setDeliveryAddress(null);
       }
+    }
 
-      return $this;
+    return $this;
   }
 
   public function __toString()
   {
-    return $this->recipient. ': ' .$this->name;
+    return $this->recipient . ': ' . $this->name;
   }
 
   public function getUser(): ?User
   {
-      return $this->user;
+    return $this->user;
   }
 
   public function setUser(?User $user): self
   {
-      $this->user = $user;
+    $this->user = $user;
 
-      return $this;
+    return $this;
   }
 
   public function getFirstname(): ?string
   {
-      return $this->firstname;
+    return $this->firstname;
   }
 
   public function setFirstname(string $firstname): self
   {
-      $this->firstname = $firstname;
+    $this->firstname = $firstname;
 
-      return $this;
+    return $this;
   }
 
   public function getLastname(): ?string
   {
-      return $this->lastname;
+    return $this->lastname;
   }
 
   public function setLastname(string $lastname): self
   {
-      $this->lastname = $lastname;
+    $this->lastname = $lastname;
 
-      return $this;
+    return $this;
   }
 }
