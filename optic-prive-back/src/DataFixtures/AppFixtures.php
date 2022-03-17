@@ -463,7 +463,8 @@ class AppFixtures extends Fixture
     $order
       ->setInvoicingAddress($invoicingAddress)
       ->setDeliveryAddress($deliveryAddress)
-      ->setShipping($shippingOption);
+      ->setShipping($shippingOption)
+      ->setBuyer($user);
 
     $this->getDataOrder($order);
 
