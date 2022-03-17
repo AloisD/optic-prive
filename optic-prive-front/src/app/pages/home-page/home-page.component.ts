@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { IProduct } from 'src/app/models/IProduct';
 import { CartService } from 'src/app/services/cart/cart.service';
 import { ProductService } from 'src/app/services/product/product.service';
+import { ToastService } from 'src/app/services/toast/toast.service';
+import { reduceEachLeadingCommentRange } from 'typescript';
 
 @Component({
   selector: 'app-home-page',
@@ -14,6 +16,7 @@ export class HomePageComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private cartService: CartService,
+    private toastService: ToastService,
   ) {}
 
   ngOnInit(): void {
@@ -27,5 +30,11 @@ export class HomePageComponent implements OnInit {
 
   addtocart(product: any) {
     this.cartService.addToCart(product);
+  }
+
+  addToCartMessage() {
+    this.toastService.show(`Votre article a bien été ajouté au panier`, {
+      delay: 3000,
+    });
   }
 }
