@@ -14,4 +14,10 @@ export class AddresseService {
   getAddresses(): Observable<IAddress> {
     return this.http.get<IAddress>(`${this.$url}/addresses`);
   }
+
+  getAddressesByUser(userId: number): Observable<IAddress> {
+    return this.http.get<IAddress>(
+      `${this.$url}/addresses?page=1&user=${userId}`
+    );
+  }
 }

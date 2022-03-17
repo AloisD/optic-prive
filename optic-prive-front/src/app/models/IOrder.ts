@@ -1,11 +1,11 @@
-export interface IAddress {
+export interface IOrder {
   id: number;
-  address_name: string;
-  recipient?: string;
-  country: string;
-  city: string;
-  street: string;
-  number: number;
-  firstname: string;
-  lastname: string;
+  orderHasProducts: any[];
+  shipping: string;
+  buyer: string;
+  createdAt: Date;
+  updatedAt: Date;
+  orderStatus: string;
+  invoicingAddress: string;
+  deliveryAddress: string;
 }

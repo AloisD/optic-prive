@@ -159,7 +159,32 @@
               role="tabpanel"
               aria-labelledby="orders-tab"
             >
-              <span>IL MANQUE <strong>LA CLE BUYER_ID</strong> DANS ORDER</span>
+              <div *ngIf="orders?.length > 0">
+                <table class="table table-striped mt-3">
+                  <tr>
+                    <th>N°</th>
+                    <th>Status de la commande</th>
+                    <th>Crée le</th>
+                    <th>Actions</th>
+                  </tr>
+                  <tr *ngFor="let order of orders; let indexOfelement = index">
+                    <td>{{ indexOfelement + 1 }}</td>
+                    <td>{{ order.orderStatus }}</td>
+                    <td>{{ order.createdAt | date: "dd/MM/yyyy" }}</td>
+                    <td>
+                      <a
+                        href="#"
+                        (click)="$event.preventDefault(); showOrder(order)"
+                      >
+                        <i class="bi bi-eye"></i>
+                      </a>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+              <div class="text-center p-3" *ngIf="orders?.length == 0">
+                <span>Aucune commande enregistrée</span>
+              </div>
             </div>
           </div>
         </li>
