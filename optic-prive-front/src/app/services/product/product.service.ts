@@ -21,6 +21,10 @@ export class ProductService {
     ); // on peut changer ici les paramètres de tri, d'ordre, de nombre d'items et de numéro de page
   }
 
+  getTopDeals(): Observable<IProduct> {
+    return this.http.get<IProduct>(`${this.$url}/products?page=1&itemsPerPage=12&order%5Bselling_price%5D=asc`); // on peut changer ici les paramètres de tri, d'ordre, de nombre d'items et de numéro de page
+  }
+
   getProductsBySegment(segmentName: string | undefined): Observable<IProduct> {
     return this.http.get<IProduct>(
       `${this.$url}/segments/${segmentName}/products?page=1`

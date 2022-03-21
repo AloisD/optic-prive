@@ -29,6 +29,7 @@ import { FinalCheckoutPageComponent } from './pages/checkout/final-checkout-page
 import { NotFoundPageComponent } from './pages/not-found/not-found-page/not-found-page.component';
 import { ProfilePageComponent } from './pages/user/profile-page/profile-page.component';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
+import { CallToActionPageComponent } from './pages/call-to-action-page/call-to-action-page.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.componen
     ProfilePageComponent,
     NotFoundPageComponent,
     BreadcrumbComponent,
+    CallToActionPageComponent,
   ],
 
   imports: [
