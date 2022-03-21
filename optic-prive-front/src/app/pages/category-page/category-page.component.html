@@ -7,6 +7,7 @@
     <h4> {{ segmentTitle }} </h4>
   </div>
   <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" style="list-style: none">
+    <li *ngIf="!products.length">Il n'y a pas d'articles dans cette catégorie.</li>
     <li *ngFor="let product of products">
       <div class="col">
         <div class="card h-100">
