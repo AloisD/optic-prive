@@ -32,6 +32,7 @@ export class HomePageComponent implements OnInit {
     this.cartService.addToCart(product);
     this.toastService.show(`Votre article a bien été ajouté au panier`, {
       delay: 3000,
+      classname: 'bg-success text-light',
     });
   }
 }

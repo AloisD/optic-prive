@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAEA,AAAA,IAAI,AAAA,MAAM,CAAC,cAAc,CAAC;EACxB,SAAS,EAAE,KAAK;EAChB,UAAU,EAAE,KAAK;EACjB,OAAO,EAAE,IAAI;CACd;;AACD,AAAA,IAAI,AAAA,MAAM,CAAC,cAAc,CAAC,EAAE,CAAC;EAC3B,KAAK,EAAE,mBAAmB;EAC1B,SAAS,EAAE,mBAAmB;EAC9B,WAAW,EAAE,GAAG;CACjB;;AACD,AAAA,IAAI,AAAA,MAAM,CAAC,cAAc,CAAC,EAAE,CAAC,CAAC,CAAC;EAC7B,YAAY,EAAE,GAAG;CAClB",
-    "sources": [
-        "../../vendor/easycorp/easyadmin-bundle/assets/css/easyadmin-theme/errors.scss"
-    ],
-    "names": [],
-    "file": "errors.css"
-}

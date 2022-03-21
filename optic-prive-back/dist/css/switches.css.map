@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAGA,AAAA,YAAY,CAAC,iBAAiB,CAAC;EAC7B,gBAAgB,EAAE,qKAAqK;EACvL,YAAY,EAAE,eAAe;EAC7B,MAAM,EAAE,OAAO;EACf,MAAM,EAAE,IAAI;EACZ,KAAK,EAAE,IAAI;EACX,kBAAkB,EAAE,IAAI;CAKzB;;AAXD,AAQE,YARU,CAAC,iBAAiB,AAQ3B,QAAQ,CAAC;EACR,YAAY,EAAE,iBAAiB;CAChC;;AAEH,AAAA,YAAY,CAAC,iBAAiB,CAAA,AAAA,QAAC,AAAA,EAAU;EACvC,MAAM,EAAE,WAAW;CACpB;;AACD,AAAA,YAAY,CAAC,iBAAiB,AAAA,MAAM,CAAC;EACnC,UAAU,EAAE,IAAI;CACjB",
-    "sources": [
-        "../../vendor/easycorp/easyadmin-bundle/assets/css/easyadmin-theme/switches.scss"
-    ],
-    "names": [],
-    "file": "switches.css"
-}

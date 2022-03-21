@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "",
-    "sources": [
-        "../../vendor/easycorp/easyadmin-bundle/assets/css/easyadmin-theme/variables-bootstrap.scss"
-    ],
-    "names": [],
-    "file": "variables-bootstrap.min.css"
-}
