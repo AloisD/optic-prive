@@ -54,14 +54,8 @@ export class CategoryPageComponent implements OnInit {
 
   addtocart(product: any) {
     this.cartService.addToCart(product);
-  }
-
-  addToCartMessage() {
     this.toastService.show(`Votre article a bien été ajouté au panier`, {
       delay: 3000,
     });
   }
 }
-
-
-
