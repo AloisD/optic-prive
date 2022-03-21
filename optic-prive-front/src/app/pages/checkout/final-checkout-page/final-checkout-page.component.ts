@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { IAddress } from 'src/app/models/IAddress';
 import { Payment } from 'src/app/models/Payment';
+import { AddresseService } from 'src/app/services/addresse/addresse.service';
 import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 import { CartService } from 'src/app/services/cart/cart.service';
 import { PaymentService } from 'src/app/services/payment/payment.service';
@@ -20,12 +22,20 @@ export class FinalCheckoutPageComponent implements OnInit {
   public price!: number;
   public productToDelete: any;
   public payment: Payment = new Payment();
+  public billing: Payment = new Payment();
+  public isSameAddressBilling = true;
+  public addresses!: IAddress[];
+  public user!: any;
+
+  @ViewChild('elemBillingClose', { static: true })
+  elementBillingClose: ElementRef = <ElementRef>{};
 
   constructor(
     private cartService: CartService,
     private shippingOptionService: ShippingOptionService,
     private paymentService: PaymentService,
     private authenticationService: AuthenticationService,
+    private addresseService: AddresseService,
     private router: Router
   ) {}
 
@@ -38,6 +48,25 @@ export class FinalCheckoutPageComponent implements OnInit {
       //  console.log('prix', this.price);
     });
     this.setProductToDelete(this.products[0]);
+
+    let userId: number | null;
+    // userId = null;
+    userId = this.authenticationService.getUserId();
+
+    if (!userId) {
+      alert('Merci de vous connecter');
+      return;
+    }
+
+    this.getAdressess(userId);
+  }
+
+  getAdressess(userId: number) {
+    this.addresseService
+      .getAddressesByUser(userId)
+      .subscribe((addresses: any) => {
+        this.addresses = addresses['hydra:member'];
+      });
   }
 
   changePriceShipping() {
@@ -92,5 +121,24 @@ export class FinalCheckoutPageComponent implements OnInit {
         window.open(`${response['url']}`, '_blank');
       }
     });
+  }
+
+  onCheckboxChange(e: any) {
+    if (e.target.checked) {
+      this.isSameAddressBilling = true;
+    } else {
+      this.isSameAddressBilling = false;
+    }
+  }
+
+  addAddress(billingForm: NgForm) {
+    console.log('BillingForm', billingForm.form.value);
+
+    // For close modal
+    let el = this.elementBillingClose.nativeElement; //this.elementBillingClose.nativeElement;
+    el?.click();
+
+    //delete fields from forms
+    billingForm.reset();
   }
 }
