@@ -13,6 +13,7 @@ import { NotFoundPageComponent } from './pages/not-found/not-found-page/not-foun
 import { ProductPageComponent } from './pages/product-page/product-page.component';
 import { TermsOfSalesPageComponent } from './pages/terms-of-sales-page/terms-of-sales-page.component';
 import { ProfilePageComponent } from './pages/user/profile-page/profile-page.component';
+import { CallToActionPageComponent } from './pages/call-to-action-page/call-to-action-page.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'conditions-generales', component: TermsOfSalesPageComponent },
   { path: 'commande', component: FinalCheckoutPageComponent },
   { path: 'profile', component: ProfilePageComponent },
+  { path: 'bonnes-affaires', component: CallToActionPageComponent },
   { path: '404', component: NotFoundPageComponent },
   { path: '**', redirectTo: '/404' },
 ];
