@@ -73,7 +73,8 @@ use Knp\DoctrineBehaviors\Model\Timestampable\TimestampableTrait;
   ],
 )]
 #[ApiFilter(SearchFilter::class, properties: ['name' => 'ipartial', 'segment' => 'exact'])]
-#[ApiFilter(OrderFilter::class, properties: ['createdAt'])]
+#[ApiFilter(OrderFilter::class, properties: ['createdAt', 'selling_price'])]
+
 class Product implements SluggableInterface, TimestampableInterface
 {
   use SluggableTrait;
