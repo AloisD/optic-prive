@@ -29,6 +29,7 @@
         <div *ngIf="!products.length">Il n'y a pas d'articles dans le panier.</div>
         <div *ngFor="let product of products; let i = index" class="row border-bottom">
           <div class="row main align-items-center text-align-center">
+
             <div class="col-2">
               <img
               *ngIf="product.productImages.length"
@@ -43,6 +44,7 @@
               <div class="row justify-content-center">{{ product.brand.name }}</div>
               <div class="row justify-content-center">{{ product.reference }} - {{ product.color_code }}</div>
             </div>
+
             <div class="col">
               <a *ngIf="product.quantityOrdered == 1; else decrease" (click)="setProductToDelete(product)" class="pointer" data-bs-toggle="modal" data-bs-target="#deletionModal">-</a>
               <ng-template #decrease><a class="pointer" (click)="decreaseQuantity(product)">-</a></ng-template>
