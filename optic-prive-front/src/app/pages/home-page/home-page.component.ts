@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IProduct } from 'src/app/models/IProduct';
 import { CartService } from 'src/app/services/cart/cart.service';
 import { ProductService } from 'src/app/services/product/product.service';
+import { environment } from 'src/environments/environment';
 import { ToastService } from 'src/app/services/toast/toast.service';
 import { reduceEachLeadingCommentRange } from 'typescript';
 
@@ -12,6 +13,7 @@ import { reduceEachLeadingCommentRange } from 'typescript';
 })
 export class HomePageComponent implements OnInit {
   public products!: [IProduct];
+  public apiUrl = `${environment.apiUrl}`;
   public nextUrl!: string;
   public previousUrl!: string;
 

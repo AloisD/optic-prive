@@ -9,9 +9,9 @@
     "@type": "Product",
     "name": "{{ product.brand.name }} {{ product?.reference }}",
     "image": [
-      "http://localhost:8000/images/products/{{ imagePath1 }}",
-      "http://localhost:8000/images/products/{{ imagePath2 }}",
-      "http://localhost:8000/images/products/{{ imagePath3 }}"
+      "{{ apiUrl }}/images/products/{{ imagePath1 }}",
+      "{{ apiUrl }}/images/products/{{ imagePath2 }}",
+      "{{ apiUrl }}/images/products/{{ imagePath3 }}"
      ],
     "brand": {
       "@type": "Brand",
@@ -43,21 +43,21 @@
         </div>
         <div class="carousel-inner">
           <div class="carousel-item active" data-bs-interval="10000">
-            <img src="https://localhost:8000/images/products/{{
+            <img src="{{apiUrl}}/images/products/{{
               imagePath1
             }}"
             class="d-block image"
             alt="{{ product.reference }} 1">
           </div>
           <div class="carousel-item" data-bs-interval="2000">
-            <img src="https://localhost:8000/images/products/{{
+            <img src="{{apiUrl}}/images/products/{{
               imagePath2
             }}"
             class="d-block image"
             alt="{{ product.reference }} 2">
           </div>
           <div class="carousel-item">
-            <img src="https://localhost:8000/images/products/{{
+            <img src="{{apiUrl}}/images/products/{{
               imagePath3
             }}"
             class="d-block image"

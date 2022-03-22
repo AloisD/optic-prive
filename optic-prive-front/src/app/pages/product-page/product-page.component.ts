@@ -3,6 +3,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { IProduct } from 'src/app/models/IProduct';
 import { ProductService } from 'src/app/services/product/product.service';
 import { CartService } from 'src/app/services/cart/cart.service';
+import { environment } from 'src/environments/environment';
 import { ToastService } from 'src/app/services/toast/toast.service';
 
 @Component({
@@ -13,6 +14,7 @@ import { ToastService } from 'src/app/services/toast/toast.service';
 export class ProductPageComponent implements OnInit {
 
   product!: IProduct;
+  apiUrl = `${environment.apiUrl}`;
   id: number | undefined;
   imagePath1: string | undefined;
   imagePath2: string | undefined;
