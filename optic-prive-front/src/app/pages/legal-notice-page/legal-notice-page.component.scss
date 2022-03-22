@@ -2,8 +2,14 @@ h2 {
   text-align: center;
 }
 
+.container-bread {
+  background-color: #FBEADF;
+  line-height: 2.5em;
+  margin: 20px 0px;
+}
+
 @media screen and (max-width: (992px)) {
-  h2 {
-    margin-top: 110px;
+  .container-bread {
+    margin-top: 68px;
   }
 }

@@ -16,15 +16,27 @@ export class ProductService {
     return this.http.get<IProduct>(`${this.$url}/products`);
   }
 
-  getLatestProducts(): Observable<IProduct> {
-    return this.http.get<IProduct>(`${this.$url}/products?page=1&itemsPerPage=3&order%5BcreatedAt%5D=desc`); // on peut changer ici les paramètres de tri, d'ordre, de nombre d'items et de numéro de page
+  getLatestProducts(page: number = 1): Observable<IProduct> {
+    return this.http.get<IProduct>(
+      `${this.$url}/products?page=${page}&itemsPerPage=3&order%5BcreatedAt%5D=desc`
+    ); // on peut changer ici les paramètres de tri, d'ordre, de nombre d'items et de numéro de page
+  }
+
+  getTopDeals(): Observable<IProduct> {
+    return this.http.get<IProduct>(`${this.$url}/products?page=1&itemsPerPage=12&order%5Bselling_price%5D=asc`); // on peut changer ici les paramètres de tri, d'ordre, de nombre d'items et de numéro de page
   }
 
   getProductsBySegment(segmentName: string | undefined): Observable<IProduct> {
-    return this.http.get<IProduct>(`${this.$url}/segments/${segmentName}/products?page=1`); // remonte la première page, changer le numéro pour afficher une autre page
+    return this.http.get<IProduct>(
+      `${this.$url}/segments/${segmentName}/products?page=1`
+    ); // remonte la première page, changer le numéro pour afficher une autre page
   }
 
-  getProduct(id:number): Observable<IProduct> {
+  getProduct(id: number): Observable<IProduct> {
     return this.http.get<IProduct>(`${this.$url}/products/${id}`);
+  }
+
+  getLatestProductsByUrl(url: string): Observable<IProduct> {
+    return this.http.get<IProduct>(`https://localhost:8000${url}`); // on peut changer ici les paramètres de tri, d'ordre, de nombre d'items et de numéro de page
   }
 }

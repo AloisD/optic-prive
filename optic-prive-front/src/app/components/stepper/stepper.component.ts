@@ -8,7 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class StepperComponent implements OnInit {
  @Input() selectedIndex=0;
  elements = ["Panier", "Livraison", "Informations", "Paiement"];
- spaces = ["0","26", "58", "90","90"];
+ spaces = ["0","26", "58", "87"];
 
   constructor() { }
 

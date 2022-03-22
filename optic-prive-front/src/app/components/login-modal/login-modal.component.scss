@@ -75,8 +75,14 @@ a {
       font-size: 20px;
       color: $secondary-contrast;
     }
-    
+
     .form-group {
       margin: 15px 0px;
     }
+}
+
+@media screen and (max-width: (992px)){
+  .col-md-6 {
+    width: 90%;
+  }
 }

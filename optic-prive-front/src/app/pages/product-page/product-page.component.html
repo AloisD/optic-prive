@@ -1,5 +1,7 @@
 <app-header class="sticky-top"></app-header>
 <app-categories></app-categories>
+<app-breadcrumb></app-breadcrumb>
+
 
 <script type="application/ld+json">
   {
@@ -112,8 +114,11 @@
           <div class="selling-price">Prix Optic Privé : {{ product?.selling_price }} €</div>
         </div>
         <div class="button"><button class="btn btn-primary big-btn" (click)="addtocart(product)">AJOUTER AU PANIER</button></div>
+        <div class="back-to-shop pointer my-4" routerLink="/">&leftarrow; Retour à l'accueil
+        </div>
       </div>
     </div>
+
 
   </div>
 </div>

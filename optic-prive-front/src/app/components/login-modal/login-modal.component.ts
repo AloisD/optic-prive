@@ -74,7 +74,12 @@ export class LoginModalComponent implements OnInit {
           //clear fields's form
           loginForm.reset();
 
-          this.router.navigate(['profile', this.userConnected.id]);
+          this.connexionSuccess();
+
+          // send message to header component
+          this.authenticationService.changeMessage('logout');
+
+          //   this.router.navigate(['profile']);
         }
       },
       (err) => {
@@ -105,6 +110,13 @@ export class LoginModalComponent implements OnInit {
         this.registerFailed();
       }
     );
+  }
+
+  connexionSuccess() {
+    this.toastService.show(`La connexion a été effectuée`, {
+      classname: 'bg-success text-light',
+      delay: 3000,
+    });
   }
 
   showDanger() {

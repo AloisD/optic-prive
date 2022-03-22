@@ -1,0 +1,15 @@
+.height {
+  min-height: 80vh;
+}
+
+@media screen and (max-width: (768px)) {
+  .height {
+    min-height: 70vh;
+  }
+}
+
+@media screen and (max-width: (576px)) {
+  .height {
+    min-height: 55vh;
+  }
+}
