@@ -31,9 +31,21 @@
           </div>
             <div class="row">
               <br class="col">
-                <h6>VENDEUR : OPTIC MADELEINE</h6>
-                  <span>LIVRAISON : {{ price }} €</span> <br>
-                  <span>SOUS-TOTAL : {{ grandTotal.toFixed(2) }} €</span>
+              <div *ngFor="let seller of sellers">
+                <h6>VENDEUR : {{ seller }}</h6>
+                <br>
+                <span>PRODUITS :</span>
+                <br>
+                <div *ngFor="let product of products">
+                  <div *ngIf="product.seller.username == seller">{{ product.brand.name }} - {{ product.reference }} : {{ product.selling_price }} x {{ product.quantityOrdered }} = {{ (product.selling_price*product.quantityOrdered).toFixed(2) }} €</div>
+                </div>
+                <br>
+                <span>LIVRAISON : {{ price.toFixed(2) }} €</span>
+                <br>
+                <hr>
+              </div>
+              <br>
+              <span>SOUS-TOTAL : {{ grandTotal.toFixed(2) }} €</span>
             </div>
           <div class="back-to-shop cursor" routerLink="/livraison">&leftarrow; Précédent
           </div>

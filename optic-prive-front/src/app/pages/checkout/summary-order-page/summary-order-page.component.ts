@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from 'src/app/services/cart/cart.service';
 import { ShippingOptionService } from 'src/app/services/shipping-option/shipping-option.service';
+import { IProduct } from 'src/app/models/IProduct';
 
 @Component({
   selector: 'app-summary-order-page',
@@ -12,7 +13,8 @@ export class SummaryOrderPageComponent implements OnInit {
   public grandTotal !: number;
   public productsQuantity !: number;
   public summaryShippingPrice !:number;
-  public price !:number;
+  public price !:number;  // nom de variable pas clair : c'est le prix de quoi ?
+  public sellers: string[] = [];
 
   constructor(private cartService : CartService, private shippingOptionService :ShippingOptionService) { }
 
@@ -23,9 +25,13 @@ export class SummaryOrderPageComponent implements OnInit {
       this.grandTotal = this.cartService.getTotalPrice();
       this.productsQuantity = this.cartService.getProductsQuantity();
       this.price = this.cartService.getPrice();
-      console.log('prix',this.price);
     });
-    console.log('cartProducts', this.cartService.cartProducts);
+
+    this.products.forEach((product: IProduct) => {
+       if (!this.sellers.includes(product.seller.username)) {
+        this.sellers.push(product.seller.username);
+      }
+    });
   }
 
   changePriceShipping()
