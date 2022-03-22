@@ -22,6 +22,31 @@
     </div>
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" style="list-style: none">
       <li *ngFor="let product of products">
+
+        <script type="application/ld+json">
+          {
+            "@context": "https://schema.org/",
+            "@type": "Product",
+            "name": "{{ product.brand.name }} {{ product?.reference }}",
+            "image": [
+              "http://localhost:8000/images/products/{{ imagePath1 }}",
+              "http://localhost:8000/images/products/{{ imagePath2 }}",
+              "http://localhost:8000/images/products/{{ imagePath3 }}"
+            ],
+            "brand": {
+              "@type": "Brand",
+              "name": "{{ product.brand.name }}"
+            },
+            "offers": {
+              "@type": "Offer",
+              "priceCurrency": "EUR",
+              "price": "{{ product?.selling_price }}",
+              "itemCondition": "{{ product.state }}",
+              "availability": "{{ product.itemAvailability }}"
+            }
+          }
+        </script>
+
         <div class="col">
           <div class="card h-100">
             <div class="cart-relative">

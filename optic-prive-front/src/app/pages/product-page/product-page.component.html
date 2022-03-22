@@ -7,9 +7,9 @@
     "@type": "Product",
     "name": "{{ product.brand.name }} {{ product?.reference }}",
     "image": [
-      "https://localhost:8000/images/products/{{ imagePath1 }}",
-      "https://localhost:8000/images/products/{{ imagePath2 }}",
-      "https://localhost:8000/images/products/{{ imagePath3 }}"
+      "http://localhost:8000/images/products/{{ imagePath1 }}",
+      "http://localhost:8000/images/products/{{ imagePath2 }}",
+      "http://localhost:8000/images/products/{{ imagePath3 }}"
      ],
     "brand": {
       "@type": "Brand",
@@ -17,7 +17,6 @@
     },
     "offers": {
       "@type": "Offer",
-      "url": "https://example.com/anvil",
       "priceCurrency": "EUR",
       "price": "{{ product?.selling_price }}",
       "itemCondition": "{{ product.state }}",
