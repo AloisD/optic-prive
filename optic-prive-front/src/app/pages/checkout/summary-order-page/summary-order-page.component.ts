@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { CartService } from 'src/app/services/cart/cart.service';
 import { ShippingOptionService } from 'src/app/services/shipping-option/shipping-option.service';
@@ -15,6 +15,7 @@ export class SummaryOrderPageComponent implements OnInit {
   public productsQuantity!: number;
   public summaryShippingPrice!: number;
   public price!: number;
+
 
   constructor(
     private cartService: CartService,
@@ -44,7 +45,9 @@ export class SummaryOrderPageComponent implements OnInit {
     userId = this.authenticationService.getUserId();
 
     if (!userId) {
-      alert('Merci de vous connecter');
+      let buttonLogin: HTMLElement = document.getElementById('js-login-open') as HTMLElement;
+      buttonLogin.click();
+
       return;
     }
     this.router.navigate(['commande']);
