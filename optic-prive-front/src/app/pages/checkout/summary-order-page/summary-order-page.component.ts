@@ -11,7 +11,7 @@ import { AuthenticationService } from 'src/app/services/authentication/authentic
   styleUrls: ['./summary-order-page.component.scss'],
 })
 export class SummaryOrderPageComponent implements OnInit {
-  public products : any = [];
+  public products : IProduct[] = [];
   public grandTotal !: number;
   public productsQuantity !: number;
   public summaryShippingPrice !:number;
