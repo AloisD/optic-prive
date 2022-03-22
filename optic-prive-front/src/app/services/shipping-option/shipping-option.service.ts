@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IShippingOption } from 'src/app/models/IShippingOption';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ import { IShippingOption } from 'src/app/models/IShippingOption';
 export class ShippingOptionService {
 
   public shippingPrice :number = 0;
-  private $url = 'https://localhost:8000/api';
+  private $url = `${environment.apiUrl}/api`;
 
   constructor(private http: HttpClient) {}
 
