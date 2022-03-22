@@ -10,17 +10,17 @@
       </div>
       <div class="col-md-8">
         <p class="description">
-          La première marketplace qui regroupe l’ensemble des marchés de la
-          lunette (neuf, seconde main et reconditionnées) et qui permet aux
-          professionnels de l’optique de mettre en vente leurs lunettes
-          présentes en magasin sur le web.
+          Si comme nous, vous êtes lunettovores, amoureux de la lorgnette, passionnés de la bésicle, fada de la binocle, amateurs de vrai vintage… voici la première marketplace qui regroupe l’ensemble des acteurs de la lunette de soleil (du neuf, des invendus, de la seconde main, du reconditionné… )… le tout, à des prix négociés !!!
         </p>
       </div>
     </div>
     <div class="news">
       <h4>LES NOUVEAUTÉS</h4>
     </div>
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" style="list-style: none">
+    <div
+      class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4"
+      style="list-style: none"
+    >
       <li *ngFor="let product of products">
 
         <script type="application/ld+json">
@@ -60,8 +60,40 @@
                   alt="{{ product.reference }}"
                 />
               </a>
-              <p class="top-right" *ngIf="((product.retail_price - product.selling_price) * -100 / product.retail_price) > 0">+ {{ ((product.retail_price - product.selling_price) * -100 / product.retail_price).toFixed(0) }} %</p>
-              <p class="top-right" *ngIf="((product.retail_price - product.selling_price) * -100 / product.retail_price) <= 0">- {{ ((product.retail_price - product.selling_price) * 100 / product.retail_price).toFixed(0) }} %</p>
+              <p
+                class="top-right"
+                *ngIf="
+                  ((product.retail_price - product.selling_price) * -100) /
+                    product.retail_price >
+                  0
+                "
+              >
+                +
+                {{
+                  (
+                    ((product.retail_price - product.selling_price) * -100) /
+                    product.retail_price
+                  ).toFixed(0)
+                }}
+                %
+              </p>
+              <p
+                class="top-right"
+                *ngIf="
+                  ((product.retail_price - product.selling_price) * -100) /
+                    product.retail_price <=
+                  0
+                "
+              >
+                -
+                {{
+                  (
+                    ((product.retail_price - product.selling_price) * 100) /
+                    product.retail_price
+                  ).toFixed(0)
+                }}
+                %
+              </p>
               <button
                 type="button"
                 class="btn cart-icon"
@@ -72,16 +104,41 @@
             </div>
             <div class="card-body">
               <a [routerLink]="['produit', product.id]">
-                <h5 class="card-title"> {{ product.name }} </h5>
+                <h5 class="card-title">{{ product.brand.name }}</h5>
 
-              <p > (Ref : {{ product.reference }}) </p>
-              <span> <s>{{ product.retail_price }} €</s> </span>
-              <span class="selling_price"> {{ product.selling_price }} € </span>
-            </a>
+                <p>(Ref : {{ product.reference }})</p>
+                <span>
+                  <s>{{ product.retail_price }} €</s>
+                </span>
+                <span class="selling_price">
+                  {{ product.selling_price }} €
+                </span>
+              </a>
             </div>
           </div>
         </div>
       </li>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="my-2" style="display: flex; justify-content: space-between">
+          <button
+            class="btn btn-primary"
+            (click)="goToPreviousPage()"
+            *ngIf="previousUrl"
+          >
+            &larr;
+          </button>
+          <div style="flex: 1"></div>
+          <button
+            class="btn btn-primary"
+            (click)="goToNextPage()"
+            *ngIf="nextUrl"
+          >
+            &rarr;
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </body>

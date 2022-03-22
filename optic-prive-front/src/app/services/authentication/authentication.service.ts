@@ -7,7 +7,7 @@ import {
 } from '@angular/common/http';
 import { isPlatformBrowser } from '@angular/common';
 import { Injectable, Inject, PLATFORM_ID  } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { IUser } from 'src/app/models/IUser';
 import { environment } from 'src/environments/environment';
 
@@ -15,6 +15,10 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class AuthenticationService {
+
+  private messageSource = new BehaviorSubject('connexion');
+  currentMessage = this.messageSource.asObservable();
+
   constructor(private http: HttpClient, @Inject(PLATFORM_ID) private platformId: Object) {}
 
   authentication(user: any) {
@@ -66,6 +70,22 @@ export class AuthenticationService {
 
   getUser(id: number): Observable<any> {
     return this.http.get(`${environment.apiUrl}/api/users/${id}`, {
+      withCredentials: true,
+    });
+  }
+
+  changeMessage(message: string) {
+    this.messageSource.next(message);
+  }
+
+  clearLocalStorage() {
+    localStorage.removeItem('user-id');
+    localStorage.removeItem('cart');
+    localStorage.removeItem('shipping-price');
+  }
+
+  update(userId: any, user: any) {
+    return this.http.put(`https://localhost:8000/api/users/${userId}`, user, {
       withCredentials: true,
     });
   }

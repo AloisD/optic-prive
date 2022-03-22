@@ -11,11 +11,10 @@ export interface CartProduct extends IProduct {
   providedIn: 'root',
 })
 export class CartService {
-
   private price: number = 0;
   public priceShipping = {
-    id:0,
-    price:0
+    id: 0,
+    price: 0,
   };
   public cartProducts: CartProduct[] = [];
   public products = new BehaviorSubject<CartProduct[]>([]);
@@ -76,7 +75,10 @@ export class CartService {
 
   getTotalPrice(): number {
     return this.cartProducts.reduce((grandTotal, currentProduct) => {
-      return grandTotal + currentProduct.selling_price * currentProduct.quantityOrdered;
+      return (
+        grandTotal +
+        currentProduct.selling_price * currentProduct.quantityOrdered
+      );
     }, 0);
   }
 
@@ -93,11 +95,11 @@ export class CartService {
     this.products.next(newCartProducts);
   }
 
-  setPrice (value: number) {
-    this.price = value
+  setPrice(value: number) {
+    this.price = value;
   }
 
-  getPrice () {
+  getPrice() {
     return this.price;
   }
 
@@ -115,5 +117,9 @@ export class CartService {
 
   getShippingPrice1() {
     return this.priceShipping.price;
+  }
+
+  getShippingPriceId() {
+    return this.priceShipping.id;
   }
 }

@@ -5,7 +5,7 @@ import { IShippingOption } from 'src/app/models/IShippingOption';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ShippingOptionService {
 
@@ -18,7 +18,9 @@ export class ShippingOptionService {
     return this.http.get<IShippingOption>(`${this.$url}/shipping_options`);
   }
 
-  getShippingOption(id:number): Observable<IShippingOption> {
-    return this.http.get<IShippingOption>(`${this.$url}/shipping_options/${id}`);
+  getShippingOption(id: number): Observable<IShippingOption> {
+    return this.http.get<IShippingOption>(
+      `${this.$url}/shipping_options/${id}`
+    );
   }
 }

@@ -1,5 +1,9 @@
 {
     "require-dev": {
         "symfony/profiler-pack": "^1.0"
+    },
+
+    "require": {
+      "stripe/stripe-php": "^7.108"
     }
 }

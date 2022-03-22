@@ -10,6 +10,7 @@ use App\Entity\Segment;
 use App\Entity\LensType;
 use App\Entity\ProductImage;
 use App\Entity\OrderHasProduct;
+use App\Entity\User;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ProductRepository;
 use App\Controller\Api\ProductImageAction;
@@ -71,8 +72,9 @@ use Knp\DoctrineBehaviors\Model\Timestampable\TimestampableTrait;
     ]
   ],
 )]
-#[ApiFilter(SearchFilter::class, properties: [ 'name' => 'ipartial', 'segment' => 'exact'])]
-#[ApiFilter(OrderFilter::class, properties: ['createdAt'])]
+#[ApiFilter(SearchFilter::class, properties: ['name' => 'ipartial', 'segment' => 'exact'])]
+#[ApiFilter(OrderFilter::class, properties: ['createdAt', 'selling_price'])]
+
 class Product implements SluggableInterface, TimestampableInterface
 {
   use SluggableTrait;
@@ -178,7 +180,7 @@ class Product implements SluggableInterface, TimestampableInterface
   #[ORM\OneToMany(mappedBy: 'product', targetEntity: OrderHasProduct::class)]
   private $orderHasProducts;
 
-  #[ORM\ManyToOne(targetEntity: user::class, inversedBy: 'products')]
+  #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'products')]
   #[ORM\JoinColumn(nullable: false)]
   #[Groups(["product_read", "product_details_read"])]
   private $seller;
@@ -507,15 +509,15 @@ class Product implements SluggableInterface, TimestampableInterface
     return $this->name;
   }
 
-  public function getSeller(): ?user
+  public function getSeller(): ?User
   {
-      return $this->seller;
+    return $this->seller;
   }
 
-  public function setSeller(?user $seller): self
+  public function setSeller(?User $seller): self
   {
-      $this->seller = $seller;
+    $this->seller = $seller;
 
-      return $this;
+    return $this;
   }
 }
