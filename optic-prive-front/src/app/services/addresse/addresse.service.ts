@@ -20,4 +20,10 @@ export class AddresseService {
       `${this.$url}/addresses?page=1&user=${userId}`
     );
   }
+
+  createdAddress(address: any): Observable<IAddress> {
+    return this.http.post<IAddress>(
+      `${this.$url}/addresses`,address
+    );
+  }
 }
