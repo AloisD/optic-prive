@@ -6,6 +6,7 @@ import { AuthenticationService } from 'src/app/services/authentication/authentic
 import { CartService } from 'src/app/services/cart/cart.service';
 import { PaymentService } from 'src/app/services/payment/payment.service';
 import { ShippingOptionService } from 'src/app/services/shipping-option/shipping-option.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-final-checkout-page',
@@ -14,6 +15,7 @@ import { ShippingOptionService } from 'src/app/services/shipping-option/shipping
 })
 export class FinalCheckoutPageComponent implements OnInit {
   public products: any = [];
+  public apiUrl = `${environment.apiUrl}`;
   public grandTotal!: number;
   public productsQuantity!: number;
   public summaryShippingPrice!: number;

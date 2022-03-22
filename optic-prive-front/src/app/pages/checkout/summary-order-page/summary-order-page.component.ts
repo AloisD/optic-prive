@@ -23,9 +23,7 @@ export class SummaryOrderPageComponent implements OnInit {
       this.grandTotal = this.cartService.getTotalPrice();
       this.productsQuantity = this.cartService.getProductsQuantity();
       this.price = this.cartService.getPrice();
-      console.log('prix',this.price);
     });
-    console.log('cartProducts', this.cartService.cartProducts);
   }
 
   changePriceShipping()
