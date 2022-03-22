@@ -29,9 +29,9 @@
             "@type": "Product",
             "name": "{{ product.brand.name }} {{ product?.reference }}",
             "image": [
-              "http://localhost:8000/images/products/{{ imagePath1 }}",
-              "http://localhost:8000/images/products/{{ imagePath2 }}",
-              "http://localhost:8000/images/products/{{ imagePath3 }}"
+              "{{ apiUrl }}/images/products/{{ imagePath1 }}",
+              "{{ apiUrl }}/images/products/{{ imagePath2 }}",
+              "{{ apiUrl }}/images/products/{{ imagePath3 }}"
             ],
             "brand": {
               "@type": "Brand",
@@ -53,7 +53,7 @@
               <a [routerLink]="['produit', product.id]">
                 <img
                   *ngIf="product.productImages.length"
-                  src="https://localhost:8000/images/products/{{
+                  src="{{apiUrl}}/images/products/{{
                     product.productImages[0].path
                   }}"
                   class="card-img-top"

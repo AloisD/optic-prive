@@ -3,6 +3,7 @@ import { IProduct } from 'src/app/models/IProduct';
 import { CartService } from 'src/app/services/cart/cart.service';
 import { ProductService } from 'src/app/services/product/product.service';
 import { ActivatedRoute, Params } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-category-page',
@@ -11,6 +12,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 })
 export class CategoryPageComponent implements OnInit {
   products!: [IProduct];
+  apiUrl = `${environment.apiUrl}`;
   segmentName: string | undefined;
   segmentTitle!: string;
 

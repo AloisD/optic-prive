@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from 'src/app/services/cart/cart.service';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -10,6 +11,7 @@ import { CartService } from 'src/app/services/cart/cart.service';
 export class CartPageComponent implements OnInit {
 
   public products : any = [];
+  public   apiUrl = `${environment.apiUrl}`;
   public grandTotal !: number;
   public productsQuantity !: number;
   public productToDelete : any;
