@@ -37,6 +37,6 @@ export class ProductService {
   }
 
   getLatestProductsByUrl(url: string): Observable<IProduct> {
-    return this.http.get<IProduct>(`https://localhost:8000${url}`);
+    return this.http.get<IProduct>(`https://localhost:8000${url}`); // à changer pour utiliser environment.apiUrl
   }
 }
