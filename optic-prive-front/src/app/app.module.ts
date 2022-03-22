@@ -61,7 +61,7 @@ import { CallToActionPageComponent } from './pages/call-to-action-page/call-to-a
   ],
 
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     HttpClientModule,
     FormsModule,

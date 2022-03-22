@@ -1,6 +1,7 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { IProduct } from 'src/app/models/IProduct';
 import { BehaviorSubject } from 'rxjs';
+import { isPlatformBrowser } from '@angular/common';
 
 export interface CartProduct extends IProduct {
   quantityOrdered: number;
@@ -18,15 +19,17 @@ export class CartService {
   public cartProducts: CartProduct[] = [];
   public products = new BehaviorSubject<CartProduct[]>([]);
 
-  constructor() {
-    const cartStorage = localStorage.getItem('cart');
-    if (cartStorage) {
-      this.products.next(JSON.parse(cartStorage));
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+    if (isPlatformBrowser(this.platformId)) {
+      const cartStorage = localStorage.getItem('cart');
+      if (cartStorage) {
+        this.products.next(JSON.parse(cartStorage));
+      }
+      this.products.subscribe((products) => {
+        this.cartProducts = products;
+        localStorage.setItem('cart', JSON.stringify(products));
+      });
     }
-    this.products.subscribe((products) => {
-      this.cartProducts = products;
-      localStorage.setItem('cart', JSON.stringify(products));
-    });
   }
 
   getProducts() {
@@ -101,9 +104,11 @@ export class CartService {
   }
 
   setShippingPrice(value: any) {
-    this.priceShipping.id = value.id;
-    this.priceShipping.price = value.price;
-    localStorage.setItem('shipping-price', JSON.stringify(this.priceShipping));
+    if (isPlatformBrowser(this.platformId)) {
+      this.priceShipping.id = value.id;
+      this.priceShipping.price = value.price;
+      localStorage.setItem('shipping-price', JSON.stringify(this.priceShipping));
+    }
   }
 
   getShippingPrice() {

@@ -3,6 +3,30 @@
 <app-breadcrumb></app-breadcrumb>
 
 
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org/",
+    "@type": "Product",
+    "name": "{{ product.brand.name }} {{ product?.reference }}",
+    "image": [
+      "http://localhost:8000/images/products/{{ imagePath1 }}",
+      "http://localhost:8000/images/products/{{ imagePath2 }}",
+      "http://localhost:8000/images/products/{{ imagePath3 }}"
+     ],
+    "brand": {
+      "@type": "Brand",
+      "name": "{{ product.brand.name }}"
+    },
+    "offers": {
+      "@type": "Offer",
+      "priceCurrency": "EUR",
+      "price": "{{ product?.selling_price }}",
+      "itemCondition": "{{ product.state }}",
+      "availability": "{{ product.itemAvailability }}"
+    }
+  }
+</script>
+
 <div class="container mb-5" *ngIf="product">
   <div class="row">
 
@@ -71,7 +95,7 @@
           <!-- Référence -->
           <p class="reference">Ref : {{ product?.reference }}</p>
           <!-- Vendeur -->
-          <p class="reference"> !! Vendu par : Quelqu'un !!</p>
+          <p class="reference"> !! Vendu par : {{product.seller}} !!</p>
         </div>
 
         <div class="boxes d-flex justify-content-between details">
@@ -153,3 +177,5 @@
     </div>
   </div>
 </div>
+
+

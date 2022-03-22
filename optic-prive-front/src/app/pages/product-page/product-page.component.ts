@@ -31,12 +31,17 @@ export class ProductPageComponent implements OnInit {
     });
     this.productService.getProduct(this.id!).subscribe((currentProduct: IProduct) => {
       this.product = currentProduct;
+      console.log(this.product);
       let index = 0;
       this.imagePath1 = this.product.productImages[index].path;
       index ++;
-      this.imagePath2 = this.product.productImages[index].path;
-      index ++;
-      this.imagePath3 = this.product.productImages[index].path;
+      if (this.product.productImages[index]) {
+        this.imagePath2 = this.product.productImages[index].path;
+        index ++;
+        if (this.product.productImages[index]) {
+          this.imagePath3 = this.product.productImages[index].path;
+        }
+      }
     });
   }
 
