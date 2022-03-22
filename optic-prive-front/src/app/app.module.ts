@@ -30,6 +30,7 @@ import { NotFoundPageComponent } from './pages/not-found/not-found-page/not-foun
 import { ProfilePageComponent } from './pages/user/profile-page/profile-page.component';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 import { CallToActionPageComponent } from './pages/call-to-action-page/call-to-action-page.component';
+import { PagingComponent } from './components/paging/paging.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { CallToActionPageComponent } from './pages/call-to-action-page/call-to-a
     NotFoundPageComponent,
     BreadcrumbComponent,
     CallToActionPageComponent,
+    PagingComponent,
   ],
 
   imports: [
