@@ -3,6 +3,7 @@
 namespace App\Controller\Api;
 
 use App\Classe\PrepareStripe;
+use App\Repository\AddressRepository;
 use App\Repository\OrderHasProductRepository;
 use App\Repository\OrderRepository;
 use App\Repository\ProductRepository;
@@ -23,6 +24,8 @@ final class PaymentAction extends AbstractController
   private $productRepository;
   private $orderHasProductRepository;
   private $orderRepository;
+  private $addressRepository;
+
 
   public function __construct(
     EntityManagerInterface $manager,
@@ -30,7 +33,9 @@ final class PaymentAction extends AbstractController
     ShippingOptionRepository $shippingOptionRepository,
     ProductRepository $productRepository,
     OrderHasProductRepository $orderHasProductRepository,
-    OrderRepository $orderRepository
+    OrderRepository $orderRepository,
+    AddressRepository $addressRepository
+
   ) {
     $this->manager = $manager;
     $this->userRepository = $userRepository;
@@ -38,6 +43,7 @@ final class PaymentAction extends AbstractController
     $this->productRepository = $productRepository;
     $this->orderHasProductRepository = $orderHasProductRepository;
     $this->orderRepository = $orderRepository;
+    $this->addressRepository = $addressRepository;
   }
 
   public function __invoke($data, Request $request)
@@ -50,7 +56,8 @@ final class PaymentAction extends AbstractController
       $this->shippingOptionRepository,
       $this->productRepository,
       $this->orderHasProductRepository,
-      $this->orderRepository
+      $this->orderRepository,
+      $this->addressRepository
     );
     $orderId = $prepareStripe->getIdOrder($data);
     return $prepareStripe->payment($orderId);
