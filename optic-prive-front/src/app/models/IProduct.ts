@@ -38,6 +38,6 @@ export interface IProduct {
     name: string;
   };
   seller: {
-    email: string;
+    username: string;
   };
 }
