@@ -12,8 +12,8 @@ import { reduceEachLeadingCommentRange } from 'typescript';
 })
 export class HomePageComponent implements OnInit {
   public products!: [IProduct];
-  // public nextUrl!: string;
-  // public previousUrl!: string;
+  public nextUrl!: string;
+  public previousUrl!: string;
 
   constructor(
     private productService: ProductService,
@@ -30,8 +30,8 @@ export class HomePageComponent implements OnInit {
         Object.assign(product, { quantityOrdered: 0 });
       });
       // // For pagination
-      // this.nextUrl = datas['hydra:view']['hydra:next'];
-      // this.previousUrl = datas['hydra:view']['hydra:previous'];
+      this.nextUrl = datas['hydra:view']['hydra:next'];
+      this.previousUrl = datas['hydra:view']['hydra:previous'];
     });
   }
 
@@ -43,34 +43,34 @@ export class HomePageComponent implements OnInit {
     });
   }
 
-  // goToPreviousPage() {
-  //   this.productService
-  //     .getLatestProductsByUrl(this.previousUrl)
-  //     .subscribe((datas: any) => {
-  //       this.products = datas['hydra:member'];
-  //       this.products.forEach((product: any) => {
-  //         Object.assign(product, { quantityOrdered: 0 });
-  //       });
+  goToPreviousPage() {
+    this.productService
+      .getLatestProductsByUrl(this.previousUrl)
+      .subscribe((datas: any) => {
+        this.products = datas['hydra:member'];
+        this.products.forEach((product: any) => {
+          Object.assign(product, { quantityOrdered: 0 });
+        });
 
-  //       // For pagination
-  //       this.nextUrl = datas['hydra:view']['hydra:next'];
-  //       this.previousUrl = datas['hydra:view']['hydra:previous'];
-  //     });
-  // }
+        // For pagination
+        this.nextUrl = datas['hydra:view']['hydra:next'];
+        this.previousUrl = datas['hydra:view']['hydra:previous'];
+      });
+  }
 
-  // goToNextPage() {
-  //   console.log('Next url', this.nextUrl);
-  //   this.productService
-  //     .getLatestProductsByUrl(this.nextUrl)
-  //     .subscribe((datas: any) => {
-  //       this.products = datas['hydra:member'];
-  //       this.products.forEach((product: any) => {
-  //         Object.assign(product, { quantityOrdered: 0 });
-  //       });
+  goToNextPage() {
+    console.log('Next url', this.nextUrl);
+    this.productService
+      .getLatestProductsByUrl(this.nextUrl)
+      .subscribe((datas: any) => {
+        this.products = datas['hydra:member'];
+        this.products.forEach((product: any) => {
+          Object.assign(product, { quantityOrdered: 0 });
+        });
 
-  //       // For pagination
-  //       this.nextUrl = datas['hydra:view']['hydra:next'];
-  //       this.previousUrl = datas['hydra:view']['hydra:previous'];
-  //     });
-  // }
+        // For pagination
+        this.nextUrl = datas['hydra:view']['hydra:next'];
+        this.previousUrl = datas['hydra:view']['hydra:previous'];
+      });
+  }
 }
