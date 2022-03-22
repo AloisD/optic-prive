@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment';
 export class CartPageComponent implements OnInit {
 
   public products : any = [];
-  public   apiUrl = `${environment.apiUrl}`;
+  public apiUrl = `${environment.apiUrl}`;
   public grandTotal !: number;
   public productsQuantity !: number;
   public productToDelete : any;
