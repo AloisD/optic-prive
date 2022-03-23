@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Annotation\ApiProperty;
 use App\Entity\Brand;
 use App\Entity\Shape;
 use App\Entity\Style;
