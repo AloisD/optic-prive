@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { CartService } from 'src/app/services/cart/cart.service';
 import { ShippingOptionService } from 'src/app/services/shipping-option/shipping-option.service';
+import { IProduct } from 'src/app/models/IProduct';
 import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 
 @Component({
@@ -10,11 +11,12 @@ import { AuthenticationService } from 'src/app/services/authentication/authentic
   styleUrls: ['./summary-order-page.component.scss'],
 })
 export class SummaryOrderPageComponent implements OnInit {
-  public products: any = [];
-  public grandTotal!: number;
-  public productsQuantity!: number;
-  public summaryShippingPrice!: number;
-  public price!: number;
+  public products : IProduct[] = [];
+  public grandTotal !: number;
+  public productsQuantity !: number;
+  public summaryShippingPrice !:number;
+  public price !:number;  // nom de variable pas clair : c'est le prix de quoi ?
+  public sellers: string[] = [];
 
 
   constructor(
@@ -30,6 +32,12 @@ export class SummaryOrderPageComponent implements OnInit {
       this.grandTotal = this.cartService.getTotalPrice();
       this.productsQuantity = this.cartService.getProductsQuantity();
       this.price = this.cartService.getPrice();
+    });
+
+    this.products.forEach((product: IProduct) => {
+       if (!this.sellers.includes(product.seller.username)) {
+        this.sellers.push(product.seller.username);
+      }
     });
   }
 
