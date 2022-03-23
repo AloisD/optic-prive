@@ -261,7 +261,7 @@
           <div class="">
             <img
               *ngIf="productToDelete.productImages.length"
-              src="https://localhost:8000/images/products/{{
+              src="{{apiUrl}}/images/products/{{
                 productToDelete.productImages[0].path
               }}"
               class="img-fluid"

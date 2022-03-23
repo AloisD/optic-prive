@@ -33,7 +33,6 @@ export class ProductPageComponent implements OnInit {
     });
     this.productService.getProduct(this.id!).subscribe((currentProduct: IProduct) => {
       this.product = currentProduct;
-      console.log(this.product.seller.username);
       let index = 0;
       this.imagePath1 = this.product.productImages[index].path;
       index ++;
