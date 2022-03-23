@@ -50,7 +50,6 @@ export class CallToActionPageComponent implements OnInit {
   }
 
   goToNextPage() {
-    console.log('Next url', this.nextUrl);
     this.productService
       .getLatestProductsByUrl(this.nextUrl)
       .subscribe((datas: any) => {
