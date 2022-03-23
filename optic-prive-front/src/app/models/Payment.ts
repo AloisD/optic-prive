@@ -1,8 +1,7 @@
 import { IAddress } from "./IAddress";
 import { IShippingOption } from "./IShippingOption";
 
-export class Payment
-{
+export class Payment {
   cart: any;
   address_id!: number;
   address_name!: string;
@@ -13,7 +12,9 @@ export class Payment
   firstname!: string;
   lastname!: string;
   address!: IAddress;
-  additionnal_details !: string;
-  zip_code !: string;
+  additionnal_details!: string;
+  zip_code!: string;
   shipping_option!: IShippingOption;
+  addressBillingId!: number;
+  addressDeliveryId!: number;
 }
