@@ -85,7 +85,7 @@ export class AuthenticationService {
   }
 
   update(userId: any, user: any) {
-    return this.http.put(`https://localhost:8000/api/users/${userId}`, user, {
+    return this.http.put(`${environment.apiUrl}/api/users/${userId}`, user, {
       withCredentials: true,
     });
   }

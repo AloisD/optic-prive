@@ -2,22 +2,23 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IAddress } from 'src/app/models/IAddress';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AddresseService {
-  private $url = 'https://localhost:8000/api';
+  public apiUrl = `${environment.apiUrl}/api`;
 
   constructor(private http: HttpClient) {}
 
   getAddresses(): Observable<IAddress> {
-    return this.http.get<IAddress>(`${this.$url}/addresses`);
+    return this.http.get<IAddress>(`${this.apiUrl}/addresses`);
   }
 
   getAddressesByUser(userId: number): Observable<IAddress> {
     return this.http.get<IAddress>(
-      `${this.$url}/addresses?page=1&user=${userId}`
+      `${this.apiUrl}/addresses?page=1&user=${userId}`
     );
   }
 
