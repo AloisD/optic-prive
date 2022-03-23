@@ -29,7 +29,7 @@ export class HomePageComponent implements OnInit {
       this.products.forEach((product: any) => {
         Object.assign(product, { quantityOrdered: 0 });
       });
-      // // For pagination
+      // For pagination
       this.nextUrl = datas['hydra:view']['hydra:next'];
       this.previousUrl = datas['hydra:view']['hydra:previous'];
     });
