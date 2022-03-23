@@ -6,12 +6,14 @@ export interface IProduct {
   retail_price: number;
   selling_price: number;
   quantity: number;
+  quantityOrdered: number;
   eye_size: number;
   bridge_size: number;
   temple_length: number;
   created_at: Date;
   updated_at: Date;
   state: string;
+  itemAvailability: string;
   category: string;
   uv_protection: string;
   productImages: [any];
@@ -35,5 +37,8 @@ export interface IProduct {
   };
   lens_type: {
     name: string;
+  };
+  seller: {
+    username: string;
   };
 }

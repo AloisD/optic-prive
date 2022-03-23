@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IProduct } from 'src/app/models/IProduct';
 import { CartService } from 'src/app/services/cart/cart.service';
 import { ProductService } from 'src/app/services/product/product.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-call-to-action-page',
@@ -12,6 +13,7 @@ export class CallToActionPageComponent implements OnInit {
   public products!: [IProduct];
   public nextUrl!: string;
   public previousUrl!: string;
+  public apiUrl = `${environment.apiUrl}`;
 
   constructor(
     private productService: ProductService,
@@ -24,7 +26,7 @@ export class CallToActionPageComponent implements OnInit {
       this.products.forEach((product: any) => {
         Object.assign(product, { quantityOrdered: 0 });
       });
-       // // For pagination
+       // For pagination
        this.nextUrl = datas['hydra:view']['hydra:next'];
        this.previousUrl = datas['hydra:view']['hydra:previous'];
     });

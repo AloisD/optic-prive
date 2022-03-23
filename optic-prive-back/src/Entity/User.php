@@ -60,7 +60,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Timesta
   #[ORM\Column(type: 'string')]
   private $password;
 
-  #[Groups(["read_profile"])]
+  #[Groups(["read_profile", "product_read"])]
   #[ORM\Column(type: 'string', length: 255, nullable: true)]
   private $username;
 

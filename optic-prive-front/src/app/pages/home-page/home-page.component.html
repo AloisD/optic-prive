@@ -22,13 +22,38 @@
       style="list-style: none"
     >
       <li *ngFor="let product of products">
+
+        <script type="application/ld+json">
+          {
+            "@context": "https://schema.org/",
+            "@type": "Product",
+            "name": "{{ product.brand.name }} {{ product?.reference }}",
+            "image": [
+              "{{ apiUrl }}/images/products/{{ imagePath1 }}",
+              "{{ apiUrl }}/images/products/{{ imagePath2 }}",
+              "{{ apiUrl }}/images/products/{{ imagePath3 }}"
+            ],
+            "brand": {
+              "@type": "Brand",
+              "name": "{{ product.brand.name }}"
+            },
+            "offers": {
+              "@type": "Offer",
+              "priceCurrency": "EUR",
+              "price": "{{ product?.selling_price }}",
+              "itemCondition": "{{ product.state }}",
+              "availability": "{{ product.itemAvailability }}"
+            }
+          }
+        </script>
+
         <div class="col">
           <div class="card h-100">
             <div class="cart-relative">
               <a [routerLink]="['produit', product.id]">
                 <img
                   *ngIf="product.productImages.length"
-                  src="https://localhost:8000/images/products/{{
+                  src="{{apiUrl}}/images/products/{{
                     product.productImages[0].path
                   }}"
                   class="card-img-top"

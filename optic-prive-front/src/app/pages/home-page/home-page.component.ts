@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IProduct } from 'src/app/models/IProduct';
 import { CartService } from 'src/app/services/cart/cart.service';
 import { ProductService } from 'src/app/services/product/product.service';
-import { ToastService } from 'src/app/services/toast/toast.service';
+import { environment } from 'src/environments/environment';
 import { reduceEachLeadingCommentRange } from 'typescript';
 
 @Component({
@@ -12,13 +12,13 @@ import { reduceEachLeadingCommentRange } from 'typescript';
 })
 export class HomePageComponent implements OnInit {
   public products!: [IProduct];
+  public apiUrl = `${environment.apiUrl}`;
   public nextUrl!: string;
   public previousUrl!: string;
 
   constructor(
     private productService: ProductService,
     private cartService: CartService,
-    private toastService: ToastService,
   ) {}
 
   ngOnInit(): void {
@@ -37,10 +37,6 @@ export class HomePageComponent implements OnInit {
 
   addtocart(product: any) {
     this.cartService.addToCart(product);
-    this.toastService.show(`Votre article a bien été ajouté au panier`, {
-      delay: 3000,
-      classname: 'bg-success text-light',
-    });
   }
 
   goToPreviousPage() {

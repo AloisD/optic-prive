@@ -3,6 +3,30 @@
 <app-breadcrumb></app-breadcrumb>
 
 
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org/",
+    "@type": "Product",
+    "name": "{{ product.brand.name }} {{ product?.reference }}",
+    "image": [
+      "{{ apiUrl }}/images/products/{{ imagePath1 }}",
+      "{{ apiUrl }}/images/products/{{ imagePath2 }}",
+      "{{ apiUrl }}/images/products/{{ imagePath3 }}"
+     ],
+    "brand": {
+      "@type": "Brand",
+      "name": "{{ product.brand.name }}"
+    },
+    "offers": {
+      "@type": "Offer",
+      "priceCurrency": "EUR",
+      "price": "{{ product?.selling_price }}",
+      "itemCondition": "{{ product.state }}",
+      "availability": "{{ product.itemAvailability }}"
+    }
+  }
+</script>
+
 <div class="container mb-5" *ngIf="product">
   <div class="row">
 
@@ -19,21 +43,21 @@
         </div>
         <div class="carousel-inner">
           <div class="carousel-item active" data-bs-interval="10000">
-            <img src="https://localhost:8000/images/products/{{
+            <img src="{{apiUrl}}/images/products/{{
               imagePath1
             }}"
             class="d-block image"
             alt="{{ product.reference }} 1">
           </div>
           <div class="carousel-item" data-bs-interval="2000">
-            <img src="https://localhost:8000/images/products/{{
+            <img src="{{apiUrl}}/images/products/{{
               imagePath2
             }}"
             class="d-block image"
             alt="{{ product.reference }} 2">
           </div>
           <div class="carousel-item">
-            <img src="https://localhost:8000/images/products/{{
+            <img src="{{apiUrl}}/images/products/{{
               imagePath3
             }}"
             class="d-block image"
@@ -71,7 +95,7 @@
           <!-- Référence -->
           <p class="reference">Ref : {{ product?.reference }}</p>
           <!-- Vendeur -->
-          <p class="reference"> !! Vendu par : Quelqu'un !!</p>
+          <p class="reference"> Vendu par : {{product.seller.username}}</p>
         </div>
 
         <div class="boxes d-flex justify-content-between details">
@@ -153,3 +177,5 @@
     </div>
   </div>
 </div>
+
+

@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Annotation\ApiProperty;
 use App\Entity\Brand;
 use App\Entity\Shape;
 use App\Entity\Style;
@@ -135,6 +136,7 @@ class Product implements SluggableInterface, TimestampableInterface
   private $uv_protection;
 
   #[ORM\Column(type: 'enumItemAvailability', nullable: false)]
+  #[Groups(["product_details_read"])]
   private $item_availability;
 
   #[ORM\ManyToOne(targetEntity: Brand::class, inversedBy: 'products')]
@@ -181,6 +183,7 @@ class Product implements SluggableInterface, TimestampableInterface
 
   #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'products')]
   #[ORM\JoinColumn(nullable: false)]
+  #[Groups(["product_read", "product_details_read"])]
   private $seller;
 
   public function __construct()

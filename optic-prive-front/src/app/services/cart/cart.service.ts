@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { IProduct } from 'src/app/models/IProduct';
 import { BehaviorSubject } from 'rxjs';
-
+import { isPlatformBrowser } from '@angular/common';
+import { ToastService } from 'src/app/services/toast/toast.service';
 export interface CartProduct extends IProduct {
   quantityOrdered: number;
 }
@@ -9,6 +10,7 @@ export interface CartProduct extends IProduct {
 @Injectable({
   providedIn: 'root',
 })
+
 export class CartService {
   private price: number = 0;
   public priceShipping = {
@@ -18,15 +20,17 @@ export class CartService {
   public cartProducts: CartProduct[] = [];
   public products = new BehaviorSubject<CartProduct[]>([]);
 
-  constructor() {
-    const cartStorage = localStorage.getItem('cart');
-    if (cartStorage) {
-      this.products.next(JSON.parse(cartStorage));
+  constructor(@Inject(PLATFORM_ID) private platformId: Object, private toastService: ToastService) {
+    if (isPlatformBrowser(this.platformId)) {
+      const cartStorage = localStorage.getItem('cart');
+      if (cartStorage) {
+        this.products.next(JSON.parse(cartStorage));
+      }
+      this.products.subscribe((products) => {
+        this.cartProducts = products;
+        localStorage.setItem('cart', JSON.stringify(products));
+      });
     }
-    this.products.subscribe((products) => {
-      this.cartProducts = products;
-      localStorage.setItem('cart', JSON.stringify(products));
-    });
   }
 
   getProducts() {
@@ -46,6 +50,10 @@ export class CartService {
       newCartProducts = [...this.cartProducts];
       newCartProducts[currentIndex].quantityOrdered += 1;
     }
+    this.toastService.show(`Votre article a bien été ajouté au panier`, {
+      delay: 2000,
+      classname: 'bg-success text-light',
+    });
     this.products.next(newCartProducts);
   }
 
@@ -101,9 +109,11 @@ export class CartService {
   }
 
   setShippingPrice(value: any) {
-    this.priceShipping.id = value.id;
-    this.priceShipping.price = value.price;
-    localStorage.setItem('shipping-price', JSON.stringify(this.priceShipping));
+    if (isPlatformBrowser(this.platformId)) {
+      this.priceShipping.id = value.id;
+      this.priceShipping.price = value.price;
+      localStorage.setItem('shipping-price', JSON.stringify(this.priceShipping));
+    }
   }
 
   getShippingPrice() {

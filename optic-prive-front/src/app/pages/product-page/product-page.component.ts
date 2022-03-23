@@ -3,7 +3,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { IProduct } from 'src/app/models/IProduct';
 import { ProductService } from 'src/app/services/product/product.service';
 import { CartService } from 'src/app/services/cart/cart.service';
-import { ToastService } from 'src/app/services/toast/toast.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-product-page',
@@ -13,6 +13,7 @@ import { ToastService } from 'src/app/services/toast/toast.service';
 export class ProductPageComponent implements OnInit {
 
   product!: IProduct;
+  apiUrl = `${environment.apiUrl}`;
   id: number | undefined;
   imagePath1: string | undefined;
   imagePath2: string | undefined;
@@ -22,7 +23,6 @@ export class ProductPageComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private productService: ProductService,
     private cartService: CartService,
-    private toastService: ToastService,
    ) {}
 
   ngOnInit(): void {
@@ -34,17 +34,17 @@ export class ProductPageComponent implements OnInit {
       let index = 0;
       this.imagePath1 = this.product.productImages[index].path;
       index ++;
-      this.imagePath2 = this.product.productImages[index].path;
-      index ++;
-      this.imagePath3 = this.product.productImages[index].path;
+      if (this.product.productImages[index]) {
+        this.imagePath2 = this.product.productImages[index].path;
+        index ++;
+        if (this.product.productImages[index]) {
+          this.imagePath3 = this.product.productImages[index].path;
+        }
+      }
     });
   }
 
   addtocart(product: any) {
     this.cartService.addToCart(product);
-    this.toastService.show(`Votre article a bien été ajouté au panier`, {
-      delay: 3000,
-      classname: 'bg-success text-light',
-    });
   }
 }

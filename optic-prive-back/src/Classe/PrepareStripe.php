@@ -5,6 +5,7 @@ namespace App\Classe;
 use App\Entity\Address;
 use App\Entity\Order;
 use App\Entity\OrderHasProduct;
+use App\Repository\AddressRepository;
 use App\Repository\OrderHasProductRepository;
 use App\Repository\OrderRepository;
 use App\Repository\ProductRepository;
@@ -20,6 +21,7 @@ class PrepareStripe
   private $productRepository;
   private $orderHasProductRepository;
   private $orderRepository;
+  private $addressRepository;
 
   public function __construct(
     EntityManagerInterface $manager,
@@ -27,7 +29,8 @@ class PrepareStripe
     ShippingOptionRepository $shippingOptionRepository,
     ProductRepository $productRepository,
     OrderHasProductRepository $orderHasProductRepository,
-    OrderRepository $orderRepository
+    OrderRepository $orderRepository,
+    AddressRepository $addressRepository
   ) {
     $this->manager = $manager;
     $this->userRepository = $userRepository;
@@ -35,11 +38,13 @@ class PrepareStripe
     $this->productRepository = $productRepository;
     $this->orderHasProductRepository = $orderHasProductRepository;
     $this->orderRepository = $orderRepository;
+    $this->addressRepository = $addressRepository;
   }
 
 
   public function getIdOrder($data)
   {
+
     //user
     if ($data->userId) {
       $user = $this->userRepository->find($data->userId);
@@ -49,8 +54,17 @@ class PrepareStripe
       return null;
     }
 
+    if(!isset($data->addressDeliveryId)) {
+      return null;
+    }
+
     //delivery_address
-    $deliveryAddress = new Address;
+    $deliveryAddress = $this->addressRepository->find($data->addressDeliveryId);
+
+    if (!$deliveryAddress) {
+      return null;
+    }
+    /*
     $deliveryAddress
       ->setName($data->delivery->address_name)
       ->setRecipient($data->delivery->address_name)
@@ -60,10 +74,18 @@ class PrepareStripe
       ->setFirstname($data->delivery->firstname)
       ->setLastname($data->delivery->lastname);
     $this->manager->persist($deliveryAddress);
+    */
 
-    // invoicing_address
-    $invoicingAddress = $deliveryAddress;
+    if($data->isSameAddressBilling || (isset($data->addressDeliveryId) && ( isset($data->addressBillingId) && ($data->addressBillingId == $data->addressDeliveryId)) ) ) {
+      // invoicing_address
+      $invoicingAddress = $deliveryAddress;
+    } else {
+      if(isset($data->addressBillingId)) {
+        $invoicingAddress = $this->addressRepository->find($data->addressBillingId);
+      }
+    }
 
+    //tester le else
     //shipping
     if ($data->shippingId) {
       $shippingOption = $this->shippingOptionRepository->find($data->shippingId);
@@ -77,8 +99,8 @@ class PrepareStripe
       ->setShipping($shippingOption)
       ->setOrderStatus('orderPaymentDue')
       ->setBuyer($user);
-    $this->manager->persist($order);
 
+    $this->manager->persist($order);
 
     foreach ($data->products as $dataProduct) {
       $product = $this->productRepository->find($dataProduct->id);
@@ -94,7 +116,6 @@ class PrepareStripe
     }
 
     $this->manager->flush();
-
     return $order->getId();
   }
 
