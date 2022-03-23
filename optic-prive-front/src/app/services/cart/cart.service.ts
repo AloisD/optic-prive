@@ -2,7 +2,7 @@ import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { IProduct } from 'src/app/models/IProduct';
 import { BehaviorSubject } from 'rxjs';
 import { isPlatformBrowser } from '@angular/common';
-
+import { ToastService } from 'src/app/services/toast/toast.service';
 export interface CartProduct extends IProduct {
   quantityOrdered: number;
 }
@@ -10,6 +10,7 @@ export interface CartProduct extends IProduct {
 @Injectable({
   providedIn: 'root',
 })
+
 export class CartService {
   private price: number = 0;
   public priceShipping = {
@@ -19,7 +20,7 @@ export class CartService {
   public cartProducts: CartProduct[] = [];
   public products = new BehaviorSubject<CartProduct[]>([]);
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+  constructor(@Inject(PLATFORM_ID) private platformId: Object, private toastService: ToastService) {
     if (isPlatformBrowser(this.platformId)) {
       const cartStorage = localStorage.getItem('cart');
       if (cartStorage) {
@@ -49,6 +50,10 @@ export class CartService {
       newCartProducts = [...this.cartProducts];
       newCartProducts[currentIndex].quantityOrdered += 1;
     }
+    this.toastService.show(`Votre article a bien été ajouté au panier`, {
+      delay: 2000,
+      classname: 'bg-success text-light',
+    });
     this.products.next(newCartProducts);
   }
 

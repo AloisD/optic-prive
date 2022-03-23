@@ -4,7 +4,6 @@ import { IProduct } from 'src/app/models/IProduct';
 import { ProductService } from 'src/app/services/product/product.service';
 import { CartService } from 'src/app/services/cart/cart.service';
 import { environment } from 'src/environments/environment';
-import { ToastService } from 'src/app/services/toast/toast.service';
 
 @Component({
   selector: 'app-product-page',
@@ -24,7 +23,6 @@ export class ProductPageComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private productService: ProductService,
     private cartService: CartService,
-    private toastService: ToastService,
    ) {}
 
   ngOnInit(): void {
@@ -48,9 +46,5 @@ export class ProductPageComponent implements OnInit {
 
   addtocart(product: any) {
     this.cartService.addToCart(product);
-    this.toastService.show(`Votre article a bien été ajouté au panier`, {
-      delay: 3000,
-      classname: 'bg-success text-light',
-    });
   }
 }
