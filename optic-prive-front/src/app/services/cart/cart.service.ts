@@ -42,11 +42,12 @@ export class CartService {
     const currentIndex = this.cartProducts.findIndex((currentProduct) => {
       return currentProduct.id === product.id;
     });
-    if (product.quantityOrdered >= product.quantity) return;
     if (currentIndex === -1) {
       product.quantityOrdered = 1;
       newCartProducts = [...this.cartProducts, product];
     } else {
+      if (this.cartProducts[currentIndex].quantityOrdered >= product.quantity) return;
+
       newCartProducts = [...this.cartProducts];
       newCartProducts[currentIndex].quantityOrdered += 1;
     }
