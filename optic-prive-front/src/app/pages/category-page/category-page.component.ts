@@ -15,6 +15,8 @@ export class CategoryPageComponent implements OnInit {
   apiUrl = `${environment.apiUrl}`;
   segmentName: string | undefined;
   segmentTitle!: string;
+  public nextUrl!: string;
+  public previousUrl!: string;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -48,11 +50,44 @@ export class CategoryPageComponent implements OnInit {
         this.products.forEach((product: any) => {
           Object.assign(product, { quantityOrdered: 0 });
        });
+       // // For pagination
+      this.nextUrl = datas['hydra:view']['hydra:next'];
+      this.previousUrl = datas['hydra:view']['hydra:previous'];
       });
     });
   }
 
   addtocart(product: any) {
     this.cartService.addToCart(product);
+  }
+
+  goToPreviousPage() {
+    this.productService
+      .getLatestProductsByUrl(this.previousUrl)
+      .subscribe((datas: any) => {
+        this.products = datas['hydra:member'];
+        this.products.forEach((product: any) => {
+          Object.assign(product, { quantityOrdered: 0 });
+        });
+
+        // For pagination
+        this.nextUrl = datas['hydra:view']['hydra:next'];
+        this.previousUrl = datas['hydra:view']['hydra:previous'];
+      });
+  }
+
+  goToNextPage() {
+    this.productService
+      .getLatestProductsByUrl(this.nextUrl)
+      .subscribe((datas: any) => {
+        this.products = datas['hydra:member'];
+        this.products.forEach((product: any) => {
+          Object.assign(product, { quantityOrdered: 0 });
+        });
+
+        // For pagination
+        this.nextUrl = datas['hydra:view']['hydra:next'];
+        this.previousUrl = datas['hydra:view']['hydra:previous'];
+      });
   }
 }

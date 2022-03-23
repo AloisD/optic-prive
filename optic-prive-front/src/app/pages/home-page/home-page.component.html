@@ -15,7 +15,7 @@
       </div>
     </div>
     <div class="news">
-      <h4>LES NOUVEAUTÉS</h4>
+      <h4>NOUVEAUTÉS</h4>
     </div>
     <div
       class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4"
@@ -121,19 +121,18 @@
     </div>
     <div class="row">
       <div class="col">
-        <div class="my-2" style="display: flex; justify-content: space-between">
+        <div class="my-4 d-flex justify-content-center">
           <button
-            class="btn btn-primary"
+            class="btn btn-primary small-btn mx-5"
+            [ngClass]="{'disabled' : !previousUrl}"
             (click)="goToPreviousPage()"
-            *ngIf="previousUrl"
           >
             &larr;
           </button>
-          <div style="flex: 1"></div>
           <button
-            class="btn btn-primary"
+            class="btn btn-primary small-btn mx-5"
+            [ngClass]="{'disabled' : !nextUrl}"
             (click)="goToNextPage()"
-            *ngIf="nextUrl"
           >
             &rarr;
           </button>
