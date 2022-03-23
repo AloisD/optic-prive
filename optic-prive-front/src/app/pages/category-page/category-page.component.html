@@ -49,16 +49,16 @@
   <div class="col">
     <div class="my-4 d-flex justify-content-center">
       <button
-        class="btn btn-primary small-btn mx-5"
-        (click)="goToPreviousPage()"
-        *ngIf="previousUrl"
+      class="btn btn-primary small-btn mx-5"
+      [ngClass]="{'disabled' : !previousUrl}"
+      (click)="goToPreviousPage()"
       >
         &larr;
       </button>
       <button
         class="btn btn-primary small-btn mx-5"
+        [ngClass]="{'disabled' : !nextUrl}"
         (click)="goToNextPage()"
-        *ngIf="nextUrl"
       >
         &rarr;
       </button>
