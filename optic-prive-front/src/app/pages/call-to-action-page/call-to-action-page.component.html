@@ -44,3 +44,23 @@
     </li>
   </div>
 </div>
+<div class="row">
+  <div class="col">
+    <div class="my-4 d-flex justify-content-center">
+      <button
+        class="btn btn-primary small-btn mx-5"
+        (click)="goToPreviousPage()"
+        *ngIf="previousUrl"
+      >
+        &larr;
+      </button>
+      <button
+        class="btn btn-primary small-btn mx-5"
+        (click)="goToNextPage()"
+        *ngIf="nextUrl"
+      >
+        &rarr;
+      </button>
+    </div>
+  </div>
+</div>
