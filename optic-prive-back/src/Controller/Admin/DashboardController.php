@@ -57,7 +57,9 @@ class DashboardController extends AbstractDashboardController
     {
         yield MenuItem::linkToDashboard('Tableau de bord', 'fa fa-home');
         yield MenuItem::linkToCrud('Produits', 'fas fa-list', Product::class);
-        yield MenuItem::subMenu('Catégories', 'fa fa-article')->setSubItems([
+        yield MenuItem::subMenu('Catégories', 'fa fa-article')
+        ->setPermission('ROLE_ADMIN')
+        ->setSubItems([
           MenuItem::linkToCrud('Marques', 'fas fa-list', Brand::class),
           MenuItem::linkToCrud('Formes', 'fas fa-list', Shape::class),
           MenuItem::linkToCrud('Segments', 'fas fa-list', Segment::class),
@@ -66,12 +68,17 @@ class DashboardController extends AbstractDashboardController
           MenuItem::linkToCrud('Couleurs', 'fas fa-list', Color::class),
           MenuItem::linkToCrud('Matériaux', 'fas fa-list', Material::class),
         ]);
-        yield MenuItem::linkToCrud('Utilisateurs', 'fas fa-list', User::class);
-        yield MenuItem::subMenu('détails', 'fa fa-article')->setSubItems([
+        yield MenuItem::linkToCrud('Utilisateurs', 'fas fa-list', User::class)
+        ->setPermission('ROLE_ADMIN');
+        yield MenuItem::subMenu('détails', 'fa fa-article')
+        ->setPermission('ROLE_ADMIN')
+        ->setSubItems([
           MenuItem::linkToCrud('Pro', 'fas fa-list', BusinessUser::class),
         ]);
-        yield MenuItem::linkToCrud('Commandes', 'fas fa-list', Order::class);
-        yield MenuItem::linkToCrud('Frais de port', 'fas fa-list', ShippingOption::class);
+        yield MenuItem::linkToCrud('Commandes', 'fas fa-list', Order::class)
+        ->setPermission('ROLE_ADMIN');
+        yield MenuItem::linkToCrud('Frais de port', 'fas fa-list', ShippingOption::class)
+        ->setPermission('ROLE_ADMIN');
         yield MenuItem::linkToUrl('Visiter le site public', null, '/');
     }
 }
