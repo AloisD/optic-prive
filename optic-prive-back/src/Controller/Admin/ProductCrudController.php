@@ -3,8 +3,15 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Product;
+use App\Entity\User;
 use App\Form\ProductImageType;
+use App\Repository\UserRepository;
+use Doctrine\ORM\QueryBuilder;
+use EasyCorp\Bundle\EasyAdminBundle\Collection\FieldCollection;
+use EasyCorp\Bundle\EasyAdminBundle\Collection\FilterCollection;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto;
+use EasyCorp\Bundle\EasyAdminBundle\Dto\SearchDto;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
@@ -13,6 +20,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+
 class ProductCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
@@ -20,13 +28,37 @@ class ProductCrudController extends AbstractCrudController
         return Product::class;
     }
 
+    public function createIndexQueryBuilder(SearchDto $searchDto, EntityDto $entityDto, FieldCollection $fields, FilterCollection $filters): QueryBuilder
+    {
+        $user = $this->getUser();
+        $qb = parent::createIndexQueryBuilder($searchDto, $entityDto, $fields, $filters);
+        if (!$this->isGranted('ROLE_ADMIN')) {
+          $qb->where('entity.seller = :id');
+          $qb->setParameter('id', $user);
+       }
+
+        return $qb;
+    }
+
     public function configureFields(string $pageName): iterable
     {
+        //$userRepository = $this->entityManager->getRepository(User::class);
+        $user = $this->getUser();
+
         yield IdField::new('id')->hideOnForm();
 
         yield FormField::addTab('Informations essentielles');
           yield FormField::addPanel('détails du produit');
-            yield TextField::new('name', 'nom');
+            yield AssociationField::new('seller', 'vendeur')
+
+            /*
+            ->setQueryBuilder(
+              $userRepository->createQueryBuilder('entity')
+                  ->where('entity.seller = :id')
+                  ->setParameter('id', $user)
+            )*/
+            ;
+
             yield AssociationField::new('brand', 'marque')->setColumns(3);/* ->autocomplete() use autocomplete if you have too many values causing "out of memory" errors */
             yield TextField::new('reference', 'référence')->setColumns(3);
             yield TextField::new('color_code', 'code couleur')->setColumns(3)->hideOnIndex();
