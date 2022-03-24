@@ -121,9 +121,13 @@ export class CartService {
   }
 
   setShippingPrice(newShippingOption: any) {
-    this.shippingOption.next(newShippingOption);
-    this.priceShipping.id = newShippingOption.id;
-    this.priceShipping.price = newShippingOption.price;
+    if (isPlatformBrowser(this.platformId)) {
+      this.shippingOption.next(newShippingOption);
+      this.priceShipping.id = newShippingOption.id;
+      this.priceShipping.price = newShippingOption.price;
+      localStorage.setItem('shipping-price', JSON.stringify(this.priceShipping));
+    }
+
   }
 
   getShippingPrice() {
