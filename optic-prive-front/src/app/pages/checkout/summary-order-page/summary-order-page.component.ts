@@ -12,12 +12,12 @@ import { AuthenticationService } from 'src/app/services/authentication/authentic
 })
 export class SummaryOrderPageComponent implements OnInit {
   public products : IProduct[] = [];
+  public shippingOption! : any;
   public grandTotal !: number;
   public productsQuantity !: number;
   public summaryShippingPrice !:number;
   public price !:number;  // nom de variable pas clair : c'est le prix de quoi ?
   public sellers: string[] = [];
-
 
   constructor(
     private cartService: CartService,
@@ -38,6 +38,10 @@ export class SummaryOrderPageComponent implements OnInit {
        if (!this.sellers.includes(product.seller.username)) {
         this.sellers.push(product.seller.username);
       }
+    });
+    //this.price = this.cartService.shippingOption.value.
+    this.cartService.shippingOption.subscribe((shippingOption) => {
+      this.shippingOption = shippingOption;
     });
   }
 

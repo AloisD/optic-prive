@@ -42,6 +42,7 @@ export class ShippingPageComponent implements OnInit {
 
   changeShippingOption(e:any) {
     this.shippingOptionService.getShippingOption(e.target.value).subscribe((s:IShippingOption)=> {
+      console.log(s.price);
       this.price = Number(s.price);
       this.shippingOptionService.shippingPrice = this.price;
       this.cartService.setPrice(this.price);

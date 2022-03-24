@@ -3,6 +3,7 @@ import { IProduct } from 'src/app/models/IProduct';
 import { BehaviorSubject } from 'rxjs';
 import { isPlatformBrowser } from '@angular/common';
 import { ToastService } from 'src/app/services/toast/toast.service';
+import { IShippingOption } from 'src/app/models/IShippingOption';
 export interface CartProduct extends IProduct {
   quantityOrdered: number;
 }
@@ -19,12 +20,17 @@ export class CartService {
   };
   public cartProducts: CartProduct[] = [];
   public products = new BehaviorSubject<CartProduct[]>([]);
+  public shippingOption = new BehaviorSubject<IShippingOption[]>([]);
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object, private toastService: ToastService) {
     if (isPlatformBrowser(this.platformId)) {
       const cartStorage = localStorage.getItem('cart');
       if (cartStorage) {
         this.products.next(JSON.parse(cartStorage));
+      }
+      const shippingStorage = localStorage.getItem('shipping-price');
+      if (shippingStorage) {
+        this.shippingOption.next(JSON.parse(shippingStorage));
       }
       this.products.subscribe((products) => {
         this.cartProducts = products;
