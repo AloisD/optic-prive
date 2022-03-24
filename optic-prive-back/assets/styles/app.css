@@ -1,0 +1,45 @@
+body {
+  background-color: #FBEADF;
+  font-family: 'Raleway', sans-serif;
+}
+
+h2 {
+  margin: 40px;
+}
+
+form {
+  text-align: center;
+}
+
+.form {
+  margin: 50px;
+}
+
+label {
+  font-size: 20px;
+  margin: 10px;
+}
+
+input {
+  border-radius: 0px;
+  border: none;
+  box-shadow: none !important;
+  width: 200px;
+  height: 30px;
+  padding: 2px 10px;
+  font-size: 14px;
+}
+
+.btn-primary {
+  background-color: #87A397;
+  color: white;
+  border: none;
+  border-radius: 0%;
+  width: 190px;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.btn-primary:hover {
+  background-color: #87a397d0;
+}
