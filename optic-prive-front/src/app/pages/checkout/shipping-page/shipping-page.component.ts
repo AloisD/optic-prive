@@ -46,10 +46,7 @@ export class ShippingPageComponent implements OnInit {
       this.price = Number(s.price);
       this.shippingOptionService.shippingPrice = this.price;
       this.cartService.setPrice(this.price);
-      console.log('id',e.target.value);
-      console.log('prix', this.price);
       this.cartService.setShippingPrice({id:Number(e.target.value), price:this.price});
-      console.log('total',this.cartService.getShippingPrice());
     })
   }
 }
