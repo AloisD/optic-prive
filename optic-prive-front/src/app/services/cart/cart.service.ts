@@ -19,6 +19,7 @@ export class CartService {
     price: 0,
   };
   public cartProducts: CartProduct[] = [];
+  public cartShippingOptions: any;
   public products = new BehaviorSubject<CartProduct[]>([]);
   public shippingOption = new BehaviorSubject<IShippingOption[]>([]);
 
@@ -35,6 +36,10 @@ export class CartService {
       this.products.subscribe((products) => {
         this.cartProducts = products;
         localStorage.setItem('cart', JSON.stringify(products));
+      });
+      this.shippingOption.subscribe((shippingOption) => {
+        this.cartShippingOptions = shippingOption;
+        localStorage.setItem('shipping-price', JSON.stringify(shippingOption));
       });
     }
   }
@@ -116,11 +121,7 @@ export class CartService {
   }
 
   setShippingPrice(value: any) {
-    if (isPlatformBrowser(this.platformId)) {
-      this.priceShipping.id = value.id;
-      this.priceShipping.price = value.price;
-      localStorage.setItem('shipping-price', JSON.stringify(this.priceShipping));
-    }
+    this.shippingOption.next(value);
   }
 
   getShippingPrice() {

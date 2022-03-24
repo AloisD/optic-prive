@@ -16,7 +16,7 @@ export class SummaryOrderPageComponent implements OnInit {
   public grandTotal !: number;
   public productsQuantity !: number;
   public summaryShippingPrice !:number;
-  public price !:number;  // nom de variable pas clair : c'est le prix de quoi ?
+  //public price !:number;  // nom de variable pas clair : c'est le prix de quoi ?
   public sellers: string[] = [];
 
   constructor(
@@ -31,7 +31,7 @@ export class SummaryOrderPageComponent implements OnInit {
       this.products = res;
       this.grandTotal = this.cartService.getTotalPrice();
       this.productsQuantity = this.cartService.getProductsQuantity();
-      this.price = this.cartService.getPrice();
+      //this.price = this.cartService.getPrice();
     });
 
     this.products.forEach((product: IProduct) => {
@@ -39,7 +39,6 @@ export class SummaryOrderPageComponent implements OnInit {
         this.sellers.push(product.seller.username);
       }
     });
-    //this.price = this.cartService.shippingOption.value.
     this.cartService.shippingOption.subscribe((shippingOption) => {
       this.shippingOption = shippingOption;
     });
