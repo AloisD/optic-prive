@@ -64,7 +64,6 @@ export class FinalCheckoutPageComponent implements OnInit {
       this.grandTotal = this.cartService.getTotalPrice();
       this.productsQuantity = this.cartService.getProductsQuantity();
       this.price = this.cartService.getPrice();
-      //  console.log('prix', this.price);
     });
     this.setProductToDelete(this.products[0]);
 
@@ -99,7 +98,6 @@ export class FinalCheckoutPageComponent implements OnInit {
 
   changePriceShipping() {
     this.summaryShippingPrice = this.shippingOptionService.shippingPrice;
-    //  console.log('changePriceShipping', this.summaryShippingPrice);
   }
 
   removeItem(product: any) {
