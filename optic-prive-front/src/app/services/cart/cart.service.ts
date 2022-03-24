@@ -120,8 +120,8 @@ export class CartService {
     return this.price;
   }
 
-  setShippingPrice(value: any) {
-    this.shippingOption.next(value);
+  setShippingPrice(newShippingOption: any) {
+    this.shippingOption.next(newShippingOption);
   }
 
   getShippingPrice() {
