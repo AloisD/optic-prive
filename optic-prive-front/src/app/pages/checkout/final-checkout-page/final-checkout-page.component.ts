@@ -10,6 +10,7 @@ import { PaymentService } from 'src/app/services/payment/payment.service';
 import { ShippingOptionService } from 'src/app/services/shipping-option/shipping-option.service';
 import { environment } from 'src/environments/environment';
 import { ToastService } from 'src/app/services/toast/toast.service';
+import { IProduct } from 'src/app/models/IProduct';
 
 @Component({
   selector: 'app-final-checkout-page',
@@ -18,6 +19,8 @@ import { ToastService } from 'src/app/services/toast/toast.service';
 })
 export class FinalCheckoutPageComponent implements OnInit {
   public products: any = [];
+  public sellers: string[] = [];
+  public shippingOption! : any;
   public apiUrl = `${environment.apiUrl}`;
   public grandTotal!: number;
   public productsQuantity!: number;
@@ -61,7 +64,6 @@ export class FinalCheckoutPageComponent implements OnInit {
       this.grandTotal = this.cartService.getTotalPrice();
       this.productsQuantity = this.cartService.getProductsQuantity();
       this.price = this.cartService.getPrice();
-      //  console.log('prix', this.price);
     });
     this.setProductToDelete(this.products[0]);
 
@@ -75,6 +77,15 @@ export class FinalCheckoutPageComponent implements OnInit {
     }
 
     this.getAdresses(userId);
+
+    this.products.forEach((product: IProduct) => {
+      if (!this.sellers.includes(product.seller.username)) {
+       this.sellers.push(product.seller.username);
+     }
+   });
+    this.cartService.shippingOption.subscribe((shippingOption) => {
+      this.shippingOption = shippingOption;
+    });
   }
 
   getAdresses(userId: number) {
@@ -87,7 +98,6 @@ export class FinalCheckoutPageComponent implements OnInit {
 
   changePriceShipping() {
     this.summaryShippingPrice = this.shippingOptionService.shippingPrice;
-    //  console.log('changePriceShipping', this.summaryShippingPrice);
   }
 
   removeItem(product: any) {

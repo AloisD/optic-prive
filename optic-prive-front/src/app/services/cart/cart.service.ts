@@ -3,6 +3,7 @@ import { IProduct } from 'src/app/models/IProduct';
 import { BehaviorSubject } from 'rxjs';
 import { isPlatformBrowser } from '@angular/common';
 import { ToastService } from 'src/app/services/toast/toast.service';
+import { IShippingOption } from 'src/app/models/IShippingOption';
 export interface CartProduct extends IProduct {
   quantityOrdered: number;
 }
@@ -18,7 +19,9 @@ export class CartService {
     price: 0,
   };
   public cartProducts: CartProduct[] = [];
+  public cartShippingOptions: any;
   public products = new BehaviorSubject<CartProduct[]>([]);
+  public shippingOption = new BehaviorSubject<IShippingOption[]>([]);
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object, private toastService: ToastService) {
     if (isPlatformBrowser(this.platformId)) {
@@ -26,9 +29,17 @@ export class CartService {
       if (cartStorage) {
         this.products.next(JSON.parse(cartStorage));
       }
+      const shippingStorage = localStorage.getItem('shipping-price');
+      if (shippingStorage) {
+        this.shippingOption.next(JSON.parse(shippingStorage));
+      }
       this.products.subscribe((products) => {
         this.cartProducts = products;
         localStorage.setItem('cart', JSON.stringify(products));
+      });
+      this.shippingOption.subscribe((shippingOption) => {
+        this.cartShippingOptions = shippingOption;
+        localStorage.setItem('shipping-price', JSON.stringify(shippingOption));
       });
     }
   }
@@ -109,12 +120,14 @@ export class CartService {
     return this.price;
   }
 
-  setShippingPrice(value: any) {
+  setShippingPrice(newShippingOption: any) {
     if (isPlatformBrowser(this.platformId)) {
-      this.priceShipping.id = value.id;
-      this.priceShipping.price = value.price;
+      this.shippingOption.next(newShippingOption);
+      this.priceShipping.id = newShippingOption.id;
+      this.priceShipping.price = newShippingOption.price;
       localStorage.setItem('shipping-price', JSON.stringify(this.priceShipping));
     }
+
   }
 
   getShippingPrice() {

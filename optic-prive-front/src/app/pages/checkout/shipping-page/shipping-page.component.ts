@@ -15,6 +15,7 @@ export class ShippingPageComponent implements OnInit {
   public products : any = [];
   public grandTotal !: number;
   public productsQuantity !: number;
+  public shippingChosen: boolean = false;
   price : number = 0;
   newPrice : number = 0;
 
@@ -42,13 +43,11 @@ export class ShippingPageComponent implements OnInit {
 
   changeShippingOption(e:any) {
     this.shippingOptionService.getShippingOption(e.target.value).subscribe((s:IShippingOption)=> {
+      this.shippingChosen = true;
       this.price = Number(s.price);
       this.shippingOptionService.shippingPrice = this.price;
       this.cartService.setPrice(this.price);
-      console.log('id',e.target.value);
-      console.log('prix', this.price);
       this.cartService.setShippingPrice({id:Number(e.target.value), price:this.price});
-      console.log('total',this.cartService.getShippingPrice());
     })
   }
 }

@@ -59,10 +59,11 @@
             <div class="col text-right">{{ price }} € </div>
           </div>
           <div class="row" style="padding: 1vh 0;">
-            <div class="col">TOTAL :</div>
-            <div class="col text-right">{{ (grandTotal + price).toFixed(2) }} €</div>
+            <div class="col">SOUS-TOTAL :</div>
+            <div class="col text-right">{{ grandTotal.toFixed(2) }} €</div>
           </div>
-          <button class="btn" routerLink="/recapitulatif">CONTINUER</button>
+          <button *ngIf="!shippingChosen" class="btn disabled" routerLink="/recapitulatif">CONTINUER</button>
+          <button *ngIf="shippingChosen" class="btn" routerLink="/recapitulatif">CONTINUER</button>
         </div>
       </div>
     </div>
@@ -74,7 +75,7 @@
       output = selectElement.value;
       document.querySelector('.output').textContent = output;
   }
-  </script>
+</script>
 <!-- <pre>
   {{shippingOptions|json}}
 </pre> -->

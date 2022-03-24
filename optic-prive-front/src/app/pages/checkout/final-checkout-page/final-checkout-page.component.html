@@ -208,24 +208,25 @@
                 <a type="number">{{ product.quantityOrdered }}</a>
               </div>
               <div class="col">{{ product.selling_price }} €</div>
-              <div
+<!--               <div
                 class="col close cursor"
                 data-bs-toggle="modal"
                 data-bs-target="#deletionModal"
                 (click)="setProductToDelete(product)"
               >
                 &#10005;
-              </div>
+              </div> -->
             </div>
           </div>
           <div class="row" style="padding: 3vh 0"></div>
           <div class="row" style="padding: 1vh 0">
             <div class="col">LIVRAISON :</div>
-            <div class="col text-right">{{ price }} €</div>
+            <div *ngIf="shippingOption.price == 0" class="col text-right">{{ shippingOption.price.toFixed(2) }} €</div>
+            <div *ngIf="shippingOption.price != 0" class="col text-right">{{ shippingOption.price.toFixed(2) }} € x {{ sellers.length }}</div>
             <p></p>
             <div class="col">TOTAL TTC :</div>
             <div class="col text-right">
-              {{ (grandTotal + price).toFixed(2) }} €
+              {{ (grandTotal + shippingOption.price*(sellers.length)).toFixed(2) }} €
             </div>
           </div>
         </div>
