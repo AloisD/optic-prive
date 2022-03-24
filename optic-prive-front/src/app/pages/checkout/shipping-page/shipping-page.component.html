@@ -62,7 +62,8 @@
             <div class="col">SOUS-TOTAL :</div>
             <div class="col text-right">{{ grandTotal.toFixed(2) }} €</div>
           </div>
-          <button class="btn" routerLink="/recapitulatif">CONTINUER</button>
+          <button *ngIf="!shippingChosen" class="btn disabled" routerLink="/recapitulatif">CONTINUER</button>
+          <button *ngIf="shippingChosen" class="btn" routerLink="/recapitulatif">CONTINUER</button>
         </div>
       </div>
     </div>
