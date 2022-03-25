@@ -15,6 +15,6 @@ export class Payment {
   additionnal_details!: string;
   zip_code!: string;
   shipping_option!: IShippingOption;
-  addressBillingId!: number;
-  addressDeliveryId!: number;
+  addressBillingId = -1
+  addressDeliveryId = -1;
 }

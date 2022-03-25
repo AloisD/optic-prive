@@ -43,11 +43,10 @@ export class FinalCheckoutPageComponent implements OnInit {
   public addresses!: IAddress[];
   public user!: any;
   public isSendPaid = false;
+  public statusBtnPaid = false;
 
   @ViewChild('elemAddressClose', { static: true })
   elementAddressClose: ElementRef = <ElementRef>{};
-
-
 
   constructor(
     private cartService: CartService,
@@ -86,6 +85,7 @@ export class FinalCheckoutPageComponent implements OnInit {
     this.cartService.shippingOption.subscribe((shippingOption) => {
       this.shippingOption = shippingOption;
     });
+
   }
 
   getAdresses(userId: number) {
@@ -93,6 +93,7 @@ export class FinalCheckoutPageComponent implements OnInit {
       .getAddressesByUser(userId)
       .subscribe((addresses: any) => {
         this.addresses = addresses['hydra:member'];
+        this.canUseBtnPaid();
       });
   }
 
@@ -148,10 +149,11 @@ export class FinalCheckoutPageComponent implements OnInit {
     } else {
       this.isSameAddressBilling = false;
     }
+    this.canUseBtnPaid();
   }
 
   addAddress(addressForm: NgForm) {
-    console.log('addressForm', addressForm.form.value);
+   // console.log('addressForm', addressForm.form.value);
     let userId: number | null;
     // userId = null;
     userId = this.authenticationService.getUserId();
@@ -197,6 +199,7 @@ export class FinalCheckoutPageComponent implements OnInit {
       console.log('Aucune adresse sélectionnée');
       this.payment.addressBillingId = -1; //
     }
+    this.canUseBtnPaid();
   }
 
   onItemChangeDelivery(address: IAddress | null = null) {
@@ -207,6 +210,7 @@ export class FinalCheckoutPageComponent implements OnInit {
       console.log('Aucune adresse sélectionnée');
       this.payment.addressDeliveryId = -1; //
     }
+    this.canUseBtnPaid();
   }
 
   createAdresseSuccess() {
@@ -214,5 +218,15 @@ export class FinalCheckoutPageComponent implements OnInit {
       classname: 'bg-success text-light',
       delay: 3000,
     });
+  }
+
+  canUseBtnPaid()
+  {
+    this.statusBtnPaid =
+      this.addresses.length > 0 &&
+      ((this.isSameAddressBilling && this.payment.addressDeliveryId != -1) ||
+        (!this.isSameAddressBilling && this.payment.addressDeliveryId != -1 && this.payment.addressBillingId != -1));
+      /* console.log('canUseBtnPaid', this.statusBtnPaid);
+      console.log('addressDeliveryId', this.payment.addressDeliveryId); */
   }
 }

@@ -42,7 +42,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.authenticationService.changeMessage('connexion');
     this.authenticationService.clearLocalStorage();
     this.logoutSuccess();
-    this.router.navigate(['/']);
+ //   this.router.navigate(['/']);
+    document.location.href = '/';
   }
 
   goToProfile() {
