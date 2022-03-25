@@ -58,7 +58,7 @@
                       name="flexRadioDefaultDelivery"
                       id="flexRadioDefaultDelivery"
                       type="radio"
-                      (change)="onItemChange()"
+                      (change)="onItemChangeDelivery(null)"
                       checked>
                       <label for="flexRadioDefaultDelivery">aucune sélection</label>
                   </div>
@@ -113,7 +113,7 @@
                       name="flexRadioDefault"
                       id="flexRadioDefault0"
                       type="radio"
-                      (change)="onItemChange()"
+                      (change)="onItemChange(null)"
                       checked>
                       <label for="flexRadioDefault0">aucune sélection</label>
                   </div>
@@ -170,7 +170,7 @@
               <button
                 class="w-100 btn btn-primary btn-lg"
                 type="submit"
-                [disabled]="isSendPaid"
+                [disabled]="statusBtnPaid==false"
               >
                 PAYER AVEC STRIPE
               </button>

@@ -79,9 +79,11 @@ export class AuthenticationService {
   }
 
   clearLocalStorage() {
-    localStorage.removeItem('user-id');
-    localStorage.removeItem('cart');
-    localStorage.removeItem('shipping-price');
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.removeItem('user-id');
+      localStorage.removeItem('cart');
+      localStorage.removeItem('shipping-price');
+    }
   }
 
   update(userId: any, user: any) {
