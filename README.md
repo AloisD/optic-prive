@@ -1,5 +1,5 @@
 
-# Optic Privé
+# Optic Prive
 
 Optic Privé is a platform that connects buyers and opticians on the internet
 
